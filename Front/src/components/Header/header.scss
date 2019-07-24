@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  margin: auto;
+  background-color: #223843;
+  align-items: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+.navbar-title {
+  flex: 2;
+  font-size: 2em;
+  color: white;
+  margin-left: 1em;
+}
+
+.navbar {
+  flex: 1;
+  color: white;
+}
+
+.navbar-ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-link {
+  color: #EFF1F3;
+  padding-bottom: .3em;
+}
+
+.navbar-link:hover {
+  border-bottom: 1px solid #D33F49;
+}
