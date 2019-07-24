@@ -1,0 +1,18 @@
+%%mocodo
+:
+ROLE: code, name
+:
+USER: surname, name, username, age, email, password, isActive, role_json_format, #code->ROLE->code
+:
+REVIEW: title, positive, negative, still_in, created_at, updated_at, #adress->APPARTMENT->adress, #surname->USER->surname
+:
+NOTE_REVIEW: #label->NOTE->label, _#title->REVIEW->title, number
+:
+NOTE: label, label.1
+::
+
+
+
+:::::
+APPARTMENT: adress, floor_number, location, area, rooms, rental
+:::::::
