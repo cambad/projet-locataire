@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Header from 'src/components/Header';
-import Recherche from 'src/components/Recherche';
+import Research from 'src/components/Research';
 import Footer from 'src/components/Footer';
 
 const App = () => (
   <div>
     <Header />
-    <Recherche />
+    <Research />
     <Footer />
   </div>
 );

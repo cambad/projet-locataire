@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './recherche.scss';
+import './research.scss';
 
-const Recherche = () => (
+const Research = () => (
   <main className="accueil">
     <div className="photo">
       <div className="presentation">
@@ -28,4 +28,4 @@ const Recherche = () => (
   </main>
 );
 
-export default Recherche;
+export default Research;
