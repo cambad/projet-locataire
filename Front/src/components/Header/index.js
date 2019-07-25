@@ -23,12 +23,6 @@ class Header extends React.Component {
 
   render() {
     const { active } = this.state;
-    const {
-      open,
-      setOpen,
-      handleOpen,
-      handleClose,
-    } = this.props;
     return (
       <header className="header">
         <NavLink to="/" className="header-title">Rate my rent</NavLink>
@@ -41,12 +35,7 @@ class Header extends React.Component {
         {/* <div className="navbar-title">
           <NavLink to="/"><h4 className="title">SmartRenting</h4></NavLink>
         </div> */}
-        <Nav
-          open={open}
-          setOpen={setOpen}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-        />
+        <Nav />
       </header>
     );
   }
@@ -80,12 +69,5 @@ const Header = ({
   </header>
 );
 */
-
-Header.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  handleOpen: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-};
 
 export default Header;
