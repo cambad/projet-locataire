@@ -10,14 +10,33 @@ class Header extends React.Component {
   //
   state = {
     active: false,
+    width: 0,
+  }
+
+  componentDidMount() {
+    let width = window.innerWidth;
+    window.addEventListener('resize', (e) => {
+      width = e.target.innerWidth;
+      this.setStatewithWidth(width);
+    });
+    this.setStatewithWidth(width);
+  }
+
+  // will update the state if or not screen rotation
+  setStatewithWidth = (width) => {
+    this.setState({
+      width,
+    });
   }
 
   // switch state.active to modifiy classNames
   handleClickBtn = () => {
-    const { active } = this.state;
-    this.setState({
-      active: !active,
-    });
+    const { active, width } = this.state;
+    if (width < 991) {
+      this.setState({
+        active: !active,
+      });
+    }
   }
 
   render() {
