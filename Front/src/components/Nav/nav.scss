@@ -1,0 +1,32 @@
+@import 'src/styles/_vars.scss';
+
+// Display navigation menu on mobile version
+.navActive {
+  top: 10vh !important;
+  // transition: top 3s ease;
+}
+
+.navbar {
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  top: -100%;
+  display: block;
+  width: 100%;
+  background-color: $header-background-color;
+  transition: top .7s ease;
+
+  &-ul {
+
+    &-link {
+      text-align: center;
+      padding: .5em 0;
+      font-size: 1.5em;
+
+      &:active {
+        background-color: darken($header-background-color, 10%);
+        transition: all .5s;
+      }
+    }
+  }
+}
