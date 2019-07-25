@@ -85,3 +85,34 @@
     }
   }
 }
+
+@media (min-width: 375px) { 
+  .photo{
+    width: 100%;
+  }
+
+  .register {
+    width: 375px;
+    margin: 0 0 1em 0;
+    &-form {
+      &-title {
+        font-size: 2em;
+        text-align: center;
+      }
+
+      &-fields {
+
+        input {
+          height: 3em;
+        }
+      }
+
+      &-button {
+        button {
+          padding-bottom: 3em;
+          height: 3em;
+        }
+      }
+    }
+  }
+}
