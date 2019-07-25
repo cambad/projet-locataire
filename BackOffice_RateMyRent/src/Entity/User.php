@@ -65,7 +65,7 @@ class User
     private $role;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user", cascade={"remove"})
      */
     private $reviews;
 
