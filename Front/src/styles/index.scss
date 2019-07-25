@@ -1,6 +1,10 @@
 @import 'reset';
 @import 'vars';
 
+html {
+  height: 100vh;
+}
+
 body {
   font-family: sans-serif;
   background-color: #EFF1F3;
