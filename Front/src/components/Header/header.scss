@@ -6,10 +6,9 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  height: 10vh;
   background-color: $header-background-color;
   font-family: $title-font-family;
-  padding: 2% 5%;
+  padding: 2em;
   color: $header-text-color;
 
   &-title {
@@ -98,4 +97,23 @@
     }
 
   }
+}
+
+
+@media (min-width: 992px) {
+
+  .header {
+    padding: 2.5em;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    &-title {
+      width: 50%;
+    }
+  }
+
+  .header-btn {
+    display: none;
+  }
+
 }

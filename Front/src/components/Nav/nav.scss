@@ -2,7 +2,7 @@
 
 // Display navigation menu on mobile version
 .navActive {
-  top: 10vh !important;
+  top: 6em !important;
   // transition: top 3s ease;
 }
 
@@ -27,6 +27,45 @@
         background-color: darken($header-background-color, 10%);
         transition: all .5s;
       }
+    }
+  }
+}
+
+
+@media (min-width: 992px) {
+
+  .navbar {
+    position: relative;
+
+    &-ul {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .navbar-ul-link {
+    display: inline-block;
+    margin: 0 1em;
+    font-family: $text-font-family;
+    font-size: 1.2em;
+    // border: 1px solid #d77a61;
+    padding: .3em .5em;
+    cursor: pointer;
+
+    &::after {
+      content:'';
+      border-bottom: 2px solid #d33f49;
+      display: block;
+      position: relative;
+      top: .2em;
+      left: -100%;
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 1;
+      left: 0;
+      transition: All .2s;
     }
   }
 }
