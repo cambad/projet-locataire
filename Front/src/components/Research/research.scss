@@ -1,6 +1,6 @@
 @import 'src/styles/_vars.scss';
 
-.photo {
+.homePhoto {
   background-image: url(../../img/accueilbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -20,12 +20,14 @@
     padding-bottom: 1em;
     font-size: 4em;
     color: white;
+    text-shadow: 1px 1px 1px black;
   }
 
   &-subtitle {
     color: white;
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px 1px black;
   }
 }
 

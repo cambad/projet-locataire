@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FaFacebookSquare, FaTwitterSquare, FaGithubSquare } from 'react-icons/fa';
 
 import './footer.scss';

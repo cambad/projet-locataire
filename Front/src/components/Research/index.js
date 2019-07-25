@@ -4,7 +4,7 @@ import './research.scss';
 
 const Research = () => (
   <main className="accueil">
-    <div className="photo">
+    <div className="homePhoto">
       <div className="presentation">
         <h2 className="presentation-title">Bienvenue sur SmartRenting</h2>
         <h4 className="presentation-subtitle">Le site de notation des bons et mauvais appartements</h4>
