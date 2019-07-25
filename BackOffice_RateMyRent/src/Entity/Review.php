@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,26 @@ class Review
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $update_At;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews")
+     */
+    private $apartment;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Note", mappedBy="rewiews")
+     */
+    private $notes;
+
+    public function __construct()
+    {
+        $this->notes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +141,58 @@ class Review
     public function setUpdateAt(?\DateTimeInterface $update_At): self
     {
         $this->update_At = $update_At;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getApartment(): ?Apartment
+    {
+        return $this->apartment;
+    }
+
+    public function setApartment(?Apartment $apartment): self
+    {
+        $this->apartment = $apartment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->addRewiew($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            $note->removeRewiew($this);
+        }
 
         return $this;
     }
