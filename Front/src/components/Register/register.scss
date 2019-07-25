@@ -1,6 +1,94 @@
 @import 'src/styles/_vars.scss';
 
-@media (min-width: 2048px) {
+.photo {
+  background-image: url(../../img/register.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 2em;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.register {
+  width: 375px;
+  max-height: 95vh;
+  margin: 1em 1em;
+  background: rgba(239, 241, 243, .9);
+  padding: 2em;
+  margin-bottom: 5em;
+
+  &-form {
+    
+    &-title {
+      font-family: $title-font-family;
+      color: black;
+      text-shadow: 1px 1px 1px $header-text-color;
+      padding-top: 0;
+      padding-bottom: 1em; 
+      font-size: 2em;
+      text-align: center;
+    }
+
+    &-fields{
+      display: flex;
+      flex-direction: column;
+
+      label{
+        font-family: $title-font-family;
+        margin-bottom: 1em;
+      }
+
+      input {
+        height: 3em;
+        padding-left: 1em; 
+        margin-bottom: 2em;
+        border: none;
+        border-radius: $button-border-radius;
+      }
+
+      input::placeholder {
+        font-family: $text-font-family;
+      }
+    }
+
+    &-cgu {
+      text-align: center;
+
+      label {
+        font-family: $text-font-family;
+      }
+
+      input {
+        margin-right: 1em;
+      }
+    }
+
+    &-button {
+      text-align: center;
+      padding: 2em;
+
+      button {
+        background-color: $button-background-color;
+        color: $button-text-color;
+        border: none;
+        border-radius: $button-border-radius;
+        font-family: $text-font-family;
+        width: 15em;
+        padding-bottom: 3em;
+        height: 3em;
+      }
+
+      button:hover {
+        transform: scale(1.01)
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
   .photo {
     background-image: url(../../img/register.jpg);
     background-size: cover;
@@ -90,35 +178,5 @@
 
 
 
-@media (max-width: 992px) { 
-  .photo{
-    width: 100%;
-  }
-
-  .register {
-    width: 375px;
-    margin: 1em 1em;
-    &-form {
-      &-title {
-        font-size: 2em;
-        text-align: center;
-      }
-
-      &-fields {
-
-        input {
-          height: 3em;
-        }
-      }
-
-      &-button {
-        button {
-          padding-bottom: 3em;
-          height: 3em;
-        }
-      }
-    }
-  }
-}
 
 
