@@ -29,7 +29,7 @@ class Role
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role", cascade={"persist"})
      */
     private $users;
 

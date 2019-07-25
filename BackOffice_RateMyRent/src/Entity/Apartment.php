@@ -49,7 +49,7 @@ class Apartment
     private $rental;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="apartment")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="apartment", cascade={"remove"})
      */
     private $reviews;
 
