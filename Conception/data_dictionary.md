@@ -24,10 +24,10 @@ Name|Description|Type|Specificity
 | name |User’s name | VARCHAR(64) | NOT NULL
 | username | User’s username | VARCHAR(32) | NOT NULL
 | age | User’s age | INT | NOT NULL
-| email | User’s email | VARCHAR(254) | NOT NULL
+| email | User’s email | VARCHAR(256) | NOT NULL
 | password | User’s password | VARCHAR(64) | NOT NULL
-| is_active | - | TINYINT(1) | NOT NULL
-| role_json_format | role in json format | VARCHAR(254) | NOT NULL
+| is_active | - | BOOLEAN | NOT NULL
+| role_json_format | role in json format | VARCHAR(256) | NOT NULL
 
 ## Entité Category
 Name|Description|Type|Specificity
@@ -50,9 +50,9 @@ Name|Description|Type|Specificity
 Name|Description|Type|Specificity
 -|-|-|-
 | id | - | INT | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT |
-| address | Apartment’s address | VARCHAR(254) | NOT NULL
+| address | Apartment’s address | VARCHAR(256) | NOT NULL
 | floor_number | Apartment’s floor number | INT | NOT NULL
-| location | Where is the apartment on this floor | VARCHAR(254) | NOT NULL
+| location | Where is the apartment on this floor | VARCHAR(256) | NOT NULL
 | area | The apartment’s area | INT | NOT NULL
 | rooms | Number of rooms on the apartment | INT | NOT NULL
 | rental | Price of the apartment for a month | INT | NOT NULL
@@ -61,7 +61,7 @@ Name|Description|Type|Specificity
 Name|Description|Type|Specificity
 -|-|-|-
 | id | - | INT | PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT |
-| title | Review’s title | VARCHAR(254) | NOT NULL
+| title | Review’s title | VARCHAR(256) | NOT NULL
 | positive | positive Review | TEXT | NOT NULL
 | negative | negative Review | TEXT | NOT NULL
 | still_in | Check if the tenant is still inside of the apartment | BOOLEAN | NOT NULL
