@@ -21,18 +21,16 @@ const App = () => {
 
   return (
     <div>
-      <body>
-        <Header
-          open={open}
-          setOpen={setOpen}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-        />
-        <Switch>
-          <Route path="/" exact component={Research} />
-          <Route path="/inscription" component={Register} />
-        </Switch>
-      </body>
+      <Header
+        open={open}
+        setOpen={setOpen}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+      />
+      <Switch>
+        <Route path="/" exact component={Research} />
+        <Route path="/inscription" component={Register} />
+      </Switch>
       <Footer />
     </div>
   );
