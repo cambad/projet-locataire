@@ -1,7 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import Connection from 'src/components/Connection';
+
+import './nav.scss';
 
 class Nav extends React.Component {
   state = {
@@ -22,18 +26,24 @@ class Nav extends React.Component {
 
   render() {
     const { isModalOpen } = this.state;
+    const { active, handleClickBtn } = this.props;
     return (
-      <nav className="navbar">
+      <nav className={classNames('navbar', { navActive: active })}>
         <ul className="navbar-ul">
-          <li className="navbar-link"><NavLink to="#">Appartements</NavLink></li>
-          <li className="navbar-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
+          <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="#">Liste des appartements</NavLink></li>
+          <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
           { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
-          <li className="navbar-link"><NavLink to="/inscription/">S'inscrire</NavLink></li>
+          <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/inscription/">S'inscrire</NavLink></li>
         </ul>
       </nav>
     );
   }
 }
+
+Nav.propTypes = {
+  active: PropTypes.bool.isRequired,
+  handleClickBtn: PropTypes.func.isRequired,
+};
 
 
 export default Nav;
