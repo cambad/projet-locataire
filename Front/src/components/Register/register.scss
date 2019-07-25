@@ -17,6 +17,7 @@
   max-height: 95vh;
   margin: 1em 1em;
   background: rgba(239, 241, 243, .9);
+  border-radius: $button-border-radius;
   padding: 2em;
   margin-bottom: 5em;
 
@@ -105,6 +106,7 @@
     max-height: 95vh;
     margin: 0 auto;
     background: rgba(239, 241, 243, .9);
+    border-radius: $button-border-radius;
     padding: 2em;
     margin-bottom: 5em;
 
