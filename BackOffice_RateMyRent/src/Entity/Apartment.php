@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,16 @@ class Apartment
      * @ORM\Column(type="integer")
      */
     private $rental;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="apartment")
+     */
+    private $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +131,37 @@ class Apartment
     public function setRental(int $rental): self
     {
         $this->rental = $rental;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setApartment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getApartment() === $this) {
+                $review->setApartment(null);
+            }
+        }
 
         return $this;
     }
