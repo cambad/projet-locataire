@@ -1,6 +1,8 @@
 import React from 'react';
 
+// locals imports
 import './research.scss';
+import ResearchForm from './ResearchForm';
 
 const Research = () => (
   <main className="accueil">
@@ -12,10 +14,11 @@ const Research = () => (
       <div className="recherche">
         <div className="recherche-zone">
           <h2 className="recherche-title">Rechercher un appartement</h2>
-          <form className="recherche-form">
+          {/* <form className="recherche-form">
             <input className="recherche-input" type="text" placeholder="Entrer une ville ou une adresse" />
             <button className="recherche-submit" type="submit">Rechercher</button>
-          </form>
+          </form> */}
+          <ResearchForm />
         </div>
         <div className="noter">
           <h1 className="noter-title">
