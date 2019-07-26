@@ -1,47 +1,39 @@
 @import 'src/styles/_vars.scss';
 
+
 .homePhoto {
   background-image: url(../../img/accueilbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 2em;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
+  padding: 2em 0;
 }
 
 .presentation {
-  width: 100%;
-  margin: auto;
   text-align: center;
-  padding-top: 1em;
-  padding-bottom: 6em;
+  padding-bottom: 3em;
 
   &-title {
     font-family: $title-font-family;
     padding-bottom: 1em;
     font-size: 4em;
-    color: white;
+    color: $header-text-color;
     text-shadow: 1px 1px 1px black;
   }
 
   &-subtitle {
-    color: white;
+    color: $header-text-color;
     font-size: 2em;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $text-font-family;
     text-shadow: 1px 1px 1px black;
   }
 }
 
 .recherche {
   width: 90%;
-  margin: 1em 2em;
+  margin: 0 auto;
   background: rgba(255, 255, 255, .6);
   border-radius: $button-border-radius;
-  padding: 70px 0 70px 0;
+  padding: 2em 0;
   text-align: center;
 
   &-title {
@@ -50,31 +42,29 @@
     margin-bottom: 1em;
   }
 
-  &-zone {
-    width: 100%;
-  }
-
   &-form {
     margin-bottom: 3em;
   }
 
   &-submit {
-    margin-left: 1em;
-    padding: 1em;
+    font-size: 1.1em;
+    padding: .5em .8em;
     border: none;
-    border-radius: 20px;
-    color: white;
-    background-color: #D33F49;
-    font-family: 'Montserrat', sans-serif;
+    border-radius: $button-border-radius;
+    color: $header-text-color;
+    background-color: $button-background-color;
+    font-family: $text-font-family;
   }
 
   &-input {
-    width: 30em;
-    height: 4em;
+    display: block;
+    font-size: 1em;
+    padding: 1em 1em;
+    margin: 1em auto;
+    width: 90%;
     border: none;
-    border-radius: 20px;
-    padding-left: 2em;
-    margin-bottom: 1em;
+    border-radius: $button-border-radius;
+
   }
 
   &-input::placeholder {
@@ -84,21 +74,50 @@
 
 .noter {
   &-title {
-    font-family: 'Oswald', sans-serif;
+    font-family: $title-font-family;
     font-size: 2em;
     margin-bottom: 1em;
   }
 
   &-button {
-    font-size: 1.3em;
-    margin-left: 1em;
-    padding: 1em;
+    font-size: 1.1em;
+    padding: .7em .9em;
     border: none;
-    border-radius: 20px;
-    color: white;
-    background-color: #D33F49;
-    font-family: 'Montserrat', sans-serif;
+    border-radius: $button-border-radius;
+    color: $header-text-color;
+    background-color: $button-background-color;
+    font-family: $text-font-family;
   }
+}
+
+.section {
+  margin: 3em auto;
+  width: 50%;
+}
+
+.review {
+  margin-bottom: 3em;
+}
+
+@media (min-width: 768px) {
+
+  .recherche {
+    width: 70%;
+
+    &-input, &-submit, .noter-button {
+      font-size: 1.2em;
+    }
+  }
+
+  .section {
+    margin: 3em auto;
+    width: 40%;
+  }
+  
+  .review {
+    margin-bottom: 3em;
+  }
+
 }
 
 @media (min-width: 992px) {
@@ -106,29 +125,27 @@
     background-image: url(../../img/accueilbg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    padding-top: 0;
   }
   
   .presentation {
-    width: 100%;
-    margin: auto;
     text-align: center;
+    padding: 0;
   
     &-title {
       font-family: $title-font-family;
       font-size: 4em;
-      color: white;
+      color: $header-text-color;
       text-shadow: 1px 1px 1px black;
+      padding: 1em 0;
     }
   
     &-subtitle {
-      color: white;
+      color: $header-text-color;
       font-size: 2em;
-      font-family: 'Montserrat', sans-serif;
+      font-family: $text-font-family;
       text-shadow: 1px 1px 1px black;
+      margin-bottom: 2em;
     }
   }
   
@@ -137,40 +154,31 @@
     margin: auto;
     background: rgba(255, 255, 255, .6);
     border-radius: $button-border-radius;
-    padding: 70px 0 70px 0;
+    padding: 4em 2em;
     text-align: center;
   
     &-title {
-      font-family: 'Oswald', sans-serif;
+      font-family: $title-font-family;
       font-size: 3em;
-    }
-  
-    &-zone {
-      width: 100%;
     }
   
     &-form {
       display: flex;
-      justify-content: center;
-      margin-bottom: 3em;
+      justify-content: space-around;
+      margin-bottom: 3em;    
+    }
+
+    &-input {
+      display: block;
+      width: 70%;
+      margin: 0;
+      padding: 1.2em 1.8em;
+      font-size: 1.2em;
     }
   
     &-submit {
-      margin-left: 1em;
-      padding: 1em;
-      border: none;
-      border-radius: 20px;
-      color: white;
-      background-color: #D33F49;
-      font-family: 'Montserrat', sans-serif;
-    }
-  
-    &-input {
-      width: 30em;
-      height: 4em;
-      border: none;
-      border-radius: 20px;
-      padding-left: 2em;
+      display: block;
+      font-size: 1.2em;
     }
   
     &-input::placeholder {
@@ -180,7 +188,7 @@
   
   .noter {
     &-title {
-      font-family: 'Oswald', sans-serif;
+      font-family: $title-font-family;
       font-size: 2em;
       margin-bottom: 1em;
     }
@@ -191,10 +199,19 @@
       padding: 1em;
       border: none;
       border-radius: 20px;
-      color: white;
-      background-color: #D33F49;
-      font-family: 'Montserrat', sans-serif;
+      color: $header-text-color;
+      background-color: $button-background-color;
+      font-family: $text-font-family;
     }
   }
+}
+
+@media (min-width: 1200px) {
+
+  .section {
+    margin: 3em auto;
+    width: 20%;
+  }
+
 }
 
