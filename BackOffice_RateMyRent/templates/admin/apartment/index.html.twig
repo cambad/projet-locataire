@@ -19,9 +19,12 @@
                 <td>{{ apartment.id }}</td><hr>
                 <td>{{ apartment.adress }}</td>
                 <td>
-                    <p>TODO</p>
-                    {# <a href="{{ path('admin_apartment_show', {'id': apartment.id}) }}">show</a>
-                    <a href="{{ path('admin_apartment_edit', {'id': apartment.id}) }}">edit</a> #}
+                    
+                     <a href="{{ path('admin_apartment_show', {'id': apartment.id}) }}">show</a>
+                    
+                </td>
+                <td>
+                    {{ include('admin/apartment/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

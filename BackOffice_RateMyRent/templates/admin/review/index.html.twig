@@ -19,9 +19,12 @@
                 <td>{{ review.id }}</td><hr>
                 <td>{{ review.title }}</td>
                 <td>
-                    <p>TODO</p>
-                    {# <a href="{{ path('admin_review_show', {'id': review.id}) }}">show</a>
-                    <a href="{{ path('admin_review_edit', {'id': review.id}) }}">edit</a> #}
+                    
+                    <a href="{{ path('admin_review_show', {'id': review.id}) }}">show</a>
+                    
+                </td>
+                <td>
+                        {{ include('admin/review/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

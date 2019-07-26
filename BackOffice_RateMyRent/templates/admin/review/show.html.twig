@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Review{% endblock %}
+
+{% block body %}
+    <h1>Review</h1>
+
+    <table class="table">
+        <tbody>
+            
+            
+            
+            <tr>
+                <th>Id</th>
+                <td>{{ review.id }}</td>
+            </tr>
+                
+            <tr>
+                <th>Titre</th>
+                <td>{{ review.title }}</td>
+            </tr>
+            
+            <tr>
+                <th>positif</th>
+                <td>{{ review.positive }}</td>
+            </tr>
+            
+            <tr>
+                <th>negatif</th>
+                <td>{{ review.negative }}</td>
+            </tr>
+
+            <tr>
+                <th>Still in</th>
+                <td>{{review.stillIn}}</td>
+            </tr>
+
+            <tr>
+                <th>Created at</th>
+                <td>{{review.createdAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+            
+            <tr>
+                <th>Update at</th>
+                <td>{{review.updateAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+            
+            
+
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_review_index') }}">back to list</a>
+
+    {{ include('admin/review/_delete_form.html.twig') }}
+
+    
+   }}
+{% endblock %}
