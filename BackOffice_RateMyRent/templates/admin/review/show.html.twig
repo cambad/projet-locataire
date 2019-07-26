@@ -28,7 +28,26 @@
             <tr>
                 <th>negatif</th>
                 <td>{{ review.negative }}</td>
-             </tr>
+            </tr>
+
+            <tr>
+                <th>Still in</th>
+                <td>{{review.stillIn}}</td>
+            </tr>
+
+            <tr>
+                <th>Created at</th>
+                <td>{{review.createdAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+            
+            <tr>
+                <th>Update at</th>
+                <td>{{review.updateAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+            
+            
+
+
 
         </tbody>
     </table>
