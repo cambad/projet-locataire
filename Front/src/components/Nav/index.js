@@ -31,6 +31,7 @@ class Nav extends React.Component {
       <nav className={classNames('navbar', { navActive: active })}>
         <ul className="navbar-ul">
           <NavLink to="#"><li onClick={handleClickBtn} className="navbar-ul-link">Liste des appartements</li></NavLink>
+          <NavLink to="/recherche/"><li className="navbar-ul-link">Recherche</li></NavLink>
           <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
           { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
           <NavLink to="/inscription/"><li onClick={handleClickBtn} className="navbar-ul-link">S'inscrire</li></NavLink>
