@@ -90,6 +90,15 @@
   }
 }
 
+.section {
+  margin: 3em auto;
+  width: 50%;
+}
+
+.review {
+  margin-bottom: 3em;
+}
+
 @media (min-width: 768px) {
 
   .recherche {
@@ -98,6 +107,15 @@
     &-input, &-submit, .noter-button {
       font-size: 1.2em;
     }
+  }
+
+  .section {
+    margin: 3em auto;
+    width: 40%;
+  }
+  
+  .review {
+    margin-bottom: 3em;
   }
 
 }
@@ -186,5 +204,14 @@
       font-family: $text-font-family;
     }
   }
+}
+
+@media (min-width: 1200px) {
+
+  .section {
+    margin: 3em auto;
+    width: 20%;
+  }
+
 }
 

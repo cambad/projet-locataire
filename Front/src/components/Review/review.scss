@@ -1,0 +1,25 @@
+@import 'src/styles/_vars.scss';
+
+.review {
+  border: 1px solid $header-background-color;
+
+  &-img {
+    height: 10em;
+    background-color: $header-background-color;
+  }
+  
+  &-content {
+    padding: .5em;
+  }
+
+  &-address {
+    margin: 1em 0;
+    text-align: center;
+    font-family: $title-font-family;
+  }
+
+  &-description {
+    display: flex;
+    justify-content: space-between;
+  }
+}

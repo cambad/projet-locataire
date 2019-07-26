@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 // locals imports
 import './research.scss';
 import ResearchForm from './ResearchForm';
+import LastFiveReviews from './LastFiveReviews';
 
 const Research = () => (
   <main className="accueil">
@@ -25,6 +26,7 @@ const Research = () => (
         </div>
       </div>
     </div>
+    <LastFiveReviews />
   </main>
 );
 
