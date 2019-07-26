@@ -42,15 +42,17 @@ class Header extends React.Component {
   render() {
     const { active } = this.state;
     return (
-      <header className="header">
-        <NavLink to="/" className="header-title">Rate my rent</NavLink>
-        <div className="header-btn">
-          <div onClick={this.handleClickBtn} className={classNames({ 'header-btn-hamburger': !active, 'header-btn-cross': active })}>
-            <div className={classNames('header-btn-hamburger-line', { 'header-btn-cross-line': active })} />
+      <div className="header-block">
+        <header className={classNames('header', { headerShadow: !active })}>
+          <NavLink to="/" className="header-title">Rate my rent</NavLink>
+          <div className="header-btn">
+            <div onClick={this.handleClickBtn} className={classNames({ 'header-btn-hamburger': !active, 'header-btn-cross': active })}>
+              <div className={classNames('header-btn-hamburger-line', { 'header-btn-cross-line': active })} />
+            </div>
           </div>
-        </div>
-        <Nav active={active} handleClickBtn={this.handleClickBtn} />
-      </header>
+          <Nav active={active} handleClickBtn={this.handleClickBtn} />
+        </header>
+      </div>
     );
   }
 }
