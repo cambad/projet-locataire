@@ -5,7 +5,12 @@
   top: 6em !important;
   z-index: 0;
   // transition: top 3s ease;
+
+  &-ul:last-child {
+    padding-bottom: 1em;
+  }
 }
+
 
 .navbar {
   z-index: 0;
@@ -28,10 +33,6 @@
         background-color: darken($header-background-color, 10%);
         transition: all .5s;
       }
-    }
-
-    &:last-child {
-      padding-bottom: 1em;
     }
   }
 }
