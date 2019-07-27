@@ -7,6 +7,7 @@ import Footer from 'src/components/Footer';
 import Register from 'src/components/Register';
 import Contact from 'src/components/Contact';
 import ResearchMap from 'src/components/ResearchMap';
+import Profil from 'src/components/Profil';
 
 import './app.scss';
 
@@ -18,6 +19,7 @@ const App = () => (
       <Route path="/contact" component={Contact} />
       <Route path="/inscription" component={Register} />
       <Route path="/recherche" component={ResearchMap} />
+      <Route path="/profil" component={Profil} />
     </Switch>
     <Footer />
   </div>

@@ -26,16 +26,29 @@ class Nav extends React.Component {
 
   render() {
     const { isModalOpen } = this.state;
-    const { active, handleClickBtn } = this.props;
+    const {
+      active,
+      handleClickBtn,
+      isConnected,
+    } = this.props;
     return (
       <nav className={classNames('navbar', { navActive: active })}>
-        <ul className="navbar-ul">
-          <NavLink to="#"><li onClick={handleClickBtn} className="navbar-ul-link">Liste des appartements</li></NavLink>
-          <NavLink to="/recherche/"><li className="navbar-ul-link">Recherche</li></NavLink>
-          <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
-          { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
-          <NavLink to="/inscription/"><li onClick={handleClickBtn} className="navbar-ul-link">S'inscrire</li></NavLink>
-        </ul>
+        { !isConnected && (
+          <ul className="navbar-ul">
+            <NavLink to="#"><li onClick={handleClickBtn} className="navbar-ul-link">Liste des appartements</li></NavLink>
+            <NavLink to="/recherche/"><li className="navbar-ul-link">Recherche</li></NavLink>
+            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
+            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+            <NavLink to="/inscription/"><li onClick={handleClickBtn} className="navbar-ul-link">S'inscrire</li></NavLink>
+          </ul>
+        )}
+        { isConnected && (
+          <ul className="navbar-ul">
+            <NavLink to="#"><li onClick={handleClickBtn} className="navbar-ul-link">Liste des appartements</li></NavLink>
+            <NavLink to="/recherche/"><li onClick={handleClickBtn} className="navbar-ul-link">Recherche</li></NavLink>
+            <NavLink to="/profil/"><li onClick={handleClickBtn} className="navbar-ul-link">Profil</li></NavLink>         
+          </ul>
+        )}
       </nav>
     );
   }
@@ -43,6 +56,7 @@ class Nav extends React.Component {
 
 Nav.propTypes = {
   active: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
   handleClickBtn: PropTypes.func.isRequired,
 };
 

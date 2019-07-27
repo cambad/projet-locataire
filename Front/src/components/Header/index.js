@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
-import Nav from 'src/components/Nav';
+import Nav from 'src/containers/Nav';
 
 import './header.scss';
 
