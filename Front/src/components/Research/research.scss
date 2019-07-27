@@ -5,7 +5,7 @@
   background-image: url(../../img/accueilbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 2em 0;
+  padding: 3em 0;
 }
 
 .presentation {
@@ -91,8 +91,16 @@
 }
 
 .section {
-  margin: 3em auto;
+  margin: 1.5em auto;
   width: 50%;
+
+  &-title {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-family: $title-font-family;
+    color: $header-background-color;
+  }
 }
 
 .review {
@@ -211,6 +219,10 @@
   .section {
     margin: 3em auto;
     width: 30%;
+    
+    &-title {
+      font-size: 2em;
+    }
   }
 
 }
