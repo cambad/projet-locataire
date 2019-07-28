@@ -51,11 +51,10 @@
 
   .navbar-ul-link {
     display: inline-block;
-    margin: 0 1em;
+    margin: 0 .5em;
     font-family: $text-font-family;
     font-size: 1.2em;
-    // border: 1px solid #d77a61;
-    padding: .3em .5em;
+    // padding: .3em .5em;
     cursor: pointer;
 
     &::after {
@@ -74,4 +73,12 @@
       transition: All .2s;
     }
   }
+}
+
+@media (min-width: 1200px) {
+
+  .navbar-ul-link {
+    margin: 0 1em;
+  }
+
 }
