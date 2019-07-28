@@ -75,6 +75,49 @@ class User
         $this->reviews = new ArrayCollection();
     }
 
+    public function getRoles(): array 
+    {
+        $roles = []; 
+
+        if(!is_null($this->role)){
+
+            $roles[] = $this->role->getCode(); 
+
+        } else {
+            $roles[] = 'ROLE_ANONYMOUS';
+        }
+
+        return $roles;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,13 +208,17 @@ class User
     }
 
     public function getRoleJsonFormat(): ?string
-    {
-        return $this->role_json_format;
+    {   
+        $jsonRoles = json_decode($this->roleJsonFormat);
+
+        return $jsonRoles[0];
     }
 
-    public function setRoleJsonFormat(string $role_json_format): self
+    public function setRoleJsonFormat(string $roleJsonFormat = ''): self
     {
-        $this->role_json_format = $role_json_format;
+        $toJson = json_encode([$roleJsonFormat]);
+
+        $this->roleJsonFormat = $toJson;
 
         return $this;
     }
