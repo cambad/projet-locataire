@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = () => ({});
 
 // Container
 const NavContainer = connect(
