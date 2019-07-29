@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import GoogleMapReact from 'google-map-react';
+import classNames from 'classnames';
 
 import './researchmap.scss';
 
@@ -18,11 +19,14 @@ class researchMap extends React.Component {
       lng: -1.1532,
     },
     zoom: 11,
+    fullscreen: false,
+    dropdown: false,
   };
 
   handleChange = (address) => {
     this.setState({
       address,
+      dropdown: true,
     });
   };
 
@@ -37,7 +41,7 @@ class researchMap extends React.Component {
         return (
           this.setState({
             ...this.state,
-            zoom: 20,
+            zoom: 15,
             latLng,
           })
         );
@@ -45,16 +49,28 @@ class researchMap extends React.Component {
       .catch(error => console.error('Error', error));
   };
 
+  handleClick = () => {
+    this.setState({
+      fullscreen: true,
+    });
+  }
 
   render() {
+    const {
+      fullscreen,
+      address,
+      latLng,
+      zoom,
+      dropdown,
+    } = this.state;
     return (
-      <div className="research-map">
-        <div className="image">
-          <div className="autocomplete">
-            <h1 className="autocomplete-title">Rechercher un appartement</h1>
+      <body>
+        <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
+          <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
+            <h1 className={classNames({ 'autocomplete-title': !fullscreen, 'autocomplete-title-fullscreen': fullscreen })}>Rechercher un appartement</h1>
             <PlacesAutocomplete
               id="placeholder"
-              value={this.state.address}
+              value={address}
               onChange={this.handleChange}
               onSelect={this.handleSelect}
             >
@@ -62,25 +78,37 @@ class researchMap extends React.Component {
                 getInputProps,
                 suggestions,
                 getSuggestionItemProps,
-                loading,
               }) => (
-                <div className="research">
+                <div className={classNames({ research: !fullscreen, 'research-fullscreen': fullscreen })}>
                   <input
+                    className={classNames({ 'location-search-input': !fullscreen, 'location-search-input-fullscreen': fullscreen })}
                     {...getInputProps({
                       placeholder: 'Rechercher une adresse ...',
-                      className: 'location-search-input',
                     })}
                   />
-                  <div className="autocomplete-dropdown-container">
-                    {loading && <div>Chargement...</div>}
-                    <h2 className="dropdown-title">Selectionez parmis les suggestions</h2>
+                  <div className={classNames({ 'autocomplete-dropdown-container': !fullscreen, 'autocomplete-dropdown-container-fullscreen': fullscreen })}>
+                    <h2 className={classNames({ 'dropdown-title-false': !dropdown, 'dropdown-title-true': dropdown })}>Selectionez parmis les suggestions</h2>
                     {suggestions.map((suggestion) => {
                       const className = suggestion.active
                         ? 'suggestion-item--active'
                         : 'suggestion-item';
                       const style = suggestion.active
-                        ? { backgroundColor: '#aaa', cursor: 'pointer', marginBottom: '1em', borderRadius: '25px', height: 'auto', padding: '.5em' }
-                        : { backgroundColor: '#fff', cursor: 'pointer', marginBottom: '1em', borderRadius: '25px', height: 'auto', padding: '.5em' };
+                        ? {
+                          backgroundColor: '#aaa',
+                          cursor: 'pointer',
+                          marginBottom: '1em',
+                          borderRadius: '25px',
+                          height: 'auto',
+                          padding: '.5em',
+                        }
+                        : {
+                          backgroundColor: '#fff',
+                          cursor: 'pointer',
+                          marginBottom: '1em',
+                          borderRadius: '25px',
+                          height: 'auto',
+                          padding: '.5em',
+                        };
                       return (
                         <div>
                           <div
@@ -89,7 +117,7 @@ class researchMap extends React.Component {
                               style,
                             })}
                           >
-                            <span>{suggestion.description}</span>
+                            <span onClick={this.handleClick} className="suggestion">{suggestion.description}</span>
                           </div>
                         </div>
                       );
@@ -99,42 +127,42 @@ class researchMap extends React.Component {
               )}
             </PlacesAutocomplete>
           </div>
+          <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
+              defaultCenter={{ lat: latLng.lat, lng: latLng.lng }}
+              defaultZoom={zoom}
+              center={{ lat: latLng.lat, lng: latLng.lng }}
+              zoom={zoom}
+            >
+              <Marker
+                lat={45.2491}
+                lng={-0.252403}
+                title="Maison Johann"
+                color="blue"
+              />
+              <Marker
+                lat={43.4259}
+                lng={6.43131}
+                title="Maison Camille"
+                color="green"
+              />
+              <Marker
+                lat={46.0522}
+                lng={6.3314}
+                title="Maison Maxime"
+                color="purple"
+              />
+              <Marker
+                lat={48.879}
+                lng={2.19946}
+                title="Maison Alex"
+                color="orange"
+              />
+            </GoogleMapReact>
+          </div>
         </div>
-        <div className="google-maps">
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
-            defaultCenter={{ lat: this.state.latLng.lat, lng: this.state.latLng.lng }}
-            defaultZoom={this.state.zoom}
-            center={{ lat: this.state.latLng.lat, lng: this.state.latLng.lng }}
-            zoom={this.state.zoom}
-          >
-            <Marker
-              lat={45.2491}
-              lng={-0.252403}
-              title="Maison Johann"
-              color="blue"
-            />
-            <Marker
-              lat={43.4259}
-              lng={6.43131}
-              title="Maison Camille"
-              color="green"
-            />
-            <Marker
-              lat={46.0522}
-              lng={6.3314}
-              title="Maison Maxime"
-              color="purple"
-            />
-            <Marker
-              lat={48.879}
-              lng={2.19946}
-              title="Maison Alex"
-              color="orange"
-            />
-          </GoogleMapReact>
-        </div>
-      </div>
+      </body>
     );
   }
 }
