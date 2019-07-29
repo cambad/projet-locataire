@@ -31,13 +31,14 @@ class ReviewController extends AbstractController
      */
     public function show(Review $review): Response
     {
+        dump($review);
         return $this->render('admin/review/show.html.twig', [
             'review' => $review,
         ]);
     }
 
     /**
-    * @Route("/{id}", name="delete", methods={"DELETE"})
+    * @Route("/{id}/delete", name="delete", methods={"DELETE"})
     */
     public function delete(Request $request, Review $review): Response
     {
