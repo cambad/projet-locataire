@@ -13,7 +13,7 @@ import Apartment from 'src/components/Apartment';
 import './app.scss';
 
 const App = () => (
-  <div>
+  <React.Fragment>
     <Header />
     <Switch>
       <Route path="/" exact component={Research} />
@@ -24,7 +24,7 @@ const App = () => (
       <Route path="/appartement" component={Apartment} />
     </Switch>
     <Footer />
-  </div>
+  </React.Fragment>
 );
 
 
