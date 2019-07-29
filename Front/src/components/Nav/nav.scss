@@ -11,6 +11,9 @@
   }
 }
 
+.navActive .navbar-ul-link {
+  padding: .5em 0;
+}
 
 .navbar {
   z-index: 0;
@@ -26,12 +29,12 @@
 
     &-link {
       text-align: center;
-      padding: .5em 0;
       font-size: 1.5em;
 
       &:active {
         background-color: darken($header-background-color, 10%);
         transition: all .5s;
+        padding: .5em 0;
       }
     }
   }
