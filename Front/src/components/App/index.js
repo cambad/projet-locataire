@@ -8,11 +8,12 @@ import Register from 'src/components/Register';
 import Contact from 'src/components/Contact';
 import ResearchMap from 'src/components/ResearchMap';
 import Profil from 'src/components/Profil';
+import AppartmentRating from 'src/components/ApartmentRating';
 
 import './app.scss';
 
 const App = () => (
-  <div>
+  <React.Fragment>
     <Header />
     <Switch>
       <Route path="/" exact component={Research} />
@@ -20,9 +21,10 @@ const App = () => (
       <Route path="/inscription" component={Register} />
       <Route path="/recherche" component={ResearchMap} />
       <Route path="/profil" component={Profil} />
+      <Route path="/noter-un-appartement" component={AppartmentRating} />
     </Switch>
     <Footer />
-  </div>
+  </React.Fragment>
 );
 
 

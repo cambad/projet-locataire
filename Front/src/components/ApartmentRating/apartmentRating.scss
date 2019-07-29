@@ -1,0 +1,137 @@
+@import 'src/styles/_vars.scss';
+
+.notation-form {
+  width: 40%;
+  margin: 2em auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-family: $text-font-family;
+  font-size: 1.1em;
+}
+
+h1 {
+  font-size: 2em;
+  font-family: $title-font-family;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 2px solid $button-background-color;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-family: $title-font-family;
+  margin: 1em 0;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $button-background-color;
+}
+
+.commentaire-title {
+  margin-top: 1em;
+}
+
+.adress-input {
+  width: 30em;
+  margin: 0 auto;
+
+  input {
+    width: 49em;
+    height: 5em;
+    border-radius: 25px;
+    border: none;
+    padding-left: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.autocomplete-dropdown {
+  text-align: center;
+  width: 30.5em;
+  margin: 0 auto;
+}
+
+.main-form {
+  display: flex;
+  flex-direction: column;
+
+  .quartier {
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5em;
+    }
+  }
+
+  .etatImmeuble {
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5em;
+    }
+  }
+
+  .etatAppart {
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5em;
+    }
+  }
+
+  .relations {
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5em;
+    }
+  }
+}
+
+.information-generales {
+  div {
+    margin: .5em 0;
+  }
+  input {
+    margin: 0 1em;
+  }
+
+  &-radio {
+    display: flex; 
+    justify-content: space-between;
+  }
+
+  &-locataire {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-intermediaire {
+    display: flex; 
+    justify-content: space-between
+  }
+
+  &-surface {
+    display: flex;
+    justify-content: space-between;
+    input {
+      border: none;
+      height: 2em;
+      border-radius: 25px;
+      padding-left: 1em;
+      text-align: center;
+    }
+  }
+
+  &-loyer {
+    display: flex;
+
+    input {
+      text-align: center;
+      border: none;
+      height: 2em;
+      border-radius: 25px;
+      padding-left: 1em;
+    }
+  }
+}
