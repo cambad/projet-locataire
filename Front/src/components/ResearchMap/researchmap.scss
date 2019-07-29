@@ -1,29 +1,19 @@
 @import 'src/styles/_vars.scss';
 
-.research-map {
-  display: flex;
-  align-content: center;
-}
-
-.image {
-  padding-top: 2em;
-  min-height: 84vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
+body {
+  height: 100vh;
 }
 
 .autocomplete {
-  width: 40em;
+  width: 100%;
+  height: 30em;
   max-height: 95vh;
-  margin: 1em 1em;
-  background: rgba(211, 63, 73, .5);
   border-radius: $button-border-radius;
   padding: 2em;
-  margin-bottom: 5em;
+  margin: auto;
   display: flex;
   flex-direction: column;
+  align-content: center;
   align-self: center;
 }
 
@@ -31,27 +21,37 @@
   font-family: $title-font-family;
   text-shadow: 1px 1px 1px $header-text-color;
   font-size: 2.5em;
-  margin: 0 auto 2em auto;
+  margin: 2em auto;
+  text-align: center;
 }
 
-.dropdown-title {
+.autocomplete-title-fullscreen {
+  display: none;
+}
+
+.dropdown-title-true {
   text-align: center;
   margin-bottom: 1em;
 }
 
-.research {
-  width: 50em;
-  margin: auto;
+.dropdown-title-false {
+  display: none;
 }
 
 .location-search-input {
   border-radius: $button-border-radius;
-  width: 30em;
-  margin-left: 6.8em;
+  width: 28em;
+  margin: 0 auto;
   height: 5em;
   border: none;
   padding-left: 1em;
   margin-bottom: 2em;
+}
+
+.location-search-input-fullscreen {
+  width: 100%;
+  height: 5em;
+  padding-left: 1em;
 }
 
 .location-search-input::placeholder {
@@ -59,13 +59,120 @@
 }
 
 .google-maps {
-  min-height: 84vh;
+  display: none;
+  flex: 1;
+  height: 100vh;
   width: 50%;
 }
 
+.google-maps-fullscreen {
+  height: 100vh;
+  width: 100%;
+}
+
 .autocomplete-dropdown-container {
-  margin-left: 1em;
-  width: 33.5em;
+  width: 100%;
   font-family: $text-font-family;
   text-align: center;
 }
+
+.autocomplete-dropdown-container-fullscreen {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  body {
+    height: 100vh;
+  }
+  .research-map {
+    display: flex;
+    align-content: center;
+  }
+  
+  .research-map-fullscreen {
+    display: block;
+  }
+  
+  .autocomplete {
+    width: 40em;
+    height: 30em;
+    margin: 1em;
+    max-height: 95vh;
+    border-radius: $button-border-radius;
+    padding: 2em;
+    margin-bottom: 5em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: center;
+  }
+  
+  .autocomplete-title {
+    font-family: $title-font-family;
+    text-shadow: 1px 1px 1px $header-text-color;
+    font-size: 2.5em;
+    margin: 0 auto 2em auto;
+  }
+  
+  .autocomplete-title-fullscreen {
+    display: none;
+  }
+  
+  .dropdown-title-true {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  
+  .dropdown-title-false {
+    display: none;
+  }
+  
+  .location-search-input {
+    border-radius: $button-border-radius;
+    width: 40em;
+    margin-left: 6.8em;
+    height: 5em;
+    border: none;
+    padding-left: 1em;
+    margin-bottom: 2em;
+  }
+  
+  .location-search-input-fullscreen {
+    width: 100%;
+    height: 5em;
+    margin-bottom: 0;
+    margin-top: 2.2em;
+    padding-left: 1em;
+  }
+  
+  .location-search-input::placeholder {
+    font-family: $text-font-family;
+  }
+  
+  .google-maps {
+    display: block;
+    flex: 1;
+    height: 100vh;
+    width: 50%;
+  }
+  
+  .google-maps-fullscreen {
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .autocomplete-dropdown-container {
+    margin-left: 1em;
+    width: 33.5em;
+    font-family: $text-font-family;
+    text-align: center;
+  }
+  
+  .autocomplete-dropdown-container-fullscreen {
+    width: 33.5em;
+    margin: 0 auto;
+    text-align: center;
+  }
+}  
