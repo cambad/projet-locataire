@@ -1,6 +1,6 @@
 // == Initial State
 const initialState = {
-  isConnected: false,
+  isConnected: true,
 };
 
 // == Types

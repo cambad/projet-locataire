@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="app_user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -52,12 +53,12 @@ class User
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_active;
+    private $isActive;
 
     /**
      * @ORM\Column(type="string", length=256)
      */
-    private $role_json_format;
+    private $roleJsonFormat;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
@@ -73,6 +74,49 @@ class User
     {
         $this->isActive = true;
         $this->reviews = new ArrayCollection();
+    }
+
+    public function getRoles(): array 
+    {
+        $roles = []; 
+
+        if(!is_null($this->role)){
+
+            $roles[] = $this->role->getCode(); 
+
+        } else {
+            $roles[] = 'ROLE_ANONYMOUS';
+        }
+
+        return $roles;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     public function getId(): ?int
@@ -107,6 +151,13 @@ class User
     public function getUsername(): ?string
     {
         return $this->username;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
     }
 
     public function setUsername(string $username): self
@@ -165,13 +216,17 @@ class User
     }
 
     public function getRoleJsonFormat(): ?string
-    {
-        return $this->role_json_format;
+    {   
+        $jsonRoles = json_decode($this->roleJsonFormat);
+
+        return $jsonRoles[0];
     }
 
-    public function setRoleJsonFormat(string $role_json_format): self
+    public function setRoleJsonFormat(string $roleJsonFormat = ''): self
     {
-        $this->role_json_format = $role_json_format;
+        $toJson = json_encode([$roleJsonFormat]);
+
+        $this->roleJsonFormat = $toJson;
 
         return $this;
     }
