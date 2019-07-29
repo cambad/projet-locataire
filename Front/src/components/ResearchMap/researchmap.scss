@@ -1,9 +1,5 @@
 @import 'src/styles/_vars.scss';
 
-body {
-  height: 100vh;
-}
-
 .autocomplete {
   width: 100%;
   height: 30em;
@@ -61,7 +57,7 @@ body {
 .google-maps {
   display: none;
   flex: 1;
-  height: 100vh;
+  // height: 100vh;
   width: 50%;
 }
 
@@ -83,9 +79,7 @@ body {
 }
 
 @media (min-width: 992px) {
-  body {
-    height: 100vh;
-  }
+
   .research-map {
     display: flex;
     align-content: center;
@@ -154,7 +148,7 @@ body {
   .google-maps {
     display: block;
     flex: 1;
-    height: 100vh;
+    // height: 100vh;
     width: 50%;
   }
   

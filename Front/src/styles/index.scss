@@ -5,3 +5,10 @@ body {
   font-family: sans-serif;
   background-color: #EFF1F3;
 }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

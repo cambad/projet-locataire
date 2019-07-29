@@ -12,7 +12,7 @@ import Profil from 'src/components/Profil';
 import './app.scss';
 
 const App = () => (
-  <div>
+  <React.Fragment>
     <Header />
     <Switch>
       <Route path="/" exact component={Research} />
@@ -22,7 +22,7 @@ const App = () => (
       <Route path="/profil" component={Profil} />
     </Switch>
     <Footer />
-  </div>
+  </React.Fragment>
 );
 
 
