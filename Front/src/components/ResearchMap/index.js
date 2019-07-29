@@ -52,7 +52,17 @@ class researchMap extends React.Component {
   handleClick = () => {
     this.setState({
       fullscreen: true,
+      dropdown: false,
     });
+  }
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.setState({
+        fullscreen: true,
+        dropdown: false,
+      });
+    }
   }
 
   render() {
@@ -81,6 +91,7 @@ class researchMap extends React.Component {
               }) => (
                 <div className={classNames({ research: !fullscreen, 'research-fullscreen': fullscreen })}>
                   <input
+                    onKeyUp={this.handleKeyPress}
                     className={classNames({ 'location-search-input': !fullscreen, 'location-search-input-fullscreen': fullscreen })}
                     {...getInputProps({
                       placeholder: 'Rechercher une adresse ...',
@@ -110,14 +121,14 @@ class researchMap extends React.Component {
                           padding: '.5em',
                         };
                       return (
-                        <div>
+                        <div onClick={this.handleClick}>
                           <div
                             {...getSuggestionItemProps(suggestion, {
                               className,
                               style,
                             })}
                           >
-                            <span onClick={this.handleClick} className="suggestion">{suggestion.description}</span>
+                            <span className="suggestion">{suggestion.description}</span>
                           </div>
                         </div>
                       );
