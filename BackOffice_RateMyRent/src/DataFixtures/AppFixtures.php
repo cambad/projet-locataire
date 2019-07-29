@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
         ]);
 
         $populator->addEntity('App\Entity\Review', 20, [
-            'title' => function() use($generator) { return $generator->sentence(6, false); },
+            'title' => function() use($generator) { return $generator->sentence(4, false); },
             'positive' => function() use($generator) { return $generator->paragraph(5); },
             'negative' => function() use($generator) { return $generator->paragraph(5); },
             'still_in' => function() use($generator) { return $generator->numberBetween(0, 1); },
@@ -61,38 +61,69 @@ class AppFixtures extends Fixture
         $manager->persist($roleAdmin);
 
         $userAdmin = new User();
+        $userAdmin->setSurname('John');
+        $userAdmin->setName('Doe');
+        $userAdmin->setUsername('admin');
+        $userAdmin->setAge(26);
         $userAdmin->setEmail('admin@admin.com');
         $userAdmin->setUsername('admin');
-
         $encodedPassword = $this->passwordEncoder->encodePassword($userAdmin, 'admin');
         $userAdmin->setPassword($encodedPassword);
-
         $userAdmin->setRoleJsonFormat('ROLE_ADMIN');
         $userAdmin->setRole($roleAdmin);
 
         $userModerator = new User();
         $userModerator->setEmail('moderator@moderator.com');
         $userModerator->setUsername('moderator');
-
+        $userModerator->setSurname('John');
+        $userModerator->setName('Doe1');
+        $userModerator->setAge(30);
         $encodedPassword = $this->passwordEncoder->encodePassword($userModerator, 'moderator');
         $userModerator->setPassword($encodedPassword);
-
         $userModerator->setRoleJsonFormat('ROLE_MODERATOR');
         $userModerator->setRole($roleModerator);
 
         $userMember = new User();
         $userMember->setEmail('user@user.com');
         $userMember->setUsername('member');
-
+        $userMember->setSurname('John');
+        $userMember->setName('Doe2');
+        $userMember->setAge(28);
         $encodedPassword = $this->passwordEncoder->encodePassword($userMember, 'password');
         $userMember->setPassword($encodedPassword);
 
         $userMember->setRoleJsonFormat('ROLE_MEMBER');
         $userMember->setRole($roleMember);
 
+        $userMember1 = new User();
+        $userMember1->setEmail('user1@user.com');
+        $userMember1->setUsername('member1');
+        $userMember1->setSurname('John');
+        $userMember1->setName('Doe3');
+        $userMember1->setAge(55);
+        $encodedPassword = $this->passwordEncoder->encodePassword($userMember1, 'password');
+        $userMember1->setPassword($encodedPassword);
+
+        $userMember1->setRoleJsonFormat('ROLE_MEMBER');
+        $userMember1->setRole($roleMember);
+
+        $userMember2 = new User();
+        $userMember2->setEmail('user2@user.com');
+        $userMember2->setUsername('member2');
+        $userMember2->setSurname('John');
+        $userMember2->setName('Doe4');
+        $userMember2->setAge(45);
+        $encodedPassword = $this->passwordEncoder->encodePassword($userMember2, 'password');
+        $userMember2->setPassword($encodedPassword);
+
+        $userMember2->setRoleJsonFormat('ROLE_MEMBER');
+        $userMember2->setRole($roleMember);
+
         $manager->persist($userAdmin);
-        $manager->persist($userMember);
         $manager->persist($userModerator);
+        $manager->persist($userMember);
+        $manager->persist($userMember1);
+        $manager->persist($userMember2);
 
 
         $manager->flush();
