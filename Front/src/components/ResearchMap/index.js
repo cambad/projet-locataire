@@ -28,6 +28,11 @@ class researchMap extends React.Component {
       address,
       dropdown: true,
     });
+    if (address === '') {
+      this.setState({
+        dropdown: false,
+      });
+    }
   };
 
   handleSelect = (address) => {
