@@ -33,7 +33,7 @@
 
 .adress-input {
   width: 30em;
-  margin: 0 auto;
+  margin: 2em auto;
 
   input {
     width: 49em;
@@ -92,46 +92,120 @@
   div {
     margin: .5em 0;
   }
+
   input {
     margin: 0 1em;
+  }
+
+  input {
+    font-family: $text-font-family;
+    text-align: center;
+    border: none;
+    height: 2em;
+    border-radius: 25px;
+    padding-left: 1em;
   }
 
   &-radio {
     display: flex; 
     justify-content: space-between;
+    border-bottom: 1px solid #B3B3B3;
   }
 
   &-locataire {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #B3B3B3;
   }
 
   &-intermediaire {
     display: flex; 
-    justify-content: space-between
+    justify-content: space-between;
+    border-bottom: 1px solid #B3B3B3;
   }
 
   &-surface {
     display: flex;
     justify-content: space-between;
-    input {
-      border: none;
-      height: 2em;
-      border-radius: 25px;
-      padding-left: 1em;
-      text-align: center;
+    border-bottom: 1px solid #B3B3B3;
+
+    div {
+      display: flex;
     }
   }
 
   &-loyer {
     display: flex;
-
-    input {
-      text-align: center;
-      border: none;
-      height: 2em;
-      border-radius: 25px;
-      padding-left: 1em;
-    }
+    border-bottom: 1px solid #B3B3B3;
   }
+}
+
+#surface-sol {
+  margin-right: 9em;
+}
+
+.commentaire {
+
+  &-user-title {
+    width: 60em;
+    height: 5em;
+    border-radius: 25px;
+    border: none;
+    padding-left: 1em;
+    margin-bottom: 1em; 
+  }
+
+  &-positifs-area {
+    width: 60em;
+    border: none;
+    border-radius: 25px;
+    padding: 1em;
+  }
+
+  &-negatifs-area {
+    width: 60em;
+    border: none;
+    border-radius: 25px;
+    padding: 1em;
+    margin-bottom: 2em;
+  }
+
+  &-yes-label {
+    margin-right: 2em;
+  }
+
+  &-p {
+    margin-bottom: 1em;
+  }
+}
+
+.form-submit {
+  font-family: $text-font-family;
+  font-size: .8em;
+  align-self: center;
+  width: 40em;
+  margin-top: 2em;
+  height: 6em;
+  background-color: $button-background-color;
+  color: $button-text-color;
+  border-radius: $button-border-radius;
+}
+
+.notation {
+  margin-top: 1em;
+}
+
+
+// Gestion isLocataire / isVisiteur 
+
+.locataire-form-hidden {
+  display: none;
+}
+
+.commentaires-hidden {
+  display: none;
+}
+
+.form-submit-hidden {
+  display: none;
 }
