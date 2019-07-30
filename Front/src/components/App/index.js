@@ -8,7 +8,7 @@ import Register from 'src/components/Register';
 import Contact from 'src/components/Contact';
 import ResearchMap from 'src/components/ResearchMap';
 import Profil from 'src/components/Profil';
-import AppartmentRating from 'src/components/ApartmentRating';
+import AppartmentRating from 'src/containers/ApartmentRating';
 
 import './app.scss';
 
