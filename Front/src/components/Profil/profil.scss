@@ -1,1 +1,73 @@
+@import 'src/styles/_vars.scss';
 
+.profil-card {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2em;
+  color: $header-background-color;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4); 
+  box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4);
+  display: flex;
+  flex-direction: column;
+
+  &-edit {
+    border: 1px solid $header-background-color;
+    border-radius: 10px;
+    padding: .5em .6em;
+    cursor: pointer;
+    display: block;
+    font-size: .8em;
+    margin-bottom: 4em;
+    align-self: flex-end;
+  }
+
+  &-edit:hover {
+    background-color: $header-background-color;
+    color: $header-text-color;
+    transition: all .2s ease;
+  }
+
+  &-picture {
+    display: block;
+    width: 8em;
+    height: 8em;
+    border: 3px solid $button-background-color;
+    border-radius: 50%;
+    margin: 0 auto 2em auto;
+    padding: .5em;
+  }
+
+  &-info {
+
+    &-item {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+
+  .profil-card {
+    padding: 3em;
+
+    &-picture {
+      margin: 0 auto 3em auto;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+
+  .profil-card {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .profil-card {
+    width: 40%;
+  }
+}
