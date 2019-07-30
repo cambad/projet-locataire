@@ -5,15 +5,16 @@ import { connect } from 'react-redux';
 import ApartmentRating from 'src/components/ApartmentRating';
 
 // Action Creators
-import { changeIsLocataire, changeIsVisiteur, changeAddressInput } from 'src/store/reducer';
+import {
+  changeIsLocataire,
+  changeIsVisiteur,
+  changeAddressInput,
+  recommendationStars,
+  exteriorStars,
+  interiorStars,
+  contactStars,
+} from 'src/store/reducer';
 
-/* === State (données) ===
- * - mapStateToProps retroune un objet de props pour le composant de présentation
- * - mapStateToProps met à dispo 2 params
- *  - state : le state du store (getState)
- *  - ownProps : les props passées au container
- * Pas de data à transmettre ? const mapStateToProps = null;
- */
 const mapStateToProps = state => ({
   address: state.address,
   accesibilityValue: state.accesibilityValue,
@@ -32,13 +33,6 @@ const mapStateToProps = state => ({
   isDisplayed: state.isDisplayed,
 });
 
-/* === Actions ===
- * - mapDispatchToProps retroune un objet de props pour le composant de présentation
- * - mapDispatchToProps met à dispo 2 params
- *  - dispatch : la fonction du store pour dispatcher une action
- *  - ownProps : les props passées au container
- * Pas de disptach à transmettre ? const mapDispatchToProps = {};
- */
 const mapDispatchToProps = dispatch => ({
   isLocataireChange: () => {
     dispatch(changeIsLocataire());
@@ -48,6 +42,18 @@ const mapDispatchToProps = dispatch => ({
   },
   changeAdress: (address) => {
     dispatch(changeAddressInput(address));
+  },
+  recommendationChange: (stars) => {
+    dispatch(recommendationStars(stars));
+  },
+  exteriorChange: (stars) => {
+    dispatch(exteriorStars(stars));
+  },
+  interiorChange: (stars) => {
+    dispatch(interiorStars(stars));
+  },
+  contactChange: (stars) => {
+    dispatch(contactStars(stars));
   },
 });
 
@@ -59,10 +65,3 @@ const ApartmentRatingContainer = connect(
 
 // == Export
 export default ApartmentRatingContainer;
-
-/* = export à la volée
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Example);
-*/

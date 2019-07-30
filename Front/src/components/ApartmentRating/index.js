@@ -29,32 +29,23 @@ const ApartmentRating = ({
   isLocataireChange,
   isVisiteurChange,
   changeAdress,
+  recommendationChange,
+  exteriorChange,
+  interiorChange,
+  contactChange,
 }) => {
 
   const handleChange = (addressInput) => {
     changeAdress(addressInput);
-    // this.setState({
-    //   address,
-    // });
   };
 
   const handleLocataire = () => {
     isLocataireChange();
-    // this.setState({
-    //   isVisiteur: false,
-    //   isLocataire: true,
-    //   isDisplayed: true,
-    // });
-  }
+  };
 
   const handleVisiteur = () => {
     isVisiteurChange();
-    // this.setState({
-    //   isVisiteur: true,
-    //   isLocataire: false,
-    //   isDisplayed: true,
-    // });
-  }
+  };
 
   return (
     <div className="notation-form">
@@ -96,9 +87,13 @@ const ApartmentRating = ({
             {isVisiteur && (
               <NotationFormVisiteur
                 recommendationValue={recommendationValue}
+                recommendationChange={recommendationChange}
                 exteriorValue={exteriorValue}
+                exteriorChange={exteriorChange}
                 interiorValue={interiorValue}
+                interiorChange={interiorChange}
                 contactValue={contactValue}
+                contactChange={contactChange}
               />
             )}
           </div>
@@ -113,17 +108,17 @@ const ApartmentRating = ({
 // PropTypes validation
 ApartmentRating.propTypes = {
   address: PropTypes.string.isRequired,
-  accesibilityValue: PropTypes.number.isRequired,
-  environnementValue: PropTypes.number.isRequired,
-  circulationValue: PropTypes.number.isRequired,
-  exteriorValue: PropTypes.number.isRequired,
-  interiorValue: PropTypes.number.isRequired,
-  isolationValue: PropTypes.number.isRequired,
-  cleanlinessValue: PropTypes.number.isRequired,
-  lightValue: PropTypes.number.isRequired,
-  contactValue: PropTypes.number.isRequired,
-  contactQualityValue: PropTypes.number.isRequired,
-  recommendationValue: PropTypes.number.isRequired,
+  // accesibilityValue: PropTypes.number.isRequired,
+  // environnementValue: PropTypes.number.isRequired,
+  // circulationValue: PropTypes.number.isRequired,
+  // exteriorValue: PropTypes.number.isRequired,
+  // interiorValue: PropTypes.number.isRequired,
+  // isolationValue: PropTypes.number.isRequired,
+  // cleanlinessValue: PropTypes.number.isRequired,
+  // lightValue: PropTypes.number.isRequired,
+  // contactValue: PropTypes.number.isRequired,
+  // contactQualityValue: PropTypes.number.isRequired,
+  // recommendationValue: PropTypes.number.isRequired,
   isLocataire: PropTypes.bool.isRequired,
   isVisiteur: PropTypes.bool.isRequired,
   isDisplayed: PropTypes.bool.isRequired,
