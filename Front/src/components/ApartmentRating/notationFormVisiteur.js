@@ -3,12 +3,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import './apartmentRating.scss';
 
-const NotationFormVisiteur = ({
-  recommendationValue,
-  exteriorValue,
-  interiorValue,
-  contactValue,
-}) => {
+const NotationFormVisiteur = () => {
   const [value, setValue] = React.useState(0);
   return (
     <>

@@ -1,10 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 // locals imports
 import './research.scss';
 import ResearchForm from './ResearchForm';
 import LastFiveReviews from './LastFiveReviews';
+
+axios.get('http://62.210.53.68/api/five_apartments')
+  .then(response => console.log(response))
+  .catch(error => console.log(error));
 
 const Research = () => (
   <main className="accueil">
