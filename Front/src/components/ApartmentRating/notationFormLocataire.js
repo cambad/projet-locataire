@@ -3,18 +3,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import './apartmentRating.scss';
 
-const NotationFormLocataire = ({
-  accesibilityValue,
-  environnementValue,
-  circulationValue,
-  exteriorValue,
-  interiorValue,
-  isolationValue,
-  cleanlinessValue,
-  lightValue,
-  contactValue,
-  contactQualityValue,
-}) => {
+const NotationFormLocataire = () => {
   const [value, setValue] = React.useState(0);
   return (
     <>
@@ -27,7 +16,8 @@ const NotationFormLocataire = ({
             name="accesiblity"
             value={value}
             onChange={(event, newValue) => {
-              setValue(newValue);
+              console.log(newValue);
+              
             }}
           />
         </div>
