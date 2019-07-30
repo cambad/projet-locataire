@@ -23,7 +23,6 @@ const Apartment = () => (
         <h3 className="caract-item">Loyer : 800</h3>
         <h3 className="caract-item"> Charges comprises : non</h3>
         <h3 className="caract-item">Surface au sol (en m²) : 65</h3>
-        <h3 className="caract-item">Type d'appartement : XXX</h3>
       </div>
       <article className="notation">
         <h2 className="notation-title">Titre de la review</h2>
