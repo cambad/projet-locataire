@@ -20,6 +20,7 @@ const initialState = {
     contactQualityValue: 0,
   },
   address: '',
+  latLng: '',
   isVisiteur: false,
   isLocataire: false,
   isDisplayed: false,
@@ -31,6 +32,7 @@ const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_INPUT = 'CHANGE_ADDRESS_INPUT';
 const VISITOR_STARS = 'VISITOR_STARS';
 const TENANT_STARS = 'TENANT_STARS';
+const GET_LAT_LNG = 'GET_LAT_LNG';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -75,6 +77,12 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
+    case GET_LAT_LNG:
+      return {
+        ...state,
+        latLng: action.latLng,
+      };
+
     default:
       return state;
   }
@@ -104,6 +112,11 @@ export const tenantStars = (stars, name) => ({
   type: TENANT_STARS,
   stars,
   name,
+});
+
+export const getAddressLatLng = latLng => ({
+  type: GET_LAT_LNG,
+  latLng,
 });
 
 // == Selectors

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
@@ -12,29 +13,14 @@ import './apartmentRating.scss';
 
 const ApartmentRating = ({
   address,
-  // accesibilityValue,
-  // environnementValue,
-  // circulationValue,
-  // exteriorValue,
-  // interiorValue,
-  // isolationValue,
-  // cleanlinessValue,
-  // lightValue,
-  // contactValue,
-  // contactQualityValue,
-  // recommendationValue,
   isLocataire,
   isVisiteur,
   isDisplayed,
   isLocataireChange,
   isVisiteurChange,
   changeAdress,
-  // recommendationChange,
-  // exteriorChange,
-  // interiorChange,
-  // contactChange,
+  getAddressLatLng,
 }) => {
-
   const handleChange = (addressInput) => {
     changeAdress(addressInput);
   };
@@ -47,12 +33,24 @@ const ApartmentRating = ({
     isVisiteurChange();
   };
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    geocodeByAddress(address)
+      .then((results) => {
+        return (getLatLng(results[0]));
+      })
+      .then((latLng) => {
+        console.log(latLng);
+        getAddressLatLng(latLng);
+      })
+      .catch(error => console.error('Error', error));
+  };
+
   return (
     <div className="notation-form">
       <PlaceAutocomplete
         address={address}
         handleChange={handleChange}
-        // handleSelect={handleSelect}
       />
       <div>
         <form className="main-form">
@@ -71,25 +69,14 @@ const ApartmentRating = ({
             </div>
             {isDisplayed && <InformationGenerale />}
             {isLocataire && (
-              <NotationFormLocataire
-                // accesibilityValue={accesibilityValue}
-                // environnementValue={environnementValue}
-                // circulationValue={circulationValue}
-                // exteriorValue={exteriorValue}
-                // interiorValue={interiorValue}
-                // isolationValue={isolationValue}
-                // cleanlinessValue={cleanlinessValue}
-                // lightValue={lightValue}
-                // contactValue={contactValue}
-                // contactQualityValue={contactQualityValue}
-              />
+              <NotationFormLocataire />
             )}
             {isVisiteur && (
               <NotationFormVisiteur />
             )}
           </div>
           {isDisplayed && <Commentaire isDisplayed={isDisplayed} />}
-          <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} type="submit">Valider l'évalutation de cet appartement</button>
+          <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
         </form>
       </div>
     </div>
@@ -99,17 +86,6 @@ const ApartmentRating = ({
 // PropTypes validation
 ApartmentRating.propTypes = {
   address: PropTypes.string.isRequired,
-  // accesibilityValue: PropTypes.number.isRequired,
-  // environnementValue: PropTypes.number.isRequired,
-  // circulationValue: PropTypes.number.isRequired,
-  // exteriorValue: PropTypes.number.isRequired,
-  // interiorValue: PropTypes.number.isRequired,
-  // isolationValue: PropTypes.number.isRequired,
-  // cleanlinessValue: PropTypes.number.isRequired,
-  // lightValue: PropTypes.number.isRequired,
-  // contactValue: PropTypes.number.isRequired,
-  // contactQualityValue: PropTypes.number.isRequired,
-  // recommendationValue: PropTypes.number.isRequired,
   isLocataire: PropTypes.bool.isRequired,
   isVisiteur: PropTypes.bool.isRequired,
   isDisplayed: PropTypes.bool.isRequired,

@@ -1,21 +1,16 @@
 import React from 'react';
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 import './apartmentRating.scss';
 
 const PlaceAutocomplete = ({
   address,
   handleChange,
-  handleSelect,
 }) => (
   <PlacesAutocomplete
     className="placeholder"
     value={address}
     onChange={handleChange}
-    onSelect={handleSelect}
   >
     {({
       getInputProps,
@@ -68,5 +63,6 @@ const PlaceAutocomplete = ({
     )}
   </PlacesAutocomplete>
 );
+
 
 export default PlaceAutocomplete;
