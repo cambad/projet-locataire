@@ -1,138 +1,96 @@
+// npm import
 import React from 'react';
-import Rating from '@material-ui/lab/Rating';
+import PropTypes from 'prop-types';
 
+// data
+import formTenant from 'src/data/formTenant';
+
+// local import
 import './apartmentRating.scss';
+import NotationFormElement from './NotationFormElement';
 
+// component
 const NotationFormLocataire = ({
-  accesibilityValue,
-  environnementValue,
-  circulationValue,
-  exteriorValue,
-  interiorValue,
-  isolationValue,
-  cleanlinessValue,
-  lightValue,
-  contactValue,
-  contactQualityValue,
+  tenantValue,
+  changeStarNumber,
 }) => {
-  const [value, setValue] = React.useState(0);
+  const { tenantForm } = formTenant;
   return (
     <>
       <h1 className="notation">Notation de l'appartement</h1>
       <h2>Quartier</h2>
       <div className="quartier">
-        <div>
-          <label htmlFor="accesiblity">Accessibilité de l'appartement</label>
-          <Rating
-            name="accesiblity"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="environnement">Environnement urbain de l'appartement</label>
-          <Rating
-            name="environnement"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="circulation">Circulation</label>
-          <Rating
-            name="circulation"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
+        {tenantForm.apartment.map((currentElement) => {
+          const { id } = currentElement;
+          // send the good notation to the good component
+          const notation = tenantValue[currentElement.nameValue];
+          return (
+            <NotationFormElement
+              key={id}
+              {...currentElement}
+              notation={notation}
+              changeStarNumber={changeStarNumber}
+            />
+          );
+        })}
       </div>
       <h2>État général de l'immeuble</h2>
       <div className="etatImmeuble">
-        <div>
-          <label htmlFor="exterior">État extérieur de l'immeuble</label>
-          <Rating
-            name="exterior"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="interior">État des parties communes de l'immeuble</label>
-          <Rating
-            name="interior"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
+        {tenantForm.buildingConditions.map((currentElement) => {
+          const { id } = currentElement;
+          // send the good notation to the good component
+          const notation = tenantValue[currentElement.nameValue];
+          return (
+            <NotationFormElement
+              key={id}
+              {...currentElement}
+              notation={notation}
+              changeStarNumber={changeStarNumber}
+            />
+          );
+        })}
       </div>
       <h2>Qualité de l'appartement</h2>
       <div className="etatAppart">
-        <div>
-          <label htmlFor="isolation">Isolation thermique et sonore</label>
-          <Rating
-            name="isolation"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="cleanliness">Propreté générale</label>
-          <Rating
-            name="cleanliness"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="light">Luminosité</label>
-          <Rating
-            name="light"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
+        {tenantForm.apartmentQualities.map((currentElement) => {
+          const { id } = currentElement;
+          // send the good notation to the good component
+          const notation = tenantValue[currentElement.nameValue];
+          return (
+            <NotationFormElement
+              key={id}
+              {...currentElement}
+              notation={notation}
+              changeStarNumber={changeStarNumber}
+            />
+          );
+        })}
       </div>
       <h2>Relation avec le propriétaire et/ou à l'agence</h2>
       <div className="relations">
-        <div>
-          <label htmlFor="contact">Prise de contact agent/propriétaire</label>
-          <Rating
-            name="contact"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="contactQuality">Qualité de la relation lors de la location</label>
-          <Rating
-            name="contactQuality"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
+        {tenantForm.neighborhoodRelationship.map((currentElement) => {
+          const { id } = currentElement;
+          // send the good notation to the good component
+          const notation = tenantValue[currentElement.nameValue];
+          return (
+            <NotationFormElement
+              key={id}
+              {...currentElement}
+              notation={notation}
+              changeStarNumber={changeStarNumber}
+            />
+          );
+        })}
       </div>
     </>
   );
 };
 
+// Proptypes validation
+NotationFormLocataire.propTypes = {
+  tenantValue: PropTypes.object.isRequired,
+  changeStarNumber: PropTypes.func.isRequired,
+};
+
+// export default
 export default NotationFormLocataire;

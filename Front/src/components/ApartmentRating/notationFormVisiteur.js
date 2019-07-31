@@ -17,15 +17,15 @@ const NotationFormVisiteur = ({
     <>
       <h1 className="notation">Notation de l'appartement</h1>
       <div className="quartier">
-        {visitorForm.map((element) => {
-          const { id } = element;
+        {visitorForm.map((currentElement) => {
+          const { id } = currentElement;
           // send the good notation to the good component
-          const notation = visitorValue[element.nameValue];
+          const notation = visitorValue[currentElement.nameValue];
           return (
             <NotationFormElement
               key={id}
               notation={notation}
-              {...element}
+              {...currentElement}
               changeStarNumber={changeStarNumber}
             />
           );

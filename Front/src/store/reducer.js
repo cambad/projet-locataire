@@ -7,30 +7,19 @@ const initialState = {
     interiorValue: 0,
     contactValue: 0,
   },
-  tenantForm: {
-    accesibilityValue: 0,
-    environnementValue: 0,
+  tenantValue: {
+    accessiblityValue: 0,
+    apartmentEnvironnementValue: 0,
     circulationValue: 0,
     exteriorValue: 0,
-    interiorValue: 0,
+    buildingEnvironnementValue: 0,
     isolationValue: 0,
     cleanlinessValue: 0,
-    lightValue: 0,
+    brightnessValue: 0,
     contactValue: 0,
     contactQualityValue: 0,
   },
   address: '',
-  accesibilityValue: 0,
-  environnementValue: 0,
-  circulationValue: 0,
-  exteriorValue: 0,
-  interiorValue: 0,
-  isolationValue: 0,
-  cleanlinessValue: 0,
-  lightValue: 0,
-  contactValue: 0,
-  contactQualityValue: 0,
-  recommendationValue: 0,
   isVisiteur: false,
   isLocataire: false,
   isDisplayed: false,
@@ -41,6 +30,7 @@ const CHANGE_IS_LOCATAIRE = 'CHANGE_IS_LOCATAIRE';
 const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_INPUT = 'CHANGE_ADDRESS_INPUT';
 const VISITOR_STARS = 'VISITOR_STARS';
+const TENANT_STARS = 'TENANT_STARS';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -76,6 +66,15 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
 
+    case TENANT_STARS:
+      return {
+        ...state,
+        tenantValue: {
+          ...state.tenantValue,
+          [action.name]: action.stars,
+        },
+      };
+
     default:
       return state;
   }
@@ -97,6 +96,12 @@ export const changeAddressInput = address => ({
 
 export const visitorStars = (stars, name) => ({
   type: VISITOR_STARS,
+  stars,
+  name,
+});
+
+export const tenantStars = (stars, name) => ({
+  type: TENANT_STARS,
   stars,
   name,
 });

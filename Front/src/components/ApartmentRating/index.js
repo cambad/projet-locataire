@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
+import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
 import PlaceAutocomplete from './placesAutocomplete';
 import Commentaire from './commentaire';
 import InformationGenerale from './informationGenerale';
-import NotationFormLocataire from './notationFormLocataire';
 
 import './apartmentRating.scss';
 
@@ -72,16 +72,16 @@ const ApartmentRating = ({
             {isDisplayed && <InformationGenerale />}
             {isLocataire && (
               <NotationFormLocataire
-                accesibilityValue={accesibilityValue}
-                environnementValue={environnementValue}
-                circulationValue={circulationValue}
-                exteriorValue={exteriorValue}
-                interiorValue={interiorValue}
-                isolationValue={isolationValue}
-                cleanlinessValue={cleanlinessValue}
-                lightValue={lightValue}
-                contactValue={contactValue}
-                contactQualityValue={contactQualityValue}
+                // accesibilityValue={accesibilityValue}
+                // environnementValue={environnementValue}
+                // circulationValue={circulationValue}
+                // exteriorValue={exteriorValue}
+                // interiorValue={interiorValue}
+                // isolationValue={isolationValue}
+                // cleanlinessValue={cleanlinessValue}
+                // lightValue={lightValue}
+                // contactValue={contactValue}
+                // contactQualityValue={contactQualityValue}
               />
             )}
             {isVisiteur && (

@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import notationFormVisiteur from 'src/components/ApartmentRating/notationFormVisiteur';
 
 // == Action Creators
-import {
-  visitorStars,
-} from 'src/store/reducer';
+import { visitorStars } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
@@ -29,4 +27,3 @@ const notationFormVisiteurContainer = connect(
 
 // == Export
 export default notationFormVisiteurContainer;
-
