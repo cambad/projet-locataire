@@ -41,7 +41,7 @@ module.exports = {
     chunkFilename: 'vendors.js',
     // Cible des bundles
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './',
+    publicPath: '/',
   },
   // Optimisation pour le build
   optimization: {

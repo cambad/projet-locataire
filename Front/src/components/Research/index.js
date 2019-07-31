@@ -7,7 +7,7 @@ import './research.scss';
 import ResearchForm from './ResearchForm';
 import LastFiveReviews from './LastFiveReviews';
 
-axios.get('http://62.210.53.68/api/five_apartments')
+axios.get('https://api.rate-my-rent.fr/api/five_apartments')
   .then(response => console.log(response))
   .catch(error => console.log(error));
 
