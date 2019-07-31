@@ -21,7 +21,6 @@ const NotationFormVisiteur = ({
           const { id } = element;
           // send the good notation to the good component
           const notation = visitorValue[element.nameValue];
-          console.log(notation);
           return (
             <NotationFormElement
               key={id}

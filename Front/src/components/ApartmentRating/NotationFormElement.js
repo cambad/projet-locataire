@@ -12,12 +12,13 @@ const NotationFormElement = ({
   nameValue,
   notation,
   changeStarNumber,
-  // info,
 }) => {
   // callBack onChange event
   const onChangeNotation = (event) => {
     // retrieve the number of stars
-    const { value } = event.target;
+    let { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    value = parseInt(value, 10);
     // retrieve the name of notation to switch dispatch
     const { name: element } = event.target;
     // function that send the action
