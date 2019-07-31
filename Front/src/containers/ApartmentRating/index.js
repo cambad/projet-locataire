@@ -9,28 +9,29 @@ import {
   changeIsLocataire,
   changeIsVisiteur,
   changeAddressInput,
-  recommendationStars,
-  exteriorStars,
-  interiorStars,
-  contactStars,
+  // recommendationStars,
+  // exteriorStars,
+  // interiorStars,
+  // contactStars,
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   address: state.address,
-  accesibilityValue: state.accesibilityValue,
-  environnementValue: state.environnementValue,
-  circulationValue: state.circulationValue,
-  exteriorValue: state.exteriorValue,
-  interiorValue: state.interiorValue,
-  isolationValue: state.isolationValue,
-  cleanlinessValue: state.cleanlinessValue,
-  lightValue: state.lightValue,
-  contactValue: state.contactValue,
-  contactQualityValue: state.contactQualityValue,
-  recommendationValue: state.recommendationValue,
+  // accesibilityValue: state.accesibilityValue,
+  // environnementValue: state.environnementValue,
+  // circulationValue: state.circulationValue,
+  // exteriorValue: state.exteriorValue,
+  // interiorValue: state.interiorValue,
+  // isolationValue: state.isolationValue,
+  // cleanlinessValue: state.cleanlinessValue,
+  // lightValue: state.lightValue,
+  // contactValue: state.contactValue,
+  // contactQualityValue: state.contactQualityValue,
+  // recommendationValue: state.recommendationValue,
   isLocataire: state.isLocataire,
   isVisiteur: state.isVisiteur,
   isDisplayed: state.isDisplayed,
+  // visitorForm: state.visitorForm,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -43,18 +44,18 @@ const mapDispatchToProps = dispatch => ({
   changeAdress: (address) => {
     dispatch(changeAddressInput(address));
   },
-  recommendationChange: (stars) => {
-    dispatch(recommendationStars(stars));
-  },
-  exteriorChange: (stars) => {
-    dispatch(exteriorStars(stars));
-  },
-  interiorChange: (stars) => {
-    dispatch(interiorStars(stars));
-  },
-  contactChange: (stars) => {
-    dispatch(contactStars(stars));
-  },
+  // recommendationChange: (stars) => {
+  //   dispatch(recommendationStars(stars));
+  // },
+  // exteriorChange: (stars) => {
+  //   dispatch(exteriorStars(stars));
+  // },
+  // interiorChange: (stars) => {
+  //   dispatch(interiorStars(stars));
+  // },
+  // contactChange: (stars) => {
+  //   dispatch(contactStars(stars));
+  // },
 });
 
 // Container

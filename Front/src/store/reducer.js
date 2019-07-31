@@ -1,6 +1,24 @@
 // == Initial State
 const initialState = {
   isConnected: true,
+  visitorValue: {
+    recommendationValue: 0,
+    exteriorValue: 0,
+    interiorValue: 0,
+    contactValue: 0,
+  },
+  tenantForm: {
+    accesibilityValue: 0,
+    environnementValue: 0,
+    circulationValue: 0,
+    exteriorValue: 0,
+    interiorValue: 0,
+    isolationValue: 0,
+    cleanlinessValue: 0,
+    lightValue: 0,
+    contactValue: 0,
+    contactQualityValue: 0,
+  },
   address: '',
   accesibilityValue: 0,
   environnementValue: 0,
@@ -22,10 +40,7 @@ const initialState = {
 const CHANGE_IS_LOCATAIRE = 'CHANGE_IS_LOCATAIRE';
 const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_INPUT = 'CHANGE_ADDRESS_INPUT';
-const RECOMMENDATION_STARS = 'RECOMMENDATION_STARS';
-const EXTERIOR_STARS = 'EXTERIOR_STARS';
-const INTERIOR_STARS = 'INTERIOR_STARS';
-const CONTACT_STARS = 'CONTACT_STARS';
+const VISITOR_STARS = 'VISITOR_STARS';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -52,28 +67,13 @@ const reducer = (state = initialState, action = {}) => {
         address: action.address,
       };
 
-    case RECOMMENDATION_STARS:
+    case VISITOR_STARS:
       return {
         ...state,
-        recommendationValue: action.stars,
-      };
-
-    case EXTERIOR_STARS:
-      return {
-        ...state,
-        exteriorValue: action.stars,
-      };
-
-    case INTERIOR_STARS:
-      return {
-        ...state,
-        interiorValue: action.stars,
-      };
-
-    case CONTACT_STARS:
-      return {
-        ...state,
-        contactValue: action.stars,
+        visitorValue: {
+          ...state.visitorValue,
+          [action.name]: action.stars,
+        },
       };
 
     default:
@@ -95,26 +95,11 @@ export const changeAddressInput = address => ({
   address,
 });
 
-export const recommendationStars = stars => ({
-  type: RECOMMENDATION_STARS,
+export const visitorStars = (stars, name) => ({
+  type: VISITOR_STARS,
   stars,
+  name,
 });
-
-export const exteriorStars = stars => ({
-  type: EXTERIOR_STARS,
-  stars,
-});
-
-export const interiorStars = stars => ({
-  type: INTERIOR_STARS,
-  stars,
-});
-
-export const contactStars = stars => ({
-  type: CONTACT_STARS,
-  stars,
-});
-
 
 // == Selectors
 

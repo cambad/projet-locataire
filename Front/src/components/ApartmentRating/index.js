@@ -2,37 +2,37 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import PlaceAutocomplete from './placesAutocomplete';
 import Commentaire from './commentaire';
 import InformationGenerale from './informationGenerale';
 import NotationFormLocataire from './notationFormLocataire';
-import NotationFormVisiteur from './notationFormVisiteur';
 
 import './apartmentRating.scss';
 
 const ApartmentRating = ({
   address,
-  accesibilityValue,
-  environnementValue,
-  circulationValue,
-  exteriorValue,
-  interiorValue,
-  isolationValue,
-  cleanlinessValue,
-  lightValue,
-  contactValue,
-  contactQualityValue,
-  recommendationValue,
+  // accesibilityValue,
+  // environnementValue,
+  // circulationValue,
+  // exteriorValue,
+  // interiorValue,
+  // isolationValue,
+  // cleanlinessValue,
+  // lightValue,
+  // contactValue,
+  // contactQualityValue,
+  // recommendationValue,
   isLocataire,
   isVisiteur,
   isDisplayed,
   isLocataireChange,
   isVisiteurChange,
   changeAdress,
-  recommendationChange,
-  exteriorChange,
-  interiorChange,
-  contactChange,
+  // recommendationChange,
+  // exteriorChange,
+  // interiorChange,
+  // contactChange,
 }) => {
 
   const handleChange = (addressInput) => {
@@ -85,16 +85,7 @@ const ApartmentRating = ({
               />
             )}
             {isVisiteur && (
-              <NotationFormVisiteur
-                recommendationValue={recommendationValue}
-                recommendationChange={recommendationChange}
-                exteriorValue={exteriorValue}
-                exteriorChange={exteriorChange}
-                interiorValue={interiorValue}
-                interiorChange={interiorChange}
-                contactValue={contactValue}
-                contactChange={contactChange}
-              />
+              <NotationFormVisiteur />
             )}
           </div>
           {isDisplayed && <Commentaire isDisplayed={isDisplayed} />}
