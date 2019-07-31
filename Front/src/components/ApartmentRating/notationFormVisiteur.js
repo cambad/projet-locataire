@@ -37,7 +37,8 @@ const NotationFormVisiteur = ({
 
 // Proptypes validation
 NotationFormVisiteur.propTypes = {
-
+  visitorValue: PropTypes.object.isRequired,
+  changeStarNumber: PropTypes.func.isRequired,
 };
 
 export default NotationFormVisiteur;
