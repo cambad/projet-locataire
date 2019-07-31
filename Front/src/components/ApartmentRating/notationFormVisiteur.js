@@ -1,56 +1,44 @@
 import React from 'react';
-import Rating from '@material-ui/lab/Rating';
+import PropTypes from 'prop-types';
 
+// data
+import formVisitor from 'src/data/formVisitor';
+
+// local import
 import './apartmentRating.scss';
+import NotationFormElement from './NotationFormElement';
 
-const NotationFormVisiteur = () => {
-  const [value, setValue] = React.useState(0);
+const NotationFormVisiteur = ({
+  visitorValue,
+  changeStarNumber,
+}) => {
+  const { visitorForm } = formVisitor;
   return (
     <>
       <h1 className="notation">Notation de l'appartement</h1>
       <div className="quartier">
-        <div>
-          <label htmlFor="recommendation">Recommandez-vous ce quartier ?</label>
-          <Rating
-            name="recommendation"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="exteriorValue">Etat général de l'immeuble</label>
-          <Rating
-            name="exteriorValue"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="interiorValue">Qualité de l'appartement</label>
-          <Rating
-            name="interiorValue"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="contactValue">Contact propriétaire et/ou agent</label>
-          <Rating
-            name="contactValue"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </div>
+        {visitorForm.map((currentElement) => {
+          const { id } = currentElement;
+          // send the good notation to the good component
+          const notation = visitorValue[currentElement.nameValue];
+          return (
+            <NotationFormElement
+              key={id}
+              notation={notation}
+              {...currentElement}
+              changeStarNumber={changeStarNumber}
+            />
+          );
+        })}
       </div>
     </>
   );
-}
+};
+
+// Proptypes validation
+NotationFormVisiteur.propTypes = {
+  visitorValue: PropTypes.object.isRequired,
+  changeStarNumber: PropTypes.func.isRequired,
+};
+
 export default NotationFormVisiteur;
