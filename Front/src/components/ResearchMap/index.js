@@ -58,6 +58,7 @@ class researchMap extends React.Component {
     this.setState({
       fullscreen: true,
       dropdown: false,
+      address: '',
     });
   }
 
@@ -66,6 +67,7 @@ class researchMap extends React.Component {
       this.setState({
         fullscreen: true,
         dropdown: false,
+        address: '',
       });
     }
   }
@@ -111,18 +113,18 @@ class researchMap extends React.Component {
                       ? {
                         backgroundColor: '#aaa',
                         cursor: 'pointer',
-                        marginBottom: '1em',
-                        borderRadius: '25px',
-                        height: 'auto',
+                        marginBottom: '.5em',
+                        borderRadius: '10px',
                         padding: '.5em',
+                        width: '100%',
                       }
                       : {
                         backgroundColor: '#fff',
                         cursor: 'pointer',
-                        marginBottom: '1em',
-                        borderRadius: '25px',
-                        height: 'auto',
+                        marginBottom: '.5em',
+                        borderRadius: '10px',
                         padding: '.5em',
+                        width: '100%',
                       };
                     return (
                       <div onClick={this.handleClick}>
