@@ -3,7 +3,7 @@
 {% block title %}Avis{% endblock %}
 
 {% block body %}
-    <h1>Les avis</h1>
+    <h2>Les avis</h2>
 
     <table class="table">
         <thead>
@@ -16,7 +16,7 @@
         <tbody>
         {% for review in reviews %}
             <tr>
-                <td>{{ review.id }}</td><hr>
+                <td>{{ review.id }}</td>
                 <td>{{ review.title }}</td>
                 <td>
                     

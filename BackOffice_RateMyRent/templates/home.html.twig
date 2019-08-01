@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<h2>Bienvenue sur le BackOffice de Rate-my-rent</h2>
+
+<h3>Vous souhaitez modifier ou consulter une catégorie ?</h3>
+<div class="container">
+    <div class="row">
+        <div class="card col-3">
+            <div class="card-header">
+                <h4>
+                    Appartement
+                </h4>
+            </div>
+            <div class="card-body">
+                <h4><a href="{{ path('admin_apartment_index')}}">Voir</a></h4>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
