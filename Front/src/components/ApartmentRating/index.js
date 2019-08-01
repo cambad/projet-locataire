@@ -92,6 +92,7 @@ ApartmentRating.propTypes = {
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
   changeAdress: PropTypes.func.isRequired,
+  getAddressLatLng: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;
