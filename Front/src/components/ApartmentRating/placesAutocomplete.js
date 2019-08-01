@@ -17,10 +17,10 @@ const PlaceAutocomplete = ({
       suggestions,
       getSuggestionItemProps,
     }) => (
-      <div className="adress-input">
+      <div className="address-input">
         <input
           {...getInputProps({
-            placeholder: 'Adresse de l\'appartement ...',
+            placeholder: 'Adresse de l\'appartement...',
           })}
         />
         <div className="autocomplete-dropdown">
@@ -32,17 +32,15 @@ const PlaceAutocomplete = ({
               ? {
                 backgroundColor: '#aaa',
                 cursor: 'pointer',
-                marginBottom: '1em',
-                borderRadius: '25px',
-                height: 'auto',
+                marginBottom: '.5em',
+                borderRadius: '10px',
                 padding: '.5em',
               }
               : {
                 backgroundColor: '#fff',
                 cursor: 'pointer',
-                marginBottom: '1em',
-                borderRadius: '25px',
-                height: 'auto',
+                marginBottom: '.5em',
+                borderRadius: '10px',
                 padding: '.5em',
               };
             return (

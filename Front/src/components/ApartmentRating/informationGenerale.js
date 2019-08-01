@@ -27,29 +27,17 @@ const InformationGenerale = () => (
     </div>
     <div className="information-generales-surface">
       <div>
-        <div>
-          <div>
-            <p>Surface au sol (en m²)</p>
-          </div>
-          <div>
-            <input type="text" name="surface-sol" id="surface-sol" placeholder="..." />
-          </div>
-          <div>
-            <p>Nombre de pièces</p>
-          </div>
-          <div>
-            <input type="text" name="roomsNb" id="roomsNb" placeholder="..." />
-          </div>
-        </div>
+        <p>Surface au sol (en m²)</p>
+        <input type="text" name="surface-sol" id="surface-sol" placeholder="..." />
+      </div>
+      <div>
+        <p>Nombre de pièces</p>
+        <input type="text" name="roomsNb" id="roomsNb" placeholder="..." />
       </div>
     </div>
     <div className="information-generales-loyer">
-      <div>
-        <p>Loyer (en €, charges comprises)</p>
-      </div>
-      <div>
-        <input type="text" name="loyer" id="loyer" placeholder="..." />
-      </div>
+      <p>Loyer (en €, charges comprises)</p>
+      <input type="text" name="loyer" id="loyer" placeholder="..." />
     </div>
   </>
 );
