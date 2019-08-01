@@ -6,7 +6,7 @@ import Research from 'src/containers/Research';
 import Footer from 'src/components/Footer';
 import Register from 'src/components/Register';
 import Contact from 'src/components/Contact';
-import ResearchMap from 'src/components/ResearchMap';
+import ResearchMap from 'src/containers/ResearchMap';
 import Profil from 'src/components/Profil';
 import AppartmentRating from 'src/containers/ApartmentRating';
 

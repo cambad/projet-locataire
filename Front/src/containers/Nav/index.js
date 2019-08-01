@@ -7,7 +7,7 @@ import Nav from 'src/components/Nav';
 // Action Creators
 
 const mapStateToProps = state => ({
-  isConnected: state.isConnected,
+  isConnected: state.reducer.isConnected,
 });
 
 

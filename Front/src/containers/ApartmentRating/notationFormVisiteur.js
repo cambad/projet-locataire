@@ -9,7 +9,7 @@ import { visitorStars } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
-  visitorValue: state.visitorValue,
+  visitorValue: state.reducer.visitorValue,
 });
 
 
