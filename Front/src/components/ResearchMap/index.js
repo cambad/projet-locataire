@@ -5,29 +5,30 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import GoogleMapReact from 'google-map-react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import './researchmap.scss';
 
 import Marker from './Marker';
 
 
-const researchMap = ({
+const ResearchMap = ({
   address,
   latLng,
   zoom,
-  dropdown, 
+  dropdown,
   fullscreen,
   setAddressLatLng,
   changeAdress,
+  goToFullScreen,
 }) => {
-  const handleChange = (event) => {
-    changeAdress(event.target.value);
+  const handleChange = (address) => {
+    changeAdress(address);
   };
 
-  const handleSelect = () => {
+  const handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => {
-        console.log(results);
         return (getLatLng(results[0]));
       })
       .then((latLng) => {
@@ -38,22 +39,14 @@ const researchMap = ({
   };
 
   const handleClick = () => {
-    this.setState({
-      fullscreen: true,
-      dropdown: false,
-      address: '',
-    });
-  }
+    goToFullScreen();
+  };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      this.setState({
-        fullscreen: true,
-        dropdown: false,
-        address: '',
-      });
+      goToFullScreen();
     }
-  }
+  };
 
   return (
     <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
@@ -122,7 +115,8 @@ const researchMap = ({
       <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
-          defaultCenter={{ lat: 30, lng: 1 }}
+          defaultCenter={latLng}
+          center={latLng}
           defaultZoom={zoom}
           zoom={zoom}
         />
@@ -131,4 +125,18 @@ const researchMap = ({
   );
 };
 
-export default researchMap;
+ResearchMap.propTypes = {
+  address: PropTypes.string.isRequired,
+  latLng: PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+  }).isRequired,
+  zoom: PropTypes.number.isRequired,
+  dropdown: PropTypes.bool.isRequired,
+  fullscreen: PropTypes.bool.isRequired,
+  setAddressLatLng: PropTypes.func.isRequired,
+  changeAdress: PropTypes.func.isRequired,
+  goToFullScreen: PropTypes.func.isRequired,
+};
+
+export default ResearchMap;
