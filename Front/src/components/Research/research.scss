@@ -107,6 +107,16 @@
   margin-bottom: 3em;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.lastFiveApartments-error {
+  text-align: center;
+  color: $button-background-color;
+}
+
 @media (min-width: 768px) {
 
   .recherche {

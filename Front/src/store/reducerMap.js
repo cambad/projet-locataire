@@ -37,6 +37,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         redirectToMap: false,
+        address: '',
       };
     }
     case SET_ADDRESS_LAT_LNG: {
