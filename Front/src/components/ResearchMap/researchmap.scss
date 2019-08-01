@@ -1,172 +1,353 @@
 @import 'src/styles/_vars.scss';
 
-.autocomplete {
-  width: 100%;
-  height: 30em;
-  max-height: 95vh;
-  border-radius: $button-border-radius;
-  padding: 2em;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-self: center;
-}
-
-.autocomplete-title {
-  font-family: $title-font-family;
-  text-shadow: 1px 1px 1px $header-text-color;
-  font-size: 2.5em;
-  margin: 2em auto;
-  text-align: center;
-}
-
-.autocomplete-title-fullscreen {
+// Google map should not display before 992px;
+.google-maps {
   display: none;
 }
 
-.dropdown-title-true {
+.research-map {
+  flex-grow: 2;
+}
+
+.autocomplete {
+  margin-top: 3em;
+  padding: 1em 2em;
   text-align: center;
-  margin-bottom: 1em;
+
+  &-title {
+    font-family: $title-font-family;
+    font-size: 1.7em;
+    margin-bottom: 1.5em;
+  }
+}
+
+.location-search-input {
+  margin-bottom: 1.5em;
+  border: none;
+  padding: 1em;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 1em;
+
+  &::placeholder {
+    font-family: $text-font-family;
+  }
 }
 
 .dropdown-title-false {
   display: none;
 }
 
-.location-search-input {
-  border-radius: $button-border-radius;
-  width: 28em;
-  margin: 0 auto;
-  height: 5em;
-  border: none;
-  padding-left: 1em;
-  margin-bottom: 2em;
+.dropdown-title-true {
+  margin-bottom: 1.5em;
+}
+
+// map Full screen
+
+.research-map-fullscreen {
+  flex-grow: 2;
+}
+
+.autocomplete-hidden {
+  position: absolute;
+  z-index: 10;
+  margin: 1.5em;
+}
+
+.autocomplete-title-fullscreen {
+  display: none;
 }
 
 .location-search-input-fullscreen {
-  width: 100%;
-  height: 5em;
-  padding-left: 1em;
-}
-
-.location-search-input::placeholder {
-  font-family: $text-font-family;
-}
-
-.google-maps {
-  display: none;
-  flex: 1;
-  // height: 100vh;
-  width: 50%;
+  padding: .5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
 }
 
 .google-maps-fullscreen {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
-}
-
-.autocomplete-dropdown-container {
-  width: 100%;
-  font-family: $text-font-family;
-  text-align: center;
+  transition: .3s ease;
 }
 
 .autocomplete-dropdown-container-fullscreen {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
+  width: 50%;
+  margin: 1em 0 0;
+}
+
+.autocomplete-dropdown-container-fullscreen > .dropdown-title-true {
+  display: none;
+}
+
+.autocomplete-dropdown-container-fullscreen + div {
+  margin: .5em;
+  border-radius: 5px;
+}
+
+
+
+@media (min-width: 576px) {
+
+  .location-search-input {
+    width: 80%;
+  }
+
 }
 
 @media (min-width: 992px) {
+  
+  // map middle screen
 
   .research-map {
     display: flex;
-    align-content: center;
+    justify-content: space-between;
   }
-  
-  .research-map-fullscreen {
+
+  .google-maps {
     display: block;
+    height: 80vh;
+    width: 60%;
   }
-  
+
   .autocomplete {
-    width: 40em;
-    height: 30em;
-    margin: 1em;
-    max-height: 95vh;
-    border-radius: $button-border-radius;
-    padding: 2em;
-    margin-bottom: 5em;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-self: center;
+    width: 40%;
+    text-align: center;
+    margin-top: 6em;
+
+    &-title {
+      font-family: $title-font-family;
+      font-size: 1.7em;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .location-search-input {
+    width: 100%;
+  }
+
+  // map full screen
+
+  .research-fullscreen {
+    width: 100%;
   }
   
-  .autocomplete-title {
-    font-family: $title-font-family;
-    text-shadow: 1px 1px 1px $header-text-color;
-    font-size: 2.5em;
-    margin: 0 auto 2em auto;
+  .autocomplete-hidden {
+    position: absolute;
+    z-index: 10;
+    margin: 3em;
+    width: 30%;
   }
   
   .autocomplete-title-fullscreen {
     display: none;
   }
   
-  .dropdown-title-true {
-    text-align: center;
-    margin-bottom: 1em;
-  }
-  
-  .dropdown-title-false {
-    display: none;
-  }
-  
-  .location-search-input {
-    border-radius: $button-border-radius;
-    width: 40em;
-    margin-left: 6.8em;
-    height: 5em;
-    border: none;
-    padding-left: 1em;
-    margin-bottom: 2em;
-  }
-  
   .location-search-input-fullscreen {
     width: 100%;
-    height: 5em;
-    margin-bottom: 0;
-    margin-top: 2.2em;
-    padding-left: 1em;
-  }
-  
-  .location-search-input::placeholder {
-    font-family: $text-font-family;
-  }
-  
-  .google-maps {
-    display: block;
-    flex: 1;
-    // height: 100vh;
-    width: 50%;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
   }
   
   .google-maps-fullscreen {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
-  }
-  
-  .autocomplete-dropdown-container {
-    margin-left: 1em;
-    width: 33.5em;
-    font-family: $text-font-family;
-    text-align: center;
+    transition: none;
   }
   
   .autocomplete-dropdown-container-fullscreen {
-    width: 33.5em;
-    margin: 0 auto;
-    text-align: center;
+    width: 100%;
+    margin: 1em 0 0;
   }
-}  
+  
+  .autocomplete-dropdown-container-fullscreen > .dropdown-title-true {
+    display: none;
+  }
+  
+  .autocomplete-dropdown-container-fullscreen + div {
+    margin: .5em;
+    border-radius: 5px;
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  .location-search-input {
+    width: 80%;
+  }
+
+}
+
+// .autocomplete {
+//   width: 100%;
+//   height: 30em;
+//   max-height: 95vh;
+//   border-radius: $button-border-radius;
+//   padding: 2em;
+//   margin: auto;
+//   display: flex;
+//   flex-direction: column;
+//   align-content: center;
+//   align-self: center;
+// }
+
+// .autocomplete-title {
+//   font-family: $title-font-family;
+//   text-shadow: 1px 1px 1px $header-text-color;
+//   font-size: 2.5em;
+//   margin: 2em auto;
+//   text-align: center;
+// }
+
+// .autocomplete-title-fullscreen {
+//   display: none;
+// }
+
+// .dropdown-title-true {
+//   text-align: center;
+//   margin-bottom: 1em;
+// }
+
+// .dropdown-title-false {
+//   display: none;
+// }
+
+// .location-search-input {
+//   border-radius: $button-border-radius;
+//   width: 28em;
+//   margin: 0 auto;
+//   height: 5em;
+//   border: none;
+//   padding-left: 1em;
+//   margin-bottom: 2em;
+// }
+
+// .location-search-input-fullscreen {
+//   width: 100%;
+//   height: 5em;
+//   padding-left: 1em;
+// }
+
+// .location-search-input::placeholder {
+//   font-family: $text-font-family;
+// }
+
+// .google-maps {
+//   display: none;
+//   flex: 1;
+//   // height: 100vh;
+//   width: 50%;
+// }
+
+// .google-maps-fullscreen {
+//   height: 100vh;
+//   width: 100%;
+// }
+
+// .autocomplete-dropdown-container {
+//   width: 100%;
+//   font-family: $text-font-family;
+//   text-align: center;
+// }
+
+// .autocomplete-dropdown-container-fullscreen {
+//   width: 100%;
+//   margin: 0 auto;
+//   text-align: center;
+// }
+
+// @media (min-width: 992px) {
+
+//   .research-map {
+//     display: flex;
+//     align-content: center;
+//   }
+  
+//   .research-map-fullscreen {
+//     display: block;
+//   }
+  
+//   .autocomplete {
+//     width: 40em;
+//     height: 30em;
+//     margin: 1em;
+//     max-height: 95vh;
+//     border-radius: $button-border-radius;
+//     padding: 2em;
+//     margin-bottom: 5em;
+//     display: flex;
+//     flex-direction: column;
+//     align-content: center;
+//     align-self: center;
+//   }
+  
+//   .autocomplete-title {
+//     font-family: $title-font-family;
+//     text-shadow: 1px 1px 1px $header-text-color;
+//     font-size: 2.5em;
+//     margin: 0 auto 2em auto;
+//   }
+  
+//   .autocomplete-title-fullscreen {
+//     display: none;
+//   }
+  
+//   .dropdown-title-true {
+//     text-align: center;
+//     margin-bottom: 1em;
+//   }
+  
+//   .dropdown-title-false {
+//     display: none;
+//   }
+  
+//   .location-search-input {
+//     border-radius: $button-border-radius;
+//     width: 40em;
+//     margin-left: 6.8em;
+//     height: 5em;
+//     border: none;
+//     padding-left: 1em;
+//     margin-bottom: 2em;
+//   }
+  
+//   .location-search-input-fullscreen {
+//     width: 100%;
+//     height: 5em;
+//     margin-bottom: 0;
+//     margin-top: 2.2em;
+//     padding-left: 1em;
+//   }
+  
+//   .location-search-input::placeholder {
+//     font-family: $text-font-family;
+//   }
+  
+//   .google-maps {
+//     display: block;
+//     flex: 1;
+//     // height: 100vh;
+//     width: 50%;
+//   }
+  
+//   .google-maps-fullscreen {
+//     height: 100vh;
+//     width: 100%;
+//   }
+  
+//   .autocomplete-dropdown-container {
+//     margin-left: 1em;
+//     width: 33.5em;
+//     font-family: $text-font-family;
+//     text-align: center;
+//   }
+  
+//   .autocomplete-dropdown-container-fullscreen {
+//     width: 33.5em;
+//     margin: 0 auto;
+//     text-align: center;
+//   }
+// }  
