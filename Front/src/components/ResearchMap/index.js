@@ -39,12 +39,16 @@ const ResearchMap = ({
   };
 
   const handleClick = () => {
-    goToFullScreen();
+    if (!fullscreen) {
+      goToFullScreen();
+    }
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      goToFullScreen();
+    if (!fullscreen) {
+      if (event.key === 'Enter') {
+        goToFullScreen();
+      }
     }
   };
 
