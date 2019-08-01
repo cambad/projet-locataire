@@ -50,12 +50,15 @@ module.exports = {
       chunks: 'all',
     },
     // Minification
-    minimizer: [new TerserPlugin({
-      cache: true,
-      parallel: true,
-      sourceMap: false,
-    })],
-  },
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  }, 
   // Modules
   module: {
     rules: [
