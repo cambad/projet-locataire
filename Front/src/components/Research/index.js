@@ -34,8 +34,9 @@ class Research extends React.Component {
   };
 
   render() {
-    const { address, redirectToMap } = this.props;
+    const { address, redirectToMap, setRedirectToMapFalse } = this.props;
     if (redirectToMap) {
+      setRedirectToMapFalse();
       return <Redirect to="/recherche/" />;
     }
     return (
@@ -71,6 +72,7 @@ Research.propTypes = {
   redirectToMap: PropTypes.bool.isRequired,
   setRedirectToMap: PropTypes.func.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
+  setRedirectToMapFalse: PropTypes.func.isRequired,
 };
 
 export default Research;

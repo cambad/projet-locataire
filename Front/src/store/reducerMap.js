@@ -8,7 +8,7 @@ const initialState = {
   fullscreen: false,
   redirectToMap: false,
   dropdown: false,
-  zoom: 10,
+  zoom: 15,
 };
 
 // == Types
@@ -16,6 +16,7 @@ const CHANGE_ADDRESS_INPUT = 'CHANGE_ADDRESS_INPUT';
 const SET_REDIRECT_TO_MAP = 'SET_REDIRECT_TO_MAP';
 const SET_ADDRESS_LAT_LNG = 'SET_ADDRESS_LAT_LNG';
 const SET_FULLSCREEN = 'SET_FULLSCREEN';
+const SET_REDIRECT_TO_MAP_FALSE = 'SET_REDIRECT_TO_MAP_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         redirectToMap: true,
         fullscreen: true,
+      };
+    }
+    case SET_REDIRECT_TO_MAP_FALSE: {
+      return {
+        ...state,
+        redirectToMap: false,
       };
     }
     case SET_ADDRESS_LAT_LNG: {
@@ -68,6 +75,10 @@ export const setAddressLatLng = latLng => ({
 
 export const setFullScreen = () => ({
   type: SET_FULLSCREEN,
+});
+
+export const setRedirectToMapFalse = () => ({
+  type: SET_REDIRECT_TO_MAP_FALSE,
 });
 // == Selectors
 
