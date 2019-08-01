@@ -6,45 +6,52 @@ import PlacesAutocomplete, {
 import GoogleMapReact from 'google-map-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import './researchmap.scss';
 
 import Marker from './Marker';
 
 
-const ResearchMap = ({
-  address,
-  latLng,
-  zoom,
-  dropdown,
-  fullscreen,
-  setAddressLatLng,
-  changeAdress,
-  goToFullScreen,
-}) => {
-  const handleChange = (address) => {
+class ResearchMap extends React.Component {
+  state = {
+    markers: [],
+  };
+
+  componentDidMount() {
+    axios.get('https://api.rate-my-rent.fr/api/19/marker')
+      .then((results) => {
+        console.log(results);
+      });
+  }
+
+  handleChange = (address) => {
+    const { changeAdress } = this.props;
     changeAdress(address);
   };
 
-  const handleSelect = (address) => {
+  handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => {
         return (getLatLng(results[0]));
       })
       .then((latLng) => {
+        const { setAddressLatLng } = this.props;
         console.log(latLng);
         setAddressLatLng(latLng);
       })
       .catch(error => console.error('Error', error));
   };
 
-  const handleClick = () => {
+  handleClick = () => {
+    const { goToFullScreen, fullscreen } = this.props;
     if (!fullscreen) {
       goToFullScreen();
     }
   };
 
-  const handleKeyPress = (event) => {
+  handleKeyPress = (event) => {
+    const { goToFullScreen, fullscreen } = this.props;
     if (!fullscreen) {
       if (event.key === 'Enter') {
         goToFullScreen();
@@ -52,82 +59,91 @@ const ResearchMap = ({
     }
   };
 
-  return (
-    <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
-      <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
-        <h1 className={classNames({ 'autocomplete-title': !fullscreen, 'autocomplete-title-fullscreen': fullscreen })}>Rechercher un appartement</h1>
-        <PlacesAutocomplete
-          id="placeholder"
-          value={address}
-          onChange={handleChange}
-          onSelect={handleSelect}
-        >
-          {({
-            getInputProps,
-            suggestions,
-            getSuggestionItemProps,
-          }) => (
-            <div className={classNames({ research: !fullscreen, 'research-fullscreen': fullscreen })}>
-              <input
-                onKeyUp={handleKeyPress}
-                className={classNames({ 'location-search-input': !fullscreen, 'location-search-input-fullscreen': fullscreen })}
-                {...getInputProps({
-                  placeholder: 'Rechercher une adresse ...',
-                })}
-              />
-              <div className={classNames({ 'autocomplete-dropdown-container': !fullscreen, 'autocomplete-dropdown-container-fullscreen': fullscreen })}>
-                <h2 className={classNames({ 'dropdown-title-false': !dropdown, 'dropdown-title-true': dropdown })}>Selectionez parmis les suggestions</h2>
-                {suggestions.map((suggestion) => {
-                  const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item';
-                  const style = suggestion.active
-                    ? {
-                      backgroundColor: '#aaa',
-                      cursor: 'pointer',
-                      marginBottom: '.5em',
-                      borderRadius: '10px',
-                      padding: '.5em',
-                      width: '100%',
-                    }
-                    : {
-                      backgroundColor: '#fff',
-                      cursor: 'pointer',
-                      marginBottom: '.5em',
-                      borderRadius: '10px',
-                      padding: '.5em',
-                      width: '100%',
-                    };
-                  return (
-                    <div onClick={handleClick}>
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style,
-                        })}
-                      >
-                        <span className="suggestion">{suggestion.description}</span>
+  render() {
+    const {
+      address,
+      latLng,
+      zoom,
+      dropdown,
+      fullscreen,
+    } = this.props;
+    return (
+      <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
+        <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
+          <h1 className={classNames({ 'autocomplete-title': !fullscreen, 'autocomplete-title-fullscreen': fullscreen })}>Rechercher un appartement</h1>
+          <PlacesAutocomplete
+            id="placeholder"
+            value={address}
+            onChange={this.handleChange}
+            onSelect={this.handleSelect}
+          >
+            {({
+              getInputProps,
+              suggestions,
+              getSuggestionItemProps,
+            }) => (
+              <div className={classNames({ research: !fullscreen, 'research-fullscreen': fullscreen })}>
+                <input
+                  onKeyUp={this.handleKeyPress}
+                  className={classNames({ 'location-search-input': !fullscreen, 'location-search-input-fullscreen': fullscreen })}
+                  {...getInputProps({
+                    placeholder: 'Rechercher une adresse ...',
+                  })}
+                />
+                <div className={classNames({ 'autocomplete-dropdown-container': !fullscreen, 'autocomplete-dropdown-container-fullscreen': fullscreen })}>
+                  <h2 className={classNames({ 'dropdown-title-false': !dropdown, 'dropdown-title-true': dropdown })}>Selectionez parmis les suggestions</h2>
+                  {suggestions.map((suggestion) => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    const style = suggestion.active
+                      ? {
+                        backgroundColor: '#aaa',
+                        cursor: 'pointer',
+                        marginBottom: '.5em',
+                        borderRadius: '10px',
+                        padding: '.5em',
+                        width: '100%',
+                      }
+                      : {
+                        backgroundColor: '#fff',
+                        cursor: 'pointer',
+                        marginBottom: '.5em',
+                        borderRadius: '10px',
+                        padding: '.5em',
+                        width: '100%',
+                      };
+                    return (
+                      <div onClick={this.handleClick}>
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className,
+                            style,
+                          })}
+                        >
+                          <span key={suggestion.description} className="suggestion">{suggestion.description}</span>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
+            )}
+          </PlacesAutocomplete>
+        </div>
+        <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
+            defaultCenter={latLng}
+            center={latLng}
+            defaultZoom={zoom}
+            zoom={zoom}
+          />
+        </div>
       </div>
-      <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
-          defaultCenter={latLng}
-          center={latLng}
-          defaultZoom={zoom}
-          zoom={zoom}
-        />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 ResearchMap.propTypes = {
   address: PropTypes.string.isRequired,
