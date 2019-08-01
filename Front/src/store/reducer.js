@@ -1,6 +1,6 @@
 // == Initial State
 const initialState = {
-  isConnected: true,
+  isConnected: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
