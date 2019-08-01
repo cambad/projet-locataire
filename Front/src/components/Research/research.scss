@@ -92,7 +92,7 @@
 
 .section {
   margin: 1.5em auto;
-  width: 50%;
+  width: 80%;
 
   &-title {
     font-size: 1.5em;
@@ -129,7 +129,7 @@
 
   .section {
     margin: 3em auto;
-    width: 40%;
+    width: 60%;
   }
   
   .review {
@@ -182,14 +182,14 @@
   
     &-form {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       margin-bottom: 3em;    
     }
 
     &-input {
       display: block;
       width: 70%;
-      margin: 0;
+      margin: 0 1.5em;
       padding: 1.2em 1.8em;
       font-size: 1.2em;
     }
@@ -221,6 +221,11 @@
       background-color: $button-background-color;
       font-family: $text-font-family;
     }
+  }
+
+  .section {
+    margin: 3em auto;
+    width: 50%;
   }
 }
 

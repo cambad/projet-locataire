@@ -19,6 +19,7 @@ class LastFiveReview extends React.Component {
   componentDidMount() {
     axios.get('https://api.rate-my-rent.fr/api/five_apartments')
       .then((response) => {
+        console.log(response);
         // retrieve the data
         const { apartments } = response.data;
         // set the local state with data
@@ -41,7 +42,7 @@ class LastFiveReview extends React.Component {
     const { lastFiveApartment, dataReception, loader } = this.state;
     return (
       <section className="section">
-        <h3 className="section-title">Dernières notations de logement</h3>
+        <h3 className="section-title">Derniers logements ayant eu un avis</h3>
         {/* If loader, display a circle loader */}
         {loader && (
           <div className="loader">
