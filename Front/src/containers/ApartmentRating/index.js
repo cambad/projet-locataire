@@ -13,10 +13,10 @@ import {
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  address: state.address,
-  isLocataire: state.isLocataire,
-  isVisiteur: state.isVisiteur,
-  isDisplayed: state.isDisplayed,
+  address: state.reducer.address,
+  isLocataire: state.reducer.isLocataire,
+  isVisiteur: state.reducer.isVisiteur,
+  isDisplayed: state.reducer.isDisplayed,
 });
 
 const mapDispatchToProps = dispatch => ({

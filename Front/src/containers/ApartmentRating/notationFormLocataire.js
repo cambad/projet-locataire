@@ -9,7 +9,7 @@ import { tenantStars } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
-  tenantValue: state.tenantValue,
+  tenantValue: state.reducer.tenantValue,
 });
 
 

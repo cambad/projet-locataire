@@ -20,7 +20,10 @@ const initialState = {
     contactQualityValue: 0,
   },
   address: '',
-  latLng: '',
+  latLng: {
+    lat: '',
+    lng: '',
+  },
   isVisiteur: false,
   isLocataire: false,
   isDisplayed: false,
