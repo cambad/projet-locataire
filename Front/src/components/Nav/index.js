@@ -35,7 +35,6 @@ class Nav extends React.Component {
       <nav className={classNames('navbar', { navActive: active })}>
         { !isConnected && (
           <ul className="navbar-ul">
-            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="#">Liste des appartements</NavLink></li>
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
             <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
             { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
@@ -44,7 +43,6 @@ class Nav extends React.Component {
         )}
         { isConnected && (
           <ul className="navbar-ul">
-            <NavLink to="#"><li onClick={handleClickBtn} className="navbar-ul-link">Liste des appartements</li></NavLink>
             <NavLink to="/recherche/"><li onClick={handleClickBtn} className="navbar-ul-link">Recherche</li></NavLink>
             <NavLink to="/profil/"><li onClick={handleClickBtn} className="navbar-ul-link">Profil</li></NavLink>         
           </ul>
