@@ -15,6 +15,7 @@ const ResearchForm = ({ address, handleChange, handleSubmit }) => (
 ResearchForm.propTypes = {
   address: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default ResearchForm;
