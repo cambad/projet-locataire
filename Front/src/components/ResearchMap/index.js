@@ -21,6 +21,7 @@ const researchMap = ({
   changeAdress,
 }) => {
   const handleChange = (event) => {
+    console.log(event);
     changeAdress(event.target.value);
   };
 

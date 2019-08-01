@@ -8,12 +8,13 @@ import ApartmentRating from 'src/components/ApartmentRating';
 import {
   changeIsLocataire,
   changeIsVisiteur,
-  changeAddressInput,
+  // changeAddressInput,
+  changeAddressFormInput,
   getAddressLatLng,
 } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  address: state.reducer.address,
+  address: state.reducer.addressForm,
   isLocataire: state.reducer.isLocataire,
   isVisiteur: state.reducer.isVisiteur,
   isDisplayed: state.reducer.isDisplayed,
@@ -26,8 +27,8 @@ const mapDispatchToProps = dispatch => ({
   isVisiteurChange: () => {
     dispatch(changeIsVisiteur());
   },
-  changeAdress: (address) => {
-    dispatch(changeAddressInput(address));
+  changeAddress: (address) => {
+    dispatch(changeAddressFormInput(address));
   },
   getAddressLatLng: (latLng) => {
     dispatch(getAddressLatLng(latLng));

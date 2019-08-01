@@ -19,7 +19,7 @@ const initialState = {
     contactValue: 0,
     contactQualityValue: 0,
   },
-  address: '',
+  addressForm: '',
   latLng: {
     lat: '',
     lng: '',
@@ -32,7 +32,7 @@ const initialState = {
 // == Types
 const CHANGE_IS_LOCATAIRE = 'CHANGE_IS_LOCATAIRE';
 const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
-const CHANGE_ADDRESS_INPUT = 'CHANGE_ADDRESS_INPUT';
+const CHANGE_ADDRESS_FORM_INPUT = 'CHANGE_ADDRESS_FORM_INPUT';
 const VISITOR_STARS = 'VISITOR_STARS';
 const TENANT_STARS = 'TENANT_STARS';
 const GET_LAT_LNG = 'GET_LAT_LNG';
@@ -56,10 +56,10 @@ const reducer = (state = initialState, action = {}) => {
         isDisplayed: true,
       };
 
-    case CHANGE_ADDRESS_INPUT:
+    case CHANGE_ADDRESS_FORM_INPUT:
       return {
         ...state,
-        address: action.address,
+        addressForm: action.address,
       };
 
     case VISITOR_STARS:
@@ -100,8 +100,8 @@ export const changeIsVisiteur = () => ({
   type: CHANGE_IS_VISITEUR,
 });
 
-export const changeAddressInput = address => ({
-  type: CHANGE_ADDRESS_INPUT,
+export const changeAddressFormInput = address => ({
+  type: CHANGE_ADDRESS_FORM_INPUT,
   address,
 });
 

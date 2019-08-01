@@ -1,5 +1,6 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
+import PropTypes from 'prop-types';
 
 import './apartmentRating.scss';
 
@@ -61,6 +62,13 @@ const PlaceAutocomplete = ({
     )}
   </PlacesAutocomplete>
 );
+
+
+// props validation
+PlaceAutocomplete.propTypes = {
+  address: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 
 export default PlaceAutocomplete;

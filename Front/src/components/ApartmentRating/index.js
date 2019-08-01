@@ -18,11 +18,11 @@ const ApartmentRating = ({
   isDisplayed,
   isLocataireChange,
   isVisiteurChange,
-  changeAdress,
+  changeAddress,
   getAddressLatLng,
 }) => {
   const handleChange = (addressInput) => {
-    changeAdress(addressInput);
+    changeAddress(addressInput);
   };
 
   const handleLocataire = () => {
@@ -40,7 +40,6 @@ const ApartmentRating = ({
         return (getLatLng(results[0]));
       })
       .then((latLng) => {
-        console.log(latLng);
         getAddressLatLng(latLng);
       })
       .catch(error => console.error('Error', error));
@@ -91,7 +90,7 @@ ApartmentRating.propTypes = {
   isDisplayed: PropTypes.bool.isRequired,
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
-  changeAdress: PropTypes.func.isRequired,
+  changeAddress: PropTypes.func.isRequired,
   getAddressLatLng: PropTypes.func.isRequired,
 };
 
