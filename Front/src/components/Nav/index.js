@@ -36,6 +36,9 @@ class Nav extends React.Component {
         { !isConnected && (
           <ul className="navbar-ul">
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
+            {/* If user is not connected, the link "Noter un logement" displays the connexion modal */}
+            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Noter un logement</a></li>
+            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
             <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
             { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/inscription/">S'inscrire</NavLink></li>
@@ -44,6 +47,7 @@ class Nav extends React.Component {
         { isConnected && (
           <ul className="navbar-ul">
             <NavLink to="/recherche/"><li onClick={handleClickBtn} className="navbar-ul-link">Recherche</li></NavLink>
+            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/noter-un-appartement/">Noter un logement</NavLink></li>
             <NavLink to="/profil/"><li onClick={handleClickBtn} className="navbar-ul-link">Profil</li></NavLink>         
           </ul>
         )}
