@@ -20,6 +20,8 @@ const ApartmentRating = ({
   isVisiteurChange,
   changeAddress,
   getAddressLatLng,
+  isStillInApartment,
+  isNotLiveInApartment,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -66,7 +68,12 @@ const ApartmentRating = ({
                 <label className="radioLabel" htmlFor="locataire/visiteur">Visiteur</label>
               </div>
             </div>
-            {isDisplayed && <InformationGenerale />}
+            {isDisplayed && (
+              <InformationGenerale
+                isStillInApartment={isStillInApartment}
+                isNotLiveInApartment={isNotLiveInApartment}
+              />
+            )}
             {isLocataire && (
               <NotationFormLocataire />
             )}
@@ -74,7 +81,11 @@ const ApartmentRating = ({
               <NotationFormVisiteur />
             )}
           </div>
-          {isDisplayed && <Commentaire isDisplayed={isDisplayed} />}
+          {isDisplayed && (
+            <Commentaire
+              isDisplayed={isDisplayed}
+            />
+          )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
         </form>
       </div>

@@ -27,12 +27,16 @@ const initialState = {
   isVisiteur: false,
   isLocataire: false,
   isDisplayed: false,
+  stillInApartment: false,
+  notLiveInApartment: false,
 };
 
 // == Types
 const CHANGE_IS_LOCATAIRE = 'CHANGE_IS_LOCATAIRE';
 const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_FORM_INPUT = 'CHANGE_ADDRESS_FORM_INPUT';
+const CHANGE_STILL_IN = 'CHANGE_STILL_IN';
+const CHANGE_NOT_LIVE = 'CHANGE_NOT_LIVE';
 const VISITOR_STARS = 'VISITOR_STARS';
 const TENANT_STARS = 'TENANT_STARS';
 const GET_LAT_LNG = 'GET_LAT_LNG';
@@ -60,6 +64,20 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         addressForm: action.address,
+      };
+
+    case CHANGE_STILL_IN:
+      return {
+        ...state,
+        stillInApartment: true,
+        notLiveInApartment: false,
+      };
+
+    case CHANGE_NOT_LIVE:
+      return {
+        ...state,
+        stillInApartment: false,
+        notLiveInApartment: true,
       };
 
     case VISITOR_STARS:
@@ -103,6 +121,16 @@ export const changeIsVisiteur = () => ({
 export const changeAddressFormInput = address => ({
   type: CHANGE_ADDRESS_FORM_INPUT,
   address,
+});
+
+export const changeStillInApartment = checked => ({
+  type: CHANGE_STILL_IN,
+  checked,
+});
+
+export const changeNotLiveInApartment = checked => ({
+  type: CHANGE_NOT_LIVE,
+  checked,
 });
 
 export const visitorStars = (stars, name) => ({
