@@ -12,17 +12,11 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-
-        <div id="banner" class="jumbotron">
-
-            <h1>
-                <a href="{{ path('admin_home')}}">
-                    Rate-my-rent
-                </a>
-            </h1>
-
-        </div>
-
+        <a href="{{ path('admin_home')}}">
+            <div id="banner" class="jumbotron">
+            <h1> Rate-my-rent</h1>
+            </div>
+        </a>
         <div id="subnav">
             {% block nav %}
                 <nav class=" container-fluid nav">
@@ -33,7 +27,7 @@
                         Avis 
                     </a>
                     <a class="nav-item nav-link"  href="{{ path('admin_user_index') }}"> 
-                        User 
+                        Utilisateurs 
                     </a>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
