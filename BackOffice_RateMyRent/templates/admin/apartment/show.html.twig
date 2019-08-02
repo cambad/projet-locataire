@@ -3,7 +3,7 @@
 {% block title %}Appartement{% endblock %}
 
 {% block body %}
-    <h2>Appartement n° {{ apartment.id }} </h2>
+    <h2 class="my-4">Appartement n° {{ apartment.id }} </h2>
 
     <table class="table">
         <tbody> 
@@ -50,10 +50,14 @@
 
         </tbody>
     </table>
-    
 
+    <h4 class="mt-4">Voulez-vous supprimer cet appartement ? Cela supprimera les avis qui lui sont attribués</h4>
+    <div class="mb-4" id="delete_form">
+        {{ include('admin/apartment/_delete_form.html.twig') }}
+    </div>
+<hr>
     {% for review in apartment.reviews %}
-    <h2>Avis n°{{ review.id }}</h2>
+        <h2 class="my-4">Avis n°{{ review.id }}</h2>
         <table class="table">
 
             <tbody>
@@ -83,15 +87,19 @@
                 </tr>
                 <tr>
                     <th>Nom de l'utilisateur</th>
-                    <td> {{ review.user.name }} </td>
+                    <td> {{ review.user }} </td>
                 </tr>
                     
             </tbody>
         </table>
+<hr>
+    {% else %}
+        <h2 class="my-5">Pas d'avis sur cette appartement</h2>
+<hr>
     {% endfor %}
-    <button class="btn">
-        <a href="{{ path('admin_apartment_index') }}">back to list</a>
-    </button>
-    {{ include('admin/apartment/_delete_form.html.twig') }}
+    <h3 class="my-5">
+       <a href="{{ path('admin_apartment_index') }}"> Revenir à la liste</a>
+    </h3>
+    
 
 {% endblock %}
