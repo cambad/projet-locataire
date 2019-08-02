@@ -34,6 +34,9 @@ const initialState = {
   floorArea: 0,
   numberOfRooms: 0,
   rent: 0,
+  abstractedComment: '',
+  positiveComment: '',
+  negativeComment: '',
 };
 
 // == Types
@@ -47,9 +50,12 @@ const CHANGE_OWNER = 'CHANGE_OWNER';
 const CHANGE_FLOOR_AREA = 'CHANGE_FLOOR_AREA';
 const CHANGE_NUMBER_ROOMS = 'CHANGE_NUMBER_ROOMS';
 const CHANGE_RENT = 'CHANGE_RENT';
+const CHANGE_ABSTRACTED_COMMENT = 'CHANGE_ABSTRACTED_COMMENT';
 const VISITOR_STARS = 'VISITOR_STARS';
 const TENANT_STARS = 'TENANT_STARS';
 const GET_LAT_LNG = 'GET_LAT_LNG';
+const CHANGE_POSITIVE_COMMENT = 'CHANGE_POSITIVE_COMMENT';
+const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -140,7 +146,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         rent: action.value,
-      }
+      };
+    
+    case CHANGE_ABSTRACTED_COMMENT:
+      return {
+        ...state,
+        abstractedComment: action.value,
+      };
 
     case VISITOR_STARS:
       return {
@@ -166,6 +178,18 @@ const reducer = (state = initialState, action = {}) => {
         latLng: action.latLng,
       };
 
+    case CHANGE_POSITIVE_COMMENT:
+      return {
+        ...state,
+        positiveComment: action.comment,
+      };
+
+    case CHANGE_NEGATIVE_COMMENT:
+      return {
+        ...state,
+        negativeComment: action.comment,
+      };
+
     default:
       return state;
   }
@@ -186,6 +210,11 @@ export const changeAgency = () => ({
 
 export const changeOwner = () => ({
   type: CHANGE_OWNER,
+});
+
+export const changeRent = value => ({
+  type: CHANGE_RENT,
+  value,
 });
 
 export const changeAddressFormInput = address => ({
@@ -211,15 +240,15 @@ export const changeNumberOfRooms = value => ({
   value,
 });
 
-export const changeRent = value => ({
-  type: CHANGE_RENT,
-  value,
-});
-
 export const visitorStars = (stars, name) => ({
   type: VISITOR_STARS,
   stars,
   name,
+});
+
+export const changeAbstractedComment = value => ({
+  type: CHANGE_ABSTRACTED_COMMENT,
+  value,
 });
 
 export const tenantStars = (stars, name) => ({
@@ -231,6 +260,16 @@ export const tenantStars = (stars, name) => ({
 export const getAddressLatLng = latLng => ({
   type: GET_LAT_LNG,
   latLng,
+});
+
+export const changePositiveComment = comment => ({
+  type: CHANGE_POSITIVE_COMMENT,
+  comment,
+});
+
+export const changeNegativeComment = comment => ({
+  type: CHANGE_NEGATIVE_COMMENT,
+  comment,
 });
 
 // == Selectors

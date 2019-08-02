@@ -30,6 +30,12 @@ const ApartmentRating = ({
   changeFloorArea,
   changeNumberOfRooms,
   changeRent,
+  abstractedComment,
+  positiveComment,
+  negativeComment,
+  changeAbstractedComment,
+  changePositiveComment,
+  changeNegativeComment,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -101,6 +107,12 @@ const ApartmentRating = ({
           {isDisplayed && (
             <Commentaire
               isDisplayed={isDisplayed}
+              abstractedComment={abstractedComment}
+              positiveComment={positiveComment}
+              negativeComment={negativeComment}
+              changeAbstractedComment={changeAbstractedComment}
+              changePositiveComment={changePositiveComment}
+              changeNegativeComment={changeNegativeComment}
             />
           )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>

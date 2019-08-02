@@ -17,6 +17,9 @@ import {
   changeFloorArea,
   changeNumberOfRooms,
   changeRent,
+  changeAbstractedComment,
+  changePositiveComment,
+  changeNegativeComment,
 } from 'src/store/reducer';
 
 
@@ -28,6 +31,9 @@ const mapStateToProps = state => ({
   floorArea: state.reducer.floorArea,
   numberOfRooms: state.reducer.numberOfRooms,
   rent: state.reducer.rent,
+  abstractedComment: state.reducer.abstractedComment,
+  positiveComment: state.reducer.positiveComment,
+  negativeComment: state.reducer.negativeComment,
 });
 
 
@@ -64,6 +70,15 @@ const mapDispatchToProps = dispatch => ({
   },
   changeRent: (value) => {
     dispatch(changeRent(value));
+  },
+  changeAbstractedComment: (value) => {
+    dispatch(changeAbstractedComment(value));
+  },
+  changePositiveComment: (value) => {
+    dispatch(changePositiveComment(value));
+  },
+  changeNegativeComment: (value) => {
+    dispatch(changeNegativeComment(value));
   },
 });
 
