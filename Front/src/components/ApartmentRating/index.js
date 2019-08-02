@@ -51,14 +51,18 @@ const ApartmentRating = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    geocodeByAddress(address)
-      .then((results) => {
-        return (getLatLng(results[0]));
-      })
-      .then((latLng) => {
-        getAddressLatLng(latLng);
-      })
-      .catch(error => console.error('Error', error));
+    // retrieve latitude and longitude from the address
+    // geocodeByAddress(address)
+    //   .then((results) => {
+    //     return (getLatLng(results[0]));
+    //   })
+    //   .then((latLng) => {
+    //     getAddressLatLng(latLng);
+    //   })
+    //   .catch(error => console.error('Error', error));
+    
+    console.log(address);
+    console.log('envoi du formulaire');
   };
 
   return (

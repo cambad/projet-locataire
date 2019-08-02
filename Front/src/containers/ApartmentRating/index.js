@@ -20,6 +20,7 @@ import {
   changeAbstractedComment,
   changePositiveComment,
   changeNegativeComment,
+  submitRatingForm,
 } from 'src/store/reducer';
 
 
@@ -79,6 +80,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeNegativeComment: (value) => {
     dispatch(changeNegativeComment(value));
+  },
+  submitRatingForm: (address) => {
+    dispatch(submitRatingForm(address));
   },
 });
 

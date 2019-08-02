@@ -56,6 +56,7 @@ const TENANT_STARS = 'TENANT_STARS';
 const GET_LAT_LNG = 'GET_LAT_LNG';
 const CHANGE_POSITIVE_COMMENT = 'CHANGE_POSITIVE_COMMENT';
 const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
+const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -270,6 +271,10 @@ export const changePositiveComment = comment => ({
 export const changeNegativeComment = comment => ({
   type: CHANGE_NEGATIVE_COMMENT,
   comment,
+});
+
+export const submitRatingForm = () => ({
+  type: SUBMIT_RATING_FORM,
 });
 
 // == Selectors
