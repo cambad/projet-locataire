@@ -3,24 +3,25 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-// import GoogleMapReact from 'google-map-react';
+
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import './researchmap.scss';
 
-// import Marker from './Marker';
 import GoogleMapComponent from './GoogleMapComponent';
 
 class ResearchMap extends React.Component {
   state = {
     markers: {},
-    infoboxMessage: '',
+    infoboxAddress: '',
+    infoboxTitle: '',
     isInfoboxVisible: false,
     markerLang: 0,
     markerLat: 0,
     dataLoaded: false,
+    newZoom: 15,
   };
 
 
@@ -46,7 +47,6 @@ class ResearchMap extends React.Component {
       })
       .then((latLng) => {
         const { setAddressLatLng } = this.props;
-        console.log(latLng);
         setAddressLatLng(latLng);
       })
       .catch(error => console.error('Error', error));
@@ -68,12 +68,16 @@ class ResearchMap extends React.Component {
     }
   };
 
-  handleMarkerClick = (message, lang, lat) => {
+  handleMarkerClick = (title, address, lng, lat) => {
+    const { isInfoboxVisible } = this.state;
+    const { setAddressLatLng } = this.props;
+    setAddressLatLng(lng, lat);
     this.setState({
-      infoboxMessage: message, // Message shown in info window
-      isInfoboxVisible: !this.state.isInfoboxVisible, // Show info window
-      markerLang: lang + 0.006, // Y coordinate for positioning info window
-      markerLat: lat - 0.0004 // X coordinate for positioning info window
+      infoboxTitle: title, // Message shown in info window
+      infoboxAddress: address,
+      isInfoboxVisible: !isInfoboxVisible, // Show info window
+      markerLang: lng, // Y coordinate for positioning info window
+      markerLat: lat, // X coordinate for positioning info window
     });
   }
 
@@ -94,6 +98,12 @@ class ResearchMap extends React.Component {
     const {
       markers,
       dataLoaded,
+      isInfoboxVisible,
+      infoboxAddress,
+      infoboxTitle,
+      markerLang,
+      markerLat,
+      newZoom,
     } = this.state;
     return (
       <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
@@ -163,12 +173,14 @@ class ResearchMap extends React.Component {
           <GoogleMapComponent
             latLng={latLng}
             zoom={zoom}
-            isInfoboxVisible={this.state.isInfoboxVisible} // Show/hide info window
-            infoboxMessage={this.state.infoboxMessage} // Message shown in info window
+            newZoom={newZoom}
+            isInfoboxVisible={isInfoboxVisible} // Show/hide info window
+            infoboxAddress={infoboxAddress} // Message shown in info window
+            infoboxTitle={infoboxTitle}
             handleInfoboxClick={this.handleInfoboxClick} // Handle closing of the info window
             handleMarkerClick={this.handleMarkerClick} // Handle click on Marker component
-            infoboxPosY={this.state.markerLang} // Y coordinate for positioning info window
-            infoboxPosX={this.state.markerLat} // X coordinate for positioning info window
+            infoboxPosY={markerLang} // Y coordinate for positioning info window
+            infoboxPosX={markerLat} // X coordinate for positioning info window
             markers={markers}
             dataLoaded={dataLoaded}
           />
