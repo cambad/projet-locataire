@@ -37,6 +37,8 @@ const initialState = {
   abstractedComment: '',
   positiveComment: '',
   negativeComment: '',
+  recommendationPositive: false,
+  recommendationNegative: false,
 };
 
 // == Types
@@ -57,6 +59,8 @@ const GET_LAT_LNG = 'GET_LAT_LNG';
 const CHANGE_POSITIVE_COMMENT = 'CHANGE_POSITIVE_COMMENT';
 const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
 const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
+const CHANGE_RECOMMENDATION_POSITIVE = 'CHANGE_RECOMMENDATION_POSITIVE';
+const CHANGE_RECOMMENDATION_NEGATIVE = 'CHANGE_RECOMMENDATION_NEGATIVE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -191,6 +195,20 @@ const reducer = (state = initialState, action = {}) => {
         negativeComment: action.comment,
       };
 
+    case CHANGE_RECOMMENDATION_POSITIVE:
+      return {
+        ...state,
+        recommendationPositive: true,
+        recommendationNegative: false,
+      };
+
+    case CHANGE_RECOMMENDATION_NEGATIVE:
+      return {
+        ...state,
+        recommendationPositive: false,
+        recommendationNegative: true,
+      };
+
     default:
       return state;
   }
@@ -275,6 +293,14 @@ export const changeNegativeComment = comment => ({
 
 export const submitRatingForm = () => ({
   type: SUBMIT_RATING_FORM,
+});
+
+export const changeRecommendationPositive = () => ({
+  type: CHANGE_RECOMMENDATION_POSITIVE,
+});
+
+export const changeRecommendationNegative = () => ({
+  type: CHANGE_RECOMMENDATION_NEGATIVE,
 });
 
 // == Selectors

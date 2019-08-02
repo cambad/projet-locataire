@@ -12,6 +12,8 @@ const Commentaire = ({
   changeAbstractedComment,
   changePositiveComment,
   changeNegativeComment,
+  changeRecommendationPositive,
+  changeRecommendationNegative,
 }) => {
 
   const handleAbstractedComment = (event) => {
@@ -27,6 +29,14 @@ const Commentaire = ({
   const handleNegativeComment = (event) => {
     const { value } = event.target;
     changeNegativeComment(value);
+  };
+
+  const handleRecommendationPositive = () => {
+    changeRecommendationPositive();
+  };
+
+  const handleRecommendationNegative = () => {
+    changeRecommendationNegative();
   };
 
   return (
@@ -46,12 +56,10 @@ const Commentaire = ({
       <textarea value={negativeComment} onChange={handleNegativeComment} className="commentaire-negatifs-area" name="" id="" cols="30" rows="10" placeholder="Les points négatifs de l'appartement" />
   
       <p className="commentaire-p">De manière générale, recommanderiez-vous cet appartement à d'autres locataires ?</p>
-      <input type="radio" name="recommendation" id="recommendation" />
-  
+      <input onChange={handleRecommendationPositive} type="radio" name="recommendation" id="recommendation" />
       <label className="commentaire-yes-label" htmlFor="recommendation">Oui</label>
   
-      <input type="radio" name="recommendation" id="recommendation" />
-  
+      <input onChange={handleRecommendationNegative} type="radio" name="recommendation" id="recommendation" />
       <label htmlFor="recommendation">Non</label>
     </div>
   );
@@ -67,6 +75,8 @@ Commentaire.propTypes = {
   changeAbstractedComment: PropTypes.func.isRequired,
   changePositiveComment: PropTypes.func.isRequired,
   changeNegativeComment: PropTypes.func.isRequired,
+  changeRecommendationPositive: PropTypes.func.isRequired,
+  changeRecommendationNegative: PropTypes.func.isRequired,
 };
 
 export default Commentaire;

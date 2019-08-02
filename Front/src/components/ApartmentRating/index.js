@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+// import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
@@ -36,6 +36,9 @@ const ApartmentRating = ({
   changeAbstractedComment,
   changePositiveComment,
   changeNegativeComment,
+  submitRatingForm,
+  changeRecommendationPositive,
+  changeRecommendationNegative,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -60,9 +63,9 @@ const ApartmentRating = ({
     //     getAddressLatLng(latLng);
     //   })
     //   .catch(error => console.error('Error', error));
-    
+
     console.log(address);
-    console.log('envoi du formulaire');
+    submitRatingForm();
   };
 
   return (
@@ -117,6 +120,8 @@ const ApartmentRating = ({
               changeAbstractedComment={changeAbstractedComment}
               changePositiveComment={changePositiveComment}
               changeNegativeComment={changeNegativeComment}
+              changeRecommendationPositive={changeRecommendationPositive}
+              changeRecommendationNegative={changeRecommendationNegative}
             />
           )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
@@ -138,6 +143,9 @@ ApartmentRating.propTypes = {
   getAddressLatLng: PropTypes.func.isRequired,
   isStillInApartment: PropTypes.func.isRequired,
   isNotLiveInApartment: PropTypes.func.isRequired,
+  submitRatingForm: PropTypes.func.isRequired,
+  changeRecommendationPositive: PropTypes.func.isRequired,
+  changeRecommendationNegative: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;
