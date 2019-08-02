@@ -22,6 +22,14 @@ const ApartmentRating = ({
   getAddressLatLng,
   isStillInApartment,
   isNotLiveInApartment,
+  isAgency,
+  isOwner,
+  floorArea,
+  rent,
+  numberOfRooms,
+  changeFloorArea,
+  changeNumberOfRooms,
+  changeRent,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -70,12 +78,21 @@ const ApartmentRating = ({
             </div>
             {isDisplayed && (
               <InformationGenerale
-                isStillInApartment={isStillInApartment}
-                isNotLiveInApartment={isNotLiveInApartment}
+                isAgency={isAgency}
+                isOwner={isOwner}
+                floorArea={floorArea}
+                rent={rent}
+                numberOfRooms={numberOfRooms}
+                changeFloorArea={changeFloorArea}
+                changeNumberOfRooms={changeNumberOfRooms}
+                changeRent={changeRent}
               />
             )}
             {isLocataire && (
-              <NotationFormLocataire />
+              <NotationFormLocataire
+                isStillInApartment={isStillInApartment}
+                isNotLiveInApartment={isNotLiveInApartment}
+              />
             )}
             {isVisiteur && (
               <NotationFormVisiteur />
@@ -103,6 +120,8 @@ ApartmentRating.propTypes = {
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
   getAddressLatLng: PropTypes.func.isRequired,
+  isStillInApartment: PropTypes.func.isRequired,
+  isNotLiveInApartment: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;

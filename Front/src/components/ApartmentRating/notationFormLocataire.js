@@ -13,10 +13,35 @@ import NotationFormElement from './NotationFormElement';
 const NotationFormLocataire = ({
   tenantValue,
   changeStarNumber,
+  isStillInApartment,
+  isNotLiveInApartment,
 }) => {
+
+  const handlestillInApartment = (event) => {
+    // retrieve value to know if the person still live in the apartment
+    const { checked } = event.target;
+    isStillInApartment(checked);
+  };
+
+  const handlenotLiveInApartment = (event) => {
+    // retrieve value to know if the person doesn't live in the apartment
+    const { checked } = event.target;
+    isNotLiveInApartment(checked);
+  };
+
   const { tenantForm } = formTenant;
   return (
     <>
+      <div className="information-generales-locataire">
+        <div>
+          <input onChange={handlestillInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="stillInApartment" />
+          <label className="radioLabel" htmlFor="actual-location">Je suis actuellement locataire</label>
+        </div>
+        <div>
+          <input onChange={handlenotLiveInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="notLiveInApartment" />
+          <label className="radioLabel" htmlFor="actual-location">Je n'y habite plus</label>
+        </div>
+      </div>
       <h1 className="notation">Notation de l'appartement</h1>
       <h2>Quartier</h2>
       <div className="quartier">
@@ -90,6 +115,8 @@ const NotationFormLocataire = ({
 NotationFormLocataire.propTypes = {
   tenantValue: PropTypes.object.isRequired,
   changeStarNumber: PropTypes.func.isRequired,
+  isStillInApartment: PropTypes.func.isRequired,
+  isNotLiveInApartment: PropTypes.func.isRequired,
 };
 
 // export default

@@ -12,6 +12,11 @@ import {
   getAddressLatLng,
   changeStillInApartment,
   changeNotLiveInApartment,
+  changeAgency,
+  changeOwner,
+  changeFloorArea,
+  changeNumberOfRooms,
+  changeRent,
 } from 'src/store/reducer';
 
 
@@ -20,7 +25,9 @@ const mapStateToProps = state => ({
   isLocataire: state.reducer.isLocataire,
   isVisiteur: state.reducer.isVisiteur,
   isDisplayed: state.reducer.isDisplayed,
-  stillInApartment: state.reducer.stillInApartment,
+  floorArea: state.reducer.floorArea,
+  numberOfRooms: state.reducer.numberOfRooms,
+  rent: state.reducer.rent,
 });
 
 
@@ -37,11 +44,26 @@ const mapDispatchToProps = dispatch => ({
   getAddressLatLng: (latLng) => {
     dispatch(getAddressLatLng(latLng));
   },
-  isStillInApartment: (checked) => {
-    dispatch(changeStillInApartment(checked));
+  isStillInApartment: () => {
+    dispatch(changeStillInApartment());
   },
-  isNotLiveInApartment: (checked) => {
-    dispatch(changeNotLiveInApartment(checked));
+  isNotLiveInApartment: () => {
+    dispatch(changeNotLiveInApartment());
+  },
+  isAgency: () => {
+    dispatch(changeAgency());
+  },
+  isOwner: () => {
+    dispatch(changeOwner());
+  },
+  changeFloorArea: (value) => {
+    dispatch(changeFloorArea(value));
+  },
+  changeNumberOfRooms: (value) => {
+    dispatch(changeNumberOfRooms(value));
+  },
+  changeRent: (value) => {
+    dispatch(changeRent(value));
   },
 });
 

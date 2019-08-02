@@ -3,55 +3,66 @@ import PropTypes from 'prop-types';
 
 import './apartmentRating.scss';
 
-const InformationGenerale = ({ isStillInApartment, isNotLiveInApartment }) => {
-  const handlestillInApartment = (event) => {
-    // retrieve value to know if the person still live in the apartment
-    const { checked } = event.target;
-    isStillInApartment(checked);
+const InformationGenerale = ({
+  isAgency,
+  isOwner,
+  floorArea,
+  rent,
+  numberOfRooms,
+  changeFloorArea,
+  changeNumberOfRooms,
+  changeRent,
+}) => {
+
+  const handleIsAgency = () => {
+    isAgency();
   };
 
-  const handlenotLiveInApartment = (event) => {
-    // retrieve value to know if the person still live in the apartment
-    const { checked } = event.target;
-    isNotLiveInApartment(checked);
+  const handleIsOwner = () => {
+    isOwner();
+  };
+
+  const handleFloorArea = (event) => {
+    const { value } = event.target;
+    changeFloorArea(value);
+  };
+
+  const handleNumberOfRooms = (event) => {
+    const { value } = event.target;
+    changeNumberOfRooms(value);
+  };
+
+  const handleRent = (event) => {
+    const { value } = event.target;
+    changeRent(value);
   };
 
   return (
     <>
-      <div className="information-generales-locataire">
-        <div>
-          <input onChange={handlestillInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="stillInApartment" />
-          <label className="radioLabel" htmlFor="actual-location">Je suis actuellement locataire</label>
-        </div>
-        <div>
-          <input onChange={handlenotLiveInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="notLiveInApartment" />
-          <label className="radioLabel" htmlFor="actual-location">Je n'y habite plus</label>
-        </div>
-      </div>
       <div className="information-generales-intermediaire">
         <div>
           <p>Intermédiaire :</p>
         </div>
         <div>
-          <input className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
+          <input onChange={handleIsAgency} className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
           <label className="radioLabel" htmlFor="agence/proprio">Agence</label>
-          <input className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
+          <input onChange={handleIsOwner} className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
           <label className="radioLabel" htmlFor="agence/proprio">Propriétaire</label>
         </div>
       </div>
       <div className="information-generales-surface">
         <div>
           <p>Surface au sol (en m²)</p>
-          <input type="text" name="surface-sol" id="surface-sol" placeholder="..." />
+          <input value={floorArea} onChange={handleFloorArea} type="text" name="surface-sol" id="surface-sol" />
         </div>
         <div>
           <p>Nombre de pièces</p>
-          <input type="text" name="roomsNb" id="roomsNb" placeholder="..." />
+          <input value={numberOfRooms} onChange={handleNumberOfRooms} type="text" name="roomsNb" id="roomsNb" />
         </div>
       </div>
       <div className="information-generales-loyer">
         <p>Loyer (en €, charges comprises)</p>
-        <input type="text" name="loyer" id="loyer" placeholder="..." />
+        <input value={rent} onChange={handleRent} type="text" name="loyer" id="loyer" />
       </div>
     </>
   );
@@ -59,8 +70,14 @@ const InformationGenerale = ({ isStillInApartment, isNotLiveInApartment }) => {
 
 // props validation
 InformationGenerale.propTypes = {
-  isStillInApartment: PropTypes.func.isRequired,
-  isNotLiveInApartment: PropTypes.func.isRequired,
+  isAgency: PropTypes.func.isRequired,
+  isOwner: PropTypes.func.isRequired,
+  floorArea: PropTypes.number.isRequired,
+  numberOfRooms: PropTypes.number.isRequired,
+  rent: PropTypes.number.isRequired,
+  changeFloorArea: PropTypes.func.isRequired,
+  changeNumberOfRooms: PropTypes.func.isRequired,
+  changeRent: PropTypes.func.isRequired,
 };
 
 
