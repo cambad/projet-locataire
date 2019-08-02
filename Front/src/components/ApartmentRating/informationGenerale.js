@@ -6,12 +6,12 @@ const InformationGenerale = () => (
   <>
     <div className="information-generales-locataire">  
       <div>
-        <input type="radio" name="actual-location" id="actual-location" value="actual-location" />
-        <label htmlFor="actual-location">Je suis actuellement locataire</label>
+        <input className="radioButtons" type="radio" name="actual-location" id="actual-location" value="actual-location" />
+        <label className="radioLabel" htmlFor="actual-location">Je suis actuellement locataire</label>
       </div>
       <div>
-        <input type="radio" name="actual-location" id="actual-location" value="actual-location" />
-        <label htmlFor="actual-location">Je n'y habite plus</label>
+        <input className="radioButtons" type="radio" name="actual-location" id="actual-location" value="actual-location" />
+        <label className="radioLabel" htmlFor="actual-location">Je n'y habite plus</label>
       </div>
     </div>
     <div className="information-generales-intermediaire">
@@ -19,10 +19,10 @@ const InformationGenerale = () => (
         <p>Intermédiaire :</p>
       </div>
       <div>
-        <input type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
-        <label htmlFor="agence/proprio">Agence</label>
-        <input type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
-        <label htmlFor="agence/proprio">Propriétaire</label>
+        <input className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
+        <label className="radioLabel" htmlFor="agence/proprio">Agence</label>
+        <input className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
+        <label className="radioLabel" htmlFor="agence/proprio">Propriétaire</label>
       </div>
     </div>
     <div className="information-generales-surface">
