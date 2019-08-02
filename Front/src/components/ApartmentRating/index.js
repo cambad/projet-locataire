@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+// import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
@@ -18,11 +18,30 @@ const ApartmentRating = ({
   isDisplayed,
   isLocataireChange,
   isVisiteurChange,
-  changeAdress,
+  changeAddress,
   getAddressLatLng,
+  isStillInApartment,
+  isNotLiveInApartment,
+  isAgency,
+  isOwner,
+  floorArea,
+  rent,
+  numberOfRooms,
+  changeFloorArea,
+  changeNumberOfRooms,
+  changeRent,
+  abstractedComment,
+  positiveComment,
+  negativeComment,
+  changeAbstractedComment,
+  changePositiveComment,
+  changeNegativeComment,
+  submitRatingForm,
+  changeRecommendationPositive,
+  changeRecommendationNegative,
 }) => {
   const handleChange = (addressInput) => {
-    changeAdress(addressInput);
+    changeAddress(addressInput);
   };
 
   const handleLocataire = () => {
@@ -35,15 +54,18 @@ const ApartmentRating = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    geocodeByAddress(address)
-      .then((results) => {
-        return (getLatLng(results[0]));
-      })
-      .then((latLng) => {
-        console.log(latLng);
-        getAddressLatLng(latLng);
-      })
-      .catch(error => console.error('Error', error));
+    // retrieve latitude and longitude from the address
+    // geocodeByAddress(address)
+    //   .then((results) => {
+    //     return (getLatLng(results[0]));
+    //   })
+    //   .then((latLng) => {
+    //     getAddressLatLng(latLng);
+    //   })
+    //   .catch(error => console.error('Error', error));
+
+    console.log(address);
+    submitRatingForm();
   };
 
   return (
@@ -67,15 +89,41 @@ const ApartmentRating = ({
                 <label className="radioLabel" htmlFor="locataire/visiteur">Visiteur</label>
               </div>
             </div>
-            {isDisplayed && <InformationGenerale />}
+            {isDisplayed && (
+              <InformationGenerale
+                isAgency={isAgency}
+                isOwner={isOwner}
+                floorArea={floorArea}
+                rent={rent}
+                numberOfRooms={numberOfRooms}
+                changeFloorArea={changeFloorArea}
+                changeNumberOfRooms={changeNumberOfRooms}
+                changeRent={changeRent}
+              />
+            )}
             {isLocataire && (
-              <NotationFormLocataire />
+              <NotationFormLocataire
+                isStillInApartment={isStillInApartment}
+                isNotLiveInApartment={isNotLiveInApartment}
+              />
             )}
             {isVisiteur && (
               <NotationFormVisiteur />
             )}
           </div>
-          {isDisplayed && <Commentaire isDisplayed={isDisplayed} />}
+          {isDisplayed && (
+            <Commentaire
+              isDisplayed={isDisplayed}
+              abstractedComment={abstractedComment}
+              positiveComment={positiveComment}
+              negativeComment={negativeComment}
+              changeAbstractedComment={changeAbstractedComment}
+              changePositiveComment={changePositiveComment}
+              changeNegativeComment={changeNegativeComment}
+              changeRecommendationPositive={changeRecommendationPositive}
+              changeRecommendationNegative={changeRecommendationNegative}
+            />
+          )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
         </form>
       </div>
@@ -91,8 +139,13 @@ ApartmentRating.propTypes = {
   isDisplayed: PropTypes.bool.isRequired,
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
-  changeAdress: PropTypes.func.isRequired,
+  changeAddress: PropTypes.func.isRequired,
   getAddressLatLng: PropTypes.func.isRequired,
+  isStillInApartment: PropTypes.func.isRequired,
+  isNotLiveInApartment: PropTypes.func.isRequired,
+  submitRatingForm: PropTypes.func.isRequired,
+  changeRecommendationPositive: PropTypes.func.isRequired,
+  changeRecommendationNegative: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;

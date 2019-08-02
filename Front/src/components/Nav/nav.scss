@@ -24,17 +24,24 @@
   width: 100%;
   background-color: $header-background-color;
   transition: top .7s ease;
+}
 
-  &-ul {
+// Add a media to fix a bug : links move a little when i click on one
+@media (max-width: 991.8px) {
 
-    &-link {
-      text-align: center;
-      font-size: 1.5em;
+  .navbar {
 
-      &:active {
-        background-color: darken($header-background-color, 10%);
-        transition: all .5s;
-        padding: .5em 0;
+    &-ul {
+  
+      &-link {
+        text-align: center;
+        font-size: 1.5em;
+  
+        &:active {
+          background-color: darken($header-background-color, 10%);
+          transition: all .5s;
+          padding: .5em 0;
+        }
       }
     }
   }
@@ -57,7 +64,6 @@
     margin: 0 .5em;
     font-family: $text-font-family;
     font-size: 1.2em;
-    // padding: .3em .5em;
     cursor: pointer;
 
     &::after {
@@ -66,7 +72,7 @@
       display: block;
       position: relative;
       top: .2em;
-      left: -100%;
+      left: -20%;
       opacity: 0;
     }
 
