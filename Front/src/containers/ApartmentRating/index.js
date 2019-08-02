@@ -9,7 +9,6 @@ import {
   changeIsLocataire,
   changeIsVisiteur,
   changeAddressFormInput,
-  getAddressLatLng,
   changeStillInApartment,
   changeNotLiveInApartment,
   changeAgency,
@@ -49,9 +48,6 @@ const mapDispatchToProps = dispatch => ({
   },
   changeAddress: (address) => {
     dispatch(changeAddressFormInput(address));
-  },
-  getAddressLatLng: (latLng) => {
-    dispatch(getAddressLatLng(latLng));
   },
   isStillInApartment: () => {
     dispatch(changeStillInApartment());
