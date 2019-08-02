@@ -1,5 +1,10 @@
 // == Import : npm
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import {
+  createStore,
+  compose,
+  applyMiddleware,
+  combineReducers,
+} from 'redux';
 
 // == Import : local
 import reducer from 'src/store/reducer';

@@ -8,7 +8,7 @@ const initialState = {
   fullscreen: false,
   redirectToMap: false,
   dropdown: false,
-  zoom: 15,
+  zoom: 7,
 };
 
 // == Types

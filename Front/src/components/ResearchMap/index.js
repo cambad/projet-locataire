@@ -3,25 +3,34 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import './researchmap.scss';
 
-import Marker from './Marker';
-
+// import Marker from './Marker';
+import GoogleMapComponent from './GoogleMapComponent';
 
 class ResearchMap extends React.Component {
   state = {
-    markers: [],
+    markers: {},
+    infoboxMessage: '',
+    isInfoboxVisible: false,
+    markerLang: 0,
+    markerLat: 0,
+    dataLoaded: false,
   };
 
+
   componentDidMount() {
-    axios.get('https://api.rate-my-rent.fr/api/19/marker')
+    axios.get('https://api.rate-my-rent.fr/api/markers')
       .then((results) => {
-        console.log(results);
+        this.setState({
+          markers: results.data,
+          dataLoaded: true,
+        });
       });
   }
 
@@ -59,6 +68,21 @@ class ResearchMap extends React.Component {
     }
   };
 
+  handleMarkerClick = (message, lang, lat) => {
+    this.setState({
+      infoboxMessage: message, // Message shown in info window
+      isInfoboxVisible: !this.state.isInfoboxVisible, // Show info window
+      markerLang: lang + 0.006, // Y coordinate for positioning info window
+      markerLat: lat - 0.0004 // X coordinate for positioning info window
+    });
+  }
+
+  handleInfoboxClick = () => {
+    this.setState({
+      isInfoboxVisible: false,
+    });
+  }
+
   render() {
     const {
       address,
@@ -67,6 +91,10 @@ class ResearchMap extends React.Component {
       dropdown,
       fullscreen,
     } = this.props;
+    const {
+      markers,
+      dataLoaded,
+    } = this.state;
     return (
       <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
         <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
@@ -114,7 +142,7 @@ class ResearchMap extends React.Component {
                         width: '100%',
                       };
                     return (
-                      <div onClick={this.handleClick}>
+                      <div key={suggestion.description} onClick={this.handleClick}>
                         <div
                           {...getSuggestionItemProps(suggestion, {
                             className,
@@ -132,12 +160,17 @@ class ResearchMap extends React.Component {
           </PlacesAutocomplete>
         </div>
         <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
-            defaultCenter={latLng}
-            center={latLng}
-            defaultZoom={zoom}
+          <GoogleMapComponent
+            latLng={latLng}
             zoom={zoom}
+            isInfoboxVisible={this.state.isInfoboxVisible} // Show/hide info window
+            infoboxMessage={this.state.infoboxMessage} // Message shown in info window
+            handleInfoboxClick={this.handleInfoboxClick} // Handle closing of the info window
+            handleMarkerClick={this.handleMarkerClick} // Handle click on Marker component
+            infoboxPosY={this.state.markerLang} // Y coordinate for positioning info window
+            infoboxPosX={this.state.markerLat} // X coordinate for positioning info window
+            markers={markers}
+            dataLoaded={dataLoaded}
           />
         </div>
       </div>
