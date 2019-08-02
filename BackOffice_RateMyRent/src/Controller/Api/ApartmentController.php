@@ -36,15 +36,15 @@ class ApartmentController extends AbstractController
         //dd($review);
 
         return new JsonResponse([
-            'Apartment' => [
+            'apartment' => [
                 'id' => $apartment->getId(),
-                'Adresse' => $apartment->getAdress(),
-                'Etage' => $apartment->getFloorNumber(),
-                'Localisation' => $apartment->getLocation(),
-                'Surface' => $apartment->getArea(),
-                'Nombre de pièces' => $apartment->getRooms(),
-                'Loyer' => $apartment->getRental(),
-                'Avis de cette appartement' => $review,
+                'adresse' => $apartment->getAdress(),
+                'etage' => $apartment->getFloorNumber(),
+                'localisation' => $apartment->getLocation(),
+                'surface' => $apartment->getArea(),
+                'nombre de pieces' => $apartment->getRooms(),
+                'loyer' => $apartment->getRental(),
+                'avis de cet appartement' => $review,
             ],
         ]);
     }
@@ -57,7 +57,7 @@ class ApartmentController extends AbstractController
         $apartmentsWithReview = $apartmentRepository->findAllApartmentsWithReview();     
         
         return new JsonResponse([
-            'Les appartements/titre avis' => $apartmentsWithReview,
+            'apartments' => $apartmentsWithReview,
         ]);
     }
 
@@ -70,7 +70,7 @@ class ApartmentController extends AbstractController
         //dd($apartment);
         
         return new JsonResponse([
-            'Review' => [
+            'review' => [
                 'id' => $review->getId(),
                 'title' => $review->getTitle(),
                 'positive' => $review->getPositive(),
@@ -78,16 +78,16 @@ class ApartmentController extends AbstractController
                 'still_in' => $review->getStillIn(),
                 'createdAt' => $review->getCreatedAt(),
                 'updatedAt' => $review->getUpdateAt(),
-                'Apartment' => [
+                'apartment' => [
                     'id' => $review->getApartment()->getId(),
-                    'Adresse' => $review->getApartment()->getAdress(),
-                    'Etage' => $review->getApartment()->getFloorNumber(),
-                    'Localisation' => $review->getApartment()->getLocation(),
-                    'Surface' => $review->getApartment()->getArea(),
-                    'Nombre de pièces' => $review->getApartment()->getRooms(),
-                    'Loyer' => $review->getApartment()->getRental(),
+                    'adresse' => $review->getApartment()->getAdress(),
+                    'etage' => $review->getApartment()->getFloorNumber(),
+                    'localisation' => $review->getApartment()->getLocation(),
+                    'surface' => $review->getApartment()->getArea(),
+                    'nombre de pieces' => $review->getApartment()->getRooms(),
+                    'loyer' => $review->getApartment()->getRental(),
                 ],
-                'Notes' => $review->getNotes(),
+                'notes' => $review->getNotes(),
             ],
         ]);
     }
