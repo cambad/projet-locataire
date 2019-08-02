@@ -8,6 +8,8 @@ import {
   InfoWindow,
 } from 'react-google-maps';
 
+import './marker.scss';
+
 const GoogleMapComponent = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&v=3.exp&libraries=geometry,drawing,places',
@@ -18,37 +20,44 @@ const GoogleMapComponent = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => {
+  const { 
+    zoom,
+    latLng,
+    dataLoaded,
+    markers,
+    handleMarkerClick,
+    isInfoboxVisible,
+    infoboxPosY,
+    infoboxPosX,
+    handleInfoboxClick,
+    infoboxAddress,
+    infoboxTitle,
+   } = props;
   return (
     <GoogleMap
-      defaultZoom={props.zoom}
       defaultCenter={{
-        lat: props.latLng.lat, // latitude for the center of the map
-        lng: props.latLng.lng, // longitude for the center of the map
+        lat: latLng.lat, // latitude for the center of the map
+        lng: latLng.lng, // longitude for the center of the map
       }}
-      zoom={props.zoom}
+      zoom={zoom}
       center={{
-        lat: props.latLng.lat, // latitude for the center of the map
-        lng: props.latLng.lng, // longitude for the center of the map
+        lat: latLng.lat, // latitude for the center of the map
+        lng: latLng.lng, // longitude for the center of the map
       }}
-      defaultOptions={{
-        disableDefaultUI: true, // disable default map UI
-        draggable: true, // make map draggable
-        keyboardShortcuts: false, // disable keyboard shortcuts
-        scaleControl: true, // allow scale controle
-        scrollwheel: true, // allow scroll wheel
-      }}
+      defaultOptions={{mapTypeControl: false}}
     > 
-    {props.dataLoaded && (
-      props.markers.apartments.map(marker => (
+    {dataLoaded && (
+      markers.apartments.map(marker => (
       <Marker
         key={marker.title}
         position={{
           lat: marker.lat, // latitude to position the marker
           lng: marker.lng // longitude to position the marker
         }}
-        onClick={(message, lang, lat) =>
-          props.handleMarkerClick(
+        onMouseOver={(title, address, lng, lat) =>
+          handleMarkerClick(
             marker.title,
+            marker.adress,
             marker.lat,
             marker.lng,
           )
@@ -56,16 +65,17 @@ const GoogleMapComponent = compose(
       />
     ))
     )}
-      {props.isInfoboxVisible && (
+      {isInfoboxVisible && (
         <InfoWindow
           position={{
-            lat: props.infoboxPosY,
-            lng: props.infoboxPosX
+            lat: infoboxPosY,
+            lng: infoboxPosX
           }}
-          onCloseClick={() => props.handleInfoboxClick()}
+          onCloseClick={() => handleInfoboxClick()}
         >
-          <div>
-            <h4>{props.infoboxMessage}</h4>
+          <div className="infobox">
+            <h1>{infoboxTitle}</h1>
+            <p>{infoboxAddress}</p>
           </div>
         </InfoWindow>
       )}
