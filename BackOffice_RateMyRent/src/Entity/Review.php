@@ -46,7 +46,7 @@ class Review
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $update_At;
+    private $updated_At;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews")
@@ -133,14 +133,14 @@ class Review
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->update_At;
+        return $this->updated_At;
     }
 
-    public function setUpdateAt(?\DateTimeInterface $update_At): self
+    public function setUpdatedAt(?\DateTimeInterface $updated_At): self
     {
-        $this->update_At = $update_At;
+        $this->updated_At = $updated_At;
 
         return $this;
     }
