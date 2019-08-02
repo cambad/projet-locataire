@@ -16,6 +16,7 @@ class Research extends React.Component {
     changeAdress(value);
   };
 
+  // Submit form
   handleSubmit = (e) => {
     e.preventDefault();
     const { address, setRedirectToMap, setAddressLatLng } = this.props;
@@ -26,7 +27,9 @@ class Research extends React.Component {
         })
         .then((latLng) => {
           console.log(latLng);
+          // set state.redirectToMap to TRUE to redirect to ResearchMap in full screen
           setRedirectToMap();
+          // insert lat and lng in state
           setAddressLatLng(latLng);
         })
         .catch(error => console.error('Error', error));
@@ -34,8 +37,11 @@ class Research extends React.Component {
   };
 
   render() {
-    const { address, redirectToMap } = this.props;
+    const { address, redirectToMap, setRedirectToMapFalse } = this.props;
     if (redirectToMap) {
+      // set state.redirectToMap to FALSE and address to an empty string
+      setRedirectToMapFalse();
+      // return to landing page
       return <Redirect to="/recherche/" />;
     }
     return (
@@ -71,6 +77,7 @@ Research.propTypes = {
   redirectToMap: PropTypes.bool.isRequired,
   setRedirectToMap: PropTypes.func.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
+  setRedirectToMapFalse: PropTypes.func.isRequired,
 };
 
 export default Research;

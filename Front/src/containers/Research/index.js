@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Research from 'src/components/Research';
 
 // Action Creators
-import { changeAddressInput, setRedirectToMap, setAddressLatLng } from 'src/store/reducerMap';
+import { changeAddressInput, setRedirectToMap, setAddressLatLng, setRedirectToMapFalse } from 'src/store/reducerMap';
 
 const mapStateToProps = state => ({
   address: state.reducerMap.address,
@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setAddressLatLng: (latLng) => {
     dispatch(setAddressLatLng(latLng));
+  },
+  setRedirectToMapFalse: () => {
+    dispatch(setRedirectToMapFalse());
   },
 });
 

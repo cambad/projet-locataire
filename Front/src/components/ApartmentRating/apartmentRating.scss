@@ -28,7 +28,6 @@
   }
 }
 
-
 .commentaire-title {
   margin-top: 1em;
 }
@@ -46,6 +45,10 @@
     border-radius: 5px;
     font-size: 1em;
   }
+}
+
+.radioButtons, .radioLabel  {
+  margin-right: .5em;;
 }
 
 .autocomplete-dropdown {
@@ -115,20 +118,14 @@
 
   input {
     font-family: $text-font-family;
-    // text-align: center;
     border: none;
-    // height: 2em;
     border-radius: 10px;
     padding: .5em .8em;
-    // margin: 0 .5em;
-  }
-
-  label {
-    margin-right: .5em;
   }
 
   &-radio {
     display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: space-around;
     border-bottom: 1px solid #B3B3B3;
@@ -142,6 +139,7 @@
 
   &-intermediaire {
     display: flex; 
+    flex-direction: column;
     justify-content: space-around;
     border-bottom: 1px solid #B3B3B3;
   }
@@ -154,9 +152,12 @@
     div {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       input {
-        width: 30%;
+        width: 20%;
+        margin-right: 2em;
+        font-size: 1em;
       }
     }
   }
@@ -166,13 +167,16 @@
     border-bottom: 1px solid #B3B3B3;
     padding-bottom: .5em;
     justify-content: space-between;
+    align-items: center;
 
     p {
       text-align: left;
     }
 
     input {
-      width: 30%;
+      width: 20%;
+      margin-right: 2em;
+      font-size: 1em;
     }
   }
 }
@@ -253,6 +257,21 @@
 
   .notation-form {
     width: 60%;
+  }
+
+  .radioButtons, .radioLabel {
+    margin-right: 1em;;
+  }
+
+  .information-generales {
+
+    &-radio {
+      flex-direction: row;
+    }
+
+    &-intermediaire {
+      flex-direction: row;
+    }
   }
 }
 

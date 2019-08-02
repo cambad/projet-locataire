@@ -1,12 +1,11 @@
 // == Import : npm
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 // == Import : local
 import ResearchMap from 'src/components/ResearchMap';
 
 // Action Creators
-import { changeAddressInput, setAddressLatLng } from 'src/store/reducerMap';
+import { changeAddressInput, setAddressLatLng, setFullScreen } from 'src/store/reducerMap';
 
 const mapStateToProps = state => ({
   address: state.reducerMap.address,
@@ -24,13 +23,16 @@ const mapDispatchToProps = dispatch => ({
   setAddressLatLng: (latLng) => {
     dispatch(setAddressLatLng(latLng));
   },
+  goToFullScreen: () => {
+    dispatch(setFullScreen());
+  },
 });
 
 // Container
-const ResearchMapContainer = withRouter(connect(
+const ResearchMapContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ResearchMap));
+)(ResearchMap);
 
 // == Export
 export default ResearchMapContainer;

@@ -6,6 +6,7 @@
   &-img {
     height: 10em;
     background-color: $header-background-color;
+    background-color: #d77a61;
   }
   
   &-content {
@@ -13,13 +14,15 @@
   }
 
   &-address {
-    margin: 1em 0;
+    margin: 1.5em 0;
     text-align: center;
     font-family: $title-font-family;
+    font-size: 1.2em;
   }
 
   &-description {
     display: flex;
     justify-content: space-between;
+    font-size: 1em;
   }
 }

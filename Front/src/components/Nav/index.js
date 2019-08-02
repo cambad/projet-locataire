@@ -46,9 +46,9 @@ class Nav extends React.Component {
         )}
         { isConnected && (
           <ul className="navbar-ul">
-            <NavLink to="/recherche/"><li onClick={handleClickBtn} className="navbar-ul-link">Recherche</li></NavLink>
+            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/noter-un-appartement/">Noter un logement</NavLink></li>
-            <NavLink to="/profil/"><li onClick={handleClickBtn} className="navbar-ul-link">Profil</li></NavLink>         
+            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/profil/">Profil</NavLink> </li>
           </ul>
         )}
       </nav>

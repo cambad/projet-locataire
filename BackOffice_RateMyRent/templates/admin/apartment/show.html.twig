@@ -1,57 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Apartment{% endblock %}
+{% block title %}Appartement{% endblock %}
 
 {% block body %}
-    <h1>Apartment</h1>
+    <h2>Appartement n° {{ apartment.id }} </h2>
 
     <table class="table">
-        <tbody>
-            
-            
-            
-            <tr>
-                <th>Id</th>
-                <td>{{ apartment.id }}</td>
-            </tr>
+        <tbody> 
                 
             <tr>
-                <th>Adress</th>
+                <th>Addresse</th>
                 <td>{{ apartment.adress }}</td>
             </tr>
             
             <tr>
-                <th>Floor_number</th>
+                <th>Etage</th>
                 <td>{{ apartment.floorNumber }}</td>
             </tr>
             
             <tr>
-                <th>Location</th>
+                <th>Localisation</th>
                 <td>{{ apartment.location }}</td>
              </tr>
              
              <tr>
-                 <th>Area</th>
+                 <th>Surface</th>
                  <td>{{apartment.area}}</td>
              </tr>
 
              <tr>
-                 <th>rooms</th>
+                 <th>Nombre de pièces</th>
                  <td>{{ apartment.rooms }}</td>
              </tr>
 
              <tr>
-                 <th>Rental</th>
+                 <th>Loyer</th>
                  <td>{{apartment.rental}}</td>
              </tr>
 
+             <tr>
+                <th>Latitude</th>
+                <td>{{apartment.lat}}</td>
+            </tr>
+
+            <tr>
+                <th>Longitude</th>
+                <td>{{apartment.lng}}</td>
+            </tr>
+
         </tbody>
     </table>
+    
 
-    <a href="{{ path('admin_apartment_index') }}">back to list</a>
+    {% for review in apartment.reviews %}
+    <h2>Avis n°{{ review.id }}</h2>
+        <table class="table">
 
+            <tbody>
+                <tr>
+                    <th>Titre</th>
+                    <td> {{ review.title }} </td>
+                </tr>
+                <tr>
+                    <th>Positif</th>
+                    <td> {{ review.positive }} </td>
+                </tr>
+                <tr>
+                    <th>Negatif</th>
+                    <td> {{ review.negative }} </td>
+                </tr>
+                <tr>
+                    <th>Toujours dans l'appartement</th>
+                    <td> {{ review.stillIn }} </td>
+                </tr>
+                <tr>
+                    <th>Date d'ajout</th>
+                    <td> {{ review.createdAt|date('Y-m-d H:i:s') }} </td>
+                </tr>
+                <tr>
+                    <th>Date de modification</th>
+                    <td> {{ review.updateAt|date('Y-m-d H:i:s') }} </td>
+                </tr>
+                <tr>
+                    <th>Nom de l'utilisateur</th>
+                    <td> {{ review.user.name }} </td>
+                </tr>
+                    
+            </tbody>
+        </table>
+    {% endfor %}
+    <button class="btn">
+        <a href="{{ path('admin_apartment_index') }}">back to list</a>
+    </button>
     {{ include('admin/apartment/_delete_form.html.twig') }}
 
-    
-   }}
 {% endblock %}
