@@ -4,6 +4,7 @@ html {
 
 body {
     background-color: whitesmoke;
+    font-family: 'Montserrat';
 }
 
 a{
@@ -14,17 +15,8 @@ a:hover{
     text-decoration: none;
 }
 
-.container {
-    background-color: white;
-}
-
 nav {
     float: right;
-}
-
-.btn, .btn a {
-    color: #eff1f3;
-    background-color: #d33f49;
 }
 
 #breadcrumb, nav {
@@ -32,34 +24,33 @@ nav {
     margin-top: 0.5rem;
 }
 
-h1 {
+h1, h1 a {
     color: #333;
     font-family: 'Oswald';
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     margin-top: 1.5rem;
 }
 
-h2 {
+h2, h2 a {
     color: #333;
     font-family: 'Oswald';
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    margin-top: 1.5rem;
 }
 
-h3 {
+h3, h3 a {
     color: #999;
     font-family: 'Oswald';
     font-size: 1.3rem;
     font-weight: 500;
     text-align: center;
 }
-h4 {
+h4, h4 a {
     font-family: 'Montserrat';
     font-size: 1.2rem;
     font-weight: 500;
@@ -83,7 +74,7 @@ h4 {
     margin-bottom: 0;
 }
 
-#banner h1 a{
+#banner h1 {
     color:#EFF1F3;
     text-decoration: none;
 }
@@ -105,3 +96,31 @@ h4 {
 
     font-size: 5rem;
 }
+
+#delete_form {
+    display: flex;
+    justify-content: center;
+}
+
+/* Bootstrap modifications */
+.row {
+    background-color: whitesmoke;
+}
+
+.card-header {
+    background-color: #223843;
+}
+.card-header h2 {
+    color: #EFF1F3;
+}
+
+.btn, .btn a {
+    color: #eff1f3;
+    background-color: #d33f49;
+}
+
+.table {
+    width: 50rem;
+    margin: 0 auto;
+}
+

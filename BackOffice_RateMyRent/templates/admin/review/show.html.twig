@@ -1,55 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Review{% endblock %}
+{% block title %}Avis n° {{ review.id }}{% endblock %}
 
 {% block body %}
-    <h3>Review</h3>
+    
+    <h3>Cet avis appartient à l'appartement n° {{ review.apartment.id }} </h3>
+    <h3>Adresse : {{ review.apartment.adress }}</h3>
+    <h3> A l'étage n° {{ review.apartment.floorNumber }} et il est localisé à/au : {{ review.apartment.location }}</h3>
+   
+<hr>
+    <h2 class="my-4">Avis n° {{ review.id }} </h2>
 
     <table class="table">
-        <tbody>
-
-            <tr>
-                <th>Id</th>
-                <td>{{ review.id }}</td>
-            </tr>
-                
+        <tbody> 
             <tr>
                 <th>Titre</th>
                 <td>{{ review.title }}</td>
             </tr>
             
             <tr>
-                <th>positif</th>
+                <th>Positif</th>
                 <td>{{ review.positive }}</td>
             </tr>
             
             <tr>
-                <th>negatif</th>
+                <th>Negatif</th>
                 <td>{{ review.negative }}</td>
             </tr>
 
             <tr>
-                <th>Still in</th>
+                <th>Toujours dans l'appartement</th>
                 <td>{{review.stillIn}}</td>
             </tr>
 
             <tr>
-                <th>Created at</th>
+                <th>Date d'ajout</th>
                 <td>{{review.createdAt|date('Y-m-d H:i:s')}}</td>
             </tr>
             
             <tr>
-                <th>Update at</th>
+                <th>Date de modification</th>
                 <td>{{review.updateAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+
+            <tr>
+                <th>Nom de l'utilisateur</th>
+                <td> {{ review.user }} </td>
             </tr>
             
         </tbody>
     </table>
 
-    <a href="{{ path('admin_review_index') }}">back to list</a>
-
-    {{ include('admin/review/_delete_form.html.twig') }}
-
-    
-   }}
+    <h4 class="mt-4">Voulez-vous supprimer cet avis ? Cela supprimera l'avis de l'utilisateur</h4>
+    <div class="mb-4" id="delete_form">
+        {{ include('admin/review/_delete_form.html.twig') }}
+    </div>
+<hr>
+    <h3 class="my-5">
+        <a href="{{ path('admin_review_index') }}"> Revenir à la liste</a>
+    </h3>
 {% endblock %}

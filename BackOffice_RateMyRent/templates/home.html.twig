@@ -8,14 +8,31 @@
 <h3>Vous souhaitez modifier ou consulter une catégorie ?</h3>
 <div class="container">
     <div class="row">
-        <div class="card col-3">
-            <div class="card-header">
-                <h4>
-                    Appartement
-                </h4>
+        <div class="col-4">
+            <div class="card m-2" style="width: 18rem;">
+                <a href="{{ path('admin_apartment_index')}}">
+                    <div class="card-header p-4">
+                        <h2>Appartement</h2>
+                    </div>
+                </a>
             </div>
-            <div class="card-body">
-                <h4><a href="{{ path('admin_apartment_index')}}">Voir</a></h4>
+        </div>
+        <div class="col-4">
+            <div class="card m-2" style="width: 18rem;">
+                <a href="{{ path('admin_review_index')}}">
+                    <div class="card-header p-4">
+                        <h2>Avis</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card m-2" style="width: 18rem;">
+                <a href="{{ path('admin_user_index')}}">
+                    <div class="card-header p-4">
+                        <h2>Utilisateurs</h2>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

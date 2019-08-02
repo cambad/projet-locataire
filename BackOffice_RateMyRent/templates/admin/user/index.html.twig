@@ -3,32 +3,34 @@
 {% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-    <h2>Les utilisateurs</h2>
+    <h2 class="my-5">Les utilisateurs</h2>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Pseudo</th>
+                <th class="text-center">Id</th>
+                <th>Pseudonyme</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>actions</th>
+                <th class="text-center">Voir</th>
+                <th class="text-center">Supprimer</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
+                <td class="text-center">{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
-                <td>
-                    
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+                <td class="text-center">
+                    <button class="btn">
+                        <a href="{{ path('admin_user_show', {'id': user.id}) }}">Voir</a>
+                    </button>
                    {#<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a> #}
                 </td>
-                <td>
-                        {{ include('admin/user/_delete_form.html.twig') }}
+                <td class="text-center">
+                    {{ include('admin/user/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -38,6 +40,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    {# <a href="{{ path('admin_user_new') }}">Create new</a> #}
+<hr>
+    <h3 class="my-5">
+       <a href="{{ path('admin_home')}}"> Revenir à l'accueil</a>
+    </h3>
 {% endblock %}
