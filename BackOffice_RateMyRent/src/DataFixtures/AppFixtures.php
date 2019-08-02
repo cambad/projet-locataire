@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
         $populator = new Populator($generator, $manager);
 
         $populator->addEntity('App\Entity\Apartment', 20, [
-            'adress' => function() use($generator) { return $generator->address;},
+            'address' => function() use($generator) { return $generator->address;},
             'floor_number' => function() use($generator) { return $generator->numberBetween(0, 5);},
             'location' => function() use($generator) { return $generator->dayOfMonth();},
             'area' => function() use($generator) { return $generator->numberBetween(15, 99);},
