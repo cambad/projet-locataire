@@ -50,24 +50,14 @@ class ApartmentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/marker", name="marker_show", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/markers", name="marker_show", methods={"GET"})
      */
-    public function showMarkerApi(Apartment $apartment, ReviewRepository $repository): JsonResponse
-    {
-        $review = $repository->findReviewTitleByApartment($apartment);
-
+    public function showMarkerApi(ApartmentRepository $apartmentRepository): JsonResponse
+    {        
+        $apartmentsWithReview = $apartmentRepository->findAllApartmentsWithReview();     
+        
         return new JsonResponse([
-            'Marker' => [
-                'id' => $apartment->getId(),
-                'Latitude' => $apartment->getLat(),
-                'Longitude' => $apartment->getLng(),
-                'Adresse' => $apartment->getAdress(),
-                'Etage' => $apartment->getFloorNumber(),
-                'Localisation' => $apartment->getLocation(),
-                'Loyer' => $apartment->getRental(),
-                'Titre et id des avis' => $review,
-                
-            ],
+            'Les appartements/titre avis' => $apartmentsWithReview,
         ]);
     }
 

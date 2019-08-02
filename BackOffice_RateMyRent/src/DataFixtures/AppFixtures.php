@@ -33,6 +33,8 @@ class AppFixtures extends Fixture
             'area' => function() use($generator) { return $generator->numberBetween(15, 99);},
             'rooms' => function() use($generator) { return $generator->numberBetween(1, 4);},
             'rental' => function() use($generator) { return $generator->numberBetween(150, 1500);},
+            'lat' => function() use($generator) { return $generator->latitude(40, 50);},
+            'lng' => function() use($generator) { return $generator->longitude(-4, 7);},
         ]);
 
         $populator->addEntity('App\Entity\Review', 20, [
