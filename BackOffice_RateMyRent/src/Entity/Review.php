@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
@@ -54,18 +56,24 @@ class Review
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews", cascade={"persist"})
      */
     private $apartment;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Note", mappedBy="rewiews")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Note", mappedBy="rewiews", cascade={"persist"})
      */
     private $notes;
 
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->created_At = new DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     public function getId(): ?int
