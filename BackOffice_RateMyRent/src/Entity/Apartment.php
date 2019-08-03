@@ -68,6 +68,11 @@ class Apartment
         $this->reviews = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->reviews;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

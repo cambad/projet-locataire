@@ -76,6 +76,7 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = true;
         $this->reviews = new ArrayCollection();
+        $this->roleJsonFormat = 'ROLE_MEMBER';
     }
 
     public function getRoles(): array 
