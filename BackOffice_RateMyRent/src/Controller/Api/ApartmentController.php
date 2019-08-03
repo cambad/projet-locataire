@@ -38,7 +38,7 @@ class ApartmentController extends AbstractController
         return new JsonResponse([
             'apartment' => [
                 'id' => $apartment->getId(),
-                'adresse' => $apartment->getAdress(),
+                'adresse' => $apartment->getAddress(),
                 'etage' => $apartment->getFloorNumber(),
                 'localisation' => $apartment->getLocation(),
                 'surface' => $apartment->getArea(),
@@ -64,11 +64,8 @@ class ApartmentController extends AbstractController
     /**
      * @Route("/{id}/review", name="review_show", methods={"GET"}, requirements={"id"="\d+"})
      */
-    public function showReviewApi(Review $review, ApartmentRepository $repository): JsonResponse
-    {
-        //$apartment = $repository->findByReview($review);
-        //dd($apartment);
-        
+    public function showReviewApi(Review $review): JsonResponse
+    {        
         return new JsonResponse([
             'review' => [
                 'id' => $review->getId(),
@@ -77,10 +74,10 @@ class ApartmentController extends AbstractController
                 'negative' => $review->getNegative(),
                 'still_in' => $review->getStillIn(),
                 'createdAt' => $review->getCreatedAt(),
-                'updatedAt' => $review->getUpdateAt(),
+                'updatedAt' => $review->getUpdatedAt(),
                 'apartment' => [
                     'id' => $review->getApartment()->getId(),
-                    'adresse' => $review->getApartment()->getAdress(),
+                    'adresse' => $review->getApartment()->getAddress(),
                     'etage' => $review->getApartment()->getFloorNumber(),
                     'localisation' => $review->getApartment()->getLocation(),
                     'surface' => $review->getApartment()->getArea(),
