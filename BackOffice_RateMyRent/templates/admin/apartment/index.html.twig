@@ -17,7 +17,7 @@
         {% for apartment in apartments %}
             <tr>
                 <td class="text-center">{{ apartment.id }}</td>
-                <td>{{ apartment.adress }}</td>
+                <td>{{ apartment.address }}</td>
                 <td class="text-center">                    
                     <button class="btn"> 
                         <a href="{{ path('admin_apartment_show', {'id': apartment.id}) }}" class="">Voir</a>
