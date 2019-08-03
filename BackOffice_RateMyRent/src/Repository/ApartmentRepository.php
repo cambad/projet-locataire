@@ -31,7 +31,7 @@ class ApartmentRepository extends ServiceEntityRepository
     public function findAllApartmentsWithReview(){
 
         $query = $this->createQueryBuilder('a')
-                      ->select('a.id, a.adress, a.floor_number, a.location, a.rental, a.lat, a.lng', 'r.title')
+                      ->select('a.id, a.address, a.floor_number, a.location, a.rental, a.lat, a.lng', 'r.title')
                       ->join('a.reviews','r')
                       ->orderBy('a.id', 'DESC');
 
