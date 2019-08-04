@@ -31,19 +31,19 @@ class ApartmentController extends AbstractController
      */
     public function showApartmentApi(Apartment $apartment, ReviewRepository $repository): JsonResponse
     {
-        $review = $repository->findByApartment($apartment);
+        $reviewsApartment = $repository->findByApartment($apartment);
         //dd($review);
 
         return new JsonResponse([
             'apartment' => [
                 'id' => $apartment->getId(),
-                'adresse' => $apartment->getAddress(),
-                'etage' => $apartment->getFloorNumber(),
-                'localisation' => $apartment->getLocation(),
-                'surface' => $apartment->getArea(),
-                'nombre de pieces' => $apartment->getRooms(),
-                'loyer' => $apartment->getRental(),
-                'avis de cet appartement' => $review,
+                'address' => $apartment->getAddress(),
+                'floorNumber' => $apartment->getFloorNumber(),
+                'location' => $apartment->getLocation(),
+                'area' => $apartment->getArea(),
+                'rooms' => $apartment->getRooms(),
+                'rental' => $apartment->getRental(),
+                'reviews' => $reviewsApartment,
             ],
         ]);
     }

@@ -17,6 +17,76 @@ class Marks
     private $id;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $recommendation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $exterior;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $interior;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $accessibility;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $apartmentEnvironment;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $traffic;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $exteriorBuilding;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $buildingEnvironment;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $insulation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $cleanliness;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $brightness;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $firstContact;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $contactQuality;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="marks", cascade={"persist"})
      */
     private $review;
@@ -39,6 +109,174 @@ class Marks
     public function setReview(?Review $review): self
     {
         $this->review = $review;
+
+        return $this;
+    }
+
+    public function getRecommendation(): ?int
+    {
+        return $this->recommendation;
+    }
+
+    public function setRecommendation(?int $recommendation): self
+    {
+        $this->recommendation = $recommendation;
+
+        return $this;
+    }
+
+    public function getExterior(): ?int
+    {
+        return $this->exterior;
+    }
+
+    public function setExterior(?int $exterior): self
+    {
+        $this->exterior = $exterior;
+
+        return $this;
+    }
+
+    public function getInterior(): ?int
+    {
+        return $this->interior;
+    }
+
+    public function setInterior(?int $interior): self
+    {
+        $this->interior = $interior;
+
+        return $this;
+    }
+
+    public function getContact(): ?int
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?int $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getAccessibility(): ?int
+    {
+        return $this->accessibility;
+    }
+
+    public function setAccessibility(?int $accessibility): self
+    {
+        $this->accessibility = $accessibility;
+
+        return $this;
+    }
+
+    public function getApartmentEnvironment(): ?int
+    {
+        return $this->apartmentEnvironment;
+    }
+
+    public function setApartmentEnvironment(?int $apartmentEnvironment): self
+    {
+        $this->apartmentEnvironment = $apartmentEnvironment;
+
+        return $this;
+    }
+
+    public function getTraffic(): ?int
+    {
+        return $this->traffic;
+    }
+
+    public function setTraffic(?int $traffic): self
+    {
+        $this->traffic = $traffic;
+
+        return $this;
+    }
+
+    public function getExteriorBuilding(): ?int
+    {
+        return $this->exteriorBuilding;
+    }
+
+    public function setExteriorBuilding(?int $exteriorBuilding): self
+    {
+        $this->exteriorBuilding = $exteriorBuilding;
+
+        return $this;
+    }
+
+    public function getBuildingEnvironment(): ?int
+    {
+        return $this->buildingEnvironment;
+    }
+
+    public function setBuildingEnvironment(?int $buildingEnvironment): self
+    {
+        $this->buildingEnvironment = $buildingEnvironment;
+
+        return $this;
+    }
+
+    public function getInsulation(): ?int
+    {
+        return $this->insulation;
+    }
+
+    public function setInsulation(?int $insulation): self
+    {
+        $this->insulation = $insulation;
+
+        return $this;
+    }
+
+    public function getCleanliness(): ?int
+    {
+        return $this->cleanliness;
+    }
+
+    public function setCleanliness(?int $cleanliness): self
+    {
+        $this->cleanliness = $cleanliness;
+
+        return $this;
+    }
+
+    public function getBrightness(): ?int
+    {
+        return $this->brightness;
+    }
+
+    public function setBrightness(?int $brightness): self
+    {
+        $this->brightness = $brightness;
+
+        return $this;
+    }
+
+    public function getFirstContact(): ?int
+    {
+        return $this->firstContact;
+    }
+
+    public function setFirstContact(?int $firstContact): self
+    {
+        $this->firstContact = $firstContact;
+
+        return $this;
+    }
+
+    public function getContactQuality(): ?int
+    {
+        return $this->contactQuality;
+    }
+
+    public function setContactQuality(int $contactQuality): self
+    {
+        $this->contactQuality = $contactQuality;
 
         return $this;
     }

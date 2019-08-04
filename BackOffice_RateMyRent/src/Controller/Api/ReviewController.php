@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Marks;
 
 /**
  * @Route("/api", name="api_")
@@ -45,6 +46,51 @@ class ReviewController extends AbstractController
                 'notes' => $review->getNotes(),
             ],
         ]);
+    }
+
+    /**
+     * Testing a route
+     * 
+     * @Route("/review/test", name="review_test", methods={"POST"})
+     *
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param EntityManagerInterface $entityManager
+     * @return void
+     */
+    public function test(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $entityManager) 
+    {
+        $values = json_decode($request->getContent());
+
+        if (isset($values->area)) {
+            $apartment = new Apartment;
+            $apartment->setArea($values->area);
+
+            $errors = $validator->validate($apartment);
+            if(count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500, [
+                    'content-Type' => 'application/json'
+                ]);
+            }
+          //dd($apartment);
+            $entityManager->persist($apartment);
+            $entityManager->flush();
+
+            $data = [
+                'status' => 201,
+                'message' => 'appartement a été créé'
+            ];
+
+            return new JsonResponse($data, 201);
+        }
+        $data = [
+            'status' => 500,
+            'message' => 'la donnee est pas passee'
+        ];
+        return new JsonResponse($data, 500);
+
     }
 
     /**
@@ -100,31 +146,31 @@ class ReviewController extends AbstractController
             //pushing the new review into the apartment just created
             $review->setApartment($apartment); 
 
-            //NOTES needs :
-            // $notes = new Note;
-            // $notes = $notes = $serializer->deserialize($content, Note::class, 'json', [
-            //     'object_to_populate' => $notes
-            // ]);
+            //MARKS needs :
+            $marks = new Marks;
+            $marks = $marks = $serializer->deserialize($content, Marks::class, 'json', [
+                'object_to_populate' => $marks
+            ]);
 
-            // //Check and catch the errors with validator
-            // $errors = $validator->validate($notes);
-            // if (count($errors)) {
-            //     $errors = $serializer->serialize($errors, 'json');
-            //     return new Response($errors, 500, [
-            //         'content-Type' => 'application/json'
-            //     ]);
-            // }
-            // //pushing the notes into the review juste created
-            // $notes->addReviews($review);
+            //Check and catch the errors with validator
+            $errors = $validator->validate($marks);
+            if (count($errors)) {
+                $errors = $serializer->serialize($errors, 'json');
+                return new Response($errors, 500, [
+                    'content-Type' => 'application/json'
+                ]);
+            }
+            //pushing the marks into the review juste created
+            $marks->setReview($review);
 
             //BDD creating a new review, a new apartement and a new note 
-         //dd($review);
-            $entityManager->persist($review);  
+         //dd($marks);
+            $entityManager->persist($marks);  
             $entityManager->flush();
 
             $data = [
                 'status' => 201,
-                'message' => 'Appartement ajoute'
+                'message' => 'Avis bien recu'
             ];
 
             return new JsonResponse($data, 201);
