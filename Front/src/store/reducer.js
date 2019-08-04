@@ -1,5 +1,6 @@
 // == Initial State
 const initialState = {
+  formLoading: false,
   isConnected: true,
   visitorValue: {
     recommendationValue: 0,
@@ -9,10 +10,10 @@ const initialState = {
   },
   tenantValue: {
     accessiblityValue: 0,
-    apartmentEnvironnementValue: 0,
+    apartmentEnvironmentValue: 0,
     circulationValue: 0,
     exteriorValue: 0,
-    buildingEnvironnementValue: 0,
+    buildingEnvironmentValue: 0,
     isolationValue: 0,
     cleanlinessValue: 0,
     brightnessValue: 0,
@@ -29,8 +30,8 @@ const initialState = {
   isDisplayed: false,
   stillInApartment: false,
   notLiveInApartment: false,
-  agency: false,
-  owner: false,
+  floorNumber: 0,
+  location: '',
   floorArea: 0,
   numberOfRooms: 0,
   rent: 0,
@@ -47,8 +48,8 @@ const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_FORM_INPUT = 'CHANGE_ADDRESS_FORM_INPUT';
 const CHANGE_STILL_IN = 'CHANGE_STILL_IN';
 const CHANGE_NOT_LIVE = 'CHANGE_NOT_LIVE';
-const CHANGE_AGENCY = 'CHANGE_AGENCY';
-const CHANGE_OWNER = 'CHANGE_OWNER';
+const CHANGE_FLOOR_NUMBER = 'CHANGE_FLOOR_NUMBER';
+const CHANGE_LOCATION = 'CHANGE_LOCATION';
 const CHANGE_FLOOR_AREA = 'CHANGE_FLOOR_AREA';
 const CHANGE_NUMBER_ROOMS = 'CHANGE_NUMBER_ROOMS';
 const CHANGE_RENT = 'CHANGE_RENT';
@@ -121,18 +122,16 @@ const reducer = (state = initialState, action = {}) => {
         notLiveInApartment: true,
       };
 
-    case CHANGE_AGENCY:
+    case CHANGE_FLOOR_NUMBER:
       return {
         ...state,
-        agency: true,
-        owner: false,
+        floorNumber: action.value,
       };
 
-    case CHANGE_OWNER:
+    case CHANGE_LOCATION:
       return {
         ...state,
-        agency: false,
-        owner: true,
+        location: action.value,
       };
 
     case CHANGE_FLOOR_AREA:
@@ -223,12 +222,14 @@ export const changeIsVisiteur = () => ({
   type: CHANGE_IS_VISITEUR,
 });
 
-export const changeAgency = () => ({
-  type: CHANGE_AGENCY,
+export const changeFloorNumber = value => ({
+  type: CHANGE_FLOOR_NUMBER,
+  value,
 });
 
-export const changeOwner = () => ({
-  type: CHANGE_OWNER,
+export const changeOwner = value => ({
+  type: CHANGE_LOCATION,
+  value,
 });
 
 export const changeRent = value => ({

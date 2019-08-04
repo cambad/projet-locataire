@@ -19,15 +19,17 @@ const ApartmentRating = ({
   isLocataireChange,
   isVisiteurChange,
   changeAddress,
-  getAddressLatLng,
+  // getAddressLatLng,
   isStillInApartment,
   isNotLiveInApartment,
-  isAgency,
-  isOwner,
+  floorNumber,
+  location,
   floorArea,
   rent,
   numberOfRooms,
   changeFloorArea,
+  changeFloorNumber,
+  changeLocation,
   changeNumberOfRooms,
   changeRent,
   abstractedComment,
@@ -91,8 +93,10 @@ const ApartmentRating = ({
             </div>
             {isDisplayed && (
               <InformationGenerale
-                isAgency={isAgency}
-                isOwner={isOwner}
+                changeFloorNumber={changeFloorNumber}
+                changeLocation={changeLocation}
+                location={location}
+                floorNumber={floorNumber}
                 floorArea={floorArea}
                 rent={rent}
                 numberOfRooms={numberOfRooms}
@@ -140,7 +144,7 @@ ApartmentRating.propTypes = {
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
-  getAddressLatLng: PropTypes.func.isRequired,
+  // getAddressLatLng: PropTypes.func.isRequired,
   isStillInApartment: PropTypes.func.isRequired,
   isNotLiveInApartment: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,

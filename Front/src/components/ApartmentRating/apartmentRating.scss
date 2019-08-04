@@ -123,6 +123,14 @@
     padding: .5em .8em;
   }
 
+  & .location {
+    
+    & input {
+      width: 100%;
+      margin-left: 2em;
+    }
+  }
+
   &-radio {
     display: flex;
     flex-direction: column;
