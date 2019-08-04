@@ -22,8 +22,8 @@ const initialState = {
   },
   addressForm: '',
   latLng: {
-    lat: '',
-    lng: '',
+    lat: 0,
+    lng: 0,
   },
   isVisiteur: false,
   isLocataire: false,
@@ -90,10 +90,10 @@ const reducer = (state = initialState, action = {}) => {
         tenantValue: {
           ...state.tenantValue,
           accessiblityValue: 0,
-          apartmentEnvironnementValue: 0,
+          apartmentEnvironmentValue: 0,
           circulationValue: 0,
           exteriorValue: 0,
-          buildingEnvironnementValue: 0,
+          buildingEnvironmentValue: 0,
           isolationValue: 0,
           cleanlinessValue: 0,
           brightnessValue: 0,
@@ -227,7 +227,7 @@ export const changeFloorNumber = value => ({
   value,
 });
 
-export const changeOwner = value => ({
+export const changeLocation = value => ({
   type: CHANGE_LOCATION,
   value,
 });

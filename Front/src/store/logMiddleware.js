@@ -16,29 +16,29 @@ const logMiddleware = store => next => (action) => {
         "address": reducer.addressForm,
         "floor_number": reducer.floorNumber,
         "location": reducer.location,
-        "area": reducer.fllorArea,
+        "area": reducer.floorArea,
         "rooms": reducer.numberOfRooms,
         "rental": reducer.rent,
         "lat": reducer.latLng.lat,
         "lng": reducer.latLng.lng,
         "title": reducer.abstractedComment,
         "positive": reducer.positiveComment,
-        "negative": reducer.recommendationNegative,
+        "negative": reducer.negativeComment,
         "still_in": reducer.stillInApartment,
         "recommendation": reducer.visitorValue.recommendationValue,
         "exterior": reducer.visitorValue.exteriorValue,
         "interior": reducer.visitorValue.interiorValue,
         "contact": reducer.visitorValue.contactValue,
         "accessibility": reducer.tenantValue.accessiblityValue,
-        "apartment_environment": reducer.tenantValue.apartmentEnvironnementValue,
+        "apartment_environment": reducer.tenantValue.apartmentEnvironmentValue,
         "traffic": reducer.tenantValue.circulationValue,
         "exterior_building": reducer.tenantValue.exteriorValue,
-        "building_environment": reducer.tenantValue.buildingEnvironnementValue,
+        "building_environment": reducer.tenantValue.buildingEnvironmentValue,
         "insulation": reducer.tenantValue.isolationValue,
         "cleanliness": reducer.tenantValue.cleanlinessValue,
         "brightness": reducer.tenantValue.brightnessValue,
         "first_contact": reducer.tenantValue.contactValue,
-        "contact_quality": reducer.tenantValue.contactQualityValue,
+        "contact_quality": reducer.tenantValue.contactQualityValue
       };
 
       console.log(dataToSend);
@@ -55,8 +55,8 @@ const logMiddleware = store => next => (action) => {
       //   })
       //   .catch(error => console.error('Error', error));
 
-      // axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
-      //   .then(response => console.log(response));
+      axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
+        .then(response => console.log(response));
       break;
     }
     default:
