@@ -70,6 +70,7 @@ class Review
     {
         $this->created_At = new DateTime();
         $this->marks = new ArrayCollection();
+        $this->still_in = false;
     }
 
     public function __toString()
