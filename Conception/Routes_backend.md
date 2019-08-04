@@ -4,12 +4,16 @@
 
 | Endpoint | Méthode HTTP | Donnée(s) | Description |
 |--|--|--|--|
-| `rate-my-rent/api/five_apartments` | GET | - | Récupération des données des cinq derniers appartement rentrée en base de données |
-| `rate-my-rent/api/[id]/apartment` | GET | - | Récupération des données d'un appartement (informations générales, avis, notes) |
-| `rate-my-rent/api/[id]/review` | GET | - | Récupération d'un avis de un appartement dont l'id est fourni |
-| `rate-my-rent/api/[id]/marker` | GET | - | Récupération des données pour un marqueur en fonction de l'id de l'appartement |
-| `rate-my-rent/api/user` | GET | - | Récupération des données d'un utilisateur |
+| `/api/five_apartments` | GET | - | Sending the last five apartment with there marks |
+| `/api/[id]/apartment` | GET | - | Sending all informations from Apartment entity for an id (general informations, reviews, marks) |
+| `/api/[id]/review` | GET | - | Sending all informations from Review entity for an id |
+| `/api/apartment/marker` | GET | - | Sending informations from Apartment entity and the title of the associate reviews |
+| `/api/[id]/user` | GET | - | Sending informations from User entity with an id |
 
+## Form reception
+| Endpoint | Méthode HTTP | Donnée(s) | Description |
+|--|--|--|--|
+| `/api/review/new` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
 
 ## Routes
 
