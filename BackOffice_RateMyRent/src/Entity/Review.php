@@ -61,7 +61,7 @@ class Review
     private $apartment;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review")
+     * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review", cascade={"remove"})
      */
     private $marks;
 

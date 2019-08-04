@@ -20,6 +20,7 @@ class ApartmentController extends AbstractController
     public function index(ApartmentRepository $repository)
     {
         $apartments = $repository->findAll();
+        dump($apartments);
         
         return $this->render('admin/apartment/index.html.twig', [
             'apartments' => $apartments,
@@ -31,6 +32,7 @@ class ApartmentController extends AbstractController
      */
     public function show(Apartment $apartment): Response
     {
+        dump($apartment);
         return $this->render('admin/apartment/show.html.twig', [
             'apartment' => $apartment,
         ]);
