@@ -28,10 +28,10 @@ class ReviewRepository extends ServiceEntityRepository
     public function findByApartment($apartment)
     {
        $qb = $this->createQueryBuilder('review')
-        //    ->join('review.note', 'p')
-        //    ->addSelect('p')
-           ->where('review.apartment = :myApartment')
-           ->setParameter('myApartment', $apartment)
+                  ->join('review.marks', 'm')
+                  ->addSelect('m')
+                  ->where('review.apartment = :myApartment')
+                  ->setParameter('myApartment', $apartment)
        ;
        return $qb->getQuery()->getArrayResult();
     }
