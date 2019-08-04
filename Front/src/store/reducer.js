@@ -123,6 +123,7 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case CHANGE_FLOOR_NUMBER:
+    console.log(action.value);
       return {
         ...state,
         floorNumber: action.value,
