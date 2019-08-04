@@ -5,11 +5,17 @@ import { connect } from 'react-redux';
 import ResearchMap from 'src/components/ResearchMap';
 
 // Action Creators
-import { changeAddressInput, setAddressLatLng, setFullScreen } from 'src/store/reducerMap';
+import {
+  changeAddressInput,
+  setAddressLatLng,
+  setFullScreen,
+  setZoom,
+} from 'src/store/reducerMap';
 
 const mapStateToProps = state => ({
   address: state.reducerMap.address,
-  latLng: state.reducerMap.latLng,
+  lat: state.reducerMap.lat,
+  lng: state.reducerMap.lng,
   zoom: state.reducerMap.zoom,
   dropdown: state.reducerMap.dropdown,
   fullscreen: state.reducerMap.fullscreen,
@@ -20,11 +26,14 @@ const mapDispatchToProps = dispatch => ({
   changeAdress: (address) => {
     dispatch(changeAddressInput(address));
   },
-  setAddressLatLng: (latLng) => {
-    dispatch(setAddressLatLng(latLng));
+  setAddressLatLng: (lat, lng) => {
+    dispatch(setAddressLatLng(lat, lng));
   },
   goToFullScreen: () => {
     dispatch(setFullScreen());
+  },
+  setZoom: (newZoom) => {
+    dispatch(setZoom(newZoom));
   },
 });
 

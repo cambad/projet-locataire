@@ -47,7 +47,7 @@ class ResearchMap extends React.Component {
       })
       .then((latLng) => {
         const { setAddressLatLng } = this.props;
-        setAddressLatLng(latLng);
+        setAddressLatLng(latLng.lat, latLng.lng);
       })
       .catch(error => console.error('Error', error));
   };
@@ -68,17 +68,18 @@ class ResearchMap extends React.Component {
     }
   };
 
-  handleMarkerClick = (title, address, lng, lat) => {
+  handleMarkerClick = (title, address, latMarker, lngMarker) => {
     const { isInfoboxVisible } = this.state;
-    const { setAddressLatLng } = this.props;
-    setAddressLatLng(lng, lat);
     this.setState({
       infoboxTitle: title, // Message shown in info window
       infoboxAddress: address,
       isInfoboxVisible: !isInfoboxVisible, // Show info window
-      markerLang: lng, // Y coordinate for positioning info window
-      markerLat: lat, // X coordinate for positioning info window
+      markerLang: lngMarker, // Y coordinate for positioning info window
+      markerLat: latMarker, // X coordinate for positioning info window
     });
+    const { setAddressLatLng, setZoom } = this.props;
+    setZoom(15);
+    setAddressLatLng(latMarker, lngMarker);
   }
 
   handleInfoboxClick = () => {
@@ -90,10 +91,12 @@ class ResearchMap extends React.Component {
   render() {
     const {
       address,
-      latLng,
+      lat,
+      lng,
       zoom,
       dropdown,
       fullscreen,
+      setZoom,
     } = this.props;
     const {
       markers,
@@ -171,9 +174,12 @@ class ResearchMap extends React.Component {
         </div>
         <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
           <MapComponent
-            latLng={latLng}
+            ref="map"
+            lat={lat}
+            lng={lng}
             zoom={zoom}
             newZoom={newZoom}
+            setZoom={setZoom}
             isInfoboxVisible={isInfoboxVisible} // Show/hide info window
             infoboxAddress={infoboxAddress} // Message shown in info window
             infoboxTitle={infoboxTitle}
@@ -192,16 +198,15 @@ class ResearchMap extends React.Component {
 
 ResearchMap.propTypes = {
   address: PropTypes.string.isRequired,
-  latLng: PropTypes.shape({
-    lat: PropTypes.number,
-    lng: PropTypes.number,
-  }).isRequired,
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
   zoom: PropTypes.number.isRequired,
   dropdown: PropTypes.bool.isRequired,
   fullscreen: PropTypes.bool.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
   changeAdress: PropTypes.func.isRequired,
   goToFullScreen: PropTypes.func.isRequired,
+  setZoom: PropTypes.func.isRequired,
 };
 
 export default ResearchMap;
