@@ -1,5 +1,8 @@
 @import 'src/styles/_vars.scss';
 
+.landing {
+  flex-grow: 2;
+}
 
 .homePhoto {
   background-image: url(../../img/accueilbg.jpg);
