@@ -2,36 +2,61 @@
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 
+import { getAddressLatLng } from 'src/store/reducer';
+
 const logMiddleware = store => next => (action) => {
-  // console.log('Je suis le middleware, et je laisse passer cette action: ', action);
-  console.log(action);
 
   switch (action.type) {
-  //   case FETCH_QQCHOSE:
-  //      axios.get(url)
-  //        .then(response => {
-  //              // Ici tu sais que tu as obtenu avec succès ta réponse
-  //              // Tu peux la récupérer dans response.data
-  //           //  const { data } = response.
-  //           //      Il faut ensuite informer le reducer des nouvelles données reçues
-  //           //    store.dispatch(receivedQqchose(data));
-  // })
-  //        .catch()
-
     case 'SUBMIT_RATING_FORM': {
+      // prepare data
+      const { reducer } = store.getState();
+
+      // creating the object to send
+      const dataToSend = {
+        "address": reducer.addressForm,
+        "floor_number": reducer.floorNumber,
+        "location": reducer.location,
+        "area": reducer.fllorArea,
+        "rooms": reducer.numberOfRooms,
+        "rental": reducer.rent,
+        "lat": reducer.latLng.lat,
+        "lng": reducer.latLng.lng,
+        "title": reducer.abstractedComment,
+        "positive": reducer.positiveComment,
+        "negative": reducer.recommendationNegative,
+        "still_in": reducer.stillInApartment,
+        "recommendation": reducer.visitorValue.recommendationValue,
+        "exterior": reducer.visitorValue.exteriorValue,
+        "interior": reducer.visitorValue.interiorValue,
+        "contact": reducer.visitorValue.contactValue,
+        "accessibility": reducer.tenantValue.accessiblityValue,
+        "apartment_environment": reducer.tenantValue.apartmentEnvironnementValue,
+        "traffic": reducer.tenantValue.circulationValue,
+        "exterior_building": reducer.tenantValue.exteriorValue,
+        "building_environment": reducer.tenantValue.buildingEnvironnementValue,
+        "insulation": reducer.tenantValue.isolationValue,
+        "cleanliness": reducer.tenantValue.cleanlinessValue,
+        "brightness": reducer.tenantValue.brightnessValue,
+        "first_contact": reducer.tenantValue.contactValue,
+        "contact_quality": reducer.tenantValue.contactQualityValue,
+      };
+
+      console.log(dataToSend);
+
       // retrieve latitue and longitude from the address
-      const { addressForm } = store.getState().reducer;
-      // ajax request
+      // const { addressForm } = store.getState().reducer;
+      // // ajax request
       // geocodeByAddress(addressForm)
       //   .then((results) => {
       //     return (getLatLng(results[0]));
       //   })
       //   .then((latLng) => {
-      //     // getAddressLatLng(latLng);
+      //     store.dispatch(getAddressLatLng(latLng));
       //   })
       //   .catch(error => console.error('Error', error));
 
-      // axios.post('')
+      // axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
+      //   .then(response => console.log(response));
       break;
     }
     default:
