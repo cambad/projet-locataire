@@ -16,7 +16,9 @@ const InformationGenerale = ({
   changeRent,
 }) => {
   const handleFloorNumber = (event) => {
-    const { value } = event.target;
+    let { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    value = parseInt(value, 10);
     changeFloorNumber(value);
   };
 
@@ -26,17 +28,23 @@ const InformationGenerale = ({
   };
 
   const handleFloorArea = (event) => {
-    const { value } = event.target;
+    let { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    value = parseInt(value, 10);
     changeFloorArea(value);
   };
 
   const handleNumberOfRooms = (event) => {
-    const { value } = event.target;
+    let { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    value = parseInt(value, 10);
     changeNumberOfRooms(value);
   };
 
   const handleRent = (event) => {
-    const { value } = event.target;
+    let { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    value = parseInt(value, 10);
     changeRent(value);
   };
 
