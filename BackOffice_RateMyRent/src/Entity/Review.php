@@ -61,14 +61,15 @@ class Review
     private $apartment;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Note", mappedBy="rewiews", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review")
      */
-    private $notes;
+    private $marks;
+
 
     public function __construct()
     {
-        $this->notes = new ArrayCollection();
         $this->created_At = new DateTime();
+        $this->marks = new ArrayCollection();
     }
 
     public function __toString()
@@ -178,28 +179,31 @@ class Review
     }
 
     /**
-     * @return Collection|Note[]
+     * @return Collection|Marks[]
      */
-    public function getNotes(): Collection
+    public function getMarks(): Collection
     {
-        return $this->notes;
+        return $this->marks;
     }
 
-    public function addNote(Note $note): self
+    public function addMark(Marks $mark): self
     {
-        if (!$this->notes->contains($note)) {
-            $this->notes[] = $note;
-            $note->addRewiew($this);
+        if (!$this->marks->contains($mark)) {
+            $this->marks[] = $mark;
+            $mark->setReview($this);
         }
 
         return $this;
     }
 
-    public function removeNote(Note $note): self
+    public function removeMark(Marks $mark): self
     {
-        if ($this->notes->contains($note)) {
-            $this->notes->removeElement($note);
-            $note->removeRewiew($this);
+        if ($this->marks->contains($mark)) {
+            $this->marks->removeElement($mark);
+            // set the owning side to null (unless already changed)
+            if ($mark->getReview() === $this) {
+                $mark->setReview(null);
+            }
         }
 
         return $this;
