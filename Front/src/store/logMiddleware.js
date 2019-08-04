@@ -51,11 +51,10 @@ const logMiddleware = store => next => (action) => {
             "contact_quality": reducer.tenantValue.contactQualityValue
           };
           console.log(dataToSend);
+          axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
+            .then(response => console.log(response));
         })
         .catch(error => console.error('Error', error));
-
-      // axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
-      //   .then(response => console.log(response));
       break;
     }
     default:

@@ -41,7 +41,6 @@ const ApartmentRating = ({
   changeRecommendationPositive,
   changeRecommendationNegative,
 }) => {
-  console.log('index.js', floorNumber);
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
   };
