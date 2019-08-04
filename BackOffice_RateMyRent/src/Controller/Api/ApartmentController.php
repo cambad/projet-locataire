@@ -15,7 +15,12 @@ use App\Repository\ReviewRepository;
 class ApartmentController extends AbstractController
 {
     /**
+     * Show the last five apartment who just recieve a review
+     * 
      * @Route("/five_apartments", name="five_apartments")
+     *
+     * @param ApartmentRepository $repository
+     * @return JsonResponse
      */
     public function lastFiveApi(ApartmentRepository $repository): JsonResponse
     {
@@ -27,12 +32,18 @@ class ApartmentController extends AbstractController
     }
 
     /**
+     * Show an apartment with the reviews and the marks
+     * 
      * @Route("/{id}/apartment", name="apartment_show", methods={"GET"}, requirements={"id"="\d+"})
+     *
+     * @param Apartment $apartment
+     * @param ReviewRepository $repository
+     * @return JsonResponse
      */
     public function showApartmentApi(Apartment $apartment, ReviewRepository $repository): JsonResponse
     {
         $reviewsApartment = $repository->findByApartment($apartment);
-        //dd($review);
+        //dd($reviewsApartment);
 
         return new JsonResponse([
             'apartment' => [
@@ -49,7 +60,12 @@ class ApartmentController extends AbstractController
     }
 
     /**
+     * Show all the markers visible on the map
+     * 
      * @Route("/apartment/markers", name="marker_show", methods={"GET"})
+     *
+     * @param ApartmentRepository $apartmentRepository
+     * @return JsonResponse
      */
     public function showMarkerApi(ApartmentRepository $apartmentRepository): JsonResponse
     {        

@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Marks;
+use App\Repository\MarksRepository;
 
 /**
  * @Route("/api", name="api_")
@@ -21,10 +22,18 @@ use App\Entity\Marks;
 class ReviewController extends AbstractController
 {
     /**
+     * Show a review with the marks and the apartment
+     * 
      * @Route("/{id}/review", name="review_show", methods={"GET"}, requirements={"id"="\d+"})
+     *
+     * @param Review $review
+     * @param MarksRepository $repository
+     * @return JsonResponse
      */
-    public function showReviewApi(Review $review): JsonResponse
-    {        
+    public function showReviewApi(Review $review, MarksRepository $repository): JsonResponse
+    {
+        $marksByReview = $repository->findByReview($review);
+
         return new JsonResponse([
             'review' => [
                 'id' => $review->getId(),
@@ -36,61 +45,16 @@ class ReviewController extends AbstractController
                 'updatedAt' => $review->getUpdatedAt(),
                 'apartment' => [
                     'id' => $review->getApartment()->getId(),
-                    'adresse' => $review->getApartment()->getAddress(),
-                    'etage' => $review->getApartment()->getFloorNumber(),
-                    'localisation' => $review->getApartment()->getLocation(),
-                    'surface' => $review->getApartment()->getArea(),
-                    'nombre de pieces' => $review->getApartment()->getRooms(),
-                    'loyer' => $review->getApartment()->getRental(),
+                    'address' => $review->getApartment()->getAddress(),
+                    'floor_number' => $review->getApartment()->getFloorNumber(),
+                    'location' => $review->getApartment()->getLocation(),
+                    'area' => $review->getApartment()->getArea(),
+                    'rooms' => $review->getApartment()->getRooms(),
+                    'rental' => $review->getApartment()->getRental(),
                 ],
-                'notes' => $review->getNotes(),
+                'marks' => $marksByReview,
             ],
         ]);
-    }
-
-    /**
-     * Testing a route
-     * 
-     * @Route("/review/test", name="review_test", methods={"POST"})
-     *
-     * @param Request $request
-     * @param SerializerInterface $serializer
-     * @param ValidatorInterface $validator
-     * @param EntityManagerInterface $entityManager
-     * @return void
-     */
-    public function test(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $entityManager) 
-    {
-        $values = json_decode($request->getContent());
-
-        if (isset($values->area)) {
-            $apartment = new Apartment;
-            $apartment->setArea($values->area);
-
-            $errors = $validator->validate($apartment);
-            if(count($errors)) {
-                $errors = $serializer->serialize($errors, 'json');
-                return new Response($errors, 500, [
-                    'content-Type' => 'application/json'
-                ]);
-            }
-          //dd($apartment);
-            $entityManager->persist($apartment);
-            $entityManager->flush();
-
-            $data = [
-                'status' => 201,
-                'message' => 'appartement a été créé'
-            ];
-
-            return new JsonResponse($data, 201);
-        }
-        $data = [
-            'status' => 500,
-            'message' => 'la donnee est pas passee'
-        ];
-        return new JsonResponse($data, 500);
-
     }
 
     /**
@@ -121,8 +85,11 @@ class ReviewController extends AbstractController
                 'object_to_populate' => $apartment
             ]);
             //Check and catch the errors with validator
-            $errors = $validator->validate($apartment);
-            if (count($errors)) {
+            $errors = $validator->validate($apartment->getLat(), [
+
+            ]);
+    //dd($errors);
+            if (0 !== count($errors)) {
                 $errors = $serializer->serialize($errors, 'json');
                 return new Response($errors, 500, [
                     'content-Type' => 'application/json'
@@ -137,7 +104,7 @@ class ReviewController extends AbstractController
                        
             //Check and catch the errors with validator
             $errors = $validator->validate($review);
-            if (count($errors)) {
+            if (0 !== count($errors)) {
                 $errors = $serializer->serialize($errors, 'json');
                 return new Response($errors, 500, [
                     'content-Type' => 'application/json'
@@ -154,7 +121,7 @@ class ReviewController extends AbstractController
 
             //Check and catch the errors with validator
             $errors = $validator->validate($marks);
-            if (count($errors)) {
+            if (0 !== count($errors)) {
                 $errors = $serializer->serialize($errors, 'json');
                 return new Response($errors, 500, [
                     'content-Type' => 'application/json'
@@ -164,7 +131,7 @@ class ReviewController extends AbstractController
             $marks->setReview($review);
 
             //BDD creating a new review, a new apartement and a new note 
-         //dd($marks);
+    //dd($marks);
             $entityManager->persist($marks);  
             $entityManager->flush();
 

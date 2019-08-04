@@ -19,32 +19,18 @@ class MarksRepository extends ServiceEntityRepository
         parent::__construct($registry, Marks::class);
     }
 
-    // /**
-    //  * @return Marks[] Returns an array of Marks objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Find the marks for one review
+     *
+     * @param Review $review
+     * @return Marks[]
+     */
+    public function findByReview($review)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+       $qb = $this->createQueryBuilder('marks')
+                  ->where('marks.review = :myReview')
+                  ->setParameter('myReview', $review)
+       ;
+       return $qb->getQuery()->getArrayResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Marks
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
