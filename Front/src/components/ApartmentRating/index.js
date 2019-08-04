@@ -19,7 +19,6 @@ const ApartmentRating = ({
   isLocataireChange,
   isVisiteurChange,
   changeAddress,
-  // getAddressLatLng,
   isStillInApartment,
   isNotLiveInApartment,
   floorNumber,
@@ -42,6 +41,7 @@ const ApartmentRating = ({
   changeRecommendationPositive,
   changeRecommendationNegative,
 }) => {
+  console.log('index.js', floorNumber);
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
   };
@@ -56,17 +56,6 @@ const ApartmentRating = ({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // retrieve latitude and longitude from the address
-    // geocodeByAddress(address)
-    //   .then((results) => {
-    //     return (getLatLng(results[0]));
-    //   })
-    //   .then((latLng) => {
-    //     getAddressLatLng(latLng);
-    //   })
-    //   .catch(error => console.error('Error', error));
-
-    console.log(address);
     submitRatingForm();
   };
 

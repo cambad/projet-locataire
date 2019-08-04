@@ -45,7 +45,7 @@ class Research extends React.Component {
       return <Redirect to="/recherche/" />;
     }
     return (
-      <main className="accueil">
+      <main className="landing">
         <div className="homePhoto">
           <div className="presentation">
             <h2 className="presentation-title">Bienvenue sur Rate my Rent</h2>

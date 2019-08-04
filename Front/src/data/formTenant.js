@@ -11,7 +11,7 @@ export default {
         id: 2,
         title: 'Environnement urbain de l\'appartement',
         name: 'environnement',
-        nameValue: 'apartmentEnvironnementValue',
+        nameValue: 'apartmentEnvironmentValue',
       },
       {
         id: 3,
@@ -31,7 +31,7 @@ export default {
         id: 2,
         title: 'Environnement urbain de l\'appartement',
         name: 'environnement',
-        nameValue: 'buildingEnvironnementValue',
+        nameValue: 'buildingEnvironmentValue',
       },
     ],
     apartmentQualities: [

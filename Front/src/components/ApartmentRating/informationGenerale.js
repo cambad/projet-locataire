@@ -15,22 +15,18 @@ const InformationGenerale = ({
   changeNumberOfRooms,
   changeRent,
 }) => {
-
-  const handleFloorNumber = () => {
-    // isAgency();
-    changeFloorNumber();
+  const handleFloorNumber = (event) => {
+    const { value } = event.target;
+    changeFloorNumber(value);
   };
 
   const handleLocation = (event) => {
-    // isOwner();
     const { value } = event.target;
     changeLocation(value);
   };
 
   const handleFloorArea = (event) => {
     const { value } = event.target;
-
-    // console.log(typeof(value));
     changeFloorArea(value);
   };
 
@@ -46,18 +42,6 @@ const InformationGenerale = ({
 
   return (
     <>
-      {/* <div className="information-generales-intermediaire"> */}
-        {/* <div>
-          <p>Intermédiaire :</p>
-        </div>
-        <div>
-          <input onChange={handleIsAgency} className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
-          <label className="radioLabel" htmlFor="agence/proprio">Agence</label>
-          <input onChange={handleIsOwner} className="radioButtons" type="radio" name="agence/proprio" id="agence/proprio" value="agence/proprio" />
-          <label className="radioLabel" htmlFor="agence/proprio">Propriétaire</label>
-        </div> */}
-        
-      {/* </div> */}
       <div className="information-generales-surface">
         <div>
           <p>Etage</p>

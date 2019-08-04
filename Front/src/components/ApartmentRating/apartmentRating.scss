@@ -47,6 +47,12 @@
   }
 }
 
+textarea:focus, textarea:hover, input:focus, input:hover {
+  -webkit-box-shadow: 0px 0px 4px 1px rgba(34,56,67,.4); 
+  box-shadow: 0px 0px 4px 1px rgba(34,56,67,.4);
+  transition: all .2s ease;
+}
+
 .radioButtons, .radioLabel  {
   margin-right: .5em;;
 }
@@ -124,10 +130,16 @@
   }
 
   & .location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & p {
+      margin-bottom: .5em;
+    }
     
     & input {
       width: 100%;
-      margin-left: 2em;
     }
   }
 
@@ -164,7 +176,6 @@
 
       input {
         width: 20%;
-        margin-right: 2em;
         font-size: 1em;
       }
     }
@@ -183,7 +194,6 @@
 
     input {
       width: 20%;
-      margin-right: 2em;
       font-size: 1em;
     }
   }
@@ -234,12 +244,23 @@
   font-family: $text-font-family;
   font-size: 1.2em;
   align-self: center;
+  border: none;
   width: 60%;
   margin-top: 2em;
   background-color: $button-background-color;
   color: $button-text-color;
   padding: .8em;
   border-radius: 10px;
+  transition: all .3s ease;
+
+  &:hover {
+    border-radius: 0px;
+    background-color: $button-text-color;
+    color: $button-background-color;
+    -webkit-box-shadow: 0px 0px 4px 1px rgba(34,56,67,.4); 
+    box-shadow: 0px 0px 4px 1px rgba(34,56,67,.4);
+    transition: all .2s ease;
+  }
 }
 
 .notation {
@@ -281,6 +302,24 @@
       flex-direction: row;
     }
   }
+}
+
+@media (min-width: 992px) {
+
+  .information-generales {
+
+    & .location {
+      flex-direction: row;
+      align-items: center;
+      
+      & input {
+        width: 100%;
+        margin-left: 2em;
+      }
+    }
+  }
+
+
 }
 
 @media (min-width: 1200px) {
