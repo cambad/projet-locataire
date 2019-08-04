@@ -32,6 +32,8 @@ security:
         api:
             pattern:   ^/api
             stateless: true
+            # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
+            security: false
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
