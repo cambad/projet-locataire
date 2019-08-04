@@ -10,7 +10,7 @@ import axios from 'axios';
 
 import './researchmap.scss';
 
-import GoogleMapComponent from './GoogleMapComponent';
+import MapComponent from './GoogleMapComponent';
 
 class ResearchMap extends React.Component {
   state = {
@@ -26,7 +26,7 @@ class ResearchMap extends React.Component {
 
 
   componentDidMount() {
-    axios.get('https://api.rate-my-rent.fr/api/markers')
+    axios.get('https://api.rate-my-rent.fr/api/apartment/markers')
       .then((results) => {
         this.setState({
           markers: results.data,
@@ -170,7 +170,7 @@ class ResearchMap extends React.Component {
           </PlacesAutocomplete>
         </div>
         <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
-          <GoogleMapComponent
+          <MapComponent
             latLng={latLng}
             zoom={zoom}
             newZoom={newZoom}

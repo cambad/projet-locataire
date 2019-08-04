@@ -19,8 +19,10 @@ const GoogleMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap,
-)((props) => {
-  const { 
+);
+
+const Map = ((props) => {
+  const {
     zoom,
     latLng,
     dataLoaded,
@@ -32,7 +34,7 @@ const GoogleMapComponent = compose(
     handleInfoboxClick,
     infoboxAddress,
     infoboxTitle,
-   } = props;
+  } = props;
   return (
     <GoogleMap
       defaultCenter={{
@@ -44,32 +46,32 @@ const GoogleMapComponent = compose(
         lat: latLng.lat, // latitude for the center of the map
         lng: latLng.lng, // longitude for the center of the map
       }}
-      defaultOptions={{mapTypeControl: false}}
-    > 
-    {dataLoaded && (
-      markers.apartments.map(marker => (
-      <Marker
-        key={marker.title}
-        position={{
-          lat: marker.lat, // latitude to position the marker
-          lng: marker.lng // longitude to position the marker
-        }}
-        onMouseOver={(title, address, lng, lat) =>
-          handleMarkerClick(
-            marker.title,
-            marker.adress,
-            marker.lat,
-            marker.lng,
-          )
-        }
-      />
-    ))
-    )}
+      defaultOptions={{ mapTypeControl: false }}
+    >
+      {dataLoaded && (
+        markers.apartments.map(marker => (
+          <Marker
+            key={marker.title}
+            position={{
+              lat: marker.lat, // latitude to position the marker
+              lng: marker.lng // longitude to position the marker
+            }}
+            onMouseOver={(title, address, lng, lat) =>
+              handleMarkerClick(
+                marker.title,
+                marker.adress,
+                marker.lat,
+                marker.lng,
+              )
+            }
+          />
+        ))
+      )}
       {isInfoboxVisible && (
         <InfoWindow
           position={{
             lat: infoboxPosY,
-            lng: infoboxPosX
+            lng: infoboxPosX,
           }}
           onCloseClick={() => handleInfoboxClick()}
         >
@@ -80,6 +82,9 @@ const GoogleMapComponent = compose(
         </InfoWindow>
       )}
     </GoogleMap>
-)});
+  );
+});
 
-export default GoogleMapComponent;
+const MapComponent = GoogleMapComponent(Map);
+
+export default MapComponent;
