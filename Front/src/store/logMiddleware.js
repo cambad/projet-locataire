@@ -2,7 +2,11 @@
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 
-import { getAddressLatLng } from 'src/store/reducer';
+import {
+  getAddressLatLng,
+  changeFormLoading,
+  changeFormSubmitSuccess,
+} from 'src/store/reducer';
 
 const logMiddleware = store => next => (action) => {
 
@@ -52,6 +56,15 @@ const logMiddleware = store => next => (action) => {
         correctForm = false;
       }
 
+      // retrieve formLoading to display a loading circle
+
+      /**
+       * 
+       * 
+       * ATTETION !!! Enlever la ligne en dessous !!!!!!!!!!!!!!!!!!!!!!
+       * 
+       */
+      // correctForm = true;
       // If correctForm = true, we can request the latitude and longitude with the address
       if (correctForm) {
         // create dataToSend variable
@@ -62,10 +75,13 @@ const logMiddleware = store => next => (action) => {
             return (getLatLng(results[0]));
           })
           .then((latLng) => {
+            // Get latitude and longitude and dispatch it in reducer
             store.dispatch(getAddressLatLng(latLng));
-  
+            // change formLoading to true to display a loading icone
+            store.dispatch(changeFormLoading());
             // creating the object to send in the request to retrieve the latitude/logitude inside
             dataToSend = {
+              "tenant": reducer.isLocataire,
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
               "location": reducer.location,
@@ -94,10 +110,24 @@ const logMiddleware = store => next => (action) => {
               "contact_quality": reducer.tenantValue.contactQualityValue
             };
             console.log(dataToSend);
-            // axios.post('https://api.rate-my-rent.fr/api/review/new', dataToSend)
-            //   .then(response => console.log(response));
+            axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
+              .then((response) => {
+                // stop displaying the form submit loader
+                store.dispatch(changeFormLoading());
+                store.dispatch(changeFormSubmitSuccess());
+                console.log(response);
+              })
+              .catch((response) => {
+                // stop displaying the form submit loader
+                store.dispatch(changeFormLoading());
+                console.log(response);
+              });
           })
-          .catch(error => console.error('Error', error));
+          .catch((error) => {
+            // If there is no address, display the error
+            console.log('je laisse passer l\'action');
+            next(action);
+          });
       }
       else {
         // the action can pass in the reducer to change a state and display an error message

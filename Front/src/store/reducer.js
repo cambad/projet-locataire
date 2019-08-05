@@ -1,5 +1,6 @@
 // == Initial State
 const initialState = {
+  formSubmitSuccess: false,
   formLoading: false,
   isConnected: true,
   errorFormSubmit: false,
@@ -57,6 +58,8 @@ const GET_LAT_LNG = 'GET_LAT_LNG';
 const CHANGE_POSITIVE_COMMENT = 'CHANGE_POSITIVE_COMMENT';
 const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
 const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
+const CHANGE_FORM_LOADING = 'CHANGE_FORM_LOADING';
+const CHANGE_FORM_SUBMIT_SUCCESS = 'CHANGE_FORM_SUBMIT_SUCCESS';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -187,6 +190,18 @@ const reducer = (state = initialState, action = {}) => {
         errorFormSubmit: true,
       };
 
+    case CHANGE_FORM_LOADING:
+      return {
+        ...state,
+        formLoading: !state.formLoading,
+      };
+
+    case CHANGE_FORM_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        formSubmitSuccess: !state.formSubmitSuccess,
+      };
+
     default:
       return state;
   }
@@ -270,6 +285,14 @@ export const changeNegativeComment = comment => ({
 
 export const submitRatingForm = () => ({
   type: SUBMIT_RATING_FORM,
+});
+
+export const changeFormLoading = () => ({
+  type: CHANGE_FORM_LOADING,
+});
+
+export const changeFormSubmitSuccess = () => ({
+  type: CHANGE_FORM_SUBMIT_SUCCESS,
 });
 
 // == Selectors
