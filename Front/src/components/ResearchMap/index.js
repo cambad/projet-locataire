@@ -17,6 +17,7 @@ class ResearchMap extends React.Component {
     markers: {},
     infoboxAddress: '',
     infoboxTitle: '',
+    infoboxRental: '',
     isInfoboxVisible: false,
     markerLang: 0,
     markerLat: 0,
@@ -68,11 +69,12 @@ class ResearchMap extends React.Component {
     }
   };
 
-  handleMarkerClick = (title, address, latMarker, lngMarker) => {
+  handleMarkerClick = (title, address, rental, latMarker, lngMarker) => {
     const { isInfoboxVisible } = this.state;
     this.setState({
       infoboxTitle: title, // Message shown in info window
       infoboxAddress: address,
+      infoboxRental: rental,
       isInfoboxVisible: !isInfoboxVisible, // Show info window
       markerLang: lngMarker, // Y coordinate for positioning info window
       markerLat: latMarker, // X coordinate for positioning info window
@@ -104,10 +106,12 @@ class ResearchMap extends React.Component {
       isInfoboxVisible,
       infoboxAddress,
       infoboxTitle,
+      infoboxRental,
       markerLang,
       markerLat,
       newZoom,
     } = this.state;
+    const callBackApi = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&libraries=places&callback=myCallbackFunc"></script>';
     return (
       <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
         <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
@@ -117,6 +121,7 @@ class ResearchMap extends React.Component {
             value={address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            googleCallbackName={callBackApi}
           >
             {({
               getInputProps,
@@ -174,7 +179,6 @@ class ResearchMap extends React.Component {
         </div>
         <div className={classNames({ 'google-maps': !fullscreen, 'google-maps-fullscreen': fullscreen })}>
           <MapComponent
-            ref="map"
             lat={lat}
             lng={lng}
             zoom={zoom}
@@ -183,6 +187,7 @@ class ResearchMap extends React.Component {
             isInfoboxVisible={isInfoboxVisible} // Show/hide info window
             infoboxAddress={infoboxAddress} // Message shown in info window
             infoboxTitle={infoboxTitle}
+            infoboxRental={infoboxRental}
             handleInfoboxClick={this.handleInfoboxClick} // Handle closing of the info window
             handleMarkerClick={this.handleMarkerClick} // Handle click on Marker component
             infoboxPosY={markerLang} // Y coordinate for positioning info window

@@ -23,7 +23,7 @@ const GoogleMapComponent = compose(
 );
 
 const Map = (props) => {
-  const mapRef = React.createRef();
+  const mapRef = React.useRef();
 
   const onZoomChanged = () => {
     const { setZoom } = props;
@@ -45,6 +45,7 @@ const Map = (props) => {
     handleInfoboxClick,
     infoboxAddress,
     infoboxTitle,
+    infoboxRental,
   } = props;
   return (
     <GoogleMap
@@ -62,23 +63,26 @@ const Map = (props) => {
       onZoomChanged={onZoomChanged}
     >
       {dataLoaded && (
-        markers.apartments.map(marker => (
-          <Marker
-            key={marker.id}
-            position={{
-              lat: parseFloat(marker.lat), // latitude to position the marker
-              lng: parseFloat(marker.lng), // longitude to position the marker
-            }}
-            onClick={() => (
-              handleMarkerClick(
-                marker.title,
-                marker.adress,
-                marker.lat,
-                marker.lng,
-              )
-            )}
-          />
-        ))
+        markers.apartments.map((marker) => {
+          return (
+            <Marker
+              key={marker.id}
+              position={{
+                lat: parseFloat(marker.lat), // latitude to position the marker
+                lng: parseFloat(marker.lng), // longitude to position the marker
+              }}
+              onClick={() => (
+                handleMarkerClick(
+                  marker.title,
+                  marker.address,
+                  marker.rental,
+                  marker.lat,
+                  marker.lng,
+                )
+              )}
+            />
+          );
+        })
       )}
       {isInfoboxVisible && (
         <InfoWindow
@@ -91,6 +95,7 @@ const Map = (props) => {
           <div className="infobox">
             <h1>{infoboxTitle}</h1>
             <p>{infoboxAddress}</p>
+            <p>Un loyer de {infoboxRental} €</p>
           </div>
         </InfoWindow>
       )}
@@ -112,6 +117,7 @@ Map.propTypes = {
   infoboxAddress: PropTypes.string.isRequired,
   infoboxTitle: PropTypes.string.isRequired,
   setZoom: PropTypes.func.isRequired,
+  infoboxRental: PropTypes.string.isRequired,
 };
 
 const MapComponent = GoogleMapComponent(Map);
