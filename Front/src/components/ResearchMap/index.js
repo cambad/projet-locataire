@@ -47,8 +47,10 @@ class ResearchMap extends React.Component {
         return (getLatLng(results[0]));
       })
       .then((latLng) => {
-        const { setAddressLatLng } = this.props;
+        const { setAddressLatLng, setZoom, changeAdress } = this.props;
+        setZoom(15);
         setAddressLatLng(latLng.lat, latLng.lng);
+        changeAdress('');
       })
       .catch(error => console.error('Error', error));
   };
