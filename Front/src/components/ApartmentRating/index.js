@@ -12,6 +12,7 @@ import InformationGenerale from './informationGenerale';
 import './apartmentRating.scss';
 
 const ApartmentRating = ({
+  errorFormSubmit,
   address,
   isLocataire,
   isVisiteur,
@@ -20,7 +21,7 @@ const ApartmentRating = ({
   isVisiteurChange,
   changeAddress,
   isStillInApartment,
-  isNotLiveInApartment,
+  stillInApartment,
   floorNumber,
   location,
   floorArea,
@@ -38,8 +39,6 @@ const ApartmentRating = ({
   changePositiveComment,
   changeNegativeComment,
   submitRatingForm,
-  changeRecommendationPositive,
-  changeRecommendationNegative,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -96,7 +95,7 @@ const ApartmentRating = ({
             {isLocataire && (
               <NotationFormLocataire
                 isStillInApartment={isStillInApartment}
-                isNotLiveInApartment={isNotLiveInApartment}
+                stillInApartment={stillInApartment}
               />
             )}
             {isVisiteur && (
@@ -112,11 +111,10 @@ const ApartmentRating = ({
               changeAbstractedComment={changeAbstractedComment}
               changePositiveComment={changePositiveComment}
               changeNegativeComment={changeNegativeComment}
-              changeRecommendationPositive={changeRecommendationPositive}
-              changeRecommendationNegative={changeRecommendationNegative}
             />
           )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
+          <p className={classNames({ 'error-form-submit-hidden': !errorFormSubmit, 'error-form-submit': errorFormSubmit })}>Veuillez remplir tous les champs s'il vous plaît</p>
         </form>
       </div>
     </div>
@@ -132,12 +130,8 @@ ApartmentRating.propTypes = {
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
-  // getAddressLatLng: PropTypes.func.isRequired,
   isStillInApartment: PropTypes.func.isRequired,
-  isNotLiveInApartment: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,
-  changeRecommendationPositive: PropTypes.func.isRequired,
-  changeRecommendationNegative: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;

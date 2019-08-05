@@ -10,7 +10,6 @@ import {
   changeIsVisiteur,
   changeAddressFormInput,
   changeStillInApartment,
-  changeNotLiveInApartment,
   changeFloorNumber,
   changeLocation,
   changeFloorArea,
@@ -20,12 +19,12 @@ import {
   changePositiveComment,
   changeNegativeComment,
   submitRatingForm,
-  changeRecommendationPositive,
-  changeRecommendationNegative,
 } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
+  errorFormSubmit: state.reducer.errorFormSubmit,
+  stillInApartment: state.reducer.stillInApartment,
   address: state.reducer.addressForm,
   isLocataire: state.reducer.isLocataire,
   isVisiteur: state.reducer.isVisiteur,
@@ -51,11 +50,8 @@ const mapDispatchToProps = dispatch => ({
   changeAddress: (address) => {
     dispatch(changeAddressFormInput(address));
   },
-  isStillInApartment: () => {
-    dispatch(changeStillInApartment());
-  },
-  isNotLiveInApartment: () => {
-    dispatch(changeNotLiveInApartment());
+  isStillInApartment: (checked) => {
+    dispatch(changeStillInApartment(checked));
   },
   changeFloorNumber: (value) => {
     dispatch(changeFloorNumber(value));
@@ -83,12 +79,6 @@ const mapDispatchToProps = dispatch => ({
   },
   submitRatingForm: () => {
     dispatch(submitRatingForm());
-  },
-  changeRecommendationPositive: () => {
-    dispatch(changeRecommendationPositive());
-  },
-  changeRecommendationNegative: () => {
-    dispatch(changeRecommendationNegative());
   },
 });
 
