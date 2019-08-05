@@ -8,7 +8,6 @@ const logMiddleware = store => next => (action) => {
 
   switch (action.type) {
     case 'SUBMIT_RATING_FORM': {
-
       // check if the form is correct
       // First, create a variable to know at the end, if everything is correct
       let correctForm = false;
