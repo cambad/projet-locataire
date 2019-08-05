@@ -70,7 +70,7 @@ class Apartment
 
     public function __toString()
     {
-        return $this->reviews;
+        return $this->address;
     }
 
     public function getId(): ?int

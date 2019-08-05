@@ -3,11 +3,12 @@
 namespace App\Controller\Api;
 
 use App\Entity\Apartment;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ApartmentRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use App\Repository\ApartmentRepository;
-use App\Repository\ReviewRepository;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/api", name="api_")
@@ -22,12 +23,13 @@ class ApartmentController extends AbstractController
      * @param ApartmentRepository $repository
      * @return JsonResponse
      */
-    public function lastFiveApi(ApartmentRepository $repository): JsonResponse
+    public function lastFiveApi(ApartmentRepository $repository, SerializerInterface $serializer): Response
     {
         $fiveApartments = $repository->lastRelease(5);
+        $apartmentsSerialised = $serializer->serialize($fiveApartments, 'json');
 
-        return new JsonResponse([
-            'apartments' => $fiveApartments,
+        return new Response($apartmentsSerialised, 201, [
+            'content-Type' => 'application/json'
         ]);
     }
 
@@ -36,26 +38,18 @@ class ApartmentController extends AbstractController
      * 
      * @Route("/{id}/apartment", name="apartment_show", methods={"GET"}, requirements={"id"="\d+"})
      *
-     * @param Apartment $apartment
-     * @param ReviewRepository $repository
-     * @return JsonResponse
+     * @param SerializerInterface $serializer
+     * @param ApartmentRepository $apartmentRepository
+     * @param Apartment $id
+     * @return Response
      */
-    public function showApartmentApi(Apartment $apartment, ReviewRepository $repository): JsonResponse
+    public function showApartmentApi(SerializerInterface $serializer, ApartmentRepository $apartmentRepository, $id): Response
     {
-        $reviewsApartment = $repository->findByApartment($apartment);
-        //dd($reviewsApartment);
+        $apartmentById = $apartmentRepository->findApartmentById($id);
+        $apartmentSerialised = $serializer->serialize($apartmentById, 'json');
 
-        return new JsonResponse([
-            'apartment' => [
-                'id' => $apartment->getId(),
-                'address' => $apartment->getAddress(),
-                'floorNumber' => $apartment->getFloorNumber(),
-                'location' => $apartment->getLocation(),
-                'area' => $apartment->getArea(),
-                'rooms' => $apartment->getRooms(),
-                'rental' => $apartment->getRental(),
-                'reviews' => $reviewsApartment,
-            ],
+        return new Response($apartmentSerialised, 201, [
+            'content-Type' => 'application/json'
         ]);
     }
 

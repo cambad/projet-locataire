@@ -37,4 +37,17 @@ class ApartmentRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getArrayResult();
     }
+
+    public function findApartmentById($id)
+    {
+        $query = $this->createQueryBuilder('a')
+                      ->join('a.reviews','r')
+                      ->addSelect('r')
+                      ->join('r.marks', 'm')
+                      ->addSelect('m')
+                      ->orderBy('a.id', 'DESC')
+                      ->where('a.id ='. $id)
+        ;
+        return $query->getQuery()->getArrayResult();
+    }
 }
