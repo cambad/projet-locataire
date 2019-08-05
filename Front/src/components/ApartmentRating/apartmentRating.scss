@@ -1,5 +1,13 @@
 @import 'src/styles/_vars.scss';
 
+.error-form-submit-hidden{
+  display: none;
+}
+.error-form-submit {
+  display: block;
+  margin-top: 1em;
+  color: red;
+}
 
 .notation-form {
   flex-grow: 2;
@@ -229,15 +237,15 @@ textarea:focus, textarea:hover, input:focus, input:hover {
     font-size: 1em;
   }
 
-  &-yes-label {
-    margin-right: 2em;
-    font-size: 1.1em;
-  }
+  // &-yes-label {
+  //   margin-right: 2em;
+  //   font-size: 1.1em;
+  // }
 
-  &-p {
-    margin-bottom: 1em;
-    font-size: 1.1em;
-  }
+  // &-p {
+  //   margin-bottom: 1em;
+  //   font-size: 1.1em;
+  // }
 }
 
 .form-submit {
@@ -246,7 +254,6 @@ textarea:focus, textarea:hover, input:focus, input:hover {
   align-self: center;
   border: none;
   width: 60%;
-  margin-top: 2em;
   background-color: $button-background-color;
   color: $button-text-color;
   padding: .8em;

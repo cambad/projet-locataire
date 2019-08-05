@@ -2,6 +2,7 @@
 const initialState = {
   formLoading: false,
   isConnected: true,
+  errorFormSubmit: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
@@ -28,8 +29,7 @@ const initialState = {
   isVisiteur: false,
   isLocataire: false,
   isDisplayed: false,
-  stillInApartment: false,
-  notLiveInApartment: false,
+  stillInApartment: true,
   floorNumber: 0,
   location: '',
   floorArea: 0,
@@ -38,8 +38,6 @@ const initialState = {
   abstractedComment: '',
   positiveComment: '',
   negativeComment: '',
-  recommendationPositive: false,
-  recommendationNegative: false,
 };
 
 // == Types
@@ -47,7 +45,6 @@ const CHANGE_IS_LOCATAIRE = 'CHANGE_IS_LOCATAIRE';
 const CHANGE_IS_VISITEUR = 'CHANGE_IS_VISITEUR';
 const CHANGE_ADDRESS_FORM_INPUT = 'CHANGE_ADDRESS_FORM_INPUT';
 const CHANGE_STILL_IN = 'CHANGE_STILL_IN';
-const CHANGE_NOT_LIVE = 'CHANGE_NOT_LIVE';
 const CHANGE_FLOOR_NUMBER = 'CHANGE_FLOOR_NUMBER';
 const CHANGE_LOCATION = 'CHANGE_LOCATION';
 const CHANGE_FLOOR_AREA = 'CHANGE_FLOOR_AREA';
@@ -60,8 +57,6 @@ const GET_LAT_LNG = 'GET_LAT_LNG';
 const CHANGE_POSITIVE_COMMENT = 'CHANGE_POSITIVE_COMMENT';
 const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
 const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
-const CHANGE_RECOMMENDATION_POSITIVE = 'CHANGE_RECOMMENDATION_POSITIVE';
-const CHANGE_RECOMMENDATION_NEGATIVE = 'CHANGE_RECOMMENDATION_NEGATIVE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -111,19 +106,10 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_STILL_IN:
       return {
         ...state,
-        stillInApartment: true,
-        notLiveInApartment: false,
-      };
-
-    case CHANGE_NOT_LIVE:
-      return {
-        ...state,
-        stillInApartment: false,
-        notLiveInApartment: true,
+        stillInApartment: !action.checked,
       };
 
     case CHANGE_FLOOR_NUMBER:
-    console.log(action.value);
       return {
         ...state,
         floorNumber: action.value,
@@ -194,19 +180,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         negativeComment: action.comment,
       };
-
-    case CHANGE_RECOMMENDATION_POSITIVE:
+    
+    case SUBMIT_RATING_FORM:
       return {
         ...state,
-        recommendationPositive: true,
-        recommendationNegative: false,
-      };
-
-    case CHANGE_RECOMMENDATION_NEGATIVE:
-      return {
-        ...state,
-        recommendationPositive: false,
-        recommendationNegative: true,
+        errorFormSubmit: true,
       };
 
     default:
@@ -243,12 +221,9 @@ export const changeAddressFormInput = address => ({
   address,
 });
 
-export const changeStillInApartment = () => ({
+export const changeStillInApartment = checked => ({
   type: CHANGE_STILL_IN,
-});
-
-export const changeNotLiveInApartment = () => ({
-  type: CHANGE_NOT_LIVE,
+  checked,
 });
 
 export const changeFloorArea = value => ({
@@ -295,14 +270,6 @@ export const changeNegativeComment = comment => ({
 
 export const submitRatingForm = () => ({
   type: SUBMIT_RATING_FORM,
-});
-
-export const changeRecommendationPositive = () => ({
-  type: CHANGE_RECOMMENDATION_POSITIVE,
-});
-
-export const changeRecommendationNegative = () => ({
-  type: CHANGE_RECOMMENDATION_NEGATIVE,
 });
 
 // == Selectors
