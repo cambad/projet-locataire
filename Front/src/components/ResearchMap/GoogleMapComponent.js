@@ -1,5 +1,7 @@
 import React from 'react';
 import { compose, withProps } from 'recompose';
+import Rating from '@material-ui/lab/Rating';
+import { NavLink } from 'react-router-dom';
 import {
   withScriptjs,
   withGoogleMap,
@@ -9,7 +11,7 @@ import {
 } from 'react-google-maps';
 import PropTypes from 'prop-types';
 
-import './marker.scss';
+import './infobox.scss';
 
 const apiURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&v=3.exp&libraries=geometry,drawing,places';
 const GoogleMapComponent = compose(
@@ -47,6 +49,7 @@ const Map = (props) => {
     infoboxAddress,
     infoboxTitle,
     infoboxRental,
+    id,
   } = props;
   return (
     <GoogleMap
@@ -79,6 +82,7 @@ const Map = (props) => {
                   marker.rental,
                   marker.lat,
                   marker.lng,
+                  marker.id,
                 )
               )}
             />
@@ -94,9 +98,12 @@ const Map = (props) => {
           onCloseClick={() => handleInfoboxClick()}
         >
           <div className="infobox">
-            <h1>{infoboxTitle}</h1>
-            <p>{infoboxAddress}</p>
-            <p>Un loyer de {infoboxRental} €</p>
+            <h1 className="infobox-title">{infoboxTitle}</h1>
+            <p className="infobox-address">{infoboxAddress}</p>
+            <p className="infobox-rent">Loyer: {infoboxRental} €</p>
+            <p className="infobox-rating">Note générale :</p>
+            <Rating readOnly name="general-rating" value={3} />
+            <NavLink to={`/appartement/${id}`}>Voir détails</NavLink>
           </div>
         </InfoWindow>
       )}
