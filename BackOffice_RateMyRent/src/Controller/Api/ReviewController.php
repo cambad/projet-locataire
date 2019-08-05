@@ -74,7 +74,6 @@ class ReviewController extends AbstractController
         if ($content = $request->getContent()) {
             $frontDatas = json_decode($content, true);
         }
-//dd($frontDatas);
 
         if (isset($frontDatas)) {
 
@@ -88,7 +87,6 @@ class ReviewController extends AbstractController
             $errors = $validator->validate($apartment->getLat(), [
 
             ]);
-    //dd($errors);
             if (0 !== count($errors)) {
                 $errors = $serializer->serialize($errors, 'json');
                 return new Response($errors, 500, [
@@ -118,6 +116,43 @@ class ReviewController extends AbstractController
             $marks = $marks = $serializer->deserialize($content, Marks::class, 'json', [
                 'object_to_populate' => $marks
             ]);
+            //If a tenant send a form, we have to calculate the average of the categories and send it into the database.
+            if($marks->getRecommendation() === 0)
+            {
+                $result = $marks->getAccessibility() + $marks->getApartmentEnvironment() + $marks->getTraffic();
+                $result = round($result/3);
+                $average = intval($result);
+
+                $marks->setRecommendation($average);                
+            };
+
+            if($marks->getExterior() === 0)
+            {
+                $result = $marks->getExteriorBuilding() + $marks->getBuildingEnvironment();
+                $result = round($result/2);
+                $average = intval($result);
+
+                $marks->setExterior($average);                
+            };
+
+            if($marks->getInterior() === 0)
+            {
+                $result = $marks->getInsulation() + $marks->getCleanliness() + $marks->getBrightness();
+                $result = round($result/3);
+                $average = intval($result);
+
+                $marks->setInterior($average);                
+            };
+
+            if($marks->getContact() === 0)
+            {
+                $result = $marks->getFirstContact() + $marks->getContactQuality();
+                $result = round($result/2);
+                $average = intval($result);
+
+                $marks->setContact($average);                
+            };
+            
 
             //Check and catch the errors with validator
             $errors = $validator->validate($marks);
@@ -131,8 +166,7 @@ class ReviewController extends AbstractController
             $marks->setReview($review);
 
             //BDD creating a new review, a new apartement and a new note 
-    //dd($marks);
-            $entityManager->persist($marks);  
+            $entityManager->persist($marks);
             $entityManager->flush();
 
             $data = [
