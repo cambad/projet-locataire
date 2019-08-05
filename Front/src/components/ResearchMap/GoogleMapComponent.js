@@ -64,7 +64,6 @@ const Map = (props) => {
     >
       {dataLoaded && (
         markers.apartments.map((marker) => {
-          console.log(marker);
           return (
             <Marker
               key={marker.id}
@@ -118,6 +117,7 @@ Map.propTypes = {
   infoboxAddress: PropTypes.string.isRequired,
   infoboxTitle: PropTypes.string.isRequired,
   setZoom: PropTypes.func.isRequired,
+  infoboxRental: PropTypes.string.isRequired,
 };
 
 const MapComponent = GoogleMapComponent(Map);
