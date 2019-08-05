@@ -102,7 +102,7 @@ const Map = (props) => {
             <p className="infobox-address">{infoboxAddress}</p>
             <p className="infobox-rent">Loyer: {infoboxRental} €</p>
             <p className="infobox-rating">Note générale :</p>
-            <Rating name="general-rating" value={3} />
+            <Rating readOnly name="general-rating" value={3} />
             <NavLink to={`/appartement/${id}`}>Voir détails</NavLink>
           </div>
         </InfoWindow>
