@@ -21,6 +21,7 @@ class LastFiveReview extends React.Component {
       .then((response) => {
         // retrieve the data
         const { apartments } = response.data;
+        console.log(apartments);
         // set the local state with data
         this.setState({
           lastFiveApartment: apartments,

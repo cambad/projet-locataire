@@ -12,8 +12,8 @@ const Commentaire = ({
   changeAbstractedComment,
   changePositiveComment,
   changeNegativeComment,
-  changeRecommendationPositive,
-  changeRecommendationNegative,
+  // changeRecommendationPositive,
+  // changeRecommendationNegative,
 }) => {
 
   const handleAbstractedComment = (event) => {
@@ -31,13 +31,13 @@ const Commentaire = ({
     changeNegativeComment(value);
   };
 
-  const handleRecommendationPositive = () => {
-    changeRecommendationPositive();
-  };
+  // const handleRecommendationPositive = () => {
+  //   changeRecommendationPositive();
+  // };
 
-  const handleRecommendationNegative = () => {
-    changeRecommendationNegative();
-  };
+  // const handleRecommendationNegative = () => {
+  //   changeRecommendationNegative();
+  // };
 
   return (
     <div className={classNames({ 'commentaires-hidden': !isDisplayed, commentaires: isDisplayed })}>
@@ -55,12 +55,12 @@ const Commentaire = ({
   
       <textarea value={negativeComment} onChange={handleNegativeComment} className="commentaire-negatifs-area" name="" id="" cols="30" rows="10" placeholder="Les points négatifs de l'appartement" />
   
-      <p className="commentaire-p">De manière générale, recommanderiez-vous cet appartement à d'autres locataires ?</p>
+      {/* <p className="commentaire-p">De manière générale, recommanderiez-vous cet appartement à d'autres locataires ?</p>
       <input onChange={handleRecommendationPositive} type="radio" name="recommendation" id="recommendation" />
       <label className="commentaire-yes-label" htmlFor="recommendation">Oui</label>
   
       <input onChange={handleRecommendationNegative} type="radio" name="recommendation" id="recommendation" />
-      <label htmlFor="recommendation">Non</label>
+      <label htmlFor="recommendation">Non</label> */}
     </div>
   );
 };
@@ -75,8 +75,8 @@ Commentaire.propTypes = {
   changeAbstractedComment: PropTypes.func.isRequired,
   changePositiveComment: PropTypes.func.isRequired,
   changeNegativeComment: PropTypes.func.isRequired,
-  changeRecommendationPositive: PropTypes.func.isRequired,
-  changeRecommendationNegative: PropTypes.func.isRequired,
+  // changeRecommendationPositive: PropTypes.func.isRequired,
+  // changeRecommendationNegative: PropTypes.func.isRequired,
 };
 
 export default Commentaire;

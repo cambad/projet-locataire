@@ -14,18 +14,11 @@ const NotationFormLocataire = ({
   tenantValue,
   changeStarNumber,
   isStillInApartment,
-  isNotLiveInApartment,
+  stillInApartment,
 }) => {
-  const handlestillInApartment = (event) => {
-    // retrieve value to know if the person still live in the apartment
-    const { checked } = event.target;
-    isStillInApartment(checked);
-  };
-
-  const handlenotLiveInApartment = (event) => {
-    // retrieve value to know if the person doesn't live in the apartment
-    const { checked } = event.target;
-    isNotLiveInApartment(checked);
+  // onChange to modify stillInApartment
+  const handlestillInApartment = () => {
+    isStillInApartment(stillInApartment);
   };
 
   const { tenantForm } = formTenant;
@@ -33,11 +26,11 @@ const NotationFormLocataire = ({
     <>
       <div className="information-generales-locataire">
         <div>
-          <input onChange={handlestillInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="stillInApartment" />
+          <input checked={stillInApartment} onChange={handlestillInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="stillInApartment" />
           <label className="radioLabel" htmlFor="actual-location">Je suis actuellement locataire</label>
         </div>
         <div>
-          <input onChange={handlenotLiveInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="notLiveInApartment" />
+          <input checked={!stillInApartment} onChange={handlestillInApartment} className="radioButtons" type="radio" name="actual-location" id="actual-location" value="notLiveInApartment" />
           <label className="radioLabel" htmlFor="actual-location">Je n'y habite plus</label>
         </div>
       </div>
@@ -115,7 +108,7 @@ NotationFormLocataire.propTypes = {
   tenantValue: PropTypes.object.isRequired,
   changeStarNumber: PropTypes.func.isRequired,
   isStillInApartment: PropTypes.func.isRequired,
-  isNotLiveInApartment: PropTypes.func.isRequired,
+  stillInApartment: PropTypes.bool.isRequired,
 };
 
 // export default

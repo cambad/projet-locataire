@@ -15,10 +15,14 @@ const InformationGenerale = ({
   changeNumberOfRooms,
   changeRent,
 }) => {
+
+  // function to parseInt the value
+  const parseIntValue = value => parseInt(value, 10);
+
   const handleFloorNumber = (event) => {
     let { value } = event.target;
     // change type of value because value is now a string but we expect a number
-    value = parseInt(value, 10);
+    value = parseIntValue(value);
     changeFloorNumber(value);
   };
 
@@ -30,30 +34,31 @@ const InformationGenerale = ({
   const handleFloorArea = (event) => {
     let { value } = event.target;
     // change type of value because value is now a string but we expect a number
-    value = parseInt(value, 10);
+    value = parseIntValue(value);
     changeFloorArea(value);
   };
 
   const handleNumberOfRooms = (event) => {
     let { value } = event.target;
     // change type of value because value is now a string but we expect a number
-    value = parseInt(value, 10);
+    value = parseIntValue(value);
     changeNumberOfRooms(value);
   };
 
   const handleRent = (event) => {
     let { value } = event.target;
     // change type of value because value is now a string but we expect a number
-    value = parseInt(value, 10);
+    value = parseIntValue(value);
     changeRent(value);
   };
+
 
   return (
     <>
       <div className="information-generales-surface">
         <div>
           <p>Etage</p>
-          <input value={floorNumber} onChange={handleFloorNumber} type="number" name="floor_number" id="floor_number" />
+          <input value={floorNumber} onChange={handleFloorNumber} type="number" name="floor_number" id="floor_number" placeholder="0" />
         </div>
         <div className="location">
           <p>Localisation</p>
