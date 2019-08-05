@@ -78,6 +78,10 @@
                     <td> {{ review.stillIn }} </td>
                 </tr>
                 <tr>
+                    <th>Est-ce un locataire ? True = Locataire, False = Visiteur</th>
+                    <td>{{review.tenant}}</td>
+                </tr>
+                <tr>
                     <th>Date d'ajout</th>
                     <td> {{ review.createdAt|date('Y-m-d H:i:s') }} </td>
                 </tr>

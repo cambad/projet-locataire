@@ -34,6 +34,11 @@
             </tr>
 
             <tr>
+                <th>Est-ce un locataire ? True = Locataire, False = Visiteur</th>
+                <td>{{review.tenant}}</td>
+            </tr>
+
+            <tr>
                 <th>Date d'ajout</th>
                 <td>{{review.createdAt|date('Y-m-d H:i:s')}}</td>
             </tr>
@@ -123,7 +128,7 @@
         </table>
 <hr>
     {% else %}
-        <h2 class="my-5">Pas d'avis sur cette appartement</h2>
+        <h2 class="my-5">Pas de notes sur cette appartement</h2>
 <hr>
     {% endfor %}
     <h3 class="my-5">
