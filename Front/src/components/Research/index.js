@@ -19,18 +19,22 @@ class Research extends React.Component {
   // Submit form
   handleSubmit = (e) => {
     e.preventDefault();
-    const { address, setRedirectToMap, setAddressLatLng } = this.props;
+    const {
+      address,
+      setRedirectToMap,
+      setAddressLatLng,
+      setZoom,
+    } = this.props;
     if (address) {
       geocodeByAddress(address)
-        .then((results) => {
-          return (getLatLng(results[0]));
-        })
+        .then(results => (getLatLng(results[0])))
         .then((latLng) => {
-          console.log(latLng);
           // set state.redirectToMap to TRUE to redirect to ResearchMap in full screen
           setRedirectToMap();
+          // Setting the zoom
+          setZoom(15);
           // insert lat and lng in state
-          setAddressLatLng(latLng);
+          setAddressLatLng(latLng.lat, latLng.lng);
         })
         .catch(error => console.error('Error', error));
     }
@@ -54,7 +58,11 @@ class Research extends React.Component {
           <div className="recherche">
             <div className="recherche-zone">
               <h2 className="recherche-title">Rechercher un appartement</h2>
-              <ResearchForm address={address} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+              <ResearchForm
+                address={address}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
             </div>
             <div className="noter">
               <h1 className="noter-title">
@@ -78,6 +86,7 @@ Research.propTypes = {
   setRedirectToMap: PropTypes.func.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
   setRedirectToMapFalse: PropTypes.func.isRequired,
+  setZoom: PropTypes.func.isRequired,
 };
 
 export default Research;

@@ -11,9 +11,10 @@ import PropTypes from 'prop-types';
 
 import './marker.scss';
 
+const apiURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&v=3.exp&libraries=geometry,drawing,places';
 const GoogleMapComponent = compose(
   withProps({
-    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&v=3.exp&libraries=geometry,drawing,places',
+    googleMapURL: apiURL,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '80vh' }} />,
     mapElement: <div style={{ height: '80vh' }} />,
@@ -117,7 +118,7 @@ Map.propTypes = {
   infoboxAddress: PropTypes.string.isRequired,
   infoboxTitle: PropTypes.string.isRequired,
   setZoom: PropTypes.func.isRequired,
-  infoboxRental: PropTypes.string.isRequired,
+  infoboxRental: PropTypes.number.isRequired,
 };
 
 const MapComponent = GoogleMapComponent(Map);
