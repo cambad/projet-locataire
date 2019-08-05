@@ -73,6 +73,7 @@ class Research extends React.Component {
           </div>
         </div>
         <LastFiveReviews />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&libraries=places" />
       </main>
     );
   }

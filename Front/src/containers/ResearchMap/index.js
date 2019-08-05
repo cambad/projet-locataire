@@ -10,6 +10,7 @@ import {
   setAddressLatLng,
   setFullScreen,
   setZoom,
+  disableFullscreen,
 } from 'src/store/reducerMap';
 
 const mapStateToProps = state => ({
@@ -34,6 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setZoom: (newZoom) => {
     dispatch(setZoom(newZoom));
+  },
+  disableFullscreen: () => {
+    dispatch(disableFullscreen());
   },
 });
 
