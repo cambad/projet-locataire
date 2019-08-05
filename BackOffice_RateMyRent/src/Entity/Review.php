@@ -65,6 +65,11 @@ class Review
      */
     private $marks;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $tenant;
+
 
     public function __construct()
     {
@@ -206,6 +211,18 @@ class Review
                 $mark->setReview(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTenant(): ?bool
+    {
+        return $this->tenant;
+    }
+
+    public function setTenant(bool $tenant): self
+    {
+        $this->tenant = $tenant;
 
         return $this;
     }
