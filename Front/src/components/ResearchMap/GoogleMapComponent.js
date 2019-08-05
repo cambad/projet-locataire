@@ -7,6 +7,7 @@ import {
   Marker,
   InfoWindow,
 } from 'react-google-maps';
+import PropTypes from 'prop-types';
 
 import './marker.scss';
 
@@ -21,10 +22,20 @@ const GoogleMapComponent = compose(
   withGoogleMap,
 );
 
-const Map = ((props) => {
+const Map = (props) => {
+  const mapRef = React.createRef();
+
+  const onZoomChanged = () => {
+    const { setZoom } = props;
+    const currentZoom = mapRef.current.getZoom();
+    const newZoom = parseFloat(currentZoom);
+    setZoom(newZoom);
+  };
+
   const {
     zoom,
-    latLng,
+    lat,
+    lng,
     dataLoaded,
     markers,
     handleMarkerClick,
@@ -37,41 +48,43 @@ const Map = ((props) => {
   } = props;
   return (
     <GoogleMap
+      ref={mapRef}
       defaultCenter={{
-        lat: latLng.lat, // latitude for the center of the map
-        lng: latLng.lng, // longitude for the center of the map
+        lat: parseFloat(lat), // latitude for the default center of the map
+        lng: parseFloat(lng), // longitude for the default center of the map
       }}
       zoom={zoom}
       center={{
-        lat: latLng.lat, // latitude for the center of the map
-        lng: latLng.lng, // longitude for the center of the map
+        lat: parseFloat(lat), // latitude for the center of the map
+        lng: parseFloat(lng), // longitude for the center of the map
       }}
       defaultOptions={{ mapTypeControl: false }}
+      onZoomChanged={onZoomChanged}
     >
       {dataLoaded && (
         markers.apartments.map(marker => (
           <Marker
-            key={marker.title}
+            key={marker.id}
             position={{
-              lat: marker.lat, // latitude to position the marker
-              lng: marker.lng // longitude to position the marker
+              lat: parseFloat(marker.lat), // latitude to position the marker
+              lng: parseFloat(marker.lng), // longitude to position the marker
             }}
-            onMouseOver={(title, address, lng, lat) =>
+            onClick={() => (
               handleMarkerClick(
                 marker.title,
                 marker.adress,
                 marker.lat,
                 marker.lng,
               )
-            }
+            )}
           />
         ))
       )}
       {isInfoboxVisible && (
         <InfoWindow
           position={{
-            lat: infoboxPosY,
-            lng: infoboxPosX,
+            lat: infoboxPosX,
+            lng: infoboxPosY,
           }}
           onCloseClick={() => handleInfoboxClick()}
         >
@@ -83,7 +96,23 @@ const Map = ((props) => {
       )}
     </GoogleMap>
   );
-});
+};
+
+Map.propTypes = {
+  zoom: PropTypes.number.isRequired,
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
+  dataLoaded: PropTypes.bool.isRequired,
+  markers: PropTypes.object.isRequired,
+  handleMarkerClick: PropTypes.func.isRequired,
+  isInfoboxVisible: PropTypes.bool.isRequired,
+  infoboxPosY: PropTypes.number.isRequired,
+  infoboxPosX: PropTypes.number.isRequired,
+  handleInfoboxClick: PropTypes.func.isRequired,
+  infoboxAddress: PropTypes.string.isRequired,
+  infoboxTitle: PropTypes.string.isRequired,
+  setZoom: PropTypes.func.isRequired,
+};
 
 const MapComponent = GoogleMapComponent(Map);
 

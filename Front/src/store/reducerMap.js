@@ -1,14 +1,12 @@
 // == Initial State
 const initialState = {
   address: '',
-  latLng: {
-    lat: 46.603354,
-    lng: 1.888334,
-  },
+  lat: 46.603354,
+  lng: 1.888334,
   fullscreen: false,
   redirectToMap: false,
   dropdown: false,
-  zoom: 6,
+  zoom: 5,
 };
 
 // == Types
@@ -17,6 +15,7 @@ const SET_REDIRECT_TO_MAP = 'SET_REDIRECT_TO_MAP';
 const SET_ADDRESS_LAT_LNG = 'SET_ADDRESS_LAT_LNG';
 const SET_FULLSCREEN = 'SET_FULLSCREEN';
 const SET_REDIRECT_TO_MAP_FALSE = 'SET_REDIRECT_TO_MAP_FALSE';
+const SET_ZOOM = 'SET_ZOOM';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -31,6 +30,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         redirectToMap: true,
         fullscreen: true,
+        address: '',
       };
     }
     case SET_REDIRECT_TO_MAP_FALSE: {
@@ -43,7 +43,8 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ADDRESS_LAT_LNG: {
       return {
         ...state,
-        latLng: action.latLng,
+        lat: action.lat,
+        lng: action.lng,
       };
     }
     case SET_FULLSCREEN: {
@@ -52,6 +53,13 @@ const reducer = (state = initialState, action = {}) => {
         fullscreen: true,
         zoom: 15,
         dropdown: false,
+        address: '',
+      };
+    }
+    case SET_ZOOM: {
+      return {
+        ...state,
+        zoom: action.newZoom,
       };
     }
     default:
@@ -69,9 +77,10 @@ export const setRedirectToMap = () => ({
   type: SET_REDIRECT_TO_MAP,
 });
 
-export const setAddressLatLng = latLng => ({
+export const setAddressLatLng = (lat, lng) => ({
   type: SET_ADDRESS_LAT_LNG,
-  latLng,
+  lat,
+  lng,
 });
 
 export const setFullScreen = () => ({
@@ -81,6 +90,12 @@ export const setFullScreen = () => ({
 export const setRedirectToMapFalse = () => ({
   type: SET_REDIRECT_TO_MAP_FALSE,
 });
+
+export const setZoom = newZoom => ({
+  type: SET_ZOOM,
+  newZoom,
+});
+
 // == Selectors
 
 
