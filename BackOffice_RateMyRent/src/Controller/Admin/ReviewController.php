@@ -8,6 +8,7 @@ use App\Repository\ReviewRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Review;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\MarksRepository;
 
 /**
  * @Route("/admin/review", name="admin_review_")
@@ -31,7 +32,6 @@ class ReviewController extends AbstractController
      */
     public function show(Review $review): Response
     {
-        dump($review);
         return $this->render('admin/review/show.html.twig', [
             'review' => $review,
         ]);
