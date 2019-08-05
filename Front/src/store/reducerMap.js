@@ -6,7 +6,7 @@ const initialState = {
   fullscreen: false,
   redirectToMap: false,
   dropdown: false,
-  zoom: 5,
+  zoom: 6,
 };
 
 // == Types
@@ -16,6 +16,7 @@ const SET_ADDRESS_LAT_LNG = 'SET_ADDRESS_LAT_LNG';
 const SET_FULLSCREEN = 'SET_FULLSCREEN';
 const SET_REDIRECT_TO_MAP_FALSE = 'SET_REDIRECT_TO_MAP_FALSE';
 const SET_ZOOM = 'SET_ZOOM';
+const DISABLE_FULLSCREEN = 'DISABLE_FULLSCREEN';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -54,6 +55,12 @@ const reducer = (state = initialState, action = {}) => {
         zoom: 15,
         dropdown: false,
         address: '',
+      };
+    }
+    case DISABLE_FULLSCREEN: {
+      return {
+        ...state,
+        fullscreen: false,
       };
     }
     case SET_ZOOM: {
@@ -95,6 +102,11 @@ export const setZoom = newZoom => ({
   type: SET_ZOOM,
   newZoom,
 });
+
+export const disableFullscreen = () => ({
+  type: DISABLE_FULLSCREEN,
+});
+
 
 // == Selectors
 

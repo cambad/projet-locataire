@@ -17,7 +17,7 @@ class ResearchMap extends React.Component {
     markers: {},
     infoboxAddress: '',
     infoboxTitle: '',
-    infoboxRental: '',
+    infoboxRental: 0,
     isInfoboxVisible: false,
     markerLang: 0,
     markerLat: 0,
@@ -34,6 +34,12 @@ class ResearchMap extends React.Component {
           dataLoaded: true,
         });
       });
+  }
+
+  componentWillUnmount() {
+    const { disableFullscreen, setZoom } = this.props;
+    disableFullscreen();
+    setZoom(6);
   }
 
   handleChange = (address) => {
@@ -76,7 +82,7 @@ class ResearchMap extends React.Component {
     this.setState({
       infoboxTitle: title, // Message shown in info window
       infoboxAddress: address,
-      infoboxRental: rental,
+      infoboxRental: parseFloat(rental),
       isInfoboxVisible: !isInfoboxVisible, // Show info window
       markerLang: lngMarker, // Y coordinate for positioning info window
       markerLat: latMarker, // X coordinate for positioning info window
@@ -214,6 +220,7 @@ ResearchMap.propTypes = {
   changeAdress: PropTypes.func.isRequired,
   goToFullScreen: PropTypes.func.isRequired,
   setZoom: PropTypes.func.isRequired,
+  disableFullscreen: PropTypes.func.isRequired,
 };
 
 export default ResearchMap;
