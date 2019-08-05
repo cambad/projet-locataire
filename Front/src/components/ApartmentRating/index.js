@@ -13,6 +13,7 @@ import InformationGenerale from './informationGenerale';
 import './apartmentRating.scss';
 
 const ApartmentRating = ({
+  formSubmitFailure,
   formSubmitSuccess,
   formLoading,
   errorFormSubmit,
@@ -122,6 +123,9 @@ const ApartmentRating = ({
           )}
           {formSubmitSuccess && (
             <p className="success-form-submit">Le formulaire a bien été pris en compte</p>
+          )}
+          {formSubmitFailure && (
+            <p className="failure-form-submit">Le formulaire n'a pas pu être soumis, veuillez essayer plus tard</p>
           )}
           {/* <p className={classNames({ 'error-form-submit-hidden': !errorFormSubmit, 'error-form-submit': errorFormSubmit })}>Veuillez remplir tous les champs s'il vous plaît</p> */}
           {formLoading && (

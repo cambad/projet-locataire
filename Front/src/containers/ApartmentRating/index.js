@@ -23,6 +23,7 @@ import {
 
 
 const mapStateToProps = state => ({
+  formSubmitFailure: state.reducer.formSubmitFailure,
   formSubmitSuccess: state.reducer.formSubmitSuccess,
   formLoading: state.reducer.formLoading,
   errorFormSubmit: state.reducer.errorFormSubmit,

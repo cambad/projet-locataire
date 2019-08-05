@@ -6,9 +6,10 @@ import {
   getAddressLatLng,
   changeFormLoading,
   changeFormSubmitSuccess,
+  changeFormSubmitFailure,
 } from 'src/store/reducer';
 
-const logMiddleware = store => next => (action) => {
+const formRatingMiddleware = store => next => (action) => {
 
   switch (action.type) {
     case 'SUBMIT_RATING_FORM': {
@@ -120,6 +121,7 @@ const logMiddleware = store => next => (action) => {
               .catch((response) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
+                store.dispatch(changeFormSubmitFailure());
                 console.log(response);
               });
           })
@@ -140,4 +142,4 @@ const logMiddleware = store => next => (action) => {
   }
 };
 
-export default logMiddleware;
+export default formRatingMiddleware;

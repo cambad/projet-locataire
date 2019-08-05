@@ -1,15 +1,10 @@
 @import 'src/styles/_vars.scss';
 
-.submit-form-loading {
+.submit-form-loading, .success-form-submit {
   margin-top: 1em;
 }
 
-.success-form-submit {
-  margin-top: 1em;
-}
-
-.error-form-submit {
-  display: block;
+.error-form-submit, .failure-form-submit {
   margin-top: 1em;
   color: red;
 }
