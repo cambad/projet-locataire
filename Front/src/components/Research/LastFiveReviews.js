@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { NavLink } from 'react-router-dom';
 
 // locals imports
 import './research.scss';
@@ -52,7 +53,7 @@ class LastFiveReview extends React.Component {
         {/* if dataReception, display Review */}
         {dataReception && (
           lastFiveApartment.map(appartment => (
-            <Review key={appartment.id} className="section-reviews" {...appartment} />
+            <NavLink to={`/appartement/${appartment.id}`}><Review key={appartment.id} className="section-reviews" {...appartment} /></NavLink>
           ))
         )}
         {!dataReception && (
