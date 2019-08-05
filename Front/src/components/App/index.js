@@ -23,7 +23,7 @@ const App = () => (
       <Route path="/recherche" component={ResearchMap} />
       <Route path="/profil" component={Profil} />
       <Route path="/noter-un-appartement" component={AppartmentRating} />
-      <Route path="/appartement" component={Apartment} />
+      <Route path="/appartement/:id" component={Apartment} />
     </Switch>
     <Footer />
   </React.Fragment>

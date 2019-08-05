@@ -16,7 +16,6 @@ const NotationFormLocataire = ({
   isStillInApartment,
   isNotLiveInApartment,
 }) => {
-
   const handlestillInApartment = (event) => {
     // retrieve value to know if the person still live in the apartment
     const { checked } = event.target;

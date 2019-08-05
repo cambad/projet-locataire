@@ -3,17 +3,30 @@
 .infobox {
   padding: 0;
 
-  h1 {
+  &-title {
     background-color: $button-background-color;
     color: #fff;
     font-family: $title-font-family;
     text-align: center;
     font-size: 1.5em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
   }
 
-  p{
+  &-address{
+    font-family: $text-font-family;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+  }
+
+  &-rent {
+    font-family: $text-font-family;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+  }
+
+  &-rating {
     font-family: $text-font-family;
     font-size: 1.1em;
   }
+
 }

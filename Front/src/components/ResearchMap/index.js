@@ -23,6 +23,7 @@ class ResearchMap extends React.Component {
     markerLat: 0,
     dataLoaded: false,
     newZoom: 15,
+    id: 0,
   };
 
 
@@ -77,7 +78,7 @@ class ResearchMap extends React.Component {
     }
   };
 
-  handleMarkerClick = (title, address, rental, latMarker, lngMarker) => {
+  handleMarkerClick = (title, address, rental, latMarker, lngMarker, id) => {
     const { isInfoboxVisible } = this.state;
     this.setState({
       infoboxTitle: title, // Message shown in info window
@@ -86,6 +87,7 @@ class ResearchMap extends React.Component {
       isInfoboxVisible: !isInfoboxVisible, // Show info window
       markerLang: lngMarker, // Y coordinate for positioning info window
       markerLat: latMarker, // X coordinate for positioning info window
+      id,
     });
     const { setAddressLatLng, setZoom } = this.props;
     setZoom(15);
@@ -118,6 +120,7 @@ class ResearchMap extends React.Component {
       markerLang,
       markerLat,
       newZoom,
+      id,
     } = this.state;
     const callBackApi = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&libraries=places&callback=myCallbackFunc"></script>';
     return (
@@ -202,6 +205,7 @@ class ResearchMap extends React.Component {
             infoboxPosX={markerLat} // X coordinate for positioning info window
             markers={markers}
             dataLoaded={dataLoaded}
+            id={id}
           />
         </div>
       </div>
