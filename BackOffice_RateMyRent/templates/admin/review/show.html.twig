@@ -51,11 +51,81 @@
         </tbody>
     </table>
 
-    <h4 class="mt-4">Voulez-vous supprimer cet avis ? Cela supprimera l'avis de l'utilisateur</h4>
+    <h5 class="mt-4">Voulez-vous supprimer cet avis ? Cela supprimera l'avis de l'utilisateur</h5>
     <div class="mb-4" id="delete_form">
         {{ include('admin/review/_delete_form.html.twig') }}
     </div>
 <hr>
+
+    {% for mark in review.marks %}
+        <h2 class="my-4">Les notes</h2>
+        <table class="table">
+
+            <tbody>
+                <tr>
+                    <th><h4>Quartier</h4></th>
+                    <td> {{ mark.recommendation }} </td>
+                </tr>
+                <tr>
+                    <th>Accessibilité de l'appartement</th>
+                    <td> {{ mark.accessibility }} </td>
+                </tr>
+                <tr>
+                    <th>Environnement urbain de l'appartement</th>
+                    <td> {{ mark.apartmentEnvironment }} </td>
+                </tr>
+                <tr>
+                    <th>Ciculation</th>
+                    <td> {{ mark.traffic }} </td>
+                </tr>
+                <tr>
+                    <th><h4>État général de l'immeuble</h4></th>
+                    <td> {{ mark.exterior }} </td>
+                </tr>
+                <tr>
+                    <th>Etat extérieur de l'immeuble</th>
+                    <td> {{ mark.exteriorBuilding }} </td>
+                </tr>
+                <tr>
+                    <th>Environnement urbain de l'appartement</th>
+                    <td> {{ mark.buildingEnvironment }} </td>
+                </tr>
+                <tr>
+                    <th><h4>Qualité de l'appartement</h4></th>
+                    <td> {{ mark.interior }} </td>
+                </tr>
+                <tr>
+                    <th>Isolation thermique et sonore</th>
+                    <td> {{ mark.insulation }} </td>
+                </tr>
+                <tr>
+                    <th>Propreté générale</th>
+                    <td> {{ mark.cleanliness }} </td>
+                </tr>
+                <tr>
+                    <th>Luminosité</th>
+                    <td> {{ mark.brightness }} </td>
+                </tr>
+                <tr>
+                    <th><h4>Relation avec le propriétaire et/ou l'agence</h4></th>
+                    <td> {{ mark.contact }} </td>
+                </tr>
+                <tr>
+                    <th>Prise de contact agent/propriétaire</th>
+                    <td> {{ mark.firstContact }} </td>
+                </tr>
+                <tr>
+                    <th>Qualité de la relation lors de la location</th>
+                    <td> {{ mark.contactQuality }} </td>
+                </tr>
+                    
+            </tbody>
+        </table>
+<hr>
+    {% else %}
+        <h2 class="my-5">Pas d'avis sur cette appartement</h2>
+<hr>
+    {% endfor %}
     <h3 class="my-5">
         <a href="{{ path('admin_review_index') }}"> Revenir à la liste</a>
     </h3>
