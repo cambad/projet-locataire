@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
@@ -12,6 +13,8 @@ import InformationGenerale from './informationGenerale';
 import './apartmentRating.scss';
 
 const ApartmentRating = ({
+  formSubmitSuccess,
+  formLoading,
   errorFormSubmit,
   address,
   isLocataire,
@@ -114,7 +117,18 @@ const ApartmentRating = ({
             />
           )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
-          <p className={classNames({ 'error-form-submit-hidden': !errorFormSubmit, 'error-form-submit': errorFormSubmit })}>Veuillez remplir tous les champs s'il vous plaît</p>
+          {errorFormSubmit && (
+            <p className="error-form-submit">Veuillez remplir tous les champs s'il vous plaît</p>
+          )}
+          {formSubmitSuccess && (
+            <p className="success-form-submit">Le formulaire a bien été pris en compte</p>
+          )}
+          {/* <p className={classNames({ 'error-form-submit-hidden': !errorFormSubmit, 'error-form-submit': errorFormSubmit })}>Veuillez remplir tous les champs s'il vous plaît</p> */}
+          {formLoading && (
+            <div className="submit-form-loading">
+              <CircularProgress disableShrink />
+            </div>
+          )}
         </form>
       </div>
     </div>
@@ -123,6 +137,8 @@ const ApartmentRating = ({
 
 // PropTypes validation
 ApartmentRating.propTypes = {
+  formSubmitSuccess: PropTypes.bool.isRequired,
+  errorFormSubmit: PropTypes.bool.isRequired,
   address: PropTypes.string.isRequired,
   isLocataire: PropTypes.bool.isRequired,
   isVisiteur: PropTypes.bool.isRequired,
