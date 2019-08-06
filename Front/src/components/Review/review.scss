@@ -2,6 +2,7 @@
 
 .review {
   border: 1px solid $header-background-color;
+  box-sizing: border-box;
 
   &-img {
     height: 10em;
@@ -25,4 +26,9 @@
     justify-content: space-between;
     font-size: 1em;
   }
+}
+
+.review:hover {
+  box-shadow: 0px 0px 5px 1px rgba(34,56,67,.7);
+  transition: box-shadow .2s;
 }
