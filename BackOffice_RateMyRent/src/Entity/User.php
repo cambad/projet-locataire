@@ -88,7 +88,7 @@ class User implements UserInterface, \Serializable
             $roles[] = $this->role->getCode(); 
 
         } else {
-            $roles[] = 'ROLE_ANONYMOUS';
+            $roles[] = 'ROLE_ADMIN';
         }
 
         return $roles;
