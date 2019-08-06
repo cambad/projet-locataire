@@ -130,8 +130,7 @@ const formRatingMiddleware = store => next => (action) => {
             dataToSend = {
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
-              "floor_number": 'coucou toi',
-              // "location": reducer.location,
+              "location": reducer.location,
               "area": reducer.floorArea,
               "rooms": reducer.numberOfRooms,
               "rental": reducer.rent,

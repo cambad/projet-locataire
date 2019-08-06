@@ -69,10 +69,9 @@ const ApartmentRating = ({
 
   // if formSubmitSuccess = true > redirect to landing page
   if (formSubmitSuccess) {
-
-    // need to set errorFormSubmit to FALSE to come back to the form from an other page
+    // need to set the state after form submit success
     setRedirectErrorFormSubmit();
-
+    // redirect to landing page
     return <Redirect to="/" />;
   }
 
