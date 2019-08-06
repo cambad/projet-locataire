@@ -1,5 +1,6 @@
 // == Initial State
 const initialState = {
+  formSubmitDone: false,
   formSubmitFailure: false,
   formSubmitSuccess: false,
   errorFormSubmit: false,
@@ -215,6 +216,7 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_FORM_ERROR:
       return {
         ...state,
+        formSubmitDone: false,
         formSubmitFailure: false,
         formSubmitSuccess: false,
         errorFormSubmit: false,
@@ -223,6 +225,7 @@ const reducer = (state = initialState, action = {}) => {
     case SET_REDIRECT_ERROR_FORM_SUBMIT:
       return {
         ...state,
+        formSubmitDone: true,
         formSubmitFailure: false,
         formSubmitSuccess: false,
         errorFormSubmit: false,

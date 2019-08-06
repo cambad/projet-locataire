@@ -10,6 +10,14 @@ import ResearchForm from './ResearchForm';
 import LastFiveReviews from './LastFiveReviews';
 
 class Research extends React.Component {
+
+  // Use to set the scroll bar to the top to display the pop submiFormDone
+  componentWillMount() {
+    console.log('component will mount OK');
+    // To set scrollbar on top
+    window.scrollTo(0, 0);
+  }
+
   handleChange = (event) => {
     const { changeAdress } = this.props;
     const { value } = event.target;
@@ -41,7 +49,8 @@ class Research extends React.Component {
   };
 
   render() {
-    const { address, redirectToMap, setRedirectToMapFalse } = this.props;
+    const { address, redirectToMap, setRedirectToMapFalse, formSubmitDone } = this.props;
+    console.log('formSubmitDone provenant du reducer du formulaire : ', formSubmitDone);
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
       setRedirectToMapFalse();
@@ -52,6 +61,12 @@ class Research extends React.Component {
       <main className="landing">
         <div className="homePhoto">
           <div className="presentation">
+            {formSubmitDone && (
+              <span className="formSubmitDone">
+                {/* <p className="formSubmitDone-text">Formulaire envoyé</p> */}
+                Formulaire envoyé
+              </span>
+            )}
             <h2 className="presentation-title">Bienvenue sur Rate my Rent</h2>
             <h4 className="presentation-subtitle">Le site de notation des bons et mauvais appartements</h4>
           </div>
@@ -84,6 +99,7 @@ Research.propTypes = {
   address: PropTypes.string.isRequired,
   changeAdress: PropTypes.func.isRequired,
   redirectToMap: PropTypes.bool.isRequired,
+  formSubmitDone: PropTypes.bool.isRequired,// received from reducer.js
   setRedirectToMap: PropTypes.func.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
   setRedirectToMapFalse: PropTypes.func.isRequired,

@@ -15,6 +15,8 @@ import {
 } from 'src/store/reducerMap';
 
 const mapStateToProps = state => ({
+  // add formSubmitDone from reducer
+  formSubmitDone: state.reducer.formSubmitDone,
   address: state.reducerMap.address,
   redirectToMap: state.reducerMap.redirectToMap,
 });
