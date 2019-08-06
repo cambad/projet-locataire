@@ -7,12 +7,18 @@ import {
   changeFormLoading,
   changeFormSubmitSuccess,
   changeFormSubmitFailure,
+  deleteErrorsOnSubmit,
 } from 'src/store/reducer';
 
 const formRatingMiddleware = store => next => (action) => {
 
   switch (action.type) {
     case 'SUBMIT_RATING_FORM': {
+
+      // on remet à zéro les erreurs de soumission du formulaire
+      store.dispatch(deleteErrorsOnSubmit());
+
+
       // check if the form is correct
       // First, create a variable to know at the end, if everything is correct
       let correctForm = false;
@@ -78,6 +84,8 @@ const formRatingMiddleware = store => next => (action) => {
           .then((latLng) => {
             // Get latitude and longitude and dispatch it in reducer
             store.dispatch(getAddressLatLng(latLng));
+            // Retrieve latitude and longitude from reducer
+            const { latLng: spot } = store.getState().reducer;
             // change formLoading to true to display a loading icone
             store.dispatch(changeFormLoading());
             // creating the object to send in the request to retrieve the latitude/logitude inside
@@ -88,8 +96,8 @@ const formRatingMiddleware = store => next => (action) => {
               "area": reducer.floorArea,
               "rooms": reducer.numberOfRooms,
               "rental": reducer.rent,
-              "lat": reducer.latLng.lat,
-              "lng": reducer.latLng.lng,
+              "lat": spot.lat,
+              "lng": spot.lng,
               "reviews": [
                 {
                   "title": reducer.abstractedComment,

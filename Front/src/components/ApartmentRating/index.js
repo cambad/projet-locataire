@@ -1,8 +1,10 @@
+// npm import
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// local import
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
 import PlaceAutocomplete from './placesAutocomplete';
@@ -11,6 +13,7 @@ import InformationGenerale from './informationGenerale';
 
 import './apartmentRating.scss';
 
+// Component
 const ApartmentRating = ({
   formSubmitFailure,
   formSubmitSuccess,
@@ -23,8 +26,6 @@ const ApartmentRating = ({
   isLocataireChange,
   isVisiteurChange,
   changeAddress,
-  isStillInApartment,
-  stillInApartment,
   floorNumber,
   location,
   floorArea,
@@ -47,6 +48,10 @@ const ApartmentRating = ({
     changeAddress(addressInput);
   };
 
+  const handleSelect = (addressInput) => {
+    changeAddress(addressInput);
+  };
+
   const handleLocataire = () => {
     isLocataireChange();
   };
@@ -65,6 +70,7 @@ const ApartmentRating = ({
       <PlaceAutocomplete
         address={address}
         handleChange={handleChange}
+        handleSelect={handleSelect}
       />
       <div>
         <form className="main-form">
@@ -96,10 +102,7 @@ const ApartmentRating = ({
               />
             )}
             {isLocataire && (
-              <NotationFormLocataire
-                isStillInApartment={isStillInApartment}
-                stillInApartment={stillInApartment}
-              />
+              <NotationFormLocataire />
             )}
             {isVisiteur && (
               <NotationFormVisiteur />
@@ -150,7 +153,6 @@ ApartmentRating.propTypes = {
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
-  isStillInApartment: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,
 };
 

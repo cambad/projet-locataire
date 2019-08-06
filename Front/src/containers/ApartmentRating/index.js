@@ -9,7 +9,6 @@ import {
   changeIsLocataire,
   changeIsVisiteur,
   changeAddressFormInput,
-  changeStillInApartment,
   changeFloorNumber,
   changeLocation,
   changeFloorArea,
@@ -27,7 +26,6 @@ const mapStateToProps = state => ({
   formSubmitSuccess: state.reducer.formSubmitSuccess,
   formLoading: state.reducer.formLoading,
   errorFormSubmit: state.reducer.errorFormSubmit,
-  stillInApartment: state.reducer.stillInApartment,
   address: state.reducer.addressForm,
   isLocataire: state.reducer.isLocataire,
   isVisiteur: state.reducer.isVisiteur,
@@ -52,9 +50,6 @@ const mapDispatchToProps = dispatch => ({
   },
   changeAddress: (address) => {
     dispatch(changeAddressFormInput(address));
-  },
-  isStillInApartment: (checked) => {
-    dispatch(changeStillInApartment(checked));
   },
   changeFloorNumber: (value) => {
     dispatch(changeFloorNumber(value));
