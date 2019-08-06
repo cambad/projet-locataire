@@ -6,9 +6,10 @@ import {
   getAddressLatLng,
   changeFormLoading,
   changeFormSubmitSuccess,
+  changeFormSubmitFailure,
 } from 'src/store/reducer';
 
-const logMiddleware = store => next => (action) => {
+const formRatingMiddleware = store => next => (action) => {
 
   switch (action.type) {
     case 'SUBMIT_RATING_FORM': {
@@ -81,7 +82,6 @@ const logMiddleware = store => next => (action) => {
             store.dispatch(changeFormLoading());
             // creating the object to send in the request to retrieve the latitude/logitude inside
             dataToSend = {
-              "tenant": reducer.isLocataire,
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
               "location": reducer.location,
@@ -90,24 +90,33 @@ const logMiddleware = store => next => (action) => {
               "rental": reducer.rent,
               "lat": reducer.latLng.lat,
               "lng": reducer.latLng.lng,
-              "title": reducer.abstractedComment,
-              "positive": reducer.positiveComment,
-              "negative": reducer.negativeComment,
-              "still_in": reducer.stillInApartment,
-              "recommendation": reducer.visitorValue.recommendationValue,
-              "exterior": reducer.visitorValue.exteriorValue,
-              "interior": reducer.visitorValue.interiorValue,
-              "contact": reducer.visitorValue.contactValue,
-              "accessibility": reducer.tenantValue.accessiblityValue,
-              "apartment_environment": reducer.tenantValue.apartmentEnvironmentValue,
-              "traffic": reducer.tenantValue.circulationValue,
-              "exterior_building": reducer.tenantValue.exteriorValue,
-              "building_environment": reducer.tenantValue.buildingEnvironmentValue,
-              "insulation": reducer.tenantValue.isolationValue,
-              "cleanliness": reducer.tenantValue.cleanlinessValue,
-              "brightness": reducer.tenantValue.brightnessValue,
-              "first_contact": reducer.tenantValue.contactValue,
-              "contact_quality": reducer.tenantValue.contactQualityValue
+              "reviews": [
+                {
+                  "title": reducer.abstractedComment,
+                  "positive": reducer.positiveComment,
+                  "negative": reducer.negativeComment,
+                  "still_in": reducer.stillInApartment,
+                  "tenant": reducer.isLocataire,
+                  "marks": [
+                    {
+                      "recommendation": reducer.visitorValue.recommendationValue,
+                      "exterior": reducer.visitorValue.exteriorValue,
+                      "interior": reducer.visitorValue.interiorValue,
+                      "contact": reducer.visitorValue.contactValue,
+                      "accessibility": reducer.tenantValue.accessiblityValue,
+                      "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
+                      "traffic": reducer.tenantValue.circulationValue,
+                      "exteriorBuilding": reducer.tenantValue.exteriorValue,
+                      "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
+                      "insulation": reducer.tenantValue.isolationValue,
+                      "cleanliness": reducer.tenantValue.cleanlinessValue,
+                      "brightness": reducer.tenantValue.brightnessValue,
+                      "firstContact": reducer.tenantValue.contactValue,
+                      "contact_quality": reducer.tenantValue.contactQualityValue
+                    },
+                  ],
+                },
+              ],
             };
             console.log(dataToSend);
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
@@ -120,6 +129,7 @@ const logMiddleware = store => next => (action) => {
               .catch((response) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
+                store.dispatch(changeFormSubmitFailure());
                 console.log(response);
               });
           })
@@ -140,4 +150,4 @@ const logMiddleware = store => next => (action) => {
   }
 };
 
-export default logMiddleware;
+export default formRatingMiddleware;

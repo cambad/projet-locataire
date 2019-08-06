@@ -9,13 +9,13 @@ import {
 // == Import : local
 import reducer from 'src/store/reducer';
 import reducerMap from 'src/store/reducerMap';
-import logMiddleware from './logMiddleware';
+import formRatingMiddleware from './formRatingMiddleware';
 
 // == Store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(logMiddleware),
+  applyMiddleware(formRatingMiddleware),
 );
 
 const rootReducer = combineReducers({

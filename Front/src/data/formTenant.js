@@ -29,7 +29,7 @@ export default {
       },
       {
         id: 2,
-        title: 'Environnement urbain de l\'appartement',
+        title: 'Etat des parties communes',
         name: 'environnement',
         nameValue: 'buildingEnvironmentValue',
       },

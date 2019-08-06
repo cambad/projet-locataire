@@ -1,5 +1,6 @@
 // == Initial State
 const initialState = {
+  formSubmitFailure: false,
   formSubmitSuccess: false,
   formLoading: false,
   isConnected: true,
@@ -60,6 +61,7 @@ const CHANGE_NEGATIVE_COMMENT = 'CHANGE_NEGATIVE_COMMENT';
 const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
 const CHANGE_FORM_LOADING = 'CHANGE_FORM_LOADING';
 const CHANGE_FORM_SUBMIT_SUCCESS = 'CHANGE_FORM_SUBMIT_SUCCESS';
+const CHANGE_FORM_SUBMIT_FAILURE = 'CHANGE_FORM_SUBMIT_FAILURE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -202,6 +204,12 @@ const reducer = (state = initialState, action = {}) => {
         formSubmitSuccess: !state.formSubmitSuccess,
       };
 
+    case CHANGE_FORM_SUBMIT_FAILURE:
+      return {
+        ...state,
+        formSubmitFailure: !state.formSubmitFailure,
+      };
+
     default:
       return state;
   }
@@ -293,6 +301,10 @@ export const changeFormLoading = () => ({
 
 export const changeFormSubmitSuccess = () => ({
   type: CHANGE_FORM_SUBMIT_SUCCESS,
+});
+
+export const changeFormSubmitFailure = () => ({
+  type: CHANGE_FORM_SUBMIT_FAILURE,
 });
 
 // == Selectors
