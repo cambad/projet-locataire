@@ -11,6 +11,11 @@
   }
 }
 
+li:hover {
+  text-decoration: none;
+  color: #EFF1F3;
+}
+
 .navActive .navbar-ul-link {
   padding: .5em 0;
 }

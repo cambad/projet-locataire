@@ -5,7 +5,10 @@ import { Accordion, Icon } from 'semantic-ui-react';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 
+import 'semantic-ui-css/semantic.css';
+
 import './apartment.scss';
+
 
 const Marker = ({ text }) => (
   <div>
