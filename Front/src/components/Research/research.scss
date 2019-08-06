@@ -1,7 +1,43 @@
 @import 'src/styles/_vars.scss';
 
+.formSubmitDone {
+  position: absolute;
+  color: $header-text-color;
+  background-color: $button-background-color;
+  padding: .8em 1em;
+  right: -100%;
+  font-size: 1em;
+  top: 3em;
+  animation: slide 6s ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    right: -100%;
+  }
+
+  40% {
+    right: 2em;
+  }
+
+  60% {
+    right: 2em;
+  }
+
+  80% {
+    right: -80%;
+  }
+
+  100% {
+    right: -100%;
+  }
+}
+
+
 .landing {
   flex-grow: 2;
+  // add for formSubmitDone animation
+  overflow: hidden;
 }
 
 .homePhoto {
@@ -14,6 +50,7 @@
 .presentation {
   text-align: center;
   padding-bottom: 3em;
+  position: relative;
 
   &-title {
     font-family: $title-font-family;
@@ -142,6 +179,18 @@
 }
 
 @media (min-width: 992px) {
+
+  .formSubmitDone {
+    position: absolute;
+    color: $header-text-color;
+    background-color: $button-background-color;
+    padding: 1em 1.3em;
+    right: -100%;
+    font-size: 1.3em;
+    top: 3em;
+    animation: slide 6s ease-in-out;
+  }
+
   .homePhoto {
     background-image: url(../../img/accueilbg.jpg);
     background-size: cover;

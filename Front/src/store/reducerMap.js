@@ -7,6 +7,7 @@ const initialState = {
   redirectToMap: false,
   dropdown: false,
   zoom: 6,
+  formSubmitOK: false,
 };
 
 // == Types
