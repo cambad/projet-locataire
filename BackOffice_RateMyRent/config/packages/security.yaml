@@ -6,6 +6,9 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -14,9 +17,23 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-     
+
+        main:
+            pattern: ^/
+            form_login:
+                csrf_token_generator: security.csrf.token_manager
+                provider:     fos_userbundle
+                login_path:   fos_user_security_login
+                check_path:   fos_user_security_check
+                
+            logout:
+                path:   fos_user_security_logout
+                target: fos_user_security_login
+            anonymous:    true
+            
         login:
             pattern:  ^/api/login
+            provider: app_user_provider 
             stateless: true
             anonymous: true
             json_login:
@@ -29,34 +46,20 @@ security:
         api:
             pattern:   ^/api/review/new
             stateless: true
+            provider: app_user_provider
             # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
             #security: false
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
-        admin:
-            pattern:   ^/admin
-            stateless: true
-            # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
-            #security: false
-            guard:
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
-
-
-            # activate different ways to authenticate
-
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+        
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/admin, role: ROLE_ADMIN }
-        - { path: ^/api/review/new,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/review/new, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/apartment, role: ROLE_ADMIN }
+        - { path: ^/admin/review, role: ROLE_ADMIN  }
+        - { path: ^/admin/user, role: ROLE_ADMIN  }
+        
