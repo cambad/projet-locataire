@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,46 +21,79 @@ class Apartment
 
     /**
      * @ORM\Column(type="string", length=256)
+     * @Assert\Length(min = 2,
+     *      max = 256,
+     *      minMessage = "L'adresse doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "L'adresse doit faire au maximum {{ limit }} caractères de long")
      */
     private $address;
 
     /**
+     * @Assert\Type(
+     *     type="integer",
+     *     message=" {{ value }} est invalide : {{ type }} est requis."
+     * )
      * @ORM\Column(type="integer")
      */
     private $floor_number;
 
     /**
-     * @ORM\Column(type="string", length=256)
+     * @ORM\Column(type="string", length=128)
+     * @Assert\Length(min = 2,
+     *      max = 128,
+     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long"
+     * )
      */
     private $location;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(
+     *     type="integer",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $area;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(
+     *     type="integer",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $rooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(
+     *     type="integer",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $rental;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="apartment", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="apartment", cascade={"persist", "remove"})
      */
     private $reviews;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(
+     *     type="float",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $lat;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(
+     *     type="float",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $lng;
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MarksRepository")
@@ -18,76 +19,160 @@ class Marks
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $recommendation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $exterior;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $interior;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $contact;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $accessibility;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $apartmentEnvironment;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $traffic;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $exteriorBuilding;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $buildingEnvironment;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $insulation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $cleanliness;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $brightness;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $firstContact;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5,
+     *      minMessage = "La note peut être au minimum de {{ limit }}",
+     *      maxMessage = "La note peut être au maximum de {{ limit }}"
+     * )
      */
     private $contactQuality;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="marks", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="marks", cascade={"all"})
      */
     private $review;
 
