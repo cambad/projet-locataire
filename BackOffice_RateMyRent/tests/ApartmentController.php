@@ -76,7 +76,6 @@ class ApartmentController extends AbstractController
     /**
      * New apartment, Json decode and check with validator before to flush
      * 
-     * @Route("/apartment/new", name="apartment_new", methods={"POST"})
      *
      * @param Request $request
      * @param SerializerInterface $serializerInterface
@@ -155,9 +154,7 @@ class ApartmentController extends AbstractController
                     'content-Type' => 'application/json'
                 ]);
             }
-
-            
-dd($newApartment);
+            dd($newApartment);
             //BDD creating a new review, a new apartement and a new note
             $entityManager->persist($newApartment);
             $entityManager->flush();

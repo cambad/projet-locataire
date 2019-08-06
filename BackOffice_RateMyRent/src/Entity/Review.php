@@ -3,11 +3,10 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
  */
@@ -22,31 +21,66 @@ class Review
 
     /**
      * @ORM\Column(type="string", length=256)
+     * @Assert\Length(min = 2,
+     *      max = 256,
+     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min = 2,
+     *      max = 600,
+     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long"
+     * )
      */
     private $positive;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min = 2,
+     *      max = 600,
+     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long"
+     * )
      */
     private $negative;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type="boolean",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $still_in;
 
     /**
+     * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type="boolean",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
+     */
+    private $tenant;
+
+    /**
      * @ORM\Column(type="datetime")
+     * @Assert\Type(
+     *     type="datetime",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $created_At;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\Type(
+     *     type="datetime",
+     *     message=" {{ value }} est invalide {{ type }} est requis."
+     * )
      */
     private $updated_At;
 
@@ -56,19 +90,14 @@ class Review
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews", cascade={"persist", "remove"})
      */
     private $apartment;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review", cascade={"persist", "remove"})
      */
     private $marks;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $tenant;
 
 
     public function __construct()

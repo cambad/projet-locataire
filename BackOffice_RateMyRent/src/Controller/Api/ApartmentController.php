@@ -84,9 +84,9 @@ class ApartmentController extends AbstractController
      * @param SerializerInterface $serializer
      * @param ValidatorInterface $validator
      * @param EntityManagerInterface $entityManager
-     * @return JsonResponse
+     * @return Response 
     */
-    public function newApartment(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $entityManager): JsonResponse
+    public function newApartment(Request $request, ValidatorInterface $validator, EntityManagerInterface $entityManager, SerializerInterface $serializer): Response
     {
         $frontDatas = [];
         if ($content = $request->getContent()) {
@@ -94,92 +94,65 @@ class ApartmentController extends AbstractController
         }
 
         if (isset($frontDatas)) {
-
             // APARTMENT needs : address, floor_number, location, area, rooms, rental, lat, lng
             $apartment = new Apartment;
             //Hydratation of the Apartment entity
-            $apartment = $serializer->deserialize($content, Apartment::class, 'json', [
-                'object_to_populate' => $apartment
-            ]);
-            //Check and catch the errors with validator
-            $errors = $validator->validate($apartment->getLat(), [
-
-            ]);
-            if (0 !== count($errors)) {
-                $errors = $serializer->serialize($errors, 'json');
-                return new Response($errors, 500, [
-                    'content-Type' => 'application/json'
-                ]);
-            }
+            $apartment = $serializer->deserialize($content, Apartment::class, 'json');
 
             // REVIEW needs : title, positive, negative, still_in 
             $review = new Review;
-            $review = $serializer->deserialize($content, Review::class, 'json', [
-                'object_to_populate' => $review
-            ]);
-                       
-            //Check and catch the errors with validator
-            $errors = $validator->validate($review);
-            if (0 !== count($errors)) {
-                $errors = $serializer->serialize($errors, 'json');
-                return new Response($errors, 500, [
-                    'content-Type' => 'application/json'
-                ]);
-            }
-            //pushing the new review into the apartment just created
-            $review->setApartment($apartment); 
-
+            $review = $serializer->deserialize($content, Review::class, 'json');
+             
             //MARKS needs :
             $marks = new Marks;
-            $marks = $marks = $serializer->deserialize($content, Marks::class, 'json', [
-                'object_to_populate' => $marks
-            ]);
+            $marks = $marks = $serializer->deserialize($content, Marks::class, 'json');
+
             //If a tenant send a form, we have to calculate the average of the categories and send it into the database.
             if($marks->getRecommendation() === 0)
             {
                 $result = $marks->getAccessibility() + $marks->getApartmentEnvironment() + $marks->getTraffic();
                 $result = round($result/3);
                 $average = intval($result);
-
                 $marks->setRecommendation($average);                
             };
-
             if($marks->getExterior() === 0)
             {
                 $result = $marks->getExteriorBuilding() + $marks->getBuildingEnvironment();
                 $result = round($result/2);
                 $average = intval($result);
-
                 $marks->setExterior($average);                
             };
-
             if($marks->getInterior() === 0)
             {
                 $result = $marks->getInsulation() + $marks->getCleanliness() + $marks->getBrightness();
                 $result = round($result/3);
                 $average = intval($result);
-
                 $marks->setInterior($average);                
             };
-
             if($marks->getContact() === 0)
             {
                 $result = $marks->getFirstContact() + $marks->getContactQuality();
                 $result = round($result/2);
                 $average = intval($result);
-
                 $marks->setContact($average);                
             };
-            
 
             //Check and catch the errors with validator
-            $errors = $validator->validate($marks);
+            $errors = $validator->validate([
+                'marks' => $marks,
+                'review' => $review,
+                'apartment' => $apartment]
+            );
             if (0 !== count($errors)) {
                 $errors = $serializer->serialize($errors, 'json');
                 return new Response($errors, 500, [
                     'content-Type' => 'application/json'
                 ]);
             }
+
+            //pushing the new review into the apartment just created
+            $review->setApartment($apartment);
+            
             //pushing the marks into the review juste created
             $marks->setReview($review);
 
@@ -190,15 +163,25 @@ class ApartmentController extends AbstractController
             $data = [
                 'status' => 201,
                 'message' => 'Avis bien recu'
-            ];
+            ];        
+            $data = $serializer->serialize($data, 'json');
 
-            return new JsonResponse($data, 201);
-        }
-        $data = [
+
+            return new Response($data, 201, [
+                'content-Type' => 'application/json'
+            ]);
+        } else 
+        {
+            $data = [
             'status' => 500,
             'message' => 'Vous devez renseigner tous les champs'
-        ];
-        return new JsonResponse($data, 500);
-        
+            ];        
+            $data = $serializer->serialize($data, 'json');
+
+
+            return new Response($data, 500, [
+                'content-Type' => 'application/json'
+            ]);
+        }        
     }
 }
