@@ -18,6 +18,7 @@ import {
   changePositiveComment,
   changeNegativeComment,
   submitRatingForm,
+  setRedirectErrorFormSubmit,
 } from 'src/store/reducer';
 
 
@@ -77,6 +78,9 @@ const mapDispatchToProps = dispatch => ({
   },
   submitRatingForm: () => {
     dispatch(submitRatingForm());
+  },
+  setRedirectErrorFormSubmit: () => {
+    dispatch(setRedirectErrorFormSubmit());
   },
 });
 

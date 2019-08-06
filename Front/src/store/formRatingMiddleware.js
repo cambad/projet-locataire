@@ -88,42 +88,74 @@ const formRatingMiddleware = store => next => (action) => {
             // change formLoading to true to display a loading icone
             store.dispatch(changeFormLoading());
             // creating the object to send in the request to retrieve the latitude/logitude inside
+            // dataToSend = {
+            //   "address": reducer.addressForm,
+            //   "floor_number": reducer.floorNumber,
+            //   // "floor_number": 'coucou toi',
+            //   "location": reducer.location,
+            //   "area": reducer.floorArea,
+            //   "rooms": reducer.numberOfRooms,
+            //   "rental": reducer.rent,
+            //   "lat": spot.lat,
+            //   "lng": spot.lng,
+            //   "reviews": [
+            //     {
+            //       "title": reducer.abstractedComment,
+            //       "positive": reducer.positiveComment,
+            //       "negative": reducer.negativeComment,
+            //       "still_in": reducer.stillInApartment,
+            //       "tenant": reducer.isLocataire,
+            //       "marks": [
+            //         {
+            //           "recommendation": reducer.visitorValue.recommendationValue,
+            //           "exterior": reducer.visitorValue.exteriorValue,
+            //           "interior": reducer.visitorValue.interiorValue,
+            //           "contact": reducer.visitorValue.contactValue,
+            //           "accessibility": reducer.tenantValue.accessiblityValue,
+            //           "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
+            //           "traffic": reducer.tenantValue.circulationValue,
+            //           "exteriorBuilding": reducer.tenantValue.exteriorValue,
+            //           "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
+            //           "insulation": reducer.tenantValue.isolationValue,
+            //           "cleanliness": reducer.tenantValue.cleanlinessValue,
+            //           "brightness": reducer.tenantValue.brightnessValue,
+            //           "firstContact": reducer.tenantValue.contactValue,
+            //           "contact_quality": reducer.tenantValue.contactQualityValue
+            //         },
+            //       ],
+            //     },
+            //   ],
+            // };
+
             dataToSend = {
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
-              "location": reducer.location,
+              "floor_number": 'coucou toi',
+              // "location": reducer.location,
               "area": reducer.floorArea,
               "rooms": reducer.numberOfRooms,
               "rental": reducer.rent,
               "lat": spot.lat,
               "lng": spot.lng,
-              "reviews": [
-                {
-                  "title": reducer.abstractedComment,
-                  "positive": reducer.positiveComment,
-                  "negative": reducer.negativeComment,
-                  "still_in": reducer.stillInApartment,
-                  "tenant": reducer.isLocataire,
-                  "marks": [
-                    {
-                      "recommendation": reducer.visitorValue.recommendationValue,
-                      "exterior": reducer.visitorValue.exteriorValue,
-                      "interior": reducer.visitorValue.interiorValue,
-                      "contact": reducer.visitorValue.contactValue,
-                      "accessibility": reducer.tenantValue.accessiblityValue,
-                      "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
-                      "traffic": reducer.tenantValue.circulationValue,
-                      "exteriorBuilding": reducer.tenantValue.exteriorValue,
-                      "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
-                      "insulation": reducer.tenantValue.isolationValue,
-                      "cleanliness": reducer.tenantValue.cleanlinessValue,
-                      "brightness": reducer.tenantValue.brightnessValue,
-                      "firstContact": reducer.tenantValue.contactValue,
-                      "contact_quality": reducer.tenantValue.contactQualityValue
-                    },
-                  ],
-                },
-              ],
+              "title": reducer.abstractedComment,
+              "positive": reducer.positiveComment,
+              "negative": reducer.negativeComment,
+              "still_in": reducer.stillInApartment,
+              "tenant": reducer.isLocataire,
+              "recommendation": reducer.visitorValue.recommendationValue,
+              "exterior": reducer.visitorValue.exteriorValue,
+              "interior": reducer.visitorValue.interiorValue,
+              "contact": reducer.visitorValue.contactValue,
+              "accessibility": reducer.tenantValue.accessiblityValue,
+              "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
+              "traffic": reducer.tenantValue.circulationValue,
+              "exteriorBuilding": reducer.tenantValue.exteriorValue,
+              "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
+              "insulation": reducer.tenantValue.isolationValue,
+              "cleanliness": reducer.tenantValue.cleanlinessValue,
+              "brightness": reducer.tenantValue.brightnessValue,
+              "firstContact": reducer.tenantValue.contactValue,
+              "contact_quality": reducer.tenantValue.contactQualityValue
             };
             console.log(dataToSend);
 
@@ -138,9 +170,9 @@ const formRatingMiddleware = store => next => (action) => {
               .catch((response) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
-                // store.dispatch(changeFormSubmitFailure());
+                store.dispatch(changeFormSubmitFailure());
                 // TEST =======================> à supprimer
-                store.dispatch(changeFormSubmitSuccess());
+                // store.dispatch(changeFormSubmitSuccess());
                 console.log(response);
               });
           })

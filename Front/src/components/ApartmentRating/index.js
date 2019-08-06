@@ -44,6 +44,7 @@ const ApartmentRating = ({
   changePositiveComment,
   changeNegativeComment,
   submitRatingForm,
+  setRedirectErrorFormSubmit,
 }) => {
   const handleChange = (addressInput) => {
     changeAddress(addressInput);
@@ -66,7 +67,12 @@ const ApartmentRating = ({
     submitRatingForm();
   };
 
+  // if formSubmitSuccess = true > redirect to landing page
   if (formSubmitSuccess) {
+
+    // need to set errorFormSubmit to FALSE to come back to the form from an other page
+    setRedirectErrorFormSubmit();
+
     return <Redirect to="/" />;
   }
 
@@ -159,6 +165,7 @@ ApartmentRating.propTypes = {
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,
+  setRedirectErrorFormSubmit: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;
