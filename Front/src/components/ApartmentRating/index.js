@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-// import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
@@ -127,7 +126,6 @@ const ApartmentRating = ({
           {formSubmitFailure && (
             <p className="failure-form-submit">Le formulaire n'a pas pu être soumis, veuillez essayer plus tard</p>
           )}
-          {/* <p className={classNames({ 'error-form-submit-hidden': !errorFormSubmit, 'error-form-submit': errorFormSubmit })}>Veuillez remplir tous les champs s'il vous plaît</p> */}
           {formLoading && (
             <div className="submit-form-loading">
               <CircularProgress disableShrink />
@@ -142,6 +140,8 @@ const ApartmentRating = ({
 // PropTypes validation
 ApartmentRating.propTypes = {
   formSubmitSuccess: PropTypes.bool.isRequired,
+  formSubmitFailure: PropTypes.bool.isRequired,
+  formLoading: PropTypes.bool.isRequired,
   errorFormSubmit: PropTypes.bool.isRequired,
   address: PropTypes.string.isRequired,
   isLocataire: PropTypes.bool.isRequired,
