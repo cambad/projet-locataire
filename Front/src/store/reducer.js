@@ -2,9 +2,9 @@
 const initialState = {
   formSubmitFailure: false,
   formSubmitSuccess: false,
+  errorFormSubmit: false,
   formLoading: false,
   isConnected: true,
-  errorFormSubmit: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
@@ -62,6 +62,8 @@ const SUBMIT_RATING_FORM = 'SUBMIT_RATING_FORM';
 const CHANGE_FORM_LOADING = 'CHANGE_FORM_LOADING';
 const CHANGE_FORM_SUBMIT_SUCCESS = 'CHANGE_FORM_SUBMIT_SUCCESS';
 const CHANGE_FORM_SUBMIT_FAILURE = 'CHANGE_FORM_SUBMIT_FAILURE';
+const DELETE_FORM_ERROR = 'DELETE_FORM_ERROR';
+const SET_REDIRECT_ERROR_FORM_SUBMIT = 'SET_REDIRECT_ERROR_FORM_SUBMIT';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -201,13 +203,66 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_FORM_SUBMIT_SUCCESS:
       return {
         ...state,
-        formSubmitSuccess: !state.formSubmitSuccess,
+        formSubmitSuccess: true,
       };
 
     case CHANGE_FORM_SUBMIT_FAILURE:
       return {
         ...state,
-        formSubmitFailure: !state.formSubmitFailure,
+        formSubmitFailure: true,
+      };
+
+    case DELETE_FORM_ERROR:
+      return {
+        ...state,
+        formSubmitFailure: false,
+        formSubmitSuccess: false,
+        errorFormSubmit: false,
+      };
+
+    case SET_REDIRECT_ERROR_FORM_SUBMIT:
+      return {
+        ...state,
+        formSubmitFailure: false,
+        formSubmitSuccess: false,
+        errorFormSubmit: false,
+        formLoading: false,
+        isConnected: true,
+        visitorValue: {
+          recommendationValue: 0,
+          exteriorValue: 0,
+          interiorValue: 0,
+          contactValue: 0,
+        },
+        tenantValue: {
+          accessiblityValue: 0,
+          apartmentEnvironmentValue: 0,
+          circulationValue: 0,
+          exteriorValue: 0,
+          buildingEnvironmentValue: 0,
+          isolationValue: 0,
+          cleanlinessValue: 0,
+          brightnessValue: 0,
+          contactValue: 0,
+          contactQualityValue: 0,
+        },
+        addressForm: '',
+        latLng: {
+          lat: 0,
+          lng: 0,
+        },
+        isVisiteur: false,
+        isLocataire: false,
+        isDisplayed: false,
+        stillInApartment: true,
+        floorNumber: 0,
+        location: '',
+        floorArea: 0,
+        numberOfRooms: 0,
+        rent: 0,
+        abstractedComment: '',
+        positiveComment: '',
+        negativeComment: '',
       };
 
     default:
@@ -305,6 +360,14 @@ export const changeFormSubmitSuccess = () => ({
 
 export const changeFormSubmitFailure = () => ({
   type: CHANGE_FORM_SUBMIT_FAILURE,
+});
+
+export const deleteFormErrors = () => ({
+  type: DELETE_FORM_ERROR,
+});
+
+export const setRedirectErrorFormSubmit = () => ({
+  type: SET_REDIRECT_ERROR_FORM_SUBMIT,
 });
 
 // == Selectors

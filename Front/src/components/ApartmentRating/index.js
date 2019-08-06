@@ -1,8 +1,11 @@
+// npm import
 import React from 'react';
 import classNames from 'classnames';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// local import
 import NotationFormVisiteur from 'src/containers/ApartmentRating/notationFormVisiteur';
 import NotationFormLocataire from 'src/containers/ApartmentRating/notationFormLocataire';
 import PlaceAutocomplete from './placesAutocomplete';
@@ -11,6 +14,7 @@ import InformationGenerale from './informationGenerale';
 
 import './apartmentRating.scss';
 
+// Component
 const ApartmentRating = ({
   formSubmitFailure,
   formSubmitSuccess,
@@ -23,8 +27,6 @@ const ApartmentRating = ({
   isLocataireChange,
   isVisiteurChange,
   changeAddress,
-  isStillInApartment,
-  stillInApartment,
   floorNumber,
   location,
   floorArea,
@@ -42,8 +44,13 @@ const ApartmentRating = ({
   changePositiveComment,
   changeNegativeComment,
   submitRatingForm,
+  setRedirectErrorFormSubmit,
 }) => {
   const handleChange = (addressInput) => {
+    changeAddress(addressInput);
+  };
+
+  const handleSelect = (addressInput) => {
     changeAddress(addressInput);
   };
 
@@ -60,11 +67,20 @@ const ApartmentRating = ({
     submitRatingForm();
   };
 
+  // if formSubmitSuccess = true > redirect to landing page
+  if (formSubmitSuccess) {
+    // need to set the state after form submit success
+    setRedirectErrorFormSubmit();
+    // redirect to landing page
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="notation-form">
       <PlaceAutocomplete
         address={address}
         handleChange={handleChange}
+        handleSelect={handleSelect}
       />
       <div>
         <form className="main-form">
@@ -96,10 +112,7 @@ const ApartmentRating = ({
               />
             )}
             {isLocataire && (
-              <NotationFormLocataire
-                isStillInApartment={isStillInApartment}
-                stillInApartment={stillInApartment}
-              />
+              <NotationFormLocataire />
             )}
             {isVisiteur && (
               <NotationFormVisiteur />
@@ -120,9 +133,9 @@ const ApartmentRating = ({
           {errorFormSubmit && (
             <p className="error-form-submit">Veuillez remplir tous les champs s'il vous plaît</p>
           )}
-          {formSubmitSuccess && (
+          {/* {formSubmitSuccess && (
             <p className="success-form-submit">Le formulaire a bien été pris en compte</p>
-          )}
+          )} */}
           {formSubmitFailure && (
             <p className="failure-form-submit">Le formulaire n'a pas pu être soumis, veuillez essayer plus tard</p>
           )}
@@ -150,8 +163,8 @@ ApartmentRating.propTypes = {
   isLocataireChange: PropTypes.func.isRequired,
   isVisiteurChange: PropTypes.func.isRequired,
   changeAddress: PropTypes.func.isRequired,
-  isStillInApartment: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,
+  setRedirectErrorFormSubmit: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;

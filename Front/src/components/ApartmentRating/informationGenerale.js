@@ -15,7 +15,6 @@ const InformationGenerale = ({
   changeNumberOfRooms,
   changeRent,
 }) => {
-
   // function to parseInt the value
   const parseIntValue = value => parseInt(value, 10);
 

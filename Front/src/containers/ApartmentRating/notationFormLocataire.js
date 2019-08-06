@@ -5,17 +5,21 @@ import { connect } from 'react-redux';
 import notationFormLocataire from 'src/components/ApartmentRating/notationFormLocataire';
 
 // == Action Creators
-import { tenantStars } from 'src/store/reducer';
+import { tenantStars, changeStillInApartment } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
   tenantValue: state.reducer.tenantValue,
+  stillInApartment: state.reducer.stillInApartment,
 });
 
 
 const mapDispatchToProps = dispatch => ({
   changeStarNumber: (value, name) => {
     dispatch(tenantStars(value, name));
+  },
+  isStillInApartment: (checked) => {
+    dispatch(changeStillInApartment(checked));
   },
 });
 

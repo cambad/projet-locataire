@@ -7,11 +7,13 @@ import './apartmentRating.scss';
 const PlaceAutocomplete = ({
   address,
   handleChange,
+  handleSelect,
 }) => (
   <PlacesAutocomplete
     className="placeholder"
     value={address}
     onChange={handleChange}
+    onSelect={handleSelect}
   >
     {({
       getInputProps,
@@ -68,6 +70,7 @@ const PlaceAutocomplete = ({
 PlaceAutocomplete.propTypes = {
   address: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired,
 };
 
 
