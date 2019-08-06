@@ -29,13 +29,15 @@
                     <a class="nav-item nav-link"  href="{{ path('admin_user_index') }}"> 
                         Utilisateurs 
                     </a>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="btn btn-danger my-2 my-sm-0"  href="{{ path('fos_user_registration_register')}} ">inscription</a> 
 
-                        <a class="btn btn-danger my-2 my-sm-0"  href="{{ path('app_logout')}} ">Déconnexion</a> 
+                    {% if is_granted('ROLE_USER') %}
+
+                        <a class="btn btn-danger my-2 my-sm-0"  href="{{ path('fos_user_security_logout')}} ">Déconnexion</a> 
 
                     {% else %}
                     
-                        <a class="nav-item nav-link my-2 my-sm-0"  href="{{ path('admin_home')}} ">Connexion</a>
+                        <a class="nav-item nav-link my-2 my-sm-0"  href="{{ path('fos_user_security_login')}} ">Connexion</a>
 
                     {% endif %}
                 </nav>
