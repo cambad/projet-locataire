@@ -65,6 +65,7 @@ const CHANGE_FORM_SUBMIT_SUCCESS = 'CHANGE_FORM_SUBMIT_SUCCESS';
 const CHANGE_FORM_SUBMIT_FAILURE = 'CHANGE_FORM_SUBMIT_FAILURE';
 const DELETE_FORM_ERROR = 'DELETE_FORM_ERROR';
 const SET_REDIRECT_ERROR_FORM_SUBMIT = 'SET_REDIRECT_ERROR_FORM_SUBMIT';
+const SUBMIT_DONE_TO_FALSE = 'SUBMIT_DONE_TO_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -268,6 +269,12 @@ const reducer = (state = initialState, action = {}) => {
         negativeComment: '',
       };
 
+    case SUBMIT_DONE_TO_FALSE:
+      return {
+        ...state,
+        formSubmitDone: false,
+      };
+
     default:
       return state;
   }
@@ -371,6 +378,10 @@ export const deleteFormErrors = () => ({
 
 export const setRedirectErrorFormSubmit = () => ({
   type: SET_REDIRECT_ERROR_FORM_SUBMIT,
+});
+
+export const formSubmitDoneToFalse = () => ({
+  type: SUBMIT_DONE_TO_FALSE,
 });
 
 // == Selectors
