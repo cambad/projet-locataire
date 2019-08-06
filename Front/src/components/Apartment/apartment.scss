@@ -36,6 +36,11 @@
     color: $button-background-color;
   }
 
+  h3 {
+    font-size: 2em;
+    font-family: $title-font-family;
+  }
+
   &-address {
     margin-bottom: 1em;
     font-size: 1.4em;
@@ -55,7 +60,10 @@
   border-bottom: 1px solid $header-background-color;
 
   &-item {
-    margin-bottom: .5em;
+    margin-bottom: 1em;
+    padding-bottom: .5em;
+    font-family: $text-font-family;
+    border-bottom: 1px solid lightgray;
   }
 }
 

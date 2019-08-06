@@ -50,7 +50,7 @@ class LastFiveReview extends React.Component {
         {/* if dataReception, display Review */}
         {dataReception && (
           lastFiveApartment.map(appartment => (
-            <NavLink to={`/appartement/${appartment.id}`}><Review key={appartment.id} className="section-reviews" {...appartment} /></NavLink>
+            <NavLink key={appartment.id} to={`/appartement/${appartment.id}`}><Review className="section-reviews" {...appartment} /></NavLink>
           ))
         )}
         {!dataReception && (

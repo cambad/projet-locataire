@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import './apartment.scss';
 
+
 const Marker = ({ text }) => (
   <div>
     <div
@@ -48,6 +49,7 @@ class Apartment extends React.Component {
     activeIndex: -1,
     lat: 0,
     lng: 0,
+    tenant: '',
   }
 
   componentWillMount() {
@@ -85,6 +87,7 @@ class Apartment extends React.Component {
           firstContact: marks[0].firstContact,
           insulation: marks[0].insulation,
           traffic: marks[0].traffic,
+          tenant:  reviews[0].tenant,
         });
       })
       .catch(error => console.log(error));
@@ -129,246 +132,339 @@ class Apartment extends React.Component {
       traffic,
       lat,
       lng,
+      tenant,
     } = this.state;
 
     const overallAverage = (district + exterior + interior + contact) / 4;
     return (
       <>
-        <main className="main-apartment">
-          <div className="info">
-            <div className="generales">
-              <h1 className="generales-title">{title}</h1>
-              <h3 className="generales-address">{address}</h3>
-              <div className="generales-notation">
-                <h3 className="generales-title">Note générale</h3>
-                <Rating
-                  name="simple-controlled"
-                  max={5}
-                  value={overallAverage}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="caract">
-              <h3 className="caract-item">Loyer : {rental}€</h3>
-              <h3 className="caract-item">Surface au sol (en m²) : {area}</h3>
-              <h3 className="caract-item">Etage : {floorNumber}</h3>
-              <h3 className="caract-item">Localisation : {location}</h3>
-              <h3 className="caract-item">Nombre de pièces : {rooms}</h3>
-              <h3 className="caract-item">Habite toujours dans l'appartement : { stillIn ? 'Oui' : 'Non' }</h3>
-            </div>
-            <article className="notation">
-              <div className="notation-map">
-                <GoogleMapReact
-                  bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
-                  defaultCenter={{ lat, lng }}
-                  defaultZoom={18}
-                  center={{ lat, lng }}
-                  options={{
-                    mapTypeControl: false,
-                    scrollwheel: true,
-                    fullscreenControl: false,
-                    zoomControl: false,      
-                  }}
-                >
-                  <Marker
-                    lat={lat}
-                    lng={lng}
-                    text={title}
+        {tenant && (
+          <main className="main-apartment">
+            <div className="info">
+              <div className="generales">
+                <h1 className="generales-title">{title}</h1>
+                <h3 className="generales-address">{address}</h3>
+                <div className="generales-notation">
+                  <h3 className="generales-title">Note générale</h3>
+                  <Rating
+                    name="simple-controlled"
+                    max={5}
+                    value={overallAverage}
+                    readOnly
                   />
-                </GoogleMapReact>
-              </div>
-              <div className="notation-review">
-                <div className="notation-review-item">
-                  <Accordion fluid>
-                    <Accordion.Title
-                      active={activeIndex === 0}
-                      index={0}
-                      onClick={this.handleClick}
-                      className="accordion-title"
-                    >
-                      <div>
-                        <Icon name="dropdown" />
-                        Quartier
-                      </div>
-                      <Rating
-                        name="simple-controlled"
-                        max={5}
-                        value={district}
-                        readOnly
-                      />
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 0}>
-                      <div className="accordion-content">
-                        <h3>Accessibilité de l'appartement</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={accessibility}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Environnement urbain de l'appartement</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={apartmentEnvironment}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Circulation</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={traffic}
-                          readOnly
-                        />
-                      </div>
-                    </Accordion.Content>
-                  </Accordion>
-                </div>
-                <div className="notation-review-item">
-                  <Accordion fluid>
-                    <Accordion.Title
-                      active={activeIndex === 1}
-                      index={1}
-                      onClick={this.handleClick}
-                      className="accordion-title"
-                    >
-                      <div>
-                        <Icon name="dropdown" />
-                        Etat général de l'immeuble
-                      </div>
-                      <Rating
-                        name="simple-controlled"
-                        max={5}
-                        value={exterior}
-                        readOnly
-                      />
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 1}>
-                      <div className="accordion-content">
-                        <h3>État extérieur de l'immeuble</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={exteriorBuilding}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Etat des parties communes</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={buildingEnvironment}
-                          readOnly
-                        />
-                      </div>
-                    </Accordion.Content>
-                  </Accordion>
-                </div>
-                <div className="notation-review-item">
-                  <Accordion fluid>
-                    <Accordion.Title
-                      active={activeIndex === 2}
-                      index={2}
-                      onClick={this.handleClick}
-                      className="accordion-title"
-                    >
-                      <div>
-                        <Icon name="dropdown" />
-                        Qualité de l'appartement
-                      </div>
-                      <Rating
-                        name="simple-controlled"
-                        max={5}
-                        value={interior}
-                        readOnly
-                      />
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 2}>
-                      <div className="accordion-content">
-                        <h3>Isolation thermique et sonore</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={insulation}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Propreté générale</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={cleanliness}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Luminosité</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={brightness}
-                          readOnly
-                        />
-                      </div>
-                    </Accordion.Content>
-                  </Accordion>
-                </div>
-                <div className="notation-review-item">
-                  <Accordion fluid>
-                    <Accordion.Title
-                      active={activeIndex === 3}
-                      index={3}
-                      onClick={this.handleClick}
-                      className="accordion-title"
-                    >
-                      <div>
-                        <Icon name="dropdown" />
-                        Relation au propriétaire et/ou à l'agence
-                      </div>
-                      <Rating
-                        name="simple-controlled"
-                        max={5}
-                        value={contact}
-                        readOnly
-                      />
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 3}>
-                      <div className="accordion-content">
-                        <h3>Prise de contact agent/propriétaire</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={firstContact}
-                          readOnly
-                        />
-                      </div>
-                      <div className="accordion-content">
-                        <h3>Qualité de la relation lors de la location</h3>
-                        <Rating
-                          name="simple-controlled"
-                          max={5}
-                          value={contactQuality}
-                          readOnly
-                        />
-                      </div>
-                    </Accordion.Content>
-                  </Accordion>
                 </div>
               </div>
-              <div className="notation-comments">
-                <TiPlusOutline className="icon-plus" /><p className="notation-comments-text">{positive}</p>
-                <TiMinusOutline className="icon-minus" /><p className="notation-comments-text">{negative}</p>
+              <div className="caract">
+                <h3 className="caract-item">Loyer : {rental}€</h3>
+                <h3 className="caract-item">Surface au sol (en m²) : {area}</h3>
+                <h3 className="caract-item">Etage : {floorNumber}</h3>
+                <h3 className="caract-item">Localisation : {location}</h3>
+                <h3 className="caract-item">Nombre de pièces : {rooms}</h3>
+                <h3 className="caract-item">Habite toujours dans l'appartement : { stillIn ? 'Oui' : 'Non' }</h3>
               </div>
-            </article>
-          </div>
-        </main>
+              <article className="notation">
+                <div className="notation-map">
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
+                    defaultCenter={{ lat, lng }}
+                    defaultZoom={18}
+                    center={{ lat, lng }}
+                    options={{
+                      mapTypeControl: false,
+                      scrollwheel: true,
+                      fullscreenControl: false,
+                      zoomControl: false,
+                    }}
+                  >
+                    <Marker
+                      lat={lat}
+                      lng={lng}
+                      text={title}
+                    />
+                  </GoogleMapReact>
+                </div>
+                <div className="notation-review">
+                  <div className="notation-review-item">
+                    <Accordion fluid>
+                      <Accordion.Title
+                        active={activeIndex === 0}
+                        index={0}
+                        onClick={this.handleClick}
+                        className="accordion-title"
+                      >
+                        <div>
+                          <Icon name="dropdown" />
+                          Quartier
+                        </div>
+                        <Rating
+                          name="simple-controlled"
+                          max={5}
+                          value={district}
+                          readOnly
+                        />
+                      </Accordion.Title>
+                      <Accordion.Content active={activeIndex === 0}>
+                        <div className="accordion-content">
+                          <h3>Accessibilité de l'appartement</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={accessibility}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Environnement urbain de l'appartement</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={apartmentEnvironment}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Circulation</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={traffic}
+                            readOnly
+                          />
+                        </div>
+                      </Accordion.Content>
+                    </Accordion>
+                  </div>
+                  <div className="notation-review-item">
+                    <Accordion fluid>
+                      <Accordion.Title
+                        active={activeIndex === 1}
+                        index={1}
+                        onClick={this.handleClick}
+                        className="accordion-title"
+                      >
+                        <div>
+                          <Icon name="dropdown" />
+                          Etat général de l'immeuble
+                        </div>
+                        <Rating
+                          name="simple-controlled"
+                          max={5}
+                          value={exterior}
+                          readOnly
+                        />
+                      </Accordion.Title>
+                      <Accordion.Content active={activeIndex === 1}>
+                        <div className="accordion-content">
+                          <h3>État extérieur de l'immeuble</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={exteriorBuilding}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Etat des parties communes</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={buildingEnvironment}
+                            readOnly
+                          />
+                        </div>
+                      </Accordion.Content>
+                    </Accordion>
+                  </div>
+                  <div className="notation-review-item">
+                    <Accordion fluid>
+                      <Accordion.Title
+                        active={activeIndex === 2}
+                        index={2}
+                        onClick={this.handleClick}
+                        className="accordion-title"
+                      >
+                        <div>
+                          <Icon name="dropdown" />
+                          Qualité de l'appartement
+                        </div>
+                        <Rating
+                          name="simple-controlled"
+                          max={5}
+                          value={interior}
+                          readOnly
+                        />
+                      </Accordion.Title>
+                      <Accordion.Content active={activeIndex === 2}>
+                        <div className="accordion-content">
+                          <h3>Isolation thermique et sonore</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={insulation}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Propreté générale</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={cleanliness}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Luminosité</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={brightness}
+                            readOnly
+                          />
+                        </div>
+                      </Accordion.Content>
+                    </Accordion>
+                  </div>
+                  <div className="notation-review-item">
+                    <Accordion fluid>
+                      <Accordion.Title
+                        active={activeIndex === 3}
+                        index={3}
+                        onClick={this.handleClick}
+                        className="accordion-title"
+                      >
+                        <div>
+                          <Icon name="dropdown" />
+                          Relation au propriétaire et/ou à l'agence
+                        </div>
+                        <Rating
+                          name="simple-controlled"
+                          max={5}
+                          value={contact}
+                          readOnly
+                        />
+                      </Accordion.Title>
+                      <Accordion.Content active={activeIndex === 3}>
+                        <div className="accordion-content">
+                          <h3>Prise de contact agent/propriétaire</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={firstContact}
+                            readOnly
+                          />
+                        </div>
+                        <div className="accordion-content">
+                          <h3>Qualité de la relation lors de la location</h3>
+                          <Rating
+                            name="simple-controlled"
+                            max={5}
+                            value={contactQuality}
+                            readOnly
+                          />
+                        </div>
+                      </Accordion.Content>
+                    </Accordion>
+                  </div>
+                </div>
+                <div className="notation-comments">
+                  <TiPlusOutline className="icon-plus" /><p className="notation-comments-text">{positive}</p>
+                  <TiMinusOutline className="icon-minus" /><p className="notation-comments-text">{negative}</p>
+                </div>
+              </article>
+            </div>
+          </main>
+        )}
+        {tenant === false && (
+          <main className="main-apartment">
+            <div className="info">
+              <div className="generales">
+                <h1 className="generales-title">{title}</h1>
+                <h3 className="generales-address">{address}</h3>
+                <div className="generales-notation">
+                  <h3 className="generales-title">Note générale</h3>
+                  <Rating
+                    name="simple-controlled"
+                    max={5}
+                    value={overallAverage}
+                    readOnly
+                  />
+                </div>
+              </div>
+              <div className="caract">
+                <h3 className="caract-item">Loyer : {rental}€</h3>
+                <h3 className="caract-item">Surface au sol (en m²) : {area}</h3>
+                <h3 className="caract-item">Etage : {floorNumber}</h3>
+                <h3 className="caract-item">Localisation : {location}</h3>
+                <h3 className="caract-item">Nombre de pièces : {rooms}</h3>
+              </div>
+              <article className="notation">
+                <div className="notation-map">
+                  <GoogleMapReact
+                    bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
+                    defaultCenter={{ lat, lng }}
+                    defaultZoom={18}
+                    center={{ lat, lng }}
+                    options={{
+                      mapTypeControl: false,
+                      scrollwheel: true,
+                      fullscreenControl: false,
+                      zoomControl: false,
+                    }}
+                  >
+                    <Marker
+                      lat={lat}
+                      lng={lng}
+                      text={title}
+                    />
+                  </GoogleMapReact>
+                </div>
+                <div className="notation-review">
+                  <div className="notation-review-item">
+                    Quartier
+                    <Rating
+                      name="simple-controlled"
+                      max={5}
+                      value={district}
+                      readOnly
+                    />
+                  </div>
+                  <div className="notation-review-item">
+                    Etat général de l'immeuble
+                    <Rating
+                      name="simple-controlled"
+                      max={5}
+                      value={exterior}
+                      readOnly
+                    />
+                  </div>
+                  <div className="notation-review-item">
+                    Qualité de l'appartement
+                    <Rating
+                      name="simple-controlled"
+                      max={5}
+                      value={interior}
+                      readOnly
+                    />
+                  </div>
+                  <div className="notation-review-item">
+                    Relation au propriétaire et/ou à l'agence
+                    <Rating
+                      name="simple-controlled"
+                      max={5}
+                      value={contact}
+                      readOnly
+                    />
+                  </div>
+                </div>
+                <div className="notation-comments">
+                  <TiPlusOutline className="icon-plus" /><p className="notation-comments-text">{positive}</p>
+                  <TiMinusOutline className="icon-minus" /><p className="notation-comments-text">{negative}</p>
+                </div>
+              </article>
+            </div>
+          </main>
+        )}
       </>
     );
   }
