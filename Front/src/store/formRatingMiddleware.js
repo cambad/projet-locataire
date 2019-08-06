@@ -73,6 +73,7 @@ const formRatingMiddleware = store => next => (action) => {
         // ajax request
         geocodeByAddress(reducer.addressForm)
           .then((results) => {
+            console.log(results)
             return (getLatLng(results[0]));
           })
           .then((latLng) => {

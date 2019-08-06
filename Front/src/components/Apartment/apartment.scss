@@ -1,6 +1,20 @@
 @import 'src/styles/_vars.scss';
 
-.main {
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em; 
+  align-items: center;
+}
+
+.main-apartment {
+  width: 70%;
+  margin: 0 auto;
   padding: 1em;
   font-family: $text-font-family;
 }
@@ -13,6 +27,14 @@
   padding-bottom: .5em;
   border-bottom: 1px solid $header-background-color;
   margin-bottom: 1em;
+
+  h1 {
+    margin-bottom: 1em;
+    font-size: 3em;
+    text-align: center;
+    font-family: $title-font-family;
+    color: $button-background-color;
+  }
 
   &-address {
     margin-bottom: 1em;
@@ -60,7 +82,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: .5em;
+      margin-bottom: 1em;
     }
   }
 
