@@ -2,9 +2,21 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { TiPlusOutline, TiMinusOutline } from 'react-icons/ti';
 import { Accordion, Icon } from 'semantic-ui-react';
+import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 
 import './apartment.scss';
+
+const Marker = ({ text }) => (
+  <div>
+    <div
+      className="pin bounce"
+      style={{ backgroundColor: 'red', cursor: 'pointer' }}
+      title={text}
+    />
+    <div className="pulse" />
+  </div>
+);
 
 class Apartment extends React.Component {
   state = {
@@ -33,9 +45,11 @@ class Apartment extends React.Component {
     insulation: 0,
     traffic: 0,
     activeIndex: -1,
+    lat: 0,
+    lng: 0,
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { match: { params } } = this.props;
     axios.get(`https://api.rate-my-rent.fr/api/${params.id}/apartment`)
       .then((results) => {
@@ -50,6 +64,8 @@ class Apartment extends React.Component {
           floorNumber: data[0].floor_number,
           location: data[0].location,
           rooms: data[0].rooms,
+          lat: data[0].lat,
+          lng: data[0].lng,
           title: reviews[0].title,
           stillIn: reviews[0].still_in,
           positive: reviews[0].positive,
@@ -73,7 +89,7 @@ class Apartment extends React.Component {
       .catch(error => console.log(error));
   }
 
-  handleClick = (titleProps) => {
+  handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
@@ -110,6 +126,8 @@ class Apartment extends React.Component {
       firstContact,
       insulation,
       traffic,
+      lat,
+      lng,
     } = this.state;
 
     const overallAverage = (district + exterior + interior + contact) / 4;
@@ -139,9 +157,25 @@ class Apartment extends React.Component {
               <h3 className="caract-item">Habite toujours dans l'appartement : { stillIn ? 'Oui' : 'Non' }</h3>
             </div>
             <article className="notation">
-              <h2 className="notation-title">{title}</h2>
-              <div className="notation-img">
-                <div className="img" />
+              <div className="notation-map">
+                <GoogleMapReact
+                  bootstrapURLKeys={{ key: 'AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM' }}
+                  defaultCenter={{ lat, lng }}
+                  defaultZoom={18}
+                  center={{ lat, lng }}
+                  options={{
+                    mapTypeControl: false,
+                    scrollwheel: true,
+                    fullscreenControl: false,
+                    zoomControl: false,      
+                  }}
+                >
+                  <Marker
+                    lat={lat}
+                    lng={lng}
+                    text={title}
+                  />
+                </GoogleMapReact>
               </div>
               <div className="notation-review">
                 <div className="notation-review-item">

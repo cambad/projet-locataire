@@ -8,7 +8,7 @@ import Register from 'src/components/Register';
 import Contact from 'src/components/Contact';
 import ResearchMap from 'src/containers/ResearchMap';
 import Profil from 'src/components/Profil';
-import Apartment from 'src/components/Apartment';
+import ApartmentComponent from 'src/components/Apartment';
 import AppartmentRating from 'src/containers/ApartmentRating';
 
 import './app.scss';
@@ -23,7 +23,7 @@ const App = () => (
       <Route path="/recherche" component={ResearchMap} />
       <Route path="/profil" component={Profil} />
       <Route path="/noter-un-appartement" component={AppartmentRating} />
-      <Route path="/appartement/:id" component={Apartment} />
+      <Route path="/appartement/:id" component={ApartmentComponent} />
     </Switch>
     <Footer />
   </React.Fragment>

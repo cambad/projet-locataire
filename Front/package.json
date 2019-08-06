@@ -49,6 +49,7 @@
     "@material-ui/lab": "^4.0.0-alpha.21",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
+    "google-map-react": "^1.1.4",
     "material-ui-rating": "^4.1.1",
     "prop-types": "^15.7.2",
     "rating": "^0.1.0",

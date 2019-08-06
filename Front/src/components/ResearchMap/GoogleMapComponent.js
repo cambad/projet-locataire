@@ -51,7 +51,7 @@ const Map = (props) => {
     infoboxRental,
     id,
   } = props;
-  return (
+  return  (
     <GoogleMap
       ref={mapRef}
       defaultCenter={{
