@@ -7,7 +7,7 @@ import {
   changeFormLoading,
   changeFormSubmitSuccess,
   changeFormSubmitFailure,
-  deleteErrorsOnSubmit,
+  deleteFormErrors,
 } from 'src/store/reducer';
 
 const formRatingMiddleware = store => next => (action) => {
@@ -16,7 +16,7 @@ const formRatingMiddleware = store => next => (action) => {
     case 'SUBMIT_RATING_FORM': {
 
       // on remet à zéro les erreurs de soumission du formulaire
-      store.dispatch(deleteErrorsOnSubmit());
+      store.dispatch(deleteFormErrors());
 
 
       // check if the form is correct
@@ -63,7 +63,6 @@ const formRatingMiddleware = store => next => (action) => {
         correctForm = false;
       }
 
-      // retrieve formLoading to display a loading circle
 
       /**
        * 
@@ -127,6 +126,8 @@ const formRatingMiddleware = store => next => (action) => {
               ],
             };
             console.log(dataToSend);
+
+            // Request to send the datas to the API
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
               .then((response) => {
                 // stop displaying the form submit loader
@@ -137,7 +138,9 @@ const formRatingMiddleware = store => next => (action) => {
               .catch((response) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
-                store.dispatch(changeFormSubmitFailure());
+                // store.dispatch(changeFormSubmitFailure());
+                // TEST =======================> à supprimer
+                store.dispatch(changeFormSubmitSuccess());
                 console.log(response);
               });
           })

@@ -1,6 +1,7 @@
 // npm import
 import React from 'react';
 import classNames from 'classnames';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -65,6 +66,10 @@ const ApartmentRating = ({
     submitRatingForm();
   };
 
+  if (formSubmitSuccess) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="notation-form">
       <PlaceAutocomplete
@@ -123,9 +128,9 @@ const ApartmentRating = ({
           {errorFormSubmit && (
             <p className="error-form-submit">Veuillez remplir tous les champs s'il vous plaît</p>
           )}
-          {formSubmitSuccess && (
+          {/* {formSubmitSuccess && (
             <p className="success-form-submit">Le formulaire a bien été pris en compte</p>
-          )}
+          )} */}
           {formSubmitFailure && (
             <p className="failure-form-submit">Le formulaire n'a pas pu être soumis, veuillez essayer plus tard</p>
           )}
