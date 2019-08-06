@@ -13,9 +13,14 @@ class Research extends React.Component {
 
   // Use to set the scroll bar to the top to display the pop submiFormDone
   componentWillMount() {
-    console.log('component will mount OK');
     // To set scrollbar on top
     window.scrollTo(0, 0);
+  }
+
+  // set submiFormDone to false
+  componentWillUnmount() {
+    const { formSubmitDoneToFalse } = this.props;
+    formSubmitDoneToFalse();
   }
 
   handleChange = (event) => {
@@ -49,8 +54,12 @@ class Research extends React.Component {
   };
 
   render() {
-    const { address, redirectToMap, setRedirectToMapFalse, formSubmitDone } = this.props;
-    console.log('formSubmitDone provenant du reducer du formulaire : ', formSubmitDone);
+    const {
+      address,
+      redirectToMap,
+      setRedirectToMapFalse,
+      formSubmitDone,
+    } = this.props;
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
       setRedirectToMapFalse();
@@ -63,7 +72,6 @@ class Research extends React.Component {
           <div className="presentation">
             {formSubmitDone && (
               <span className="formSubmitDone">
-                {/* <p className="formSubmitDone-text">Formulaire envoyé</p> */}
                 Formulaire envoyé
               </span>
             )}
@@ -104,6 +112,7 @@ Research.propTypes = {
   setAddressLatLng: PropTypes.func.isRequired,
   setRedirectToMapFalse: PropTypes.func.isRequired,
   setZoom: PropTypes.func.isRequired,
+  formSubmitDoneToFalse: PropTypes.func.isRequired,
 };
 
 export default Research;

@@ -14,6 +14,8 @@ import {
   setZoom,
 } from 'src/store/reducerMap';
 
+import { formSubmitDoneToFalse } from 'src/store/reducer';
+
 const mapStateToProps = state => ({
   // add formSubmitDone from reducer
   formSubmitDone: state.reducer.formSubmitDone,
@@ -37,6 +39,10 @@ const mapDispatchToProps = dispatch => ({
   },
   setZoom: (newZoom) => {
     dispatch(setZoom(newZoom));
+  },
+  // dispatch action to reducer.js
+  formSubmitDoneToFalse: () => {
+    dispatch(formSubmitDoneToFalse());
   },
 });
 
