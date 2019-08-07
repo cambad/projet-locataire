@@ -332,6 +332,7 @@ const reducer = (state = initialState, action = {}) => {
     case STORE_TOKEN:
       return {
         ...state,
+        isConnected: true,
         token: action.token,
       };
 

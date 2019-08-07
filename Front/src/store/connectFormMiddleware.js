@@ -28,7 +28,7 @@ const connectFormMiddleware = store => next => (action) => {
             console.log(response.data.token);
             // get token
             const { token } = response.data;
-            // store token in reducer
+            // store token in reducer and change isConnected to true
             store.dispatch(storeTokenInReducer(token));
             // reset username and password to '' in reducer
             store.dispatch(resetData());
