@@ -36,7 +36,20 @@ class ReviewRepository extends ServiceEntityRepository
        return $qb->getQuery()->getArrayResult();
     }
 
-     /**
+    public function findReviewById($id)
+    {
+        $query = $this->createQueryBuilder('r')
+                      ->join('r.apartment','a')
+                      ->addSelect('a')
+                      ->join('r.marks', 'm')
+                      ->addSelect('m')
+                      ->orderBy('a.id', 'DESC')
+                      ->where('a.id ='. $id)
+        ;
+        return $query->getQuery()->getArrayResult();
+    }
+
+    /**
      * Find the id and the title reviews for one apartment
      *
      * @param Apartment $apartment

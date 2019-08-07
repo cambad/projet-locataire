@@ -3,10 +3,11 @@
 namespace App\Controller\Api;
 
 use App\Entity\Review;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\MarksRepository;
+use App\Repository\ReviewRepository;
 
 /**
  * @Route("/api", name="api_")
@@ -14,38 +15,22 @@ use App\Repository\MarksRepository;
 class ReviewController extends AbstractController
 {
     /**
-     * Show a review with the marks and the apartment
+     * Show all the informations for a review with by id
      * 
      * @Route("/{id}/review", name="review_show", methods={"GET"}, requirements={"id"="\d+"})
      *
-     * @param Review $review
-     * @param MarksRepository $repository
-     * @return JsonResponse
+     * @param ReviewRepository $reviewRepository
+     * @param SerializerInterface $serializer
+     * @param Review $id
+     * @return Response
      */
-    public function showReviewApi(Review $review, MarksRepository $repository): JsonResponse
+    public function showReviewApi(ReviewRepository $reviewRepository, SerializerInterface $serializer, $id): Response
     {
-        $marksByReview = $repository->findByReview($review);
+        $reviewById = $reviewRepository->findReviewById($id);
+        $reviewSerialised = $serializer->serialize($reviewById, 'json');
 
-        return new JsonResponse([
-            'review' => [
-                'id' => $review->getId(),
-                'title' => $review->getTitle(),
-                'positive' => $review->getPositive(),
-                'negative' => $review->getNegative(),
-                'still_in' => $review->getStillIn(),
-                'createdAt' => $review->getCreatedAt(),
-                'updatedAt' => $review->getUpdatedAt(),
-                'apartment' => [
-                    'id' => $review->getApartment()->getId(),
-                    'address' => $review->getApartment()->getAddress(),
-                    'floor_number' => $review->getApartment()->getFloorNumber(),
-                    'location' => $review->getApartment()->getLocation(),
-                    'area' => $review->getApartment()->getArea(),
-                    'rooms' => $review->getApartment()->getRooms(),
-                    'rental' => $review->getApartment()->getRental(),
-                ],
-                'marks' => $marksByReview,
-            ],
+        return new Response($reviewSerialised, 201, [
+            'content-Type' => 'application/json'
         ]);
     }
 }

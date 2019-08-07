@@ -14,10 +14,8 @@ const formRatingMiddleware = store => next => (action) => {
 
   switch (action.type) {
     case 'SUBMIT_RATING_FORM': {
-
       // on remet à zéro les erreurs de soumission du formulaire
       store.dispatch(deleteFormErrors());
-
 
       // check if the form is correct
       // First, create a variable to know at the end, if everything is correct
@@ -63,14 +61,6 @@ const formRatingMiddleware = store => next => (action) => {
         correctForm = false;
       }
 
-
-      /**
-       * 
-       * 
-       * ATTETION !!! Enlever la ligne en dessous !!!!!!!!!!!!!!!!!!!!!!
-       * 
-       */
-      // correctForm = true;
       // If correctForm = true, we can request the latitude and longitude with the address
       if (correctForm) {
         // create dataToSend variable
@@ -78,7 +68,6 @@ const formRatingMiddleware = store => next => (action) => {
         // ajax request
         geocodeByAddress(reducer.addressForm)
           .then((results) => {
-            console.log(results)
             return (getLatLng(results[0]));
           })
           .then((latLng) => {
@@ -157,7 +146,6 @@ const formRatingMiddleware = store => next => (action) => {
               "firstContact": reducer.tenantValue.contactValue,
               "contact_quality": reducer.tenantValue.contactQualityValue
             };
-            console.log(dataToSend);
 
             // Request to send the datas to the API
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
@@ -165,20 +153,17 @@ const formRatingMiddleware = store => next => (action) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 store.dispatch(changeFormSubmitSuccess());
-                console.log(response);
               })
-              .catch((response) => {
+              .catch((error) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
-                store.dispatch(changeFormSubmitFailure());
-                // TEST =======================> à supprimer
-                // store.dispatch(changeFormSubmitSuccess());
-                console.log(response);
+                // Get error from server back
+                const { violations } = error.response.data;
+                store.dispatch(changeFormSubmitFailure(violations));
               });
           })
           .catch((error) => {
             // If there is no address, display the error
-            console.log('je laisse passer l\'action');
             next(action);
           });
       }
