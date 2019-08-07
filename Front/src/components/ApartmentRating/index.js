@@ -91,10 +91,15 @@ const ApartmentRating = ({
                 <p>Je suis un :</p>
               </div>
               <div>
-                <input className="radioButtons" type="radio" name="locataire/visiteur" id="locataire/visiteur" value="locataire/visiteur" onChange={handleLocataire} />
+                <input checked={isLocataire} onChange={handleLocataire} className="radioButtons" type="radio" name="locataire" id="locataire" value="locataire" />
+                <label className="radioLabel" htmlFor="locataire">Locataire</label>
+
+                <input checked={isVisiteur} onChange={handleVisiteur} className="radioButtons" type="radio" name="visiteur" id="visiteur" value="visiteur" />
+                <label className="radioLabel" htmlFor="visiteur">Visiteur</label>
+                {/* <input className="radioButtons" type="radio" name="locataire/visiteur" id="locataire/visiteur" value="locataire/visiteur" onChange={handleLocataire} />
                 <label className="radioLabel" htmlFor="locataire/visiteur">Locataire</label>
                 <input className="radioButtons" type="radio" name="locataire/visiteur" id="locataire/visiteur" value="locataire/visiteur" onChange={handleVisiteur} />
-                <label className="radioLabel" htmlFor="locataire/visiteur">Visiteur</label>
+                <label className="radioLabel" htmlFor="locataire/visiteur">Visiteur</label> */}
               </div>
             </div>
             {isDisplayed && (
