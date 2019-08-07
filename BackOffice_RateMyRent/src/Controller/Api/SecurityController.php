@@ -32,11 +32,7 @@ class SecurityController extends AbstractController
             'name' => new Assert\Length(array('min' => 1)),
             'username' => new Assert\Length(array('min' => 1)),
             'password' => new Assert\Length(array('min' => 1)),
-            'email' => new Assert\Email(),
-            'age'=> new Assert\Type([
-                'type' => 'integer',
-                'message' => 'The value {{ value }} is not a valid {{ type }}.',
-            ])
+            'email' => new Assert\Email()
             
         ));
         $violations = $validator->validate($data, $constraint);
@@ -48,7 +44,6 @@ class SecurityController extends AbstractController
         $username = $data['username'];
         $password = $data['password'];
         $email = $data['email'];
-        $age = $data['age'];
         $user = new User();
         $user
             ->setSurname($surname)
@@ -56,7 +51,6 @@ class SecurityController extends AbstractController
             ->setUsername($username)
             ->setEmail($email)
             ->setPlainPassword($password)
-            ->setAge($age)
             ->setEnabled(true)
             ->setRoles(['ROLE_USER'])
             ->setSuperAdmin(false)
