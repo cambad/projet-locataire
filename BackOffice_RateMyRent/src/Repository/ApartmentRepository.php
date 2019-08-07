@@ -21,8 +21,11 @@ class ApartmentRepository extends ServiceEntityRepository
 
     public function lastRelease($limit){
 
-        $query = $this->createQueryBuilder('apartment')
-                      ->orderBy('apartment.id', 'DESC')
+        $query = $this->createQueryBuilder('a')
+                      ->select('a.id, a.address, a.rental', 'r.title', 'm.recommendation, m.exterior, m.interior, m.contact')
+                      ->join('a.reviews','r')
+                      ->join('r.marks','m')
+                      ->orderBy('a.id', 'DESC')
                       ->setMaxResults( $limit );
 
         return $query->getQuery()->getArrayResult();
@@ -31,8 +34,9 @@ class ApartmentRepository extends ServiceEntityRepository
     public function findAllApartmentsWithReview(){
 
         $query = $this->createQueryBuilder('a')
-                      ->select('a.id, a.address, a.floor_number, a.location, a.rental, a.lat, a.lng', 'r.title')
+                      ->select('a.id, a.address, a.floor_number, a.location, a.rental, a.lat, a.lng', 'r.title', 'm.recommendation, m.exterior, m.interior, m.contact')
                       ->join('a.reviews','r')
+                      ->join('r.marks','m')
                       ->orderBy('a.id', 'DESC');
 
         return $query->getQuery()->getArrayResult();
