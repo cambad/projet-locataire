@@ -69,9 +69,9 @@ const Connection = ({
         <h2 className="connect-title">Connection</h2>
         <form onSubmit={handleSubmit} className="connect-form">
           <label className="connect-form-email" htmlFor="mail-adress">Votre adresse e-mail</label>
-          <input onChange={handleEmail} value={email} className="connect-form-email-input" type="text" placeholder="Entrez votre adresse mail" />
+          <input onChange={handleEmail} value={email} className="connect-form-email-input" type="text" placeholder="Entrez votre adresse mail" autoComplete="off" />
           <label value={password} className ="connect-form-password" htmlFor="password">Votre mot de passe</label>
-          <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" />
+          <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
           <button onClick={handleClose} className="connect-form-button" type="submit">Connection</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
           <NavLink onClick={handleClose} className="connect-form-register-button" to="/inscription">Insrivez vous !</NavLink>

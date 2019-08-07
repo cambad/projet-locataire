@@ -144,7 +144,7 @@ const formRatingMiddleware = store => next => (action) => {
               "cleanliness": reducer.tenantValue.cleanlinessValue,
               "brightness": reducer.tenantValue.brightnessValue,
               "firstContact": reducer.tenantValue.contactValue,
-              "contact_quality": reducer.tenantValue.contactQualityValue
+              "contact_quality": reducer.tenantValue.contactQualityValue,
             };
 
             // Request to send the datas to the API
