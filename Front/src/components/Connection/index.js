@@ -24,9 +24,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Connection = ({ isModalOpen, handleClose }) => {
+const Connection = ({ isModalOpen, handleClose, sendConnectForm }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendConnectForm();
+  };
 
   return (
     <Modal
@@ -37,7 +42,7 @@ const Connection = ({ isModalOpen, handleClose }) => {
     >
       <div style={modalStyle} className={classes.paper}>
         <h2 className="connect-title">Connection</h2>
-        <form className="connect-form">
+        <form onSubmit={handleSubmit} className="connect-form">
           <label className="connect-form-email" htmlFor="mail-adress">Votre adresse e-mail</label>
           <input className="connect-form-email-input" type="text" placeholder="Entrez votre adresse mail" />
           <label className ="connect-form-password" htmlFor="password">Votre mot de passe</label>

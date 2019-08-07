@@ -5,7 +5,13 @@ import { connect } from 'react-redux';
 import Register from 'src/components/Register';
 
 // Action Creators
-import { sendRegisterForm } from 'src/store/reducer';
+import {
+  sendRegisterForm,
+  changeFirstName,
+  changeLastName,
+  changeEmail,
+  changePassword,
+} from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   firstName: state.reducer.firstName,
@@ -18,6 +24,18 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   sendRegisterForm: () => {
     dispatch(sendRegisterForm());
+  },
+  changeFirstName: (value) => {
+    dispatch(changeFirstName(value));
+  },
+  changeLastName: (value) => {
+    dispatch(changeLastName(value));
+  },
+  changeEmail: (value) => {
+    dispatch(changeEmail(value));
+  },
+  changePassword: (value) => {
+    dispatch(changePassword(value));
   },
 });
 

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import Connection from 'src/components/Connection';
+import Connection from 'src/containers/Connection';
 
 import './nav.scss';
 

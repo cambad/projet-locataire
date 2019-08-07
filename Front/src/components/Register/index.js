@@ -8,12 +8,49 @@ const Register = ({
   email,
   password,
   sendRegisterForm,
+  changeFirstName,
+  changeLastName,
+  changeEmail,
+  changePassword,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submit');
     sendRegisterForm();
   };
+
+  const handleFirstname = (event) => {
+    const { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    if (value !== '') {
+      changeFirstName(value);
+    }
+  };
+
+  const handleLastname = (event) => {
+    const { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    if (value !== '') {
+      changeLastName(value);
+    }
+  };
+
+  const handleEmail = (event) => {
+    const { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    if (value !== '') {
+      changeEmail(value);
+    }
+  };
+
+  const handlePassword = (event) => {
+    const { value } = event.target;
+    // change type of value because value is now a string but we expect a number
+    if (value !== '') {
+      changePassword(value);
+    }
+  };
+
   return (
     <div className="photo">
       <div className="register">
@@ -21,13 +58,13 @@ const Register = ({
           <h1 className="register-form-title">Inscription</h1>
           <div className="register-form-fields">
             <label htmlFor="firstname">Nom</label>
-            <input type="text" placeholder="Votre nom" />
+            <input value={firstName} onChange={handleFirstname} type="text" placeholder="Votre nom" />
             <label htmlFor="lastname">Prénom</label>
-            <input type="text" placeholder="Votre prénom" />
+            <input value={lastName} onChange={handleLastname} type="text" placeholder="Votre prénom" />
             <label htmlFor="email">Adresse e-mail</label>
-            <input type="email" placeholder="Votre adresse e-mail" />
+            <input value={email} onChange={handleEmail} type="email" placeholder="Votre adresse e-mail" />
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" placeholder="Votre mot de passe" />
+            <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" />
             <label htmlFor="password-comfirm">Confirmez</label>
             <input type="password" placeholder="Comfirmez votre mot de passe" />
           </div>

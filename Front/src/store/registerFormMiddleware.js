@@ -1,24 +1,42 @@
 // import npm
 import axios from 'axios';
 
+import { resetData } from 'src/store/reducer';
+
 const registerFormMiddleware = store => next => (action) => {
   switch (action.type) {
     case 'SUBMIT_REGISTER_FORM': {
-      const dataToSend = {
-        "surname": "Jean-Marie",
-        "name": "Bigard",
-        "username": "JMB",
-        "age": 65,
-        "email": "jmbigard@bibi.com",
-        "password": "coucoualex"
-      };
-      axios.post('https://api.rate-my-rent.fr/api/register', dataToSend)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      const { reducer } = store.getState();
+      let correctForm = false;
+
+      if (
+        reducer.firstName !== ''
+        && reducer.lastName !== ''
+        && reducer.email !== ''
+        && reducer.password !== ''
+      ) {
+        correctForm = true;
+      }
+      else {
+        correctForm = false;
+      }
+      if (correctForm) {
+        const dataToSend = {
+          "surname": reducer.firstName,
+          "name": reducer.lastName,
+          "username": reducer.email,
+          "email": reducer.email,
+          "password": reducer.password,
+        };
+        axios.post('https://api.rate-my-rent.fr/api/register', dataToSend)
+          .then((response) => {
+            console.log(response);
+            store.dispatch(resetData());
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
       break;
     default:
