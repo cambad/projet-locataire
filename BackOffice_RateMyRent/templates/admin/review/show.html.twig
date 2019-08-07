@@ -28,14 +28,16 @@
                 <td>{{ review.negative }}</td>
             </tr>
 
+            {% if review.tenant == true %}            
             <tr>
                 <th>Toujours dans l'appartement</th>
-                <td>{{review.stillIn}}</td>
+                <td>{{review.stillIn ? 'Oui' : 'Non'}}</td>
             </tr>
+            {% endif %}
 
             <tr>
-                <th>Est-ce un locataire ? True = Locataire, False = Visiteur</th>
-                <td>{{review.tenant}}</td>
+                <th>Est-ce un locataire ?</th>
+                <td>{{review.tenant ? 'Oui' : 'Non'}}</td>
             </tr>
 
             <tr>
@@ -62,7 +64,8 @@
     </div>
 <hr>
 
-    {% for mark in review.marks %}
+    {% if review.tenant == false %}
+        {% for mark in review.marks %}
         <h2 class="my-4">Les notes</h2>
         <table class="table">
 
@@ -71,66 +74,102 @@
                     <th><h4>Quartier</h4></th>
                     <td> {{ mark.recommendation }} </td>
                 </tr>
-                <tr>
-                    <th>Accessibilité de l'appartement</th>
-                    <td> {{ mark.accessibility }} </td>
-                </tr>
-                <tr>
-                    <th>Environnement urbain de l'appartement</th>
-                    <td> {{ mark.apartmentEnvironment }} </td>
-                </tr>
-                <tr>
-                    <th>Ciculation</th>
-                    <td> {{ mark.traffic }} </td>
-                </tr>
+                
                 <tr>
                     <th><h4>État général de l'immeuble</h4></th>
                     <td> {{ mark.exterior }} </td>
                 </tr>
-                <tr>
-                    <th>Etat extérieur de l'immeuble</th>
-                    <td> {{ mark.exteriorBuilding }} </td>
-                </tr>
-                <tr>
-                    <th>Environnement urbain de l'appartement</th>
-                    <td> {{ mark.buildingEnvironment }} </td>
-                </tr>
+               
                 <tr>
                     <th><h4>Qualité de l'appartement</h4></th>
                     <td> {{ mark.interior }} </td>
                 </tr>
-                <tr>
-                    <th>Isolation thermique et sonore</th>
-                    <td> {{ mark.insulation }} </td>
-                </tr>
-                <tr>
-                    <th>Propreté générale</th>
-                    <td> {{ mark.cleanliness }} </td>
-                </tr>
-                <tr>
-                    <th>Luminosité</th>
-                    <td> {{ mark.brightness }} </td>
-                </tr>
+                
                 <tr>
                     <th><h4>Relation avec le propriétaire et/ou l'agence</h4></th>
                     <td> {{ mark.contact }} </td>
                 </tr>
-                <tr>
-                    <th>Prise de contact agent/propriétaire</th>
-                    <td> {{ mark.firstContact }} </td>
-                </tr>
-                <tr>
-                    <th>Qualité de la relation lors de la location</th>
-                    <td> {{ mark.contactQuality }} </td>
-                </tr>
-                    
             </tbody>
         </table>
 <hr>
-    {% else %}
+        {% else %}
         <h2 class="my-5">Pas de notes sur cette appartement</h2>
 <hr>
-    {% endfor %}
+        {% endfor %}
+
+    {% else %}
+    
+
+        {% for mark in review.marks %}
+            <h2 class="my-4">Les notes</h2>
+            <table class="table">
+
+                <tbody>
+                    <tr>
+                        <th><h4>Quartier</h4></th>
+                        <td> {{ mark.recommendation }} </td>
+                    </tr>
+                    <tr>
+                        <th>Accessibilité de l'appartement</th>
+                        <td> {{ mark.accessibility }} </td>
+                    </tr>
+                    <tr>
+                        <th>Environnement urbain de l'appartement</th>
+                        <td> {{ mark.apartmentEnvironment }} </td>
+                    </tr>
+                    <tr>
+                        <th>Ciculation</th>
+                        <td> {{ mark.traffic }} </td>
+                    </tr>
+                    <tr>
+                        <th><h4>État général de l'immeuble</h4></th>
+                        <td> {{ mark.exterior }} </td>
+                    </tr>
+                    <tr>
+                        <th>Etat extérieur de l'immeuble</th>
+                        <td> {{ mark.exteriorBuilding }} </td>
+                    </tr>
+                    <tr>
+                        <th>Environnement urbain de l'appartement</th>
+                        <td> {{ mark.buildingEnvironment }} </td>
+                    </tr>
+                    <tr>
+                        <th><h4>Qualité de l'appartement</h4></th>
+                        <td> {{ mark.interior }} </td>
+                    </tr>
+                    <tr>
+                        <th>Isolation thermique et sonore</th>
+                        <td> {{ mark.insulation }} </td>
+                    </tr>
+                    <tr>
+                        <th>Propreté générale</th>
+                        <td> {{ mark.cleanliness }} </td>
+                    </tr>
+                    <tr>
+                        <th>Luminosité</th>
+                        <td> {{ mark.brightness }} </td>
+                    </tr>
+                    <tr>
+                        <th><h4>Relation avec le propriétaire et/ou l'agence</h4></th>
+                        <td> {{ mark.contact }} </td>
+                    </tr>
+                    <tr>
+                        <th>Prise de contact agent/propriétaire</th>
+                        <td> {{ mark.firstContact }} </td>
+                    </tr>
+                    <tr>
+                        <th>Qualité de la relation lors de la location</th>
+                        <td> {{ mark.contactQuality }} </td>
+                    </tr>
+                        
+                </tbody>
+            </table>
+<hr>
+        {% else %}
+            <h2 class="my-5">Pas de notes sur cette appartement</h2>
+<hr>
+        {% endfor %}
+    {% endif %}
     <h3 class="my-5">
         <a href="{{ path('admin_review_index') }}"> Revenir à la liste</a>
     </h3>
