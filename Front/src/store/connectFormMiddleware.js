@@ -1,7 +1,7 @@
 // import npm
 import axios from 'axios';
 
-import { resetData } from 'src/store/reducer';
+import { resetData, storeTokenInReducer } from 'src/store/reducer';
 
 const connectFormMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -25,11 +25,16 @@ const connectFormMiddleware = store => next => (action) => {
         };
         axios.post('https://api.rate-my-rent.fr/api/login', dataToSend)
           .then((response) => {
-            console.log(response);
+            console.log(response.data.token);
+            // get token
+            const { token } = response.data;
+            // store token in reducer
+            store.dispatch(storeTokenInReducer(token));
+            // reset username and password to '' in reducer
             store.dispatch(resetData());
           })
           .catch((error) => {
-            console.log(error);
+            console.log(error.response);
           });
       }
     }
