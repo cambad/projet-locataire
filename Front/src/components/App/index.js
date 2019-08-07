@@ -18,7 +18,6 @@ import './app.scss';
 const App = ({ token, deleteToken, changeIsConnected }) => {
   // test if a token is in reducer a display navigation bar if a token is visible
   if (token !== '') {
-    console.log(decode(token));
     // get a boolean : true => token is expired
     const expDate = decode(token).exp < Date.now() / 1000;
     // test expiration date : if true, delete token
