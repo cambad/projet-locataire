@@ -43,7 +43,6 @@ button {
   }
 }
 
-
 .landing {
   flex-grow: 2;
   // add for formSubmitDone animation
@@ -174,6 +173,14 @@ button {
   color: $button-background-color;
 }
 
+@media (min-width: 576px) {
+
+  .section {
+    width: 60%;
+  }
+
+}
+
 @media (min-width: 768px) {
 
   .recherche {
@@ -186,7 +193,7 @@ button {
 
   .section {
     margin: 3em auto;
-    width: 60%;
+    width: 50%;
   }
   
   .review {
@@ -299,7 +306,7 @@ button {
 
   .section {
     margin: 3em auto;
-    width: 50%;
+    width: 40%;
   }
 }
 
