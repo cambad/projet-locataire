@@ -20,9 +20,12 @@ class LastFiveReview extends React.Component {
   componentDidMount() {
     axios.get('https://api.rate-my-rent.fr/api/five_apartments')
       .then((response) => {
+        // check if the response.data is an empty array or not
+        const dataResponse = response.data === [];
         // set the local state with data
         this.setState({
           lastFiveApartment: response.data,
+          dataReception: dataResponse,
           loader: false,
         });
       })
@@ -55,7 +58,7 @@ class LastFiveReview extends React.Component {
         )}
         {!dataReception && (
           <div className="lastFiveApartments-error">
-            <p>Une erreur s'est produite lors du chargement des données.</p>
+            <p>Il n'y a aucune notation à afficher pour le moment.</p>
           </div>
         )}
       </section>
