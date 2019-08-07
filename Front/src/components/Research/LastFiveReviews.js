@@ -58,7 +58,7 @@ class LastFiveReview extends React.Component {
         )}
         {!dataReception && (
           <div className="lastFiveApartments-error">
-            <p>Il n'y a aucune notation à afficher pour le moment. Soyez le premier, cliquez <NavLink className="LinkNoData" to="/noter-un-appartement">ici !</NavLink></p>
+            <p>Il n'y a aucune notation à afficher pour le moment.</p>
           </div>
         )}
       </section>
