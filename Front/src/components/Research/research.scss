@@ -43,7 +43,6 @@ button {
   }
 }
 
-
 .landing {
   flex-grow: 2;
   // add for formSubmitDone animation
@@ -51,38 +50,45 @@ button {
 }
 
 .homePhoto {
-  background-image: url(../../img/accueilbg.jpg);
+  background-image: url(../../img/accueilTest.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 3em 0;
+  background-position: bottom;
+  padding: 1em 0;
 }
 
 .presentation {
   text-align: center;
-  padding-bottom: 3em;
+  padding:0 2em 2em;
   position: relative;
 
   &-title {
     font-family: $title-font-family;
-    padding-bottom: 1em;
-    font-size: 4em;
+    padding-bottom: .7em;
+    font-size: 2em;
     color: $header-text-color;
-    text-shadow: 1px 1px 1px black;
   }
 
   &-subtitle {
     color: $header-text-color;
-    font-size: 2em;
+    font-size: 1.6em;
+    font-family: $title-font-family;
+    margin-bottom: 1em;
+  }
+
+  &-desc {
+    color: $header-text-color;
+    font-size: 1.5em;
     font-family: $text-font-family;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 2px 2px 2px $header-background-color;
   }
 }
 
 .recherche {
   width: 90%;
   margin: 0 auto;
-  background: rgba(255, 255, 255, .6);
-  border-radius: $button-border-radius;
+  background: rgba(255, 255, 255, .4);
+  border-radius: 10px;
   padding: 2em 0;
   text-align: center;
 
@@ -167,6 +173,14 @@ button {
   color: $button-background-color;
 }
 
+@media (min-width: 576px) {
+
+  .section {
+    width: 60%;
+  }
+
+}
+
 @media (min-width: 768px) {
 
   .recherche {
@@ -179,7 +193,7 @@ button {
 
   .section {
     margin: 3em auto;
-    width: 60%;
+    width: 50%;
   }
   
   .review {
@@ -202,29 +216,34 @@ button {
   }
 
   .homePhoto {
-    background-image: url(../../img/accueilbg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 0;
+    padding: 0 0 2em 0;
   }
   
   .presentation {
     text-align: center;
-    padding: 0;
+    padding: 0 4em;
   
     &-title {
       font-family: $title-font-family;
       font-size: 4em;
       color: $header-text-color;
-      text-shadow: 1px 1px 1px black;
-      padding: 1em 0;
+      padding: 1em 0 .5em;
     }
   
     &-subtitle {
       color: $header-text-color;
+      font-size: 3em;
+      font-family: $title-font-family;
+      margin-bottom: 1.5em;
+    }
+
+    &-desc {
+      color: $header-text-color;
       font-size: 2em;
       font-family: $text-font-family;
-      text-shadow: 1px 1px 1px black;
+      text-shadow: 2px 2px 2px $header-background-color;
       margin-bottom: 2em;
     }
   }
@@ -232,8 +251,8 @@ button {
   .recherche {
     width: 70%;
     margin: auto;
-    background: rgba(255, 255, 255, .6);
-    border-radius: $button-border-radius;
+    background: rgba(255, 255, 255, .4);
+    border-radius: 10px;
     padding: 4em 2em;
     text-align: center;
   
@@ -287,7 +306,7 @@ button {
 
   .section {
     margin: 3em auto;
-    width: 50%;
+    width: 40%;
   }
 }
 
