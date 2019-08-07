@@ -47,7 +47,7 @@ const PlaceAutocomplete = ({
                 padding: '.5em',
               };
             return (
-              <div>
+              <div key={suggestion.description}>
                 <div
                   {...getSuggestionItemProps(suggestion, {
                     className,
