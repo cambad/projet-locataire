@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 import Connection from 'src/components/Connection';
 
 // Action Creators
-import { sendConnectForm } from 'src/store/reducer';
+import { sendConnectForm, changePassword, changeEmail } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
-  firstName: state.reducer.firstName,
-  lastName: state.reducer.lastName,
   email: state.reducer.email,
   password: state.reducer.password,
 });
@@ -18,6 +16,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   sendConnectForm: () => {
     dispatch(sendConnectForm());
+  },
+  changePassword: (value) => {
+    dispatch(changePassword(value));
+  },
+  changeEmail: (value) => {
+    dispatch(changeEmail(value));
   },
 });
 
