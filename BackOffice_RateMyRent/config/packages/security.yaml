@@ -7,16 +7,24 @@ security:
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: username
+        
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        api_login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            json_login:
+                provider: fos_userbundle
+                check_path:               /api/login
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+            provider: fos_userbundle
 
         main:
             pattern: ^/
@@ -31,22 +39,14 @@ security:
                 target: fos_user_security_login
             anonymous:    true
             
-        login:
-            pattern:  ^/api/login
-            provider: app_user_provider 
-            stateless: true
-            anonymous: true
-            json_login:
-                check_path:               /api/login_check
-                success_handler:          lexik_jwt_authentication.handler.authentication_success
-                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+      
         
         
                 
         api:
             pattern:   ^/api/review/new
             stateless: true
-            provider: app_user_provider
+            provider: fos_userbundle
             # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
             #security: false
             guard:
