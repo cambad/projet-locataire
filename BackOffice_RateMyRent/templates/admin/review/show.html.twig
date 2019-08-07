@@ -28,17 +28,17 @@
                 <td>{{ review.negative }}</td>
             </tr>
 
+            <tr>
+                <th>Est-ce un locataire ?</th>
+                <td>{{review.tenant ? 'Oui' : 'Non'}}</td>
+            </tr>
+
             {% if review.tenant == true %}            
             <tr>
                 <th>Toujours dans l'appartement</th>
                 <td>{{review.stillIn ? 'Oui' : 'Non'}}</td>
             </tr>
             {% endif %}
-
-            <tr>
-                <th>Est-ce un locataire ?</th>
-                <td>{{review.tenant ? 'Oui' : 'Non'}}</td>
-            </tr>
 
             <tr>
                 <th>Date d'ajout</th>

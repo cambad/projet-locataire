@@ -85,11 +85,6 @@ class Review
     private $updated_At;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews")
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews", cascade={"persist", "remove"})
      */
     private $apartment;
@@ -98,6 +93,11 @@ class Review
      * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review", cascade={"persist", "remove"})
      */
     private $marks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews", cascade={"persist", "remove"})
+     */
+    private $user;
 
 
     public function __construct()

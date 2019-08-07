@@ -28,16 +28,16 @@
                     </a>
                     <a class="nav-item nav-link"  href="{{ path('admin_user_index') }}"> 
                         Utilisateurs 
-                    </a>
-                    <a class="btn btn-danger my-2 my-sm-0"  href="{{ path('fos_user_registration_register')}} ">inscription</a> 
+                    </a> 
 
                     {% if is_granted('ROLE_USER') %}
 
-                        <a class="btn btn-danger my-2 my-sm-0"  href="{{ path('fos_user_security_logout')}} ">Déconnexion</a> 
+                        <a class="nav-item nav-link"  href="{{ path('fos_user_security_logout')}} ">Déconnexion</a> 
 
                     {% else %}
                     
-                        <a class="nav-item nav-link my-2 my-sm-0"  href="{{ path('fos_user_security_login')}} ">Connexion</a>
+                        <a class="nav-item nav-link"  href="{{ path('fos_user_security_login')}} ">Connexion</a>
+                        <a class="nav-item nav-link"  href="{{ path('fos_user_registration_register')}} ">Inscription</a>
 
                     {% endif %}
                 </nav>
