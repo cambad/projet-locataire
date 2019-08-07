@@ -41,6 +41,10 @@ const initialState = {
   abstractedComment: '',
   positiveComment: '',
   negativeComment: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
 };
 
 // == Types
@@ -66,6 +70,7 @@ const CHANGE_FORM_SUBMIT_FAILURE = 'CHANGE_FORM_SUBMIT_FAILURE';
 const DELETE_FORM_ERROR = 'DELETE_FORM_ERROR';
 const SET_REDIRECT_ERROR_FORM_SUBMIT = 'SET_REDIRECT_ERROR_FORM_SUBMIT';
 const SUBMIT_DONE_TO_FALSE = 'SUBMIT_DONE_TO_FALSE';
+const SUBMIT_REGISTER_FORM = 'SUBMIT_REGISTER_FORM';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -189,11 +194,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         negativeComment: action.comment,
       };
-    
+  
     case SUBMIT_RATING_FORM:
       return {
         ...state,
         errorFormSubmit: true,
+      };
+ 
+    case SUBMIT_REGISTER_FORM:
+      return {
+        ...state,
       };
 
     case CHANGE_FORM_LOADING:
@@ -382,6 +392,10 @@ export const setRedirectErrorFormSubmit = () => ({
 
 export const formSubmitDoneToFalse = () => ({
   type: SUBMIT_DONE_TO_FALSE,
+});
+
+export const sendRegisterForm = () => ({
+  type: SUBMIT_REGISTER_FORM,
 });
 
 // == Selectors
