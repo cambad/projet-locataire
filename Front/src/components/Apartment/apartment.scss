@@ -13,9 +13,8 @@
 }
 
 .main-apartment {
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
-  padding: 1em;
   font-family: $text-font-family;
 }
 
@@ -250,6 +249,12 @@
 
 @media (min-width: 768px) {
 
+  .main-apartment {
+    width: 80%;
+    margin: 0 auto;
+    font-family: $text-font-family;
+  }
+
   .caract {
     margin-bottom: 2em;
   }
@@ -345,6 +350,12 @@
 }
 
 @media (min-width: 1200px) {
+
+  .main-apartment {
+    width: 60%;
+    margin: 0 auto;
+    font-family: $text-font-family;
+  }
 
   .main {
     width: 70%;

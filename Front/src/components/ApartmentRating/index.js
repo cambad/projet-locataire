@@ -91,10 +91,11 @@ const ApartmentRating = ({
                 <p>Je suis un :</p>
               </div>
               <div>
-                <input className="radioButtons" type="radio" name="locataire/visiteur" id="locataire/visiteur" value="locataire/visiteur" onChange={handleLocataire} />
-                <label className="radioLabel" htmlFor="locataire/visiteur">Locataire</label>
-                <input className="radioButtons" type="radio" name="locataire/visiteur" id="locataire/visiteur" value="locataire/visiteur" onChange={handleVisiteur} />
-                <label className="radioLabel" htmlFor="locataire/visiteur">Visiteur</label>
+                <input checked={isLocataire} onChange={handleLocataire} className="radioButtons" type="radio" name="locataire" id="locataire" value="locataire" />
+                <label className="radioLabel" htmlFor="locataire">Locataire</label>
+
+                <input checked={isVisiteur} onChange={handleVisiteur} className="radioButtons" type="radio" name="visiteur" id="visiteur" value="visiteur" />
+                <label className="radioLabel" htmlFor="visiteur">Visiteur</label>
               </div>
             </div>
             {isDisplayed && (
@@ -130,14 +131,11 @@ const ApartmentRating = ({
             />
           )}
           <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
+          {formSubmitFailure.map(error => (
+            <p key={error.propertyPath} className="failure-form-submit">{error.title}</p>
+          ))}
           {errorFormSubmit && (
             <p className="error-form-submit">Veuillez remplir tous les champs s'il vous plaît</p>
-          )}
-          {/* {formSubmitSuccess && (
-            <p className="success-form-submit">Le formulaire a bien été pris en compte</p>
-          )} */}
-          {formSubmitFailure && (
-            <p className="failure-form-submit">Le formulaire n'a pas pu être soumis, veuillez essayer plus tard</p>
           )}
           {formLoading && (
             <div className="submit-form-loading">
@@ -153,7 +151,7 @@ const ApartmentRating = ({
 // PropTypes validation
 ApartmentRating.propTypes = {
   formSubmitSuccess: PropTypes.bool.isRequired,
-  formSubmitFailure: PropTypes.bool.isRequired,
+  formSubmitFailure: PropTypes.array.isRequired,
   formLoading: PropTypes.bool.isRequired,
   errorFormSubmit: PropTypes.bool.isRequired,
   address: PropTypes.string.isRequired,

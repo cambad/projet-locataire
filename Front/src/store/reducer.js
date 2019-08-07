@@ -1,7 +1,7 @@
 // == Initial State
 const initialState = {
   formSubmitDone: false,
-  formSubmitFailure: false,
+  formSubmitFailure: [],
   formSubmitSuccess: false,
   errorFormSubmit: false,
   formLoading: false,
@@ -211,14 +211,14 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_FORM_SUBMIT_FAILURE:
       return {
         ...state,
-        formSubmitFailure: true,
+        formSubmitFailure: action.errors,
       };
 
     case DELETE_FORM_ERROR:
       return {
         ...state,
         formSubmitDone: false,
-        formSubmitFailure: false,
+        formSubmitFailure: [],
         formSubmitSuccess: false,
         errorFormSubmit: false,
       };
@@ -227,7 +227,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         formSubmitDone: true,
-        formSubmitFailure: false,
+        formSubmitFailure: [],
         formSubmitSuccess: false,
         errorFormSubmit: false,
         formLoading: false,
@@ -368,8 +368,9 @@ export const changeFormSubmitSuccess = () => ({
   type: CHANGE_FORM_SUBMIT_SUCCESS,
 });
 
-export const changeFormSubmitFailure = () => ({
+export const changeFormSubmitFailure = errors => ({
   type: CHANGE_FORM_SUBMIT_FAILURE,
+  errors,
 });
 
 export const deleteFormErrors = () => ({
