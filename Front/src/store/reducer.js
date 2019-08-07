@@ -80,6 +80,7 @@ const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
 const STORE_TOKEN = 'STORE_TOKEN';
 const DELETE_TOKEN = 'DELETE_TOKEN';
+const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -341,7 +342,14 @@ const reducer = (state = initialState, action = {}) => {
     case DELETE_TOKEN:
       return {
         ...state,
+        isConnected: false,
         token: '',
+      };
+
+    case CHANGE_ISCONNECTED:
+      return {
+        ...state,
+        isConnected: true,
       };
 
     default:
@@ -493,6 +501,10 @@ export const storeTokenInReducer = token => ({
 
 export const deleteToken = () => ({
   type: DELETE_TOKEN,
+});
+
+export const changeIsConnected = () => ({
+  type: CHANGE_ISCONNECTED,
 });
 
 // == Selectors

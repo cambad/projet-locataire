@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import App from 'src/components/App';
 
 // Action Creators
-import { deleteToken } from 'src/store/reducer';
+import { deleteToken, changeIsConnected } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
@@ -16,6 +16,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteToken: () => {
     dispatch(deleteToken());
+  },
+  changeIsConnected: () => {
+    dispatch(changeIsConnected());
   },
 });
 

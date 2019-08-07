@@ -15,7 +15,7 @@ import AppartmentRating from 'src/containers/ApartmentRating';
 
 import './app.scss';
 
-const App = ({ token, deleteToken }) => {
+const App = ({ token, deleteToken, changeIsConnected }) => {
   // test if a token is in reducer a display navigation bar if a token is visible
   if (token !== '') {
     console.log(decode(token));
@@ -25,7 +25,8 @@ const App = ({ token, deleteToken }) => {
     if (expDate) {
       deleteToken();
     }
-    // changeIsConnected();
+    // change reducer to display connected navigation bar
+    changeIsConnected();
   }
   return (
     <React.Fragment>
@@ -48,6 +49,7 @@ const App = ({ token, deleteToken }) => {
 App.propTypes = {
   token: PropTypes.string.isRequired,
   deleteToken: PropTypes.func.isRequired,
+  changeIsConnected: PropTypes.func.isRequired,
 };
 
 export default App;
