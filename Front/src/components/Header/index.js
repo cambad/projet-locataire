@@ -41,6 +41,7 @@ class Header extends React.Component {
 
   render() {
     const { active } = this.state;
+    console.log('JE PASSE DANS HEADER !!!');
     return (
       <div className="header-block">
         <header className={classNames('header', { headerShadow: !active })}>

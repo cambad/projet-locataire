@@ -1,7 +1,9 @@
 // import npm
 import axios from 'axios';
 
-import { resetData, storeTokenInReducer } from 'src/store/reducer';
+// import local
+import { resetData, changeIsConnected } from 'src/store/reducer';
+import AuthenticationMethods from 'src/components/AuthenticationMethods';
 
 const connectFormMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -25,11 +27,17 @@ const connectFormMiddleware = store => next => (action) => {
         };
         axios.post('https://api.rate-my-rent.fr/api/login', dataToSend)
           .then((response) => {
-            console.log(response.data.token);
             // get token
             const { token } = response.data;
-            // store token in reducer and change isConnected to true
-            store.dispatch(storeTokenInReducer(token));
+
+            // store the token in window.localStorage
+            const authenticationObject = new AuthenticationMethods();
+            authenticationObject.setToken(token);
+            console.log('token du middleware : ', authenticationObject.getToken());
+
+            // set isConnected to reload rendering
+            store.dispatch(changeIsConnected());
+
             // reset username and password to '' in reducer
             store.dispatch(resetData());
           })
