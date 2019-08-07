@@ -5,7 +5,7 @@ const initialState = {
   formSubmitSuccess: false,
   errorFormSubmit: false,
   formLoading: false,
-  isConnected: true,
+  isConnected: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
@@ -41,6 +41,10 @@ const initialState = {
   abstractedComment: '',
   positiveComment: '',
   negativeComment: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
 };
 
 // == Types
@@ -66,10 +70,49 @@ const CHANGE_FORM_SUBMIT_FAILURE = 'CHANGE_FORM_SUBMIT_FAILURE';
 const DELETE_FORM_ERROR = 'DELETE_FORM_ERROR';
 const SET_REDIRECT_ERROR_FORM_SUBMIT = 'SET_REDIRECT_ERROR_FORM_SUBMIT';
 const SUBMIT_DONE_TO_FALSE = 'SUBMIT_DONE_TO_FALSE';
+const SUBMIT_REGISTER_FORM = 'SUBMIT_REGISTER_FORM';
+const SUBMIT_CONNECT_FORM = 'SUBMIT_CONNECT_FORM';
+const CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME';
+const CHANGE_LASTNAME = 'CHANGE_LASTNAME';
+const CHANGE_EMAIL = 'CHANGE_EMAIL';
+const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+const RESET_DATA = 'RESET_DATA';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case RESET_DATA:
+      return {
+        ...state,
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      };
+    case CHANGE_FIRSTNAME:
+      return {
+        ...state,
+        firstName: action.firstName,
+      };
+   
+    case CHANGE_LASTNAME:
+      return {
+        ...state,
+        lastName: action.lastName,
+      };
+
+    case CHANGE_EMAIL:
+      return {
+        ...state,
+        email: action.email,
+      };
+
+    case CHANGE_PASSWORD:
+      return {
+        ...state,
+        password: action.password,
+      };
+
     case CHANGE_IS_LOCATAIRE:
       return {
         ...state,
@@ -147,7 +190,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         rent: action.value,
       };
-    
+  
     case CHANGE_ABSTRACTED_COMMENT:
       return {
         ...state,
@@ -189,11 +232,21 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         negativeComment: action.comment,
       };
-    
+
     case SUBMIT_RATING_FORM:
       return {
         ...state,
         errorFormSubmit: true,
+      };
+
+    case SUBMIT_REGISTER_FORM:
+      return {
+        ...state,
+      };
+
+    case SUBMIT_CONNECT_FORM:
+      return {
+        ...state,
       };
 
     case CHANGE_FORM_LOADING:
@@ -383,6 +436,38 @@ export const setRedirectErrorFormSubmit = () => ({
 
 export const formSubmitDoneToFalse = () => ({
   type: SUBMIT_DONE_TO_FALSE,
+});
+
+export const sendRegisterForm = () => ({
+  type: SUBMIT_REGISTER_FORM,
+});
+
+export const sendConnectForm = () => ({
+  type: SUBMIT_CONNECT_FORM,
+});
+
+export const changeFirstName = firstName => ({
+  type: CHANGE_FIRSTNAME,
+  firstName,
+});
+
+export const changeLastName = lastName => ({
+  type: CHANGE_LASTNAME,
+  lastName,
+});
+
+export const changeEmail = email => ({
+  type: CHANGE_EMAIL,
+  email,
+});
+
+export const changePassword = password => ({
+  type: CHANGE_PASSWORD,
+  password,
+});
+
+export const resetData = () => ({
+  type: RESET_DATA,
 });
 
 // == Selectors

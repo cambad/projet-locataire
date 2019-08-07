@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from 'src/components/Header';
 import Research from 'src/containers/Research';
 import Footer from 'src/components/Footer';
-import Register from 'src/components/Register';
+import Register from 'src/containers/Register';
 import Contact from 'src/components/Contact';
 import ResearchMap from 'src/containers/ResearchMap';
 import Profil from 'src/components/Profil';
