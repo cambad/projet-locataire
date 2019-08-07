@@ -79,6 +79,7 @@ const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
 const STORE_TOKEN = 'STORE_TOKEN';
+const DELETE_TOKEN = 'DELETE_TOKEN';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -337,6 +338,12 @@ const reducer = (state = initialState, action = {}) => {
         token: action.token,
       };
 
+    case DELETE_TOKEN:
+      return {
+        ...state,
+        token: '',
+      };
+
     default:
       return state;
   }
@@ -482,6 +489,10 @@ export const resetData = () => ({
 export const storeTokenInReducer = token => ({
   type: STORE_TOKEN,
   token,
+});
+
+export const deleteToken = () => ({
+  type: DELETE_TOKEN,
 });
 
 // == Selectors

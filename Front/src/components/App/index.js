@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import decode from 'jwt-decode';
 
 import Header from 'src/components/Header';
 import Research from 'src/containers/Research';
@@ -13,8 +15,18 @@ import AppartmentRating from 'src/containers/ApartmentRating';
 
 import './app.scss';
 
-const App = () => {
-  console.log('Display App !');
+const App = ({ token, deleteToken }) => {
+  // test if a token is in reducer a display navigation bar if a token is visible
+  if (token !== '') {
+    console.log(decode(token));
+    // get a boolean : true => token is expired
+    const expDate = decode(token).exp < Date.now() / 1000;
+    // test expiration date : if true, delete token
+    if (expDate) {
+      deleteToken();
+    }
+    // changeIsConnected();
+  }
   return (
     <React.Fragment>
       <Header />
@@ -32,5 +44,10 @@ const App = () => {
   );
 };
 
+// props validation
+App.propTypes = {
+  token: PropTypes.string.isRequired,
+  deleteToken: PropTypes.func.isRequired,
+};
 
 export default App;
