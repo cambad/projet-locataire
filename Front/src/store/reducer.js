@@ -45,6 +45,7 @@ const initialState = {
   lastName: '',
   email: '',
   password: '',
+  token: '',
 };
 
 // == Types

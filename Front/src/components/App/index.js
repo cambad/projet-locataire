@@ -13,21 +13,24 @@ import AppartmentRating from 'src/containers/ApartmentRating';
 
 import './app.scss';
 
-const App = () => (
-  <React.Fragment>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={Research} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/inscription" component={Register} />
-      <Route path="/recherche" component={ResearchMap} />
-      <Route path="/profil" component={Profil} />
-      <Route path="/noter-un-appartement" component={AppartmentRating} />
-      <Route path="/appartement/:id" component={ApartmentComponent} />
-    </Switch>
-    <Footer />
-  </React.Fragment>
-);
+const App = () => {
+  console.log('Display App !');
+  return (
+    <React.Fragment>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Research} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/inscription" component={Register} />
+        <Route path="/recherche" component={ResearchMap} />
+        <Route path="/profil" component={Profil} />
+        <Route path="/noter-un-appartement" component={AppartmentRating} />
+        <Route path="/appartement/:id" component={ApartmentComponent} />
+      </Switch>
+      <Footer />
+    </React.Fragment>
+  );
+};
 
 
 export default App;
