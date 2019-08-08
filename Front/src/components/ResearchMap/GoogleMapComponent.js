@@ -69,7 +69,6 @@ const Map = (props) => {
     >
       {dataLoaded && (
         markers.apartments.map((marker) => {
-          console.log(marker);
           const {
             contact,
             exterior,

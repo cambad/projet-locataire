@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 
 import './register.scss';
 
@@ -12,6 +13,7 @@ const Register = ({
   changeLastName,
   changeEmail,
   changePassword,
+  landingPage,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,6 +52,10 @@ const Register = ({
       changePassword(value);
     }
   };
+
+  if (landingPage) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="photo">

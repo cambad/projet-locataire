@@ -19,7 +19,7 @@ const Connection = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     // to close the modal connection on submit form
-    handleClose();
+    // handleClose();
     sendConnectForm();
   };
 
