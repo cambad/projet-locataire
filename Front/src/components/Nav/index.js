@@ -51,7 +51,8 @@ class Nav extends React.Component {
           <ul className="navbar-ul">
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/noter-un-appartement/">Noter un logement</NavLink></li>
-            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/profil/">Profil</NavLink> </li>
+            <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/profil/">Profil</NavLink></li>
+            <li onClick={handleClickBtn} className="navbar-ul-link"><a href="#">Se déconnecter</a></li>
           </ul>
         )}
       </nav>

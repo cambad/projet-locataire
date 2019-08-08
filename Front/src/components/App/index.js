@@ -12,14 +12,14 @@ import Contact from 'src/components/Contact';
 import ResearchMap from 'src/containers/ResearchMap';
 import Profil from 'src/components/Profil';
 import ApartmentComponent from 'src/components/Apartment';
-import AppartmentRating from 'src/containers/ApartmentRating';
+import ApartmentRating from 'src/containers/ApartmentRating';
 import WhoAreWe from 'src/components/WhoAreWe';
 import NotFound from 'src/components/404';
 
 import './app.scss';
 
 
-const App = ({ changeIsConnected }) => {
+const App = ({ changeIsConnected, isConnected }) => {
   /**
    * Checking first time on "rate my Rent"
    */
@@ -41,12 +41,24 @@ const App = ({ changeIsConnected }) => {
     <React.Fragment>
       <Header />
       <Switch>
+        {!isConnected && (
+          <React.Fragment>
+            <Route path="/profil" component={Research} />
+            <Route path="/noter-un-appartement" component={Research} />
+            <Route path="/" exact component={Research} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/inscription" component={Register} />
+            <Route path="/recherche" component={ResearchMap} />
+            <Route path="/appartement/:id" component={ApartmentComponent} />
+            <Route path="/qui-sommes-nous" component={WhoAreWe} />
+          </React.Fragment>
+        )}
+        <Route path="/profil" component={Profil} />
+        <Route path="/noter-un-appartement" component={ApartmentRating} />
         <Route path="/" exact component={Research} />
         <Route path="/contact" component={Contact} />
         <Route path="/inscription" component={Register} />
         <Route path="/recherche" component={ResearchMap} />
-        <Route path="/profil" component={Profil} />
-        <Route path="/noter-un-appartement" component={AppartmentRating} />
         <Route path="/appartement/:id" component={ApartmentComponent} />
         <Route path="/qui-sommes-nous" component={WhoAreWe} />
         <Route component={NotFound} />

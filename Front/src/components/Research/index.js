@@ -80,7 +80,13 @@ class Research extends React.Component {
       setRedirectToMapFalse,
       formSubmitDone,
       isConnected,
+      landingPage,
+      setLandingPageToFalse,
     } = this.props;
+
+    if (landingPage) {
+      setLandingPageToFalse();
+    }
 
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
