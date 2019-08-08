@@ -6,10 +6,15 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 // locals imports
 import './research.scss';
+import Connection from 'src/containers/Connection';
 import ResearchForm from './ResearchForm';
 import LastFiveReviews from './LastFiveReviews';
 
 class Research extends React.Component {
+  // State to user modal
+  state = {
+    isModalOpen: false,
+  }
 
   // Use to set the scroll bar to the top to display the pop submiFormDone
   componentWillMount() {
@@ -22,6 +27,20 @@ class Research extends React.Component {
     const { formSubmitDoneToFalse } = this.props;
     formSubmitDoneToFalse();
   }
+
+  // To display connection modal
+  handleOpen = () => (
+    this.setState({
+      isModalOpen: true,
+    })
+  );
+
+  // To hide display connection
+  handleClose = () => (
+    this.setState({
+      isModalOpen: false,
+    })
+  );
 
   handleChange = (event) => {
     const { changeAdress } = this.props;
@@ -54,11 +73,13 @@ class Research extends React.Component {
   };
 
   render() {
+    const { isModalOpen } = this.state;
     const {
       address,
       redirectToMap,
       setRedirectToMapFalse,
       formSubmitDone,
+      isConnected,
     } = this.props;
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
@@ -92,7 +113,15 @@ class Research extends React.Component {
               <h1 className="noter-title">
                 A votre tour, notez votre logement !
               </h1>
-              <NavLink to="/noter-un-appartement"><button className="noter-button" type="button">Noter un logement</button></NavLink>
+              {!isConnected && (
+                <React.Fragment>
+                  <button className="noter-button" onClick={this.handleOpen} type="button" href="#">Noter un logement</button>
+                  { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+                </React.Fragment>
+              )}
+              {isConnected && (
+                <NavLink to="/noter-un-appartement"><button className="noter-button" type="button">Noter un logement</button></NavLink>
+              )}
             </div>
           </div>
         </div>
@@ -108,12 +137,13 @@ Research.propTypes = {
   address: PropTypes.string.isRequired,
   changeAdress: PropTypes.func.isRequired,
   redirectToMap: PropTypes.bool.isRequired,
-  formSubmitDone: PropTypes.bool.isRequired,// received from reducer.js
+  formSubmitDone: PropTypes.bool.isRequired, // received from reducer.js
   setRedirectToMap: PropTypes.func.isRequired,
   setAddressLatLng: PropTypes.func.isRequired,
   setRedirectToMapFalse: PropTypes.func.isRequired,
   setZoom: PropTypes.func.isRequired,
   formSubmitDoneToFalse: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired, // received from reducer.js
 };
 
 export default Research;

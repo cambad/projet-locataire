@@ -45,6 +45,7 @@ const initialState = {
   lastName: '',
   email: '',
   password: '',
+  token: '',
 };
 
 // == Types
@@ -77,6 +78,9 @@ const CHANGE_LASTNAME = 'CHANGE_LASTNAME';
 const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
+const STORE_TOKEN = 'STORE_TOKEN';
+const DELETE_TOKEN = 'DELETE_TOKEN';
+const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -328,6 +332,26 @@ const reducer = (state = initialState, action = {}) => {
         formSubmitDone: false,
       };
 
+    case STORE_TOKEN:
+      return {
+        ...state,
+        isConnected: true,
+        token: action.token,
+      };
+
+    case DELETE_TOKEN:
+      return {
+        ...state,
+        isConnected: false,
+        token: '',
+      };
+
+    case CHANGE_ISCONNECTED:
+      return {
+        ...state,
+        isConnected: true,
+      };
+
     default:
       return state;
   }
@@ -468,6 +492,19 @@ export const changePassword = password => ({
 
 export const resetData = () => ({
   type: RESET_DATA,
+});
+
+export const storeTokenInReducer = token => ({
+  type: STORE_TOKEN,
+  token,
+});
+
+export const deleteToken = () => ({
+  type: DELETE_TOKEN,
+});
+
+export const changeIsConnected = () => ({
+  type: CHANGE_ISCONNECTED,
 });
 
 // == Selectors

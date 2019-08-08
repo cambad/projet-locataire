@@ -1,5 +1,9 @@
 @import 'src/styles/_vars.scss';
 
+.LinkNoData {
+  color: $header-background-color;
+}
+
 button:hover {
   background-color: darken($button-background-color, 10%);
   border-radius: 5px;

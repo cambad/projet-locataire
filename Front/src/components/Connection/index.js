@@ -79,7 +79,11 @@ const Connection = ({
           <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
           <button className="connect-form-button" type="submit">Connexion</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
+<<<<<<< HEAD
           <NavLink onClick={handleClose} className="connect-form-register-button" to="/inscription">Inscrivez-vous !</NavLink>
+=======
+          <button className="connect-form-button" type="button"><NavLink onClick={handleClose} to="/inscription">Insrivez vous !</NavLink></button>
+>>>>>>> master
         </form>
       </div>
     </Modal>
