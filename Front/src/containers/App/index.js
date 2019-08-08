@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import App from 'src/components/App';
 
 // Action Creators
-import { deleteToken, changeIsConnected } from 'src/store/reducer';
+import { changeIsConnected } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
-  token: state.reducer.token,
+  // isConnected: state.reducer.isConnected,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  deleteToken: () => {
-    dispatch(deleteToken());
-  },
+  // deleteToken: () => {
+  //   dispatch(deleteToken());
+  // },
   changeIsConnected: () => {
     dispatch(changeIsConnected());
   },
