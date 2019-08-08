@@ -2,28 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Modal from '@material-ui/core/Modal';
 
 import './connection.scss';
 
-const getModalStyle = () => ({
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-});
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 500,
-    height: 600,
-    border: 'none',
-    borderRadius: '25px',
-    backgroundColor: '#223843',
-    padding: theme.spacing(2, 4, 4),
-    outline: 'none',
-  },
-}));
 
 const Connection = ({
   isModalOpen,
@@ -34,8 +17,6 @@ const Connection = ({
   changePassword,
   changeEmail,
 }) => {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +49,7 @@ const Connection = ({
       open={isModalOpen}
       onClose={handleClose}
     >
-      <div style={modalStyle} className={classes.paper}>
+      <div className="modalContainer">
         <h2 className="connect-title">Connection</h2>
         <form onSubmit={handleSubmit} className="connect-form">
 

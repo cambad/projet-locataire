@@ -1,7 +1,26 @@
 @import 'src/styles/_vars.scss';
 
+.modalContainer {
+  width: 90%;
+  position: absolute;
+  border: none;
+  border-radius: 25px;
+  background-color: #EFF1F3;
+  padding: 1em;
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 992px) {
+  .modalContainer {
+    width: 30%;
+  }
+}
+
 .connect-title {
-  color: $button-text-color;
+  color: $button-background-color;
   font-family: 'Oswald', sans-serif;
   font-size: 3em;
   text-align: center;
@@ -13,7 +32,7 @@
   flex-direction: column;  
 
   &-email {
-    color: $button-text-color;
+    color: #223843;
     font-size: 1.5em;
     font-family: $title-font-family;
     margin-bottom: 1em;
@@ -29,7 +48,7 @@
   }
 
   &-password {
-    color: $button-text-color;
+    color: #223843;
     font-size: 1.5em;
     font-family: $title-font-family;
     margin-bottom: 1em;
@@ -37,7 +56,7 @@
     &-input {
       font-family: $text-font-family;
       padding-left: 1em;
-      margin-bottom: 5em;
+      margin-bottom: 3em;
       height: 50px;
       border: none;
       border-radius: $button-border-radius;
@@ -62,9 +81,9 @@
   }
 
   &-register {
-    margin-top: 2em;
+    margin: 2em 0 1em 0;
     font-family: $text-font-family;
-    color: #fff;
+    color: #223843;
     text-align: center;
 
     &-button {
