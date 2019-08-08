@@ -9,7 +9,7 @@ import './nav.scss';
 
 class Nav extends React.Component {
   state = {
-    isModalOpen: true,
+    isModalOpen: false,
   }
 
   handleOpen = () => (
