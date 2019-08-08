@@ -60,6 +60,10 @@ class SecurityController extends AbstractController
         } catch (\Exception $e) {
             return new JsonResponse(["error" => $e->getMessage()], 500);
         }
-        return new JsonResponse(["success" => $user->getUsername(). " has been registered!"], 200);
+        return $this->redirectToRoute('api_login', [
+            'username' => $data['username'],
+            'password' => $data['password']
+        ], 307);
     }
+    
 }
