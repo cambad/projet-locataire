@@ -27,6 +27,14 @@
   &-rating {
     font-family: $text-font-family;
     font-size: 1.1em;
+    margin-bottom: .5em;
+  }
+
+  &-seemore {
+    margin-top: 1em;
+    font-size: 1.3em;
+    color: $button-background-color;
+    text-align: center;
   }
 
 }
