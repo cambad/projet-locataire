@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
   lastName: state.reducer.lastName,
   email: state.reducer.email,
   password: state.reducer.password,
+  landingPage: state.reducer.landingPage,
 });
 
 

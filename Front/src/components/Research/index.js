@@ -81,12 +81,14 @@ class Research extends React.Component {
       formSubmitDone,
       isConnected,
     } = this.props;
+
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
       setRedirectToMapFalse();
       // return to landing page
       return <Redirect to="/recherche/" />;
     }
+
     return (
       <main className="landing">
         <div className="homePhoto">

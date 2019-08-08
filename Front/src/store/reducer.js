@@ -6,6 +6,7 @@ const initialState = {
   errorFormSubmit: false,
   formLoading: false,
   isConnected: false,
+  landingPage: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
@@ -78,6 +79,7 @@ const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
 const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
+const CHANGE_LANDING_PAGE_FALSE = 'CHANGE_LANDING_PAGE_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -251,6 +253,7 @@ const reducer = (state = initialState, action = {}) => {
         isConnected: true,
         email: '',
         password: '',
+        landingPage: true,
       };
 
     case CHANGE_FORM_LOADING:
@@ -330,6 +333,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         formSubmitDone: false,
+      };
+
+    case CHANGE_LANDING_PAGE_FALSE:
+      return {
+        ...state,
+        landingPage: false,
       };
 
     // case CHANGE_ISCONNECTED:
@@ -482,6 +491,10 @@ export const resetData = () => ({
 
 export const changeIsConnected = () => ({
   type: CHANGE_ISCONNECTED,
+});
+
+export const setLandingPageToFalse = () => ({
+  type: CHANGE_LANDING_PAGE_FALSE,
 });
 
 // == Selectors
