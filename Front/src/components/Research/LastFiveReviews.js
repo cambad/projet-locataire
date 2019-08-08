@@ -39,6 +39,7 @@ class LastFiveReview extends React.Component {
 
   render() {
     const { lastFiveApartment, dataReception, loader } = this.state;
+    console.log(lastFiveApartment);
     return (
       <section className="section">
         <h3 className="section-title">Derniers logements ayant eu un avis</h3>

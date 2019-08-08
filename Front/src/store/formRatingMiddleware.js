@@ -150,6 +150,7 @@ const formRatingMiddleware = store => next => (action) => {
             // Request to send the datas to the API
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
               .then((response) => {
+                console.log(response);
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 store.dispatch(changeFormSubmitSuccess());
@@ -159,6 +160,7 @@ const formRatingMiddleware = store => next => (action) => {
                 store.dispatch(changeFormLoading());
                 // Get error from server back
                 const { violations } = error.response.data;
+                console.log(violations);
                 store.dispatch(changeFormSubmitFailure(violations));
               });
           })

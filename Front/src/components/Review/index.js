@@ -29,6 +29,7 @@ const Review = ({
             <Rating
               value={average}
               size="small"
+              readOnly
             />
           </div>
         </div>
