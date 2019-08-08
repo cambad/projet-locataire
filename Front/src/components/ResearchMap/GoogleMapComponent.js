@@ -50,6 +50,7 @@ const Map = (props) => {
     infoboxTitle,
     infoboxRental,
     id,
+    average,
   } = props;
   return  (
     <GoogleMap
@@ -68,6 +69,14 @@ const Map = (props) => {
     >
       {dataLoaded && (
         markers.apartments.map((marker) => {
+          console.log(marker);
+          const {
+            contact,
+            exterior,
+            interior,
+            recommendation,
+          } = marker;
+          const average = (contact + exterior + interior + recommendation) / 4;
           return (
             <Marker
               key={marker.id}
@@ -83,6 +92,7 @@ const Map = (props) => {
                   marker.lat,
                   marker.lng,
                   marker.id,
+                  average,
                 )
               )}
             />
@@ -102,8 +112,8 @@ const Map = (props) => {
             <p className="infobox-address">{infoboxAddress}</p>
             <p className="infobox-rent">Loyer: {infoboxRental} €</p>
             <p className="infobox-rating">Note générale :</p>
-            <Rating readOnly name="general-rating" value={3} />
-            <NavLink to={`/appartement/${id}`}>Voir détails</NavLink>
+            <Rating readOnly name="general-rating" value={average} />
+            <p className="infobox-seemore"><NavLink to={`/appartement/${id}`}>Voir détails</NavLink></p>
           </div>
         </InfoWindow>
       )}
