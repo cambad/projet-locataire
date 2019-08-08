@@ -248,6 +248,9 @@ const reducer = (state = initialState, action = {}) => {
     case SUBMIT_CONNECT_FORM:
       return {
         ...state,
+        isConnected: true,
+        email: '',
+        password: '',
       };
 
     case CHANGE_FORM_LOADING:
@@ -329,11 +332,11 @@ const reducer = (state = initialState, action = {}) => {
         formSubmitDone: false,
       };
 
-    case CHANGE_ISCONNECTED:
-      return {
-        ...state,
-        isConnected: true,
-      };
+    // case CHANGE_ISCONNECTED:
+    //   return {
+    //     ...state,
+    //     isConnected: true,
+    //   };
 
     default:
       return state;

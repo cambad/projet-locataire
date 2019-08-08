@@ -33,6 +33,7 @@ const Connection = ({
   password,
   changePassword,
   changeEmail,
+  isConnected,
 }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
