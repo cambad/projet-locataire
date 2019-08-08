@@ -9,27 +9,18 @@ import './nav.scss';
 
 class Nav extends React.Component {
   state = {
-    isModalOpen: false,
+    //isModalOpen: false,
   }
 
-  handleOpen = () => (
-    this.setState({
-      isModalOpen: true,
-    })
-  );
-
-  handleClose = () => (
-    this.setState({
-      isModalOpen: false,
-    })
-  );
 
   render() {
-    const { isModalOpen } = this.state;
     const {
       active,
       handleClickBtn,
       isConnected,
+      handleOpen,
+      handleClose,
+      isModalOpen,
     } = this.props;
     return (
       <nav className={classNames('navbar', { navActive: active })}>
@@ -38,11 +29,11 @@ class Nav extends React.Component {
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
             {/* If user is not connected, the link "Noter un logement" displays the connexion modal */}
 
-            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Noter un logement</a></li>
-            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={handleOpen} href="#">Noter un logement</a></li>
+            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={handleClose} /> }
 
-            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
-            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+            <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={handleOpen} href="#">Se connecter</a></li>
+            { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={handleClose} /> }
 
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/inscription/">S'inscrire</NavLink></li>
           </ul>

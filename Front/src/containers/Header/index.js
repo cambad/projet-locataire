@@ -5,14 +5,22 @@ import { connect } from 'react-redux';
 import Header from 'src/components/Header';
 
 // Action Creators
-import { isConnectedToFalse } from 'src/store/reducer';
+import { isConnectedToFalse, setModalOpen, setModalClose } from 'src/store/reducer';
 
 
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  isModalOpen: state.reducer.isModalOpen,
+});
 
 const mapDispatchToProps = dispatch => ({
   isConnectedToFalse: () => {
     dispatch(isConnectedToFalse());
+  },
+  setModalOpen: () => {
+    dispatch(setModalOpen());
+  },
+  setModalClose: () => {
+    dispatch(setModalClose());
   },
 });
 

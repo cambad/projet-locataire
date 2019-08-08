@@ -23,6 +23,16 @@ class Header extends React.Component {
     this.setStatewithWidth(width);
   }
 
+  handleOpen = () => {
+    const { setModalOpen } = this.props;
+    setModalOpen();
+  };
+
+  handleClose = () => {
+    const { setModalClose } = this.props;
+    setModalClose();
+  };
+
   // will update the state if or not screen rotation
   setStatewithWidth = (width) => {
     this.setState({
@@ -46,8 +56,9 @@ class Header extends React.Component {
       const authenticationObject = new AuthenticationMethods();
       authenticationObject.deleteToken();
       // isConnected to false
-      const { isConnectedToFalse } = this.props;
+      const { isConnectedToFalse, setModalClose } = this.props;
       isConnectedToFalse();
+      setModalClose();
       // redirect to landing page
       // return <Redirect to="/" />;
     }
@@ -55,6 +66,7 @@ class Header extends React.Component {
 
   render() {
     const { active } = this.state;
+    const { isModalOpen } = this.props;
     return (
       <div className="header-block">
         <header className={classNames('mainheader', { headerShadow: !active })}>
@@ -64,7 +76,13 @@ class Header extends React.Component {
               <div className={classNames('mainheader-btn-hamburger-line', { 'mainheader-btn-cross-line': active })} />
             </div>
           </div>
-          <Nav active={active} handleClickBtn={this.handleClickBtn} />
+          <Nav
+            active={active}
+            handleClickBtn={this.handleClickBtn}
+            isModalOpen={isModalOpen}
+            handleOpen={this.handleOpen}
+            handleClose={this.handleClose}
+          />
         </header>
       </div>
     );
