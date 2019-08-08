@@ -9,7 +9,7 @@ import { changeIsConnected } from 'src/store/reducer';
 
 
 const mapStateToProps = state => ({
-  // token: state.reducer.token,
+  // isConnected: state.reducer.isConnected,
 });
 
 

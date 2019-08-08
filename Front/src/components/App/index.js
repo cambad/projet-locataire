@@ -17,10 +17,12 @@ import AppartmentRating from 'src/containers/ApartmentRating';
 import './app.scss';
 
 const App = ({ changeIsConnected }) => {
-  console.log('JE PASSE DANS APP !!');
+
+  /**
+   * Checking first time on "rate my Rent"
+   */
   // create an instance of AuthenticationMethods
   const AuthenticationObject = new AuthenticationMethods();
-  console.log('Voici le token reçu dans App : ', AuthenticationObject.getToken());
 
   if (AuthenticationObject.getToken() !== null) {
     // if checkLogin() = false, the token is not expired
@@ -32,6 +34,7 @@ const App = ({ changeIsConnected }) => {
       AuthenticationObject.deleteToken();
     }
   }
+
   return (
     <React.Fragment>
       <Header />

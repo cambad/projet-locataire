@@ -20,12 +20,10 @@ class LastFiveReview extends React.Component {
   componentDidMount() {
     axios.get('https://api.rate-my-rent.fr/api/five_apartments')
       .then((response) => {
-        // check if the response.data is an empty array or not
-        const dataResponse = response.data === [];
         // set the local state with data
         this.setState({
           lastFiveApartment: response.data,
-          dataReception: dataResponse,
+          dataReception: true,
           loader: false,
         });
       })
