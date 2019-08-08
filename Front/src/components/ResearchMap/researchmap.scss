@@ -5,6 +5,10 @@
   display: none;
 }
 
+.map-element {
+  height: 85vh;
+}
+
 .research-map {
   flex-grow: 2;
 }
@@ -98,6 +102,10 @@
 @media (min-width: 992px) {
   
   // map middle screen
+  .map-element {
+    height: 80vh;
+  }
+  
 
   .research-map {
     display: flex;
@@ -178,6 +186,16 @@
     width: 80%;
   }
 
+  .map-element {
+    height: 80vh;
+  }
+
+}
+
+@media (min-width: 2048px) {
+  .map-element {
+    height: 85.1vh;
+  }
 }
 
 // .autocomplete {
