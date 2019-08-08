@@ -23,7 +23,7 @@ const App = ({ changeIsConnected }) => {
    */
   // create an instance of AuthenticationMethods
   const AuthenticationObject = new AuthenticationMethods();
-
+  AuthenticationObject.deleteToken();
   if (AuthenticationObject.getToken() !== null) {
     // if checkLogin() = false, the token is not expired
     if (!AuthenticationObject.checkLogin()) {

@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 // import local
-import { resetData, changeIsConnected } from 'src/store/reducer';
 import AuthenticationMethods from 'src/components/AuthenticationMethods';
 
 const connectFormMiddleware = store => next => (action) => {
@@ -35,11 +34,8 @@ const connectFormMiddleware = store => next => (action) => {
             authenticationObject.setToken(token);
             console.log('token du middleware : ', authenticationObject.getToken());
 
-            // set isConnected to reload rendering
-            store.dispatch(changeIsConnected());
-
-            // reset username and password to '' in reducer
-            store.dispatch(resetData());
+            // let SUBMIT_CONNECT_FORM action pass
+            next(action);
           })
           .catch((error) => {
             console.log(error.response);

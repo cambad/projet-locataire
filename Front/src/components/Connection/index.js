@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 
@@ -14,6 +14,7 @@ const Connection = ({
   password,
   changePassword,
   changeEmail,
+  isConnected,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
