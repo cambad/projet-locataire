@@ -3,6 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { Redirect } from 'react-router';
 
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -24,6 +25,7 @@ class ResearchMap extends React.Component {
     dataLoaded: false,
     newZoom: 15,
     id: 0,
+    average: 0,
   };
 
 
@@ -78,7 +80,7 @@ class ResearchMap extends React.Component {
     }
   };
 
-  handleMarkerClick = (title, address, rental, latMarker, lngMarker, id) => {
+  handleMarkerClick = (title, address, rental, latMarker, lngMarker, id, average) => {
     const { isInfoboxVisible } = this.state;
     this.setState({
       infoboxTitle: title, // Message shown in info window
@@ -88,6 +90,7 @@ class ResearchMap extends React.Component {
       markerLang: lngMarker, // Y coordinate for positioning info window
       markerLat: latMarker, // X coordinate for positioning info window
       id,
+      average,
     });
     const { setAddressLatLng, setZoom } = this.props;
     setZoom(15);
@@ -109,6 +112,8 @@ class ResearchMap extends React.Component {
       dropdown,
       fullscreen,
       setZoom,
+      landingPage,
+      setLandingPageToFalse,
     } = this.props;
     const {
       markers,
@@ -121,8 +126,15 @@ class ResearchMap extends React.Component {
       markerLat,
       newZoom,
       id,
+      average,
     } = this.state;
     const callBackApi = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp8vObJ6bLta43emCo7UbjzErnriO9XaM&libraries=places&callback=myCallbackFunc"></script>';
+    // return to landing page if connection from this page
+    if (landingPage) {
+      setLandingPageToFalse();
+      // return to landing page
+      return <Redirect to="/" />;
+    }
     return (
       <div className={classNames({ 'research-map': !fullscreen, 'research-map-fullscreen': fullscreen })}>
         <div className={classNames({ autocomplete: !fullscreen, 'autocomplete-hidden': fullscreen })}>
@@ -206,6 +218,7 @@ class ResearchMap extends React.Component {
             markers={markers}
             dataLoaded={dataLoaded}
             id={id}
+            average={average}
           />
         </div>
       </div>

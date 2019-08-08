@@ -6,6 +6,7 @@ const initialState = {
   errorFormSubmit: false,
   formLoading: false,
   isConnected: false,
+  landingPage: false,
   visitorValue: {
     recommendationValue: 0,
     exteriorValue: 0,
@@ -45,7 +46,6 @@ const initialState = {
   lastName: '',
   email: '',
   password: '',
-  token: '',
 };
 
 // == Types
@@ -78,9 +78,8 @@ const CHANGE_LASTNAME = 'CHANGE_LASTNAME';
 const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
-const STORE_TOKEN = 'STORE_TOKEN';
-const DELETE_TOKEN = 'DELETE_TOKEN';
 const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
+const CHANGE_LANDING_PAGE_FALSE = 'CHANGE_LANDING_PAGE_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -251,6 +250,10 @@ const reducer = (state = initialState, action = {}) => {
     case SUBMIT_CONNECT_FORM:
       return {
         ...state,
+        isConnected: true,
+        email: '',
+        password: '',
+        landingPage: true,
       };
 
     case CHANGE_FORM_LOADING:
@@ -332,25 +335,17 @@ const reducer = (state = initialState, action = {}) => {
         formSubmitDone: false,
       };
 
-    case STORE_TOKEN:
+    case CHANGE_LANDING_PAGE_FALSE:
       return {
         ...state,
-        isConnected: true,
-        token: action.token,
+        landingPage: false,
       };
 
-    case DELETE_TOKEN:
-      return {
-        ...state,
-        isConnected: false,
-        token: '',
-      };
-
-    case CHANGE_ISCONNECTED:
-      return {
-        ...state,
-        isConnected: true,
-      };
+    // case CHANGE_ISCONNECTED:
+    //   return {
+    //     ...state,
+    //     isConnected: true,
+    //   };
 
     default:
       return state;
@@ -494,17 +489,12 @@ export const resetData = () => ({
   type: RESET_DATA,
 });
 
-export const storeTokenInReducer = token => ({
-  type: STORE_TOKEN,
-  token,
-});
-
-export const deleteToken = () => ({
-  type: DELETE_TOKEN,
-});
-
 export const changeIsConnected = () => ({
   type: CHANGE_ISCONNECTED,
+});
+
+export const setLandingPageToFalse = () => ({
+  type: CHANGE_LANDING_PAGE_FALSE,
 });
 
 // == Selectors

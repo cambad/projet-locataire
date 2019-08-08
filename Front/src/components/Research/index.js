@@ -81,12 +81,14 @@ class Research extends React.Component {
       formSubmitDone,
       isConnected,
     } = this.props;
+
     if (redirectToMap) {
       // set state.redirectToMap to FALSE and address to an empty string
       setRedirectToMapFalse();
       // return to landing page
       return <Redirect to="/recherche/" />;
     }
+
     return (
       <main className="landing">
         <div className="homePhoto">
@@ -96,7 +98,7 @@ class Research extends React.Component {
                 Formulaire envoyé
               </span>
             )}
-            <h2 className="presentation-title">Vous déménagez ou avez visités un logement ?</h2>
+            <h2 className="presentation-title">Vous déménagez ou avez visité un logement ?</h2>
             <h2 className="presentation-subtitle">Vous pouvez le noter pour aider la communauté !</h2>
             <h4 className="presentation-desc">Sur Rate My Rent, profitez des avis pour faciliter vos recherches et gagner du temps !</h4>
           </div>
