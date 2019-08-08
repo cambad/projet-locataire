@@ -27,7 +27,7 @@ security:
             provider: fos_userbundle
 
         main:
-            pattern: ^/
+            pattern: ^/admin
             form_login:
                 csrf_token_generator: security.csrf.token_manager
                 provider:     fos_userbundle
@@ -47,7 +47,7 @@ security:
         
                 
         api:
-            pattern:   ^/api/review/new
+            pattern:   ^/api/apartment/new
             stateless: true
             provider: fos_userbundle
             # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
@@ -58,10 +58,10 @@ security:
 
         
     access_control:
-        - { path: ^/api/review/new, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/apartment/new, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/apartment, role: ROLE_ADMIN }
         - { path: ^/admin/review, role: ROLE_ADMIN  }
         - { path: ^/admin/user, role: ROLE_ADMIN  }

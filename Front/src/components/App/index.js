@@ -14,12 +14,12 @@ import Profil from 'src/components/Profil';
 import ApartmentComponent from 'src/components/Apartment';
 import ApartmentRating from 'src/containers/ApartmentRating';
 import WhoAreWe from 'src/components/WhoAreWe';
+import NotFound from 'src/components/404';
 
 import './app.scss';
 
 
 const App = ({ changeIsConnected, isConnected }) => {
-
   /**
    * Checking first time on "rate my Rent"
    */
@@ -61,6 +61,7 @@ const App = ({ changeIsConnected, isConnected }) => {
         <Route path="/recherche" component={ResearchMap} />
         <Route path="/appartement/:id" component={ApartmentComponent} />
         <Route path="/qui-sommes-nous" component={WhoAreWe} />
+        <Route component={NotFound} />
       </Switch>
       <Footer />
     </React.Fragment>

@@ -35,7 +35,7 @@ const WhoAreWe = () => (
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a href="https://www.linkedin.com/in/camille-badique/">
+          <a href="https://www.linkedin.com/in/maximerigaud-dev/">
             Linkedin
           </a>
         </Card.Content>
@@ -52,7 +52,7 @@ const WhoAreWe = () => (
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a href="https://www.linkedin.com/in/maximerigaud-dev/">
+          <a href="https://www.linkedin.com/in/camille-badique/">
             Linkedin
           </a>
         </Card.Content>

@@ -13,7 +13,10 @@
 ## Form reception
 | Endpoint | Méthode HTTP | Donnée(s) | Description |
 |--|--|--|--|
-| `/api/review/new` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/apartment/new` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/register` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/login` | POST |  |  |
+
 
 ## Routes
 
