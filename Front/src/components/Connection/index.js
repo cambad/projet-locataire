@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Modal from '@material-ui/core/Modal';
 
 import './connection.scss';
@@ -17,7 +15,6 @@ const Connection = ({
   changePassword,
   changeEmail,
 }) => {
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // to close the modal connection on submit form
@@ -52,11 +49,9 @@ const Connection = ({
       <div className="modalContainer">
         <h2 className="connect-title">Connection</h2>
         <form onSubmit={handleSubmit} className="connect-form">
-
           <label className="connect-form-email" htmlFor="mail-adress">Votre adresse e-mail</label>
           <input onChange={handleEmail} value={email} className="connect-form-email-input" type="text" placeholder="Entrez votre adresse mail" autoComplete="off" />
           <label value={password} className ="connect-form-password" htmlFor="password">Votre mot de passe</label>
-
           <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
           <button className="connect-form-button" type="submit">Connection</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
@@ -70,6 +65,11 @@ const Connection = ({
 Connection.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  sendConnectForm: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  changePassword: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
 };
 
 export default Connection;
