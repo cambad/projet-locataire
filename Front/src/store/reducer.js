@@ -341,11 +341,11 @@ const reducer = (state = initialState, action = {}) => {
         landingPage: false,
       };
 
-    // case CHANGE_ISCONNECTED:
-    //   return {
-    //     ...state,
-    //     isConnected: true,
-    //   };
+    case CHANGE_ISCONNECTED:
+      return {
+        ...state,
+        isConnected: true,
+      };
 
     default:
       return state;

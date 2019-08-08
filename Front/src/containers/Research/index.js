@@ -14,7 +14,7 @@ import {
   setZoom,
 } from 'src/store/reducerMap';
 
-import { formSubmitDoneToFalse } from 'src/store/reducer';
+import { formSubmitDoneToFalse, setLandingPageToFalse } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   // add formSubmitDone from reducer
@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   isConnected: state.reducer.isConnected,
   address: state.reducerMap.address,
   redirectToMap: state.reducerMap.redirectToMap,
+  landingPage: state.reducer.landingPage,
 });
 
 
@@ -44,6 +45,9 @@ const mapDispatchToProps = dispatch => ({
   // dispatch action to reducer.js
   formSubmitDoneToFalse: () => {
     dispatch(formSubmitDoneToFalse());
+  },
+  setLandingPageToFalse: () => {
+    dispatch(setLandingPageToFalse());
   },
 });
 
