@@ -1,29 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
 import './connection.scss';
 
-const getModalStyle = () => ({
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-});
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 500,
-    height: 600,
-    border: 'none',
-    borderRadius: '25px',
-    backgroundColor: '#223843',
-    padding: theme.spacing(2, 4, 4),
-    outline: 'none',
-  },
-}));
 
 const Connection = ({
   isModalOpen,
@@ -34,9 +15,6 @@ const Connection = ({
   changePassword,
   changeEmail,
 }) => {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // to close the modal connection on submit form
@@ -68,22 +46,16 @@ const Connection = ({
       open={isModalOpen}
       onClose={handleClose}
     >
-      <div style={modalStyle} className={classes.paper}>
-        <h2 className="connect-title">Connexion</h2>
+      <div className="modalContainer">
+        <h2 className="connect-title">Connection</h2>
         <form onSubmit={handleSubmit} className="connect-form">
-
           <label className="connect-form-email" htmlFor="mail-adress">Votre adresse e-mail</label>
           <input onChange={handleEmail} value={email} className="connect-form-email-input" type="text" placeholder="Entrez votre adresse e-mail" autoComplete="off" />
           <label value={password} className ="connect-form-password" htmlFor="password">Votre mot de passe</label>
-
           <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
           <button className="connect-form-button" type="submit">Connexion</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
-<<<<<<< HEAD
           <NavLink onClick={handleClose} className="connect-form-register-button" to="/inscription">Inscrivez-vous !</NavLink>
-=======
-          <button className="connect-form-button" type="button"><NavLink onClick={handleClose} to="/inscription">Insrivez vous !</NavLink></button>
->>>>>>> master
         </form>
       </div>
     </Modal>
@@ -93,6 +65,11 @@ const Connection = ({
 Connection.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  sendConnectForm: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  changePassword: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
 };
 
 export default Connection;
