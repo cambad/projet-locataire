@@ -24,9 +24,9 @@
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
                 <td class="text-center">
-                    <button class="btn">
-                        <a href="{{ path('admin_user_show', {'id': user.id}) }}">Voir</a>
-                    </button>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">
+                        <button class="btn">Voir</button>
+                    </a>
                    {#<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a> #}
                 </td>
                 <td class="text-center">

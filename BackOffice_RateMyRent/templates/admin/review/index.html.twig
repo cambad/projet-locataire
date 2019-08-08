@@ -20,9 +20,9 @@
                 <td class="text-center">{{ review.id }}</td>
                 <td>{{ review.title }}</td>
                 <td class="text-center">
-                    <button class="btn"> 
-                        <a href="{{ path('admin_review_show', {'id': review.id}) }}">Voir</a>
-                    </button>
+                    <a href="{{ path('admin_review_show', {'id': review.id}) }}">
+                        <button class="btn">Voir</button>
+                    </a>
                 </td>
                 <td class="text-center">
                     {{ include('admin/review/_delete_form.html.twig') }}
