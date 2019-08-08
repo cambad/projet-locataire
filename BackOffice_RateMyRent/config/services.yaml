@@ -34,13 +34,30 @@ services:
         tags:
             - { name: form.type }
 
+    acme_api.event.jwt_created_listener:
+        class: App\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    acme_api.event.authentication_failure_listener:
+        class: App\EventListener\AuthenticationFailureListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+
+    acme_api.event.jwt_decoded_listener:
+        class: App\EventListener\JWTDecodedListener
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_decoded, method: onJWTDecoded }
+
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: App\Entity\User
     from_email:
-        address: "hello@aquanote.com"
-        sender_name: "AquaNote Postman"
+        address: "admin@rate-my-rent.com"
+        sender_name: "Rate-my-rent team"
     registration:
-        form:
-            type: App\Form\RegistrationFormType
+        # form:
+        #     type: App\Form\RegistrationFormType
