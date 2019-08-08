@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // import local
 import AuthenticationMethods from 'src/components/AuthenticationMethods';
-import Header from 'src/components/Header';
+import Header from 'src/containers/Header';
 import Research from 'src/containers/Research';
 import Footer from 'src/components/Footer';
 import Register from 'src/containers/Register';
@@ -20,12 +20,13 @@ import './app.scss';
 
 
 const App = ({ changeIsConnected, isConnected }) => {
+  console.log('component App');
   /**
    * Checking first time on "rate my Rent"
    */
   // create an instance of AuthenticationMethods
   const AuthenticationObject = new AuthenticationMethods();
-  AuthenticationObject.deleteToken();
+  // AuthenticationObject.deleteToken();
   if (AuthenticationObject.getToken() !== null) {
     // if checkLogin() = false, the token is not expired
     if (!AuthenticationObject.checkLogin()) {
@@ -71,6 +72,7 @@ const App = ({ changeIsConnected, isConnected }) => {
 // props validation
 App.propTypes = {
   changeIsConnected: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default App;

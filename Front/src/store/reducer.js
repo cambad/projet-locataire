@@ -80,6 +80,7 @@ const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
 const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
 const CHANGE_LANDING_PAGE_FALSE = 'CHANGE_LANDING_PAGE_FALSE';
+const IS_CONNECTED_TO_FALSE = 'IS_CONNECTED_TO_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -347,6 +348,13 @@ const reducer = (state = initialState, action = {}) => {
         isConnected: true,
       };
 
+    case IS_CONNECTED_TO_FALSE:
+      return {
+        ...state,
+        isConnected: false,
+        landingPage: true,
+      };
+
     default:
       return state;
   }
@@ -495,6 +503,10 @@ export const changeIsConnected = () => ({
 
 export const setLandingPageToFalse = () => ({
   type: CHANGE_LANDING_PAGE_FALSE,
+});
+
+export const isConnectedToFalse = () => ({
+  type: IS_CONNECTED_TO_FALSE,
 });
 
 // == Selectors
