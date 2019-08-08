@@ -32,9 +32,9 @@ class JWTDecodedListener
         
         $payload = $event->getPayload();
 
-        if (!isset($payload['id']) || $payload['id'] !== $request->getId()) {
-            $event->markAsInvalid();
-        }
+        // if (!isset($payload['id']) || $payload['id'] !== $request->getId()) {
+        //     $event->markAsInvalid();
+        // }
     }
     
 }
