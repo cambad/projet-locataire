@@ -1,15 +1,16 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<h1>nike ta mère</h1>
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <h1>Inscritpion</h1>
+    <div class="m-5">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'card p-4', 'style': 'width: 20rem; margin: 0 auto'}}) }}
+        
+        <div>{{ form_row(form.surname) }}</div>
+        <div>{{ form_row(form.name) }}</div>
+        <div>{{ form_row(form.username) }}</div>
+        <div>{{ form_row(form.email) }}</div>
+        <div>{{ form_row(form.plainPassword) }}</div>
     
-   <div>{{ form_row(form.surname) }}</div>
-   <div>{{ form_row(form.name) }}</div>
-   <div>{{ form_row(form.username) }}</div>
-   <div>{{ form_row(form.email) }}</div>
-   <div>{{ form_row(form.age) }}</div>
-   <div>{{ form_row(form.plainPassword) }}</div>
-  
-    <div>
-        <input class="btn" type="submit" value="{{ 'registration.submit'|trans }}" />
+        <div style="margin: 0 auto">
+            <input class="btn" type="submit" value="{{ 'Inscription'|trans }}" />
+        </div>
     </div>
-{{ form_end(form) }}
+    {{ form_end(form) }}

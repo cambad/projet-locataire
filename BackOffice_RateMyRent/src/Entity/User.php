@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="`user`")
+ * @ORM\Table(name="`fos_user`")
  */
 class User extends BaseUser
 {
@@ -21,17 +23,23 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string")
      */
-    private $surname;
+    protected $surname;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $name;
+    protected $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $age;
+    private $reviews;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->reviews = new ArrayCollection();
+    }
 
     /**
      * Get the value of surname
@@ -74,21 +82,32 @@ class User extends BaseUser
     }
 
     /**
-     * Get the value of age
-     */ 
-    public function getAge()
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
     {
-        return $this->age;
+        return $this->reviews;
     }
 
-    /**
-     * Set the value of age
-     *
-     * @return  self
-     */ 
-    public function setAge($age)
+    public function addReview(Review $review): self
     {
-        $this->age = $age;
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
+            }
+        }
 
         return $this;
     }

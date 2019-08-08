@@ -6,14 +6,14 @@ const Contact = () => (
   <div className="photo-contact">
     <div className="contact">
       <form className="contact-form">
-        <h1 className="contact-form-title">Contactez nous</h1>
+        <h1 className="contact-form-title">Contactez-nous</h1>
         <div className="contact-form-fields">
           <label htmlFor="firstname">Nom</label>
           <input type="text" placeholder="Votre nom" />
           <label htmlFor="lastname">Prénom</label>
           <input type="text" placeholder="Votre prénom" />
-          <label htmlFor="email">Adresse mail</label>
-          <input type="email" placeholder="Votre adresse mail" />
+          <label htmlFor="email">Adresse e-mail</label>
+          <input type="email" placeholder="Votre adresse e-mail" />
           <label htmlFor="password">Votre message</label>
           <textarea type="text" placeholder="Votre message" />
         </div>

@@ -157,7 +157,7 @@ class Apartment extends React.Component {
               <div className="caract">
                 <h3 className="caract-item">Loyer : {rental}€</h3>
                 <h3 className="caract-item">Surface au sol (en m²) : {area}</h3>
-                <h3 className="caract-item">Etage : {floorNumber}</h3>
+                <h3 className="caract-item">Étage : {floorNumber}</h3>
                 <h3 className="caract-item">Localisation : {location}</h3>
                 <h3 className="caract-item">Nombre de pièces : {rooms}</h3>
                 <h3 className="caract-item">Habite toujours dans l'appartement : { stillIn ? 'Oui' : 'Non' }</h3>
@@ -244,7 +244,7 @@ class Apartment extends React.Component {
                       >
                         <div>
                           <Icon name="dropdown" />
-                          Etat général de l'immeuble
+                          État général de l'immeuble
                         </div>
                         <Rating
                           name="simple-controlled"
@@ -264,7 +264,7 @@ class Apartment extends React.Component {
                           />
                         </div>
                         <div className="accordion-content">
-                          <h3>Etat des parties communes</h3>
+                          <h3>État des parties communes</h3>
                           <Rating
                             name="simple-controlled"
                             max={5}
@@ -430,7 +430,7 @@ class Apartment extends React.Component {
                     />
                   </div>
                   <div className="notation-review-item">
-                    Etat général de l'immeuble
+                    État général de l'immeuble
                     <Rating
                       name="simple-controlled"
                       max={5}

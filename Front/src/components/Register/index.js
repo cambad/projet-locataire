@@ -65,8 +65,6 @@ const Register = ({
             <input value={email} onChange={handleEmail} type="email" placeholder="Votre adresse e-mail" />
             <label htmlFor="password">Mot de passe</label>
             <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" />
-            <label htmlFor="password-comfirm">Confirmez</label>
-            <input type="password" placeholder="Comfirmez votre mot de passe" />
           </div>
           <div className="register-form-cgu">
             <input type="checkbox" value="1" id="checkboxFiveInput" name="" />

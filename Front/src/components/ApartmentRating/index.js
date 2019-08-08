@@ -130,7 +130,7 @@ const ApartmentRating = ({
               changeNegativeComment={changeNegativeComment}
             />
           )}
-          <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évalutation de cet appartement</button>
+          <button className={classNames({ 'form-submit-hidden': !isDisplayed, 'form-submit': isDisplayed })} onClick={handleSubmit} type="submit">Valider l'évaluation de cet appartement</button>
           {formSubmitFailure.map(error => (
             <p key={error.propertyPath} className="failure-form-submit">{error.title}</p>
           ))}

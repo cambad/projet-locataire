@@ -21,29 +21,29 @@ class Review
 
     /**
      * @ORM\Column(type="string", length=256)
-     * @Assert\Length(min = 2,
+     * @Assert\Length(min = 5,
      *      max = 256,
-     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
-     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long")
+     *      minMessage = "Le titre doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "Le titre doit faire au maximum {{ limit }} caractères de long")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min = 2,
+     * @Assert\Length(min = 0,
      *      max = 600,
-     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
-     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long"
+     *      minMessage = "La partie positive doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La partie positive doit faire au maximum {{ limit }} caractères de long"
      * )
      */
     private $positive;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min = 2,
+     * @Assert\Length(min = 0,
      *      max = 600,
-     *      minMessage = "La localisation doit faire au minimum {{ limit }} caractères de long",
-     *      maxMessage = "La localisation doit faire au maximum {{ limit }} caractères de long"
+     *      minMessage = "La partie negative doit faire au minimum {{ limit }} caractères de long",
+     *      maxMessage = "La partie negative doit faire au maximum {{ limit }} caractères de long"
      * )
      */
     private $negative;
@@ -85,11 +85,6 @@ class Review
     private $updated_At;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews")
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Apartment", inversedBy="reviews", cascade={"persist", "remove"})
      */
     private $apartment;
@@ -98,6 +93,11 @@ class Review
      * @ORM\OneToMany(targetEntity="App\Entity\Marks", mappedBy="review", cascade={"persist", "remove"})
      */
     private $marks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews", cascade={"persist", "remove"})
+     */
+    private $user;
 
 
     public function __construct()

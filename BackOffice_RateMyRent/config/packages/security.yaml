@@ -33,6 +33,9 @@ security:
                 provider:     fos_userbundle
                 login_path:   fos_user_security_login
                 check_path:   fos_user_security_check
+            remember_me: 
+                secret: 
+                    '%kernel.secret%'
                 
             logout:
                 path:   fos_user_security_logout

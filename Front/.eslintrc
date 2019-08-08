@@ -20,7 +20,8 @@
     "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "warn",
     "react/no-unescaped-entities": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "eslint linebreak-style": "off",
   },
   "settings": {
     "import/resolver": "webpack"
