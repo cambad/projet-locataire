@@ -19,6 +19,7 @@ import { formSubmitDoneToFalse } from 'src/store/reducer';
 const mapStateToProps = state => ({
   // add formSubmitDone from reducer
   formSubmitDone: state.reducer.formSubmitDone,
+  isConnected: state.reducer.isConnected,
   address: state.reducerMap.address,
   redirectToMap: state.reducerMap.redirectToMap,
 });

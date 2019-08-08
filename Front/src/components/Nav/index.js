@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import Connection from 'src/components/Connection';
+import Connection from 'src/containers/Connection';
 
 import './nav.scss';
 
@@ -22,7 +22,7 @@ class Nav extends React.Component {
     this.setState({
       isModalOpen: false,
     })
-  )
+  );
 
   render() {
     const { isModalOpen } = this.state;
@@ -37,10 +37,13 @@ class Nav extends React.Component {
           <ul className="navbar-ul">
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/recherche/">Recherche</NavLink></li>
             {/* If user is not connected, the link "Noter un logement" displays the connexion modal */}
+
             <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Noter un logement</a></li>
             { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+
             <li onClick={handleClickBtn} className="navbar-ul-link"><a onClick={this.handleOpen} href="#">Se connecter</a></li>
             { isModalOpen === true && <Connection isModalOpen={isModalOpen} handleClose={this.handleClose} /> }
+
             <li onClick={handleClickBtn} className="navbar-ul-link"><NavLink to="/inscription/">S'inscrire</NavLink></li>
           </ul>
         )}

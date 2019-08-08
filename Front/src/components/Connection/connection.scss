@@ -60,4 +60,29 @@
   &-button:hover {
     transform: scale(1.01)
   }
+
+  &-register {
+    margin-top: 2em;
+    font-family: $text-font-family;
+    color: #fff;
+    text-align: center;
+
+    &-button {
+      padding-top: 1em;
+      margin-top: 1em;
+      font-size: 1em;
+      align-self: center;
+      text-align: center;
+      font-family: $text-font-family;
+      border: none;
+      border-radius: $button-border-radius;
+      background-color: $button-background-color;
+      color: $button-text-color;
+      width: 15em;
+      height: 3em;
+    }
+    &-button:hover {
+      transform: scale(1.01)
+    }
+  }
 }
