@@ -1,0 +1,12 @@
+.whoarewe {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  a {
+    text-decoration: none!important;
+  }
+  a:hover {
+    text-decoration: none!important;
+    color: #D33F49!important;
+  }
+}

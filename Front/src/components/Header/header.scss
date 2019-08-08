@@ -9,7 +9,7 @@
   box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.35);
 }
 
-.header {
+.mainheader {
   position: fixed;
   z-index: 100;
   display: flex;
@@ -113,7 +113,7 @@
 
 @media (min-width: 992px) {
 
-  .header {
+  .mainheader {
     flex-wrap: nowrap;
     justify-content: space-between;
 
@@ -122,7 +122,7 @@
     }
   }
 
-  .header-btn {
+  .mainheader-btn {
     display: none;
   }
 

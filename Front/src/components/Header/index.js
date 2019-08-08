@@ -44,11 +44,11 @@ class Header extends React.Component {
     console.log('JE PASSE DANS HEADER !!!');
     return (
       <div className="header-block">
-        <header className={classNames('header', { headerShadow: !active })}>
-          <NavLink to="/" className="header-title">Rate my rent</NavLink>
-          <div className="header-btn">
-            <div onClick={this.handleClickBtn} className={classNames({ 'header-btn-hamburger': !active, 'header-btn-cross': active })}>
-              <div className={classNames('header-btn-hamburger-line', { 'header-btn-cross-line': active })} />
+        <header className={classNames('mainheader', { headerShadow: !active })}>
+          <NavLink to="/" className="mainheader-title">Rate my rent</NavLink>
+          <div className="mainheader-btn">
+            <div onClick={this.handleClickBtn} className={classNames({ 'mainheader-btn-hamburger': !active, 'mainheader-btn-cross': active })}>
+              <div className={classNames('mainheader-btn-hamburger-line', { 'mainheader-btn-cross-line': active })} />
             </div>
           </div>
           <Nav active={active} handleClickBtn={this.handleClickBtn} />
