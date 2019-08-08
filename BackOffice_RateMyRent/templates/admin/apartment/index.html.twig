@@ -18,10 +18,10 @@
             <tr>
                 <td class="text-center">{{ apartment.id }}</td>
                 <td>{{ apartment.address }}</td>
-                <td class="text-center">                    
-                    <button class="btn"> 
-                        <a href="{{ path('admin_apartment_show', {'id': apartment.id}) }}" class="">Voir</a>
-                    </button>                    
+                <td class="text-center">
+                    <a href="{{ path('admin_apartment_show', {'id': apartment.id}) }}">
+                        <button class="btn">Voir</button>
+                    </a>
                 </td>
                 <td class="text-center">
                     {{ include('admin/apartment/_delete_form.html.twig') }}
