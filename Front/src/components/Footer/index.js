@@ -9,7 +9,7 @@ const Footer = () => (
     <ul className="footer-ul">
       <li className="footer-items"><NavLink to="/contact">Contact</NavLink></li>
       <li className="footer-items"><NavLink to="/mentions-legales">Mentions légales</NavLink></li>
-      <li className="footer-items"><NavLink to="/qui-sommes-nous">Qui sommes nous ?</NavLink></li>
+      <li className="footer-items"><NavLink to="/qui-sommes-nous">Qui sommes-nous ?</NavLink></li>
     </ul>
     <div id="icons" className="footer-social">
       <FaFacebookSquare size="2em" className="footer-icon" />
