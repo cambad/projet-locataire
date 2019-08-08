@@ -47,7 +47,7 @@ security:
         
                 
         api:
-            pattern:   ^/api/review/new
+            pattern:   ^/api/apartment/new
             stateless: true
             provider: fos_userbundle
             # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
@@ -58,7 +58,7 @@ security:
 
         
     access_control:
-        - { path: ^/api/review/new, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/apartment/new, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
