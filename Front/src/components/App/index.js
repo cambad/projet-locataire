@@ -15,6 +15,7 @@ import ApartmentComponent from 'src/components/Apartment';
 import ApartmentRating from 'src/containers/ApartmentRating';
 import WhoAreWe from 'src/components/WhoAreWe';
 import NotFound from 'src/components/404';
+import LegalMention from 'src/components/LegalMention';
 
 import './app.scss';
 
@@ -52,6 +53,7 @@ const App = ({ changeIsConnected, isConnected }) => {
             <Route path="/recherche" component={ResearchMap} />
             <Route path="/appartement/:id" component={ApartmentComponent} />
             <Route path="/qui-sommes-nous" component={WhoAreWe} />
+            <Route path="/mentions-legales" component={LegalMention} />
           </React.Fragment>
         )}
         <Route path="/profil" component={Profil} />
@@ -62,6 +64,7 @@ const App = ({ changeIsConnected, isConnected }) => {
         <Route path="/recherche" component={ResearchMap} />
         <Route path="/appartement/:id" component={ApartmentComponent} />
         <Route path="/qui-sommes-nous" component={WhoAreWe} />
+        <Route path="/mentions-legales" component={LegalMention} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
