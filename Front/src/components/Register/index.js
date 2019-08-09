@@ -23,34 +23,22 @@ const Register = ({
 
   const handleFirstname = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeFirstName(value);
-    }
+    changeFirstName(value);
   };
 
   const handleLastname = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeLastName(value);
-    }
+    changeLastName(value);
   };
 
   const handleEmail = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeEmail(value);
-    }
+    changeEmail(value);
   };
 
   const handlePassword = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changePassword(value);
-    }
+    changePassword(value);
   };
 
   if (landingPage) {
