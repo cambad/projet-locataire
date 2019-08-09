@@ -22,8 +22,8 @@ const registerFormMiddleware = store => next => (action) => {
       }
       if (correctForm) {
         const dataToSend = {
-          "surname": reducer.firstName,
-          "name": reducer.lastName,
+          "surname": reducer.lastName,
+          "name": reducer.firstName,
           "username": reducer.email,
           "email": reducer.email,
           "password": reducer.password,
