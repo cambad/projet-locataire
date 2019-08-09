@@ -14,6 +14,7 @@ class Research extends React.Component {
   // State to user modal
   state = {
     isModalOpen: false,
+    showFormSubmit: false,
   }
 
   // Use to set the scroll bar to the top to display the pop submiFormDone
@@ -22,8 +23,17 @@ class Research extends React.Component {
     window.scrollTo(0, 0);
   }
 
+  componentDidMount() {
+    const { formSubmitDone } = this.props;
+    if (formSubmitDone) {
+      this.setState({
+        showFormSubmit: true,
+      });
+    }
+  }
+
   // set submiFormDone to false
-  componentWillUnmount() {
+  componentDidUpdate() {
     const { formSubmitDoneToFalse } = this.props;
     formSubmitDoneToFalse();
   }
@@ -73,12 +83,11 @@ class Research extends React.Component {
   };
 
   render() {
-    const { isModalOpen } = this.state;
+    const { isModalOpen, showFormSubmit } = this.state;
     const {
       address,
       redirectToMap,
       setRedirectToMapFalse,
-      formSubmitDone,
       isConnected,
       landingPage,
       setLandingPageToFalse,
@@ -99,7 +108,7 @@ class Research extends React.Component {
       <main className="landing">
         <div className="homePhoto">
           <div className="presentation">
-            {formSubmitDone && (
+            {showFormSubmit && (
               <span className="formSubmitDone">
                 Formulaire envoyé
               </span>
@@ -152,6 +161,8 @@ Research.propTypes = {
   setZoom: PropTypes.func.isRequired,
   formSubmitDoneToFalse: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired, // received from reducer.js
+  landingPage: PropTypes.bool.isRequired,
+  setLandingPageToFalse: PropTypes.func.isRequired,
 };
 
 export default Research;

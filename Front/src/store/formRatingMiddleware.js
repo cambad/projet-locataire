@@ -63,7 +63,6 @@ const formRatingMiddleware = store => next => (action) => {
         correctForm = false;
       }
 
-      console.log('correctForm : ', correctForm);
       // If correctForm = true, we can request the latitude and longitude with the address
       if (correctForm) {
         // create dataToSend variable
@@ -80,45 +79,6 @@ const formRatingMiddleware = store => next => (action) => {
             const { latLng: spot } = store.getState().reducer;
             // change formLoading to true to display a loading icone
             store.dispatch(changeFormLoading());
-            // creating the object to send in the request to retrieve the latitude/logitude inside
-            // dataToSend = {
-            //   "address": reducer.addressForm,
-            //   "floor_number": reducer.floorNumber,
-            //   // "floor_number": 'coucou toi',
-            //   "location": reducer.location,
-            //   "area": reducer.floorArea,
-            //   "rooms": reducer.numberOfRooms,
-            //   "rental": reducer.rent,
-            //   "lat": spot.lat,
-            //   "lng": spot.lng,
-            //   "reviews": [
-            //     {
-            //       "title": reducer.abstractedComment,
-            //       "positive": reducer.positiveComment,
-            //       "negative": reducer.negativeComment,
-            //       "still_in": reducer.stillInApartment,
-            //       "tenant": reducer.isLocataire,
-            //       "marks": [
-            //         {
-            //           "recommendation": reducer.visitorValue.recommendationValue,
-            //           "exterior": reducer.visitorValue.exteriorValue,
-            //           "interior": reducer.visitorValue.interiorValue,
-            //           "contact": reducer.visitorValue.contactValue,
-            //           "accessibility": reducer.tenantValue.accessiblityValue,
-            //           "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
-            //           "traffic": reducer.tenantValue.circulationValue,
-            //           "exteriorBuilding": reducer.tenantValue.exteriorValue,
-            //           "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
-            //           "insulation": reducer.tenantValue.isolationValue,
-            //           "cleanliness": reducer.tenantValue.cleanlinessValue,
-            //           "brightness": reducer.tenantValue.brightnessValue,
-            //           "firstContact": reducer.tenantValue.contactValue,
-            //           "contact_quality": reducer.tenantValue.contactQualityValue
-            //         },
-            //       ],
-            //     },
-            //   ],
-            // };
 
             // get the userID in token
             const authenticationObject = new AuthenticationMethods();
@@ -193,7 +153,6 @@ const formRatingMiddleware = store => next => (action) => {
           })
           .catch((error) => {
             // If there is no address, display the error
-            console.log('ERROR Formulaire');
             next(action);
           });
       }

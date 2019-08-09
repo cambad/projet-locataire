@@ -22,16 +22,16 @@ const registerFormMiddleware = store => next => (action) => {
       }
       if (correctForm) {
         const dataToSend = {
-          "surname": reducer.firstName,
-          "name": reducer.lastName,
+          "surname": reducer.lastName,
+          "name": reducer.firstName,
           "username": reducer.email,
           "email": reducer.email,
           "password": reducer.password,
         };
         axios.post('https://api.rate-my-rent.fr/api/register', dataToSend)
           .then((response) => {
-            console.log(response);
             store.dispatch(resetData());
+            next(action);
           })
           .catch((error) => {
             console.log(error);

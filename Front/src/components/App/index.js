@@ -41,29 +41,33 @@ const App = ({ changeIsConnected, isConnected }) => {
   return (
     <React.Fragment>
       <Header />
-      {!isConnected && (
-        <Switch>
-          <Route path="/profil" component={Research} />
-          <Route path="/noter-un-appartement" component={Research} />
-          <Route path="/" exact component={Research} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/inscription" component={Register} />
-          <Route path="/recherche" component={ResearchMap} />
-          <Route path="/appartement/:id" component={ApartmentComponent} />
-          <Route path="/qui-sommes-nous" component={WhoAreWe} />
-          <Route path="/mentions-legales" component={LegalMention} />
-        </Switch>
-      )}
       <Switch>
-        <Route path="/profil" component={Profil} />
-        <Route path="/noter-un-appartement" component={ApartmentRating} />
-        <Route path="/" exact component={Research} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/inscription" component={Register} />
-        <Route path="/recherche" component={ResearchMap} />
-        <Route path="/appartement/:id" component={ApartmentComponent} />
-        <Route path="/qui-sommes-nous" component={WhoAreWe} />
-        <Route path="/mentions-legales" component={LegalMention} />
+        {!isConnected && (
+          <React.Fragment>
+            <Route path="/" exact component={Research} />
+            <Route path="/profil" component={Research} />
+            <Route path="/noter-un-appartement" component={Research} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/inscription" component={Register} />
+            <Route path="/recherche" component={ResearchMap} />
+            <Route path="/appartement/:id" component={ApartmentComponent} />
+            <Route path="/qui-sommes-nous" component={WhoAreWe} />
+            <Route path="/mentions-legales" component={LegalMention} />
+          </React.Fragment>
+        )}
+        {isConnected && (
+          <React.Fragment>
+            <Route path="/profil" component={Profil} />
+            <Route path="/noter-un-appartement" component={ApartmentRating} />
+            <Route path="/" exact component={Research} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/inscription" component={Register} />
+            <Route path="/recherche" component={ResearchMap} />
+            <Route path="/appartement/:id" component={ApartmentComponent} />
+            <Route path="/qui-sommes-nous" component={WhoAreWe} />
+            <Route path="/mentions-legales" component={LegalMention} />
+          </React.Fragment>
+        )}
         <Route component={NotFound} />
       </Switch>
       <Footer />
