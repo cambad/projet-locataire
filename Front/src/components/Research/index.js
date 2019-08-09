@@ -20,12 +20,31 @@ class Research extends React.Component {
   componentWillMount() {
     // To set scrollbar on top
     window.scrollTo(0, 0);
+    console.log('WILL MOUNT');
+  }
+
+  // componentDidUpdate() {
+  //   console.log('DID UPDATE');
+  //   const { isConnected } = this.props;
+  //   if (isConnected) {
+  //     this.deleteConnectionAnimation();
+  //   }
+  // }
+
+  componentDidMount() {
+    console.log('DID MOUNT');
   }
 
   // set submiFormDone to false
   componentWillUnmount() {
     const { formSubmitDoneToFalse } = this.props;
+    console.log('WILL UNMOUNT');
     formSubmitDoneToFalse();
+  }
+
+  deleteConnectionAnimation = () => {
+    const { connectionAnimationToFalse } = this.props;
+    connectionAnimationToFalse();
   }
 
   // To display connection modal
@@ -82,6 +101,7 @@ class Research extends React.Component {
       isConnected,
       landingPage,
       setLandingPageToFalse,
+      connectionAnimation,
     } = this.props;
 
     if (landingPage) {
@@ -104,6 +124,11 @@ class Research extends React.Component {
                 Formulaire envoyé
               </span>
             )}
+            {/* {connectionAnimation && (
+              <span className="formSubmitDone">
+                Vous êtes connecté
+              </span>
+            )} */}
             <h2 className="presentation-title">Vous déménagez ou avez visité un logement ?</h2>
             <h2 className="presentation-subtitle">Vous pouvez le noter pour aider la communauté !</h2>
             <h4 className="presentation-desc">Sur Rate My Rent, profitez des avis pour faciliter vos recherches et gagner du temps !</h4>
@@ -152,6 +177,8 @@ Research.propTypes = {
   setZoom: PropTypes.func.isRequired,
   formSubmitDoneToFalse: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired, // received from reducer.js
+  connectionAnimation: PropTypes.bool.isRequired,
+  connectionAnimationToFalse: PropTypes.func.isRequired,
 };
 
 export default Research;

@@ -2,6 +2,8 @@
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 
+// local import
+import AuthenticationMethods from 'src/components/AuthenticationMethods';
 import {
   getAddressLatLng,
   changeFormLoading,
@@ -61,6 +63,7 @@ const formRatingMiddleware = store => next => (action) => {
         correctForm = false;
       }
 
+      console.log('correctForm : ', correctForm);
       // If correctForm = true, we can request the latitude and longitude with the address
       if (correctForm) {
         // create dataToSend variable
@@ -117,6 +120,16 @@ const formRatingMiddleware = store => next => (action) => {
             //   ],
             // };
 
+            // get the userID in token
+            const authenticationObject = new AuthenticationMethods();
+            const token = authenticationObject.getToken();
+
+            // Configuration Axios to insert the token in the header of the query to send
+            axios.interceptors.request.use((config) => {
+              config.headers.Authorization = `Bearer ${token}`;
+              return config;
+            });
+            
             dataToSend = {
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
@@ -150,7 +163,6 @@ const formRatingMiddleware = store => next => (action) => {
             // Request to send the datas to the API
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
               .then((response) => {
-                console.log(response);
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 store.dispatch(changeFormSubmitSuccess());
@@ -159,13 +171,29 @@ const formRatingMiddleware = store => next => (action) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 // Get error from server back
+                console.log('BAD RESPONSE : ', error.response);
+
+
+                // get fields error from server
                 const { violations } = error.response.data;
-                console.log(violations);
-                store.dispatch(changeFormSubmitFailure(violations));
+                if (violations) {
+                  store.dispatch(changeFormSubmitFailure(violations));
+                }
+                else {
+                  // create an error array for the other error from the server
+                  const otherServerError = [
+                    {
+                      propertyPath: 'Internat Server Error',
+                      title: 'Une erreur est survenue lors de la réception du formulaire',
+                    },
+                  ];
+                  store.dispatch(changeFormSubmitFailure(otherServerError));
+                }
               });
           })
           .catch((error) => {
             // If there is no address, display the error
+            console.log('ERROR Formulaire');
             next(action);
           });
       }
