@@ -161,6 +161,8 @@ Research.propTypes = {
   setZoom: PropTypes.func.isRequired,
   formSubmitDoneToFalse: PropTypes.func.isRequired,
   isConnected: PropTypes.bool.isRequired, // received from reducer.js
+  landingPage: PropTypes.bool.isRequired,
+  setLandingPageToFalse: PropTypes.func.isRequired,
 };
 
 export default Research;
