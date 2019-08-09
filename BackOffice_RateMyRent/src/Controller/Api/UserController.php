@@ -26,8 +26,15 @@ class UserController extends AbstractController
      */
     public function showUserApi(UserRepository $userRepository, SerializerInterface $serializer, $id): Response
     {
+        $data = [];
+
         $userById = $userRepository->findUserById($id);
-        $userSerialised = $serializer->serialize($userById, 'json');
+        $data [] = $userById;
+
+        $reviewByUser = $userRepository->findReviewByUser($id);
+        $data [] = $reviewByUser;
+
+        $userSerialised = $serializer->serialize($data, 'json');
 
         return new Response($userSerialised, 201, [
             'content-Type' => 'application/json'

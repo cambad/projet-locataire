@@ -27,4 +27,16 @@ class UserRepository extends ServiceEntityRepository
         ;
         return $query->getQuery()->getArrayResult();
     }
+
+    public function findReviewByUser($id)
+    {
+        $query = $this->createQueryBuilder('u')
+                      ->join('u.reviews', 'r')
+                      ->join('r.apartment', 'a')
+                      ->join('r.marks', 'm')
+                      ->select('r.id, r.title, r.positive, r.negative, r.still_in, r.tenant', 'a.address', 'm.recommendation, m.exterior, m.interior, m.contact, m.accessibility, m.apartmentEnvironment, m.traffic, m.exteriorBuilding, m.buildingEnvironment, m.insulation, m.cleanliness, m.brightness, m.firstContact, m.contactQuality')
+                      ->where('u.id ='. $id)
+        ;
+        return $query->getQuery()->getArrayResult();
+    }
 }
