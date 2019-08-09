@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -60,7 +60,6 @@ class Header extends React.Component {
       isConnectedToFalse();
       setModalClose();
       // redirect to landing page
-      // return <Redirect to="/" />;
     }
   }
 
@@ -92,6 +91,9 @@ class Header extends React.Component {
 // props validation
 Header.propTypes = {
   isConnectedToFalse: PropTypes.func.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
+  isModalOpen: PropTypes.bool.isRequired,
+  setModalClose: PropTypes.func.isRequired,
 };
 
 export default Header;
