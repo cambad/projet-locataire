@@ -20,7 +20,6 @@ import './app.scss';
 
 
 const App = ({ changeIsConnected, isConnected }) => {
-  console.log('component App');
   /**
    * Checking first time on "rate my Rent"
    */
