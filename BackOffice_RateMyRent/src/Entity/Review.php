@@ -95,7 +95,7 @@ class Review
     private $marks;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews", cascade={"persist"})
      */
     private $user;
 
