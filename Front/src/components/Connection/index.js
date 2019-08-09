@@ -15,8 +15,7 @@ const Connection = ({
   changePassword,
   changeEmail,
   connectionError,
-}) => { 
-
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // to close the modal connection on submit form

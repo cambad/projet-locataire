@@ -30,7 +30,6 @@ const registerFormMiddleware = store => next => (action) => {
         };
         axios.post('https://api.rate-my-rent.fr/api/register', dataToSend)
           .then((response) => {
-            console.log(response);
             store.dispatch(resetData());
           })
           .catch((error) => {

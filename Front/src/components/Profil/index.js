@@ -26,7 +26,6 @@ class Profil extends React.Component {
 
     axios.get(`https://api.rate-my-rent.fr/api/${id}/user`)
       .then((response) => {
-        console.log(response);
         const { email, name, surname } = response.data[0];
         this.setState({
           email,

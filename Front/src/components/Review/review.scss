@@ -43,15 +43,6 @@
 @media (min-width: 567px) {
 
   .review {
-  
-    &-img {
-
-    }
-  
-    &-title {
- 
-    }
-    
     &-content {
       padding: 1em;
     }
@@ -59,35 +50,18 @@
     &-address {
       margin-bottom: 1em;
     }
-  
-    &-description {
-
-    }
   }
 }
 
 @media (min-width: 768px) {
 
   .review {
-  
-    &-img {
-
-    }
-  
-    &-title {
- 
-    }
-    
     &-content {
       padding: 1em;
     }
   
     &-address {
       margin-bottom: 1.5em;
-    }
-  
-    &-description {
-
     }
   }
 

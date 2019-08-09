@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 
 import './whoarewe.scss';
 
 const WhoAreWe = () => (
   <div className="whoarewe">
     <Card.Group>
-    <Card>
+      <Card>
         <Image src="src/img/johann.jpg" wrapped ui={false} />
         <Card.Content>
           <Card.Header>Johann</Card.Header>

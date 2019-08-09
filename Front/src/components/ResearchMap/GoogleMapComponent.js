@@ -135,6 +135,8 @@ Map.propTypes = {
   infoboxTitle: PropTypes.string.isRequired,
   setZoom: PropTypes.func.isRequired,
   infoboxRental: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  average: PropTypes.number.isRequired,
 };
 
 const MapComponent = GoogleMapComponent(Map);

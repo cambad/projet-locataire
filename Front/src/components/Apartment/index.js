@@ -2,6 +2,7 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { TiPlusOutline, TiMinusOutline } from 'react-icons/ti';
 import { Accordion, Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 
@@ -86,7 +87,7 @@ class Apartment extends React.Component {
           firstContact: marks[0].firstContact,
           insulation: marks[0].insulation,
           traffic: marks[0].traffic,
-          tenant:  reviews[0].tenant,
+          tenant: reviews[0].tenant,
         });
       })
       .catch(error => console.log(error));
@@ -468,5 +469,9 @@ class Apartment extends React.Component {
     );
   }
 }
+
+Marker.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default Apartment;

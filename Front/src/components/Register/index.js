@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 
 import './register.scss';
 
@@ -17,7 +18,6 @@ const Register = ({
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submit');
     sendRegisterForm();
   };
 
@@ -70,7 +70,7 @@ const Register = ({
             <label htmlFor="email">Adresse e-mail</label>
             <input value={email} onChange={handleEmail} type="email" placeholder="Votre adresse e-mail" />
             <label htmlFor="password">Mot de passe</label>
-            <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" />
+            <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" autoComplete="false" />
           </div>
           <div className="register-form-cgu">
             <input type="checkbox" value="1" id="checkboxFiveInput" name="" />
@@ -83,6 +83,19 @@ const Register = ({
       </div>
     </div>
   );
+};
+
+Register.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  sendRegisterForm: PropTypes.func.isRequired,
+  changeFirstName: PropTypes.func.isRequired,
+  changeLastName: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
+  changePassword: PropTypes.func.isRequired,
+  landingPage: PropTypes.bool.isRequired,
 };
 
 export default Register;
