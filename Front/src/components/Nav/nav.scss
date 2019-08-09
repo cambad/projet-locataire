@@ -2,7 +2,7 @@
 
 // Display navigation menu on mobile version
 .navActive {
-  top: 6em !important;
+  top: 5.5em !important;
   z-index: 0;
   // transition: top 3s ease;
 
@@ -54,6 +54,10 @@ li:hover {
 
 
 @media (min-width: 992px) {
+
+  .navActive {
+    top: 6em !important;
+  }
 
   .navbar {
     position: relative;
