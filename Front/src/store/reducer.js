@@ -261,6 +261,7 @@ const reducer = (state = initialState, action = {}) => {
     case SUBMIT_REGISTER_FORM:
       return {
         ...state,
+        landingPage: true,
       };
 
     case SUBMIT_CONNECT_FORM:
