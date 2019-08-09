@@ -42,7 +42,13 @@ security:
                 target: fos_user_security_login
             anonymous:    true
             
-      
+        api_user:
+                pattern:   "^\/api\/[0-9]+\/user"
+                stateless: true
+                provider: fos_userbundle
+                guard:
+                    authenticators:
+                        - lexik_jwt_authentication.jwt_token_authenticator
         
         
                 
@@ -50,14 +56,13 @@ security:
             pattern:   ^/api/apartment/new
             stateless: true
             provider: fos_userbundle
-            # ATTENTION A NE PAS GARDER LA LIGNE SUIVANTE
-            #security: false
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
         
     access_control:
+        - { path: "^\/api\/[0-9]+\/user", roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/apartment/new, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
