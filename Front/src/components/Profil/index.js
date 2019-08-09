@@ -7,6 +7,12 @@ import decode from 'jwt-decode';
 import './profil.scss';
 
 class Profil extends React.Component {
+  state = {
+    email: '',
+    name: '',
+    surname: '',
+  }
+
   componentDidMount() {
     const authenticationObject = new AuthenticationMethods();
     const token = authenticationObject.getToken();
@@ -19,19 +25,28 @@ class Profil extends React.Component {
     });
 
     axios.get(`https://api.rate-my-rent.fr/api/${id}/user`)
-      .then(response => console.log(response));
+      .then((response) => {
+        console.log(response);
+        const { email, name, surname } = response.data[0];
+        this.setState({
+          email,
+          name,
+          surname,
+        });
+      });
   }
 
   render() {
+    const { email, name, surname } = this.state;
     return (
       <main className="profil">
         <div className="profil-card">
           <p className="profil-card-edit">Editer profile</p>
           <FaUserAlt className="profil-card-picture" />
           <ul className="profil-card-info">
-            <li className="profil-card-info-item">Nom</li>
-            <li className="profil-card-info-item">Prénom</li>
-            <li className="profil-card-info-item">Adresse e-mail</li>
+            <li className="profil-card-info-item">{name}</li>
+            <li className="profil-card-info-item">{surname}</li>
+            <li className="profil-card-info-item">{email}</li>
           </ul>
         </div>
       </main>
