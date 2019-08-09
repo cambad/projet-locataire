@@ -91,7 +91,7 @@ class ApartmentController extends AbstractController
         $frontDatas = [];
         if ($content = $request->getContent()) {
             $frontDatas = json_decode($content, true);
-        }
+        }      
 
         if (isset($frontDatas)) {
             // APARTMENT needs : address, floor_number, location, area, rooms, rental, lat, lng
@@ -150,12 +150,17 @@ class ApartmentController extends AbstractController
                 ]);
             }
 
+            //With the JWT we know which user send the new review $user just store it 
+            $user = $this->getUser();
+            //We just have to connect entities User and review that's it
+            $user->addReview($review);
+
             //pushing the new review into the apartment just created
             $review->setApartment($apartment);
             
             //pushing the marks into the review juste created
             $marks->setReview($review);
-
+            
             //BDD creating a new review, a new apartement and a new note 
             $entityManager->persist($marks);
             $entityManager->flush();

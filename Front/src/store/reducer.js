@@ -46,6 +46,7 @@ const initialState = {
   lastName: '',
   email: '',
   password: '',
+  isModalOpen: false,
 };
 
 // == Types
@@ -80,10 +81,23 @@ const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 const RESET_DATA = 'RESET_DATA';
 const CHANGE_ISCONNECTED = 'CHANGE_ISCONNECTED';
 const CHANGE_LANDING_PAGE_FALSE = 'CHANGE_LANDING_PAGE_FALSE';
+const IS_CONNECTED_TO_FALSE = 'IS_CONNECTED_TO_FALSE';
+const SET_MODAL_OPEN = 'SET_MODAL_OPEN';
+const SET_MODAL_CLOSE = 'SET_MODAL_CLOSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_MODAL_OPEN:
+      return {
+        ...state,
+        isModalOpen: true,
+      };
+    case SET_MODAL_CLOSE:
+      return {
+        ...state,
+        isModalOpen: false,
+      };
     case RESET_DATA:
       return {
         ...state,
@@ -250,6 +264,7 @@ const reducer = (state = initialState, action = {}) => {
     case SUBMIT_CONNECT_FORM:
       return {
         ...state,
+        connectionAnimation: true,
         isConnected: true,
         email: '',
         password: '',
@@ -341,11 +356,18 @@ const reducer = (state = initialState, action = {}) => {
         landingPage: false,
       };
 
-    // case CHANGE_ISCONNECTED:
-    //   return {
-    //     ...state,
-    //     isConnected: true,
-    //   };
+    case CHANGE_ISCONNECTED:
+      return {
+        ...state,
+        isConnected: true,
+      };
+
+    case IS_CONNECTED_TO_FALSE:
+      return {
+        ...state,
+        isConnected: false,
+        landingPage: true,
+      };
 
     default:
       return state;
@@ -495,6 +517,18 @@ export const changeIsConnected = () => ({
 
 export const setLandingPageToFalse = () => ({
   type: CHANGE_LANDING_PAGE_FALSE,
+});
+
+export const isConnectedToFalse = () => ({
+  type: IS_CONNECTED_TO_FALSE,
+});
+
+export const setModalOpen = () => ({
+  type: SET_MODAL_OPEN,
+});
+
+export const setModalClose = () => ({
+  type: SET_MODAL_CLOSE,
 });
 
 // == Selectors

@@ -1,6 +1,5 @@
 // import npm
 import axios from 'axios';
-
 // import local
 import AuthenticationMethods from 'src/components/AuthenticationMethods';
 
@@ -31,8 +30,8 @@ const connectFormMiddleware = store => next => (action) => {
 
             // store the token in window.localStorage
             const authenticationObject = new AuthenticationMethods();
+
             authenticationObject.setToken(token);
-            console.log('token du middleware : ', authenticationObject.getToken());
 
             // let SUBMIT_CONNECT_FORM action pass
             next(action);

@@ -19,7 +19,7 @@ const GoogleMapComponent = compose(
     googleMapURL: apiURL,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '80vh' }} />,
-    mapElement: <div style={{ height: '80vh' }} />,
+    mapElement: <div className="map-element" />,
   }),
   withScriptjs,
   withGoogleMap,

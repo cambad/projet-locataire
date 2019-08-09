@@ -19,32 +19,15 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findUserById($id)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $query = $this->createQueryBuilder('u')
+                      ->select('u.id, u.username, u.email, u.surname, u.name', 'r.title, r.positive, r.negative, r.still_in, r.tenant', 'a.address', 'm.recommendation, m.exterior, m.interior, m.contact, m.accessibility, m.apartmentEnvironment, m.traffic, m.exteriorBuilding, m.buildingEnvironment, m.insulation, m.cleanliness, m.brightness, m.firstContact, m.contactQuality')
+                      ->join('u.reviews','r')
+                      ->join('r.apartment','a')
+                      ->join('r.marks','m')
+                      ->where('u.id ='. $id)
         ;
+        return $query->getQuery()->getArrayResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

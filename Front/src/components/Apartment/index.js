@@ -52,11 +52,10 @@ class Apartment extends React.Component {
     tenant: '',
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { match: { params } } = this.props;
     axios.get(`https://api.rate-my-rent.fr/api/${params.id}/apartment`)
       .then((results) => {
-        console.log(results); 
         const { data } = results;
         const { reviews } = results.data[0];
         const { marks } = results.data[0].reviews[0];
