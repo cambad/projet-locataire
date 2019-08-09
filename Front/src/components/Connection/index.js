@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 
@@ -14,8 +14,11 @@ const Connection = ({
   password,
   changePassword,
   changeEmail,
-  isConnected,
+  connectionError,
 }) => {
+
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // to close the modal connection on submit form
@@ -54,6 +57,9 @@ const Connection = ({
           <input onChange={handleEmail} value={email} className="connect-form-email-input" type="text" placeholder="Entrez votre adresse e-mail" autoComplete="off" />
           <label value={password} className ="connect-form-password" htmlFor="password">Votre mot de passe</label>
           <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
+          {connectionError && (
+            <p>Nom d'utilisateur ou mot de passe invalid</p>
+          )}
           <button className="connect-form-button" type="submit">Connexion</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
           <NavLink onClick={handleClose} className="connect-form-register-button" to="/inscription">Inscrivez-vous !</NavLink>
@@ -71,6 +77,7 @@ Connection.propTypes = {
   password: PropTypes.string.isRequired,
   changePassword: PropTypes.func.isRequired,
   changeEmail: PropTypes.func.isRequired,
+  connectionError: PropTypes.bool.isRequired,
 };
 
 export default Connection;

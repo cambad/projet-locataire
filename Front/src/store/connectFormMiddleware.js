@@ -2,6 +2,7 @@
 import axios from 'axios';
 // import local
 import AuthenticationMethods from 'src/components/AuthenticationMethods';
+import { connectionError } from 'src/store/reducer';
 
 const connectFormMiddleware = store => next => (action) => {
   switch (action.type) {
@@ -30,14 +31,14 @@ const connectFormMiddleware = store => next => (action) => {
 
             // store the token in window.localStorage
             const authenticationObject = new AuthenticationMethods();
-
             authenticationObject.setToken(token);
 
             // let SUBMIT_CONNECT_FORM action pass
             next(action);
           })
           .catch((error) => {
-            console.log(error.response);
+            // if username or password is incorrect
+            store.dispatch(connectionError());
           });
       }
     }
