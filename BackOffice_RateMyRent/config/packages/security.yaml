@@ -26,7 +26,7 @@ security:
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
             provider: fos_userbundle
 
-        main:
+        fos_user:
             pattern: ^/admin
             form_login:
                 csrf_token_generator: security.csrf.token_manager
