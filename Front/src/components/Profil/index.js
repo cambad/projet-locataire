@@ -1,11 +1,25 @@
 import React from 'react';
 import { FaUserAlt } from 'react-icons/fa';
+import axios from 'axios';
+import AuthenticationMethods from 'src/components/AuthenticationMethods';
+import decode from 'jwt-decode';
 
 import './profil.scss';
 
 class Profil extends React.Component {
   componentDidMount() {
+    const authenticationObject = new AuthenticationMethods();
+    const token = authenticationObject.getToken();
+    const decoded = decode(token);
+    const { id } = decoded;
 
+    axios.interceptors.request.use((config) => {
+      config.headers.Authorization = `Bearer ${token}`;
+      return config;
+    });
+
+    axios.get(`https://api.rate-my-rent.fr/api/${id}/user`)
+      .then(response => console.log(response));
   }
 
   render() {
