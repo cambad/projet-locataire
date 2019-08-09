@@ -74,10 +74,13 @@
         border-radius: 10px;
         font-family: $text-font-family;
         padding: 1.3em 1.8em;
+        transition: .2s;
       }
 
       button:hover {
-        transform: scale(1.01)
+        background-color: darken($button-background-color, 10%);
+        border-radius: 5px;
+        transition: .2s;
       }
     }
   }
