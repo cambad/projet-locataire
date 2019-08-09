@@ -15,9 +15,7 @@ const Connection = ({
   changePassword,
   changeEmail,
   connectionError,
-}) => {
-
-  
+}) => { 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +56,7 @@ const Connection = ({
           <label value={password} className ="connect-form-password" htmlFor="password">Votre mot de passe</label>
           <input onChange={handlePassword} className="connect-form-password-input" type="password" placeholder="Entrez votre mot de passe" autoComplete="off" />
           {connectionError && (
-            <p className="error-credentials">Nom d'utilisateur ou mot de passe invalid</p>
+            <p className="error-credentials">Nom d'utilisateur ou mot de passe invalide</p>
           )}
           <button className="connect-form-button" type="submit">Connexion</button>
           <p className="connect-form-register">Vous n'êtes pas encore inscrit ?</p>
