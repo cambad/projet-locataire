@@ -10,7 +10,7 @@ import { sendConnectForm, changePassword, changeEmail } from 'src/store/reducer'
 const mapStateToProps = state => ({
   email: state.reducer.email,
   password: state.reducer.password,
-  isConnected: state.reducer.isConnected,
+  connectionError: state.reducer.connectionError,
 });
 
 
