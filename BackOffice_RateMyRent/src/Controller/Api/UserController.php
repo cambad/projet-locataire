@@ -26,17 +26,32 @@ class UserController extends AbstractController
      */
     public function showUserApi(UserRepository $userRepository, SerializerInterface $serializer, $id): Response
     {
-        $data = [];
-
         $userById = $userRepository->findUserById($id);
-        $data [] = $userById;
 
-        $reviewByUser = $userRepository->findReviewByUser($id);
-        $data [] = $reviewByUser;
-
-        $userSerialised = $serializer->serialize($data, 'json');
+        $userSerialised = $serializer->serialize($userById, 'json');
 
         return new Response($userSerialised, 201, [
+            'content-Type' => 'application/json'
+        ]);
+    }
+
+    /**
+     * Show all the informations for a review with by id
+     * 
+     * @Route("/{id}/user/reviews", name="user_review_show", methods={"GET"}, requirements={"id"="\d+"})
+     *
+     * @param UserRepository $userRepository
+     * @param SerializerInterface $serializer
+     * @param User $id
+     * @return Response
+     */
+    public function showReviewByUserApi(UserRepository $userRepository, SerializerInterface $serializer, $id): Response
+    {
+
+        $reviewByUser = $userRepository->findReviewByUser($id);
+        $reviewSerialised = $serializer->serialize($reviewByUser, 'json');
+
+        return new Response($reviewSerialised, 201, [
             'content-Type' => 'application/json'
         ]);
     }
