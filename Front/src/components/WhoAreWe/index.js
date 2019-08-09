@@ -58,7 +58,7 @@ const WhoAreWe = () => (
         </Card.Content>
       </Card>
       <Card>
-        <Image src="src/img/alex.jpg" wrapped ui={false} />
+        <Image srcset="https://imgur.com/nucMwFK" wrapped ui={false} />
         <Card.Content>
           <Card.Header>Alexandre</Card.Header>
           <Card.Meta>
