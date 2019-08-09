@@ -5,7 +5,6 @@ const initialState = {
   formSubmitSuccess: false,
   errorFormSubmit: false,
   formLoading: false,
-  connectionAnimation: false,
   isConnected: false,
   landingPage: false,
   visitorValue: {
@@ -85,7 +84,6 @@ const CHANGE_LANDING_PAGE_FALSE = 'CHANGE_LANDING_PAGE_FALSE';
 const IS_CONNECTED_TO_FALSE = 'IS_CONNECTED_TO_FALSE';
 const SET_MODAL_OPEN = 'SET_MODAL_OPEN';
 const SET_MODAL_CLOSE = 'SET_MODAL_CLOSE';
-const CONNECTION_ANIMATION_TO_FALSE = 'CONNECTION_ANIMATION_TO_FALSE';
 
 // == Reducer
 const reducer = (state = initialState, action = {}) => {
@@ -371,12 +369,6 @@ const reducer = (state = initialState, action = {}) => {
         landingPage: true,
       };
 
-    case CONNECTION_ANIMATION_TO_FALSE:
-      return {
-        ...state,
-        connectionAnimation: false,
-      };
-
     default:
       return state;
   }
@@ -537,10 +529,6 @@ export const setModalOpen = () => ({
 
 export const setModalClose = () => ({
   type: SET_MODAL_CLOSE,
-});
-
-export const connectionAnimationToFalse = () => ({
-  type:CONNECTION_ANIMATION_TO_FALSE,
 });
 
 // == Selectors
