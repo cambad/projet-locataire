@@ -10,22 +10,11 @@ import { FaLinkedin } from 'react-icons/fa';
 
 import './whoarewe.scss';
 
-const useStyles = makeStyles({
-  card: {
-    minWidth: 345,
-    marginRight: '3em',
-  },
-  alexCard: {
-    minWidth: 345,
-  },
-});
 
 export default function ImgMediaCard() {
-  const classes = useStyles();
-
   return (
     <div className="cards">
-      <Card className={classes.card}>
+      <Card className="card">
         <CardMedia
           component="img"
           height="350"
@@ -45,7 +34,7 @@ export default function ImgMediaCard() {
           </IconButton>
         </CardActions>
       </Card>
-      <Card className={classes.card}>
+      <Card className="card">
         <CardMedia
           component="img"
           height="350"
@@ -65,7 +54,7 @@ export default function ImgMediaCard() {
           </IconButton>
         </CardActions>
       </Card>
-      <Card className={classes.card}>
+      <Card className="card">
         <CardMedia
           component="img"
           height="350"
@@ -85,7 +74,7 @@ export default function ImgMediaCard() {
           </IconButton>
         </CardActions>
       </Card>
-      <Card className={classes.card}>
+      <Card className="card">
         <CardMedia
           component="img"
           height="350"
