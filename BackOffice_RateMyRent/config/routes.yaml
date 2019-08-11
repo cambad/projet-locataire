@@ -2,10 +2,6 @@ api_login:
     path: /api/login
     methods:  [POST]
 
-
-app_logout:
-    path: /api/register
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix: /admin
