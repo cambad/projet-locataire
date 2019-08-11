@@ -23,7 +23,7 @@ class ApartmentController extends AbstractController
     /**
      * Show the last five apartment who just recieve a review
      * 
-     * @Route("/five_apartments", name="five_apartments")
+     * @Route("/five_apartments", name="five_apartments", methods={"GET"})
      *
      * @param ApartmentRepository $repository
      * @return JsonResponse
@@ -61,7 +61,7 @@ class ApartmentController extends AbstractController
     /**
      * Show all the markers visible on the map
      * 
-     * @Route("/apartment/markers", name="marker_show", methods={"GET"})
+     * @Route("/apartment/markers", name="markers", methods={"GET"})
      *
      * @param ApartmentRepository $apartmentRepository
      * @return JsonResponse
