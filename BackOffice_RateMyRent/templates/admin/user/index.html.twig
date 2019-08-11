@@ -9,10 +9,10 @@
         <thead>
             <tr>
                 <th class="text-center">Id</th>
-                <th>Pseudonyme</th>
+                <th>Email</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th class="text-center">Voir</th>
+                <th>Role</th>
                 <th class="text-center">Supprimer</th>
             </tr>
         </thead>
@@ -20,14 +20,13 @@
         {% for user in users %}
             <tr>
                 <td class="text-center">{{ user.id }}</td>
-                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
-                <td class="text-center">
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">
-                        <button class="btn">Voir</button>
-                    </a>
-                   {#<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a> #}
+                <td>
+                    {% for role in user.roles %}
+                        {{ role }}
+                    {% endfor %}
                 </td>
                 <td class="text-center">
                     {{ include('admin/user/_delete_form.html.twig') }}

@@ -2,6 +2,8 @@
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import axios from 'axios';
 
+// local import
+import AuthenticationMethods from 'src/components/AuthenticationMethods';
 import {
   getAddressLatLng,
   changeFormLoading,
@@ -77,46 +79,17 @@ const formRatingMiddleware = store => next => (action) => {
             const { latLng: spot } = store.getState().reducer;
             // change formLoading to true to display a loading icone
             store.dispatch(changeFormLoading());
-            // creating the object to send in the request to retrieve the latitude/logitude inside
-            // dataToSend = {
-            //   "address": reducer.addressForm,
-            //   "floor_number": reducer.floorNumber,
-            //   // "floor_number": 'coucou toi',
-            //   "location": reducer.location,
-            //   "area": reducer.floorArea,
-            //   "rooms": reducer.numberOfRooms,
-            //   "rental": reducer.rent,
-            //   "lat": spot.lat,
-            //   "lng": spot.lng,
-            //   "reviews": [
-            //     {
-            //       "title": reducer.abstractedComment,
-            //       "positive": reducer.positiveComment,
-            //       "negative": reducer.negativeComment,
-            //       "still_in": reducer.stillInApartment,
-            //       "tenant": reducer.isLocataire,
-            //       "marks": [
-            //         {
-            //           "recommendation": reducer.visitorValue.recommendationValue,
-            //           "exterior": reducer.visitorValue.exteriorValue,
-            //           "interior": reducer.visitorValue.interiorValue,
-            //           "contact": reducer.visitorValue.contactValue,
-            //           "accessibility": reducer.tenantValue.accessiblityValue,
-            //           "apartmentEnvironment": reducer.tenantValue.apartmentEnvironmentValue,
-            //           "traffic": reducer.tenantValue.circulationValue,
-            //           "exteriorBuilding": reducer.tenantValue.exteriorValue,
-            //           "buildingEnvironment": reducer.tenantValue.buildingEnvironmentValue,
-            //           "insulation": reducer.tenantValue.isolationValue,
-            //           "cleanliness": reducer.tenantValue.cleanlinessValue,
-            //           "brightness": reducer.tenantValue.brightnessValue,
-            //           "firstContact": reducer.tenantValue.contactValue,
-            //           "contact_quality": reducer.tenantValue.contactQualityValue
-            //         },
-            //       ],
-            //     },
-            //   ],
-            // };
 
+            // get the userID in token
+            const authenticationObject = new AuthenticationMethods();
+            const token = authenticationObject.getToken();
+
+            // Configuration Axios to insert the token in the header of the query to send
+            axios.interceptors.request.use((config) => {
+              config.headers.Authorization = `Bearer ${token}`;
+              return config;
+            });
+            
             dataToSend = {
               "address": reducer.addressForm,
               "floor_number": reducer.floorNumber,
@@ -150,7 +123,6 @@ const formRatingMiddleware = store => next => (action) => {
             // Request to send the datas to the API
             axios.post('https://api.rate-my-rent.fr/api/apartment/new', dataToSend)
               .then((response) => {
-                console.log(response);
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 store.dispatch(changeFormSubmitSuccess());
@@ -159,9 +131,24 @@ const formRatingMiddleware = store => next => (action) => {
                 // stop displaying the form submit loader
                 store.dispatch(changeFormLoading());
                 // Get error from server back
+                console.log('BAD RESPONSE : ', error.response);
+
+
+                // get fields error from server
                 const { violations } = error.response.data;
-                console.log(violations);
-                store.dispatch(changeFormSubmitFailure(violations));
+                if (violations) {
+                  store.dispatch(changeFormSubmitFailure(violations));
+                }
+                else {
+                  // create an error array for the other error from the server
+                  const otherServerError = [
+                    {
+                      propertyPath: 'Internat Server Error',
+                      title: 'Une erreur est survenue lors de la réception du formulaire',
+                    },
+                  ];
+                  store.dispatch(changeFormSubmitFailure(otherServerError));
+                }
               });
           })
           .catch((error) => {

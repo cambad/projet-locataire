@@ -5,7 +5,7 @@
 
   &-img {
     background-color: $header-background-color;
-    background-color: #d77a61;
+    background-color: $button-background-color;
     padding: 3em 0;
   }
 
@@ -14,6 +14,7 @@
     margin: 0 auto;
     font-family: $title-font-family;
     font-size: 1.2em;
+    color: $header-text-color;
   }
   
   &-content {
@@ -42,15 +43,6 @@
 @media (min-width: 567px) {
 
   .review {
-  
-    &-img {
-
-    }
-  
-    &-title {
- 
-    }
-    
     &-content {
       padding: 1em;
     }
@@ -58,35 +50,18 @@
     &-address {
       margin-bottom: 1em;
     }
-  
-    &-description {
-
-    }
   }
 }
 
 @media (min-width: 768px) {
 
   .review {
-  
-    &-img {
-
-    }
-  
-    &-title {
- 
-    }
-    
     &-content {
       padding: 1em;
     }
   
     &-address {
       margin-bottom: 1.5em;
-    }
-  
-    &-description {
-
     }
   }
 

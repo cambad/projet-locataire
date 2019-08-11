@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 
 import './register.scss';
 
@@ -12,44 +14,36 @@ const Register = ({
   changeLastName,
   changeEmail,
   changePassword,
+  landingPage,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submit');
     sendRegisterForm();
   };
 
   const handleFirstname = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeFirstName(value);
-    }
+    changeFirstName(value);
   };
 
   const handleLastname = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeLastName(value);
-    }
+    changeLastName(value);
   };
 
   const handleEmail = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changeEmail(value);
-    }
+    changeEmail(value);
   };
 
   const handlePassword = (event) => {
     const { value } = event.target;
-    // change type of value because value is now a string but we expect a number
-    if (value !== '') {
-      changePassword(value);
-    }
+    changePassword(value);
   };
+
+  if (landingPage) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="photo">
@@ -64,7 +58,7 @@ const Register = ({
             <label htmlFor="email">Adresse e-mail</label>
             <input value={email} onChange={handleEmail} type="email" placeholder="Votre adresse e-mail" />
             <label htmlFor="password">Mot de passe</label>
-            <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" />
+            <input value={password} onChange={handlePassword} type="password" placeholder="Votre mot de passe" autoComplete="false" />
           </div>
           <div className="register-form-cgu">
             <input type="checkbox" value="1" id="checkboxFiveInput" name="" />
@@ -77,6 +71,19 @@ const Register = ({
       </div>
     </div>
   );
+};
+
+Register.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  sendRegisterForm: PropTypes.func.isRequired,
+  changeFirstName: PropTypes.func.isRequired,
+  changeLastName: PropTypes.func.isRequired,
+  changeEmail: PropTypes.func.isRequired,
+  changePassword: PropTypes.func.isRequired,
+  landingPage: PropTypes.bool.isRequired,
 };
 
 export default Register;

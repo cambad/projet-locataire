@@ -163,6 +163,22 @@ ApartmentRating.propTypes = {
   changeAddress: PropTypes.func.isRequired,
   submitRatingForm: PropTypes.func.isRequired,
   setRedirectErrorFormSubmit: PropTypes.func.isRequired,
+  floorNumber: PropTypes.number.isRequired,
+  location: PropTypes.string.isRequired,
+  floorArea: PropTypes.number.isRequired,
+  rent: PropTypes.number.isRequired,
+  numberOfRooms: PropTypes.number.isRequired,
+  changeFloorArea: PropTypes.func.isRequired,
+  changeFloorNumber: PropTypes.func.isRequired,
+  changeLocation: PropTypes.func.isRequired,
+  changeNumberOfRooms: PropTypes.func.isRequired,
+  changeRent: PropTypes.func.isRequired,
+  abstractedComment: PropTypes.string.isRequired,
+  positiveComment: PropTypes.string.isRequired,
+  negativeComment: PropTypes.string.isRequired,
+  changeAbstractedComment: PropTypes.func.isRequired,
+  changePositiveComment: PropTypes.func.isRequired,
+  changeNegativeComment: PropTypes.func.isRequired,
 };
 
 export default ApartmentRating;

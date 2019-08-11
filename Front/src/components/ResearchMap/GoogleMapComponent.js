@@ -19,7 +19,7 @@ const GoogleMapComponent = compose(
     googleMapURL: apiURL,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '80vh' }} />,
-    mapElement: <div style={{ height: '80vh' }} />,
+    mapElement: <div className="map-element" />,
   }),
   withScriptjs,
   withGoogleMap,
@@ -69,7 +69,6 @@ const Map = (props) => {
     >
       {dataLoaded && (
         markers.apartments.map((marker) => {
-          console.log(marker);
           const {
             contact,
             exterior,
@@ -136,6 +135,8 @@ Map.propTypes = {
   infoboxTitle: PropTypes.string.isRequired,
   setZoom: PropTypes.func.isRequired,
   infoboxRental: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  average: PropTypes.number.isRequired,
 };
 
 const MapComponent = GoogleMapComponent(Map);

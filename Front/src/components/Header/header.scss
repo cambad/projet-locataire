@@ -1,7 +1,7 @@
 @import 'src/styles/_vars.scss';
 
 .header-block {
-  height: 6em;
+  height: 5.5em;
 }
 
 .headerShadow {
@@ -19,11 +19,11 @@
   width: 100%;
   background-color: $header-background-color;
   font-family: $title-font-family;
-  padding: 2em;
+  padding: 2em 2em 2.5em;
   color: $header-text-color;
 
   &-title {
-    font-size: 2em;
+    font-size: 1.4em;
     width: 50%;
     z-index: 100;
   }
@@ -33,11 +33,6 @@
     display: flex;
     justify-content: flex-end;
     z-index: 1;
-    /*
-      change class on click event
-      <div className="header-btn-hamburger">
-      <div className="header-btn-cross">
-    */
     
     &-hamburger {
       // grow up hamburger click area
@@ -110,6 +105,30 @@
   }
 }
 
+@media (min-width: 576) {
+
+  .mainheader {
+  
+    &-title {
+      font-size: 1.8em;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+
+  .header-block {
+    height: 6em;
+  }
+
+  .mainheader {
+  
+    &-title {
+      font-size: 2em;
+    }
+  }
+
+}
 
 @media (min-width: 992px) {
 

@@ -13,6 +13,8 @@ import {
   disableFullscreen,
 } from 'src/store/reducerMap';
 
+import { setLandingPageToFalse } from 'src/store/reducer';
+
 const mapStateToProps = state => ({
   address: state.reducerMap.address,
   lat: state.reducerMap.lat,
@@ -20,6 +22,7 @@ const mapStateToProps = state => ({
   zoom: state.reducerMap.zoom,
   dropdown: state.reducerMap.dropdown,
   fullscreen: state.reducerMap.fullscreen,
+  landingPage: state.reducer.landingPage,
 });
 
 
@@ -38,6 +41,9 @@ const mapDispatchToProps = dispatch => ({
   },
   disableFullscreen: () => {
     dispatch(disableFullscreen());
+  },
+  setLandingPageToFalse: () => {
+    dispatch(setLandingPageToFalse());
   },
 });
 

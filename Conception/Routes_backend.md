@@ -9,11 +9,15 @@
 | `/api/[id]/review` | GET | - | Sending all informations from Review entity for an id |
 | `/api/apartment/marker` | GET | - | Sending informations from Apartment entity and the title of the associate reviews |
 | `/api/[id]/user` | GET | - | Sending informations from User entity with an id |
+| `/api/[id]/user/reviews` | GET | - | Sending reviews informations by user id |
 
 ## Form reception
 | Endpoint | Méthode HTTP | Donnée(s) | Description |
 |--|--|--|--|
-| `/api/review/new` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/apartment/new` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/register` | POST | All the data from the form | Recieve all the data from inputs of the form, translated in JSON |
+| `/api/login` | POST |  |  |
+
 
 ## Routes
 
