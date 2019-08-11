@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>USER</span> (
+    <span class='primary'>username</span>,
+    <span class='normal'>username_canonical</span>,
+    <span class='normal'>email</span>,
+    <span class='normal'>email_canonical</span>,
+    <span class='normal'>enabled</span>,
+    <span class='normal'>salt</span>,
+    <span class='normal'>password</span>,
+    <span class='normal'>last_login</span>,
+    <span class='normal'>confirmation_token</span>,
+    <span class='normal'>password_requested_at</span>,
+    <span class='normal'>roles</span>,
+    <span class='normal'>surname</span>,
+    <span class='normal'>name</span>
+  )
+  <ul>
+    <li>Le champ <i>username</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>USER</i>.</li>
+    <li>Les champs <i>username_canonical</i>, <i>email</i>, <i>email_canonical</i>, <i>enabled</i>, <i>salt</i>, <i>password</i>, <i>last_login</i>, <i>confirmation_token</i>, <i>password_requested_at</i>, <i>roles</i>, <i>surname</i> et <i>name</i> étaient déjà de simples attributs de l'entité <i>USER</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>REVIEW</span> (
+    <span class='primary'>title</span>,
+    <span class='normal'>positive</span>,
+    <span class='normal'>negative</span>,
+    <span class='normal'>still_in</span>,
+    <span class='normal'>tenant</span>,
+    <span class='normal'>created_at</span>,
+    <span class='normal'>updated_at</span>,
+    <span class='foreign'>adress</span>,
+    <span class='foreign'>username</span>
+  )
+  <ul>
+    <li>Le champ <i>title</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>REVIEW</i>.</li>
+    <li>Les champs <i>positive</i>, <i>negative</i>, <i>still_in</i>, <i>tenant</i>, <i>created_at</i> et <i>updated_at</i> étaient déjà de simples attributs de l'entité <i>REVIEW</i>.</li>
+    <li>Le champ <i>adress</i> est une clef étrangère. Il a migré à partir de l'entité <i>APPARTMENT</i> par l'association de dépendance fonctionnelle <i>can have</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>username</i> est une clef étrangère. Il a migré à partir de l'entité <i>USER</i> par l'association de dépendance fonctionnelle <i>hasMany</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>MARKS</span> (
+    <span class='primary'>recommendation</span>,
+    <span class='normal'>exterior</span>,
+    <span class='normal'>interior</span>,
+    <span class='normal'>contact</span>,
+    <span class='normal'>accessibility</span>,
+    <span class='normal'>apartment_environment</span>,
+    <span class='normal'>traffic</span>,
+    <span class='normal'>exterior_building</span>,
+    <span class='normal'>building_environment</span>,
+    <span class='normal'>insulation</span>,
+    <span class='normal'>cleanliness</span>,
+    <span class='normal'>brightness</span>,
+    <span class='normal'>first_contact</span>,
+    <span class='normal'>contact_quality</span>,
+    <span class='foreign'>title</span>
+  )
+  <ul>
+    <li>Le champ <i>recommendation</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>MARKS</i>.</li>
+    <li>Les champs <i>exterior</i>, <i>interior</i>, <i>contact</i>, <i>accessibility</i>, <i>apartment_environment</i>, <i>traffic</i>, <i>exterior_building</i>, <i>building_environment</i>, <i>insulation</i>, <i>cleanliness</i>, <i>brightness</i>, <i>first_contact</i> et <i>contact_quality</i> étaient déjà de simples attributs de l'entité <i>MARKS</i>.</li>
+    <li>Le champ <i>title</i> est une clef étrangère. Il a migré à partir de l'entité <i>REVIEW</i> par l'association de dépendance fonctionnelle <i>has</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>APPARTMENT</span> (
+    <span class='primary'>adress</span>,
+    <span class='normal'>floor_number</span>,
+    <span class='normal'>location</span>,
+    <span class='normal'>area</span>,
+    <span class='normal'>rooms</span>,
+    <span class='normal'>rental</span>,
+    <span class='normal'>lat</span>,
+    <span class='normal'>lng</span>
+  )
+  <ul>
+    <li>Le champ <i>adress</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>APPARTMENT</i>.</li>
+    <li>Les champs <i>floor_number</i>, <i>location</i>, <i>area</i>, <i>rooms</i>, <i>rental</i>, <i>lat</i> et <i>lng</i> étaient déjà de simples attributs de l'entité <i>APPARTMENT</i>.</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+**USER** (<ins>username</ins>, username_canonical, email, email_canonical, enabled, salt, password, last_login, confirmation_token, password_requested_at, roles, surname, name)  
+**REVIEW** (<ins>title</ins>, positive, negative, still_in, tenant, created_at, updated_at, _adress_, _username_)  
+**MARKS** (<ins>recommendation</ins>, exterior, interior, contact, accessibility, apartment_environment, traffic, exterior_building, building_environment, insulation, cleanliness, brightness, first_contact, contact_quality, _title_)  
+**APPARTMENT** (<ins>adress</ins>, floor_number, location, area, rooms, rental, lat, lng)
