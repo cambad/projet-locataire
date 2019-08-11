@@ -25,39 +25,36 @@ const formRatingMiddleware = store => next => (action) => {
       // retrieve state from reducer
       const { reducer } = store.getState();
 
-      // Check address validation
-      correctForm = reducer.addressForm !== '';
+      // trim string input
+      const address = reducer.addressForm.trim();
+      const location = reducer.location.trim();
+      const abstractedComment = reducer.abstractedComment.trim();
+      const positiveComment = reducer.positiveComment.trim();
+      const negativeComment = reducer.negativeComment.trim();
 
-      // Check stars from visitor or tenant
-      if (reducer.isVisiteur) {
-        // iterate through the values from an object to test the value and send true if value > 0
-        correctForm = Object.values(reducer.visitorValue).every(currentValue => currentValue > 0);
-      }
-      else {
-        correctForm = Object.values(reducer.tenantValue).every(currentValue => currentValue > 0);
-      }
-
-      // check floorNumber, location, numberOfRooms and rent
-      if (
-        reducer.floorNumber !== 0
-        && reducer.location !== ''
-        && reducer.floorArea !== 0
-        && reducer.numberOfRooms !== 0
-        && reducer.rent !== 0
-      ) {
-        correctForm = true;
-      }
-      else {
-        correctForm = false;
-      }
-
-      // check title, positive and negative comments
-      if (
-        reducer.abstractedComment !== ''
-        && reducer.positiveComment !== ''
-        && reducer.negativeComment !== ''
-      ) {
-        correctForm = true;
+      // check if every fields are completed
+      if (address.length > 0) {
+        if (
+          reducer.floorNumber !== 0
+          && location.length > 0
+          && reducer.floorArea !== 0
+          && reducer.numberOfRooms !== 0
+          && reducer.rent !== 0
+        ) {
+          if (
+            abstractedComment.length > 0
+            && positiveComment.length > 0
+            && negativeComment.length > 0
+          ) {
+            if (reducer.isVisiteur) {
+              // iterate through the values from an object to test the value and send true if value > 0
+              correctForm = Object.values(reducer.visitorValue).every(currentValue => currentValue > 0);
+            }
+            else {
+              correctForm = Object.values(reducer.tenantValue).every(currentValue => currentValue > 0);
+            }
+          }
+        }
       }
       else {
         correctForm = false;
