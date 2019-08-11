@@ -27,8 +27,9 @@ export default function ImgMediaCard() {
           component="img"
           alt="Johann"
           height="350"
-          image="src/img/johann.jpg"
+          //image="src/img/johann.jpg"
           title="Johann"
+          className="card"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

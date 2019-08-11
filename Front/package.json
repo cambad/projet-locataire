@@ -19,6 +19,8 @@
     "file-loader": "*",
     "html-webpack-plugin": "*",
     "ignore-styles": "*",
+    "image-webpack-loader": "^5.0.0",
+    "imagemin": "^7.0.0",
     "mini-css-extract-plugin": "*",
     "node-sass": "*",
     "optimize-css-assets-webpack-plugin": "*",
