@@ -43,7 +43,7 @@ const App = ({ changeIsConnected, isConnected }) => {
       <Header />
       <Switch>
         {!isConnected && (
-          <React.Fragment>
+          <Switch>
             <Route path="/" exact component={Research} />
             <Route path="/profil" component={Research} />
             <Route path="/noter-un-appartement" component={Research} />
@@ -54,10 +54,10 @@ const App = ({ changeIsConnected, isConnected }) => {
             <Route path="/qui-sommes-nous" component={WhoAreWe} />
             <Route path="/mentions-legales" component={LegalMention} />
             <Route component={NotFound} />
-          </React.Fragment>
+          </Switch>
         )}
         {isConnected && (
-          <React.Fragment>
+          <Switch>
             <Route path="/profil" component={Profil} />
             <Route path="/noter-un-appartement" component={ApartmentRating} />
             <Route path="/" exact component={Research} />
@@ -68,7 +68,7 @@ const App = ({ changeIsConnected, isConnected }) => {
             <Route path="/qui-sommes-nous" component={WhoAreWe} />
             <Route path="/mentions-legales" component={LegalMention} />
             <Route component={NotFound} />
-          </React.Fragment>
+          </Switch>
         )}
       </Switch>
       <Footer />

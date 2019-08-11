@@ -98,14 +98,10 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/',
-            },
-          },
+       'file-loader',
+       { loader: 'image-webpack-loader' },
         ],
       },
       // fonts
@@ -145,5 +141,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new CompressionPlugin(),
   ],
 };
