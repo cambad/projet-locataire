@@ -68,6 +68,7 @@ form {
     font-family: 'Montserrat';
     font-size: 1.2rem;
     display: flex;
+    flex-direction: column;
 }
 
 .remember {
@@ -143,3 +144,8 @@ form {
     margin: 0 auto;
 }
 
+.roles {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
