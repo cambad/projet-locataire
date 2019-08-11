@@ -1,0 +1,9 @@
+USER: username, username_canonical, email, email_canonical, enabled, salt, password, last_login, confirmation_token, password_requested_at, roles, surname, name
+hasMany, 11 REVIEW, 0N USER
+REVIEW: title, positive, negative, still_in, tenant, created_at, updated_at
+has, 1N REVIEW, 11 MARKS
+MARKS: recommendation, exterior, interior, contact, accessibility, apartment_environment, traffic, exterior_building, building_environment, insulation, cleanliness, brightness, first_contact, contact_quality
+
+can have, 1N APPARTMENT, 11 REVIEW
+
+APPARTMENT: adress, floor_number, location, area, rooms, rental, lat, lng

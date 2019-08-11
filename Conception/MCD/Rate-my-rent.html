@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>USER</span> (
+    <span class='primary'>username</span>,
+    <span class='normal'>username_canonical</span>,
+    <span class='normal'>email</span>,
+    <span class='normal'>email_canonical</span>,
+    <span class='normal'>enabled</span>,
+    <span class='normal'>salt</span>,
+    <span class='normal'>password</span>,
+    <span class='normal'>last_login</span>,
+    <span class='normal'>confirmation_token</span>,
+    <span class='normal'>password_requested_at</span>,
+    <span class='normal'>roles</span>,
+    <span class='normal'>surname</span>,
+    <span class='normal'>name</span>
+  )
+</div>
+<div>
+  <span class='relation'>REVIEW</span> (
+    <span class='primary'>title</span>,
+    <span class='normal'>positive</span>,
+    <span class='normal'>negative</span>,
+    <span class='normal'>still_in</span>,
+    <span class='normal'>tenant</span>,
+    <span class='normal'>created_at</span>,
+    <span class='normal'>updated_at</span>,
+    <span class='foreign'>adress</span>,
+    <span class='foreign'>username</span>
+  )
+</div>
+<div>
+  <span class='relation'>MARKS</span> (
+    <span class='primary'>recommendation</span>,
+    <span class='normal'>exterior</span>,
+    <span class='normal'>interior</span>,
+    <span class='normal'>contact</span>,
+    <span class='normal'>accessibility</span>,
+    <span class='normal'>apartment_environment</span>,
+    <span class='normal'>traffic</span>,
+    <span class='normal'>exterior_building</span>,
+    <span class='normal'>building_environment</span>,
+    <span class='normal'>insulation</span>,
+    <span class='normal'>cleanliness</span>,
+    <span class='normal'>brightness</span>,
+    <span class='normal'>first_contact</span>,
+    <span class='normal'>contact_quality</span>,
+    <span class='foreign'>title</span>
+  )
+</div>
+<div>
+  <span class='relation'>APPARTMENT</span> (
+    <span class='primary'>adress</span>,
+    <span class='normal'>floor_number</span>,
+    <span class='normal'>location</span>,
+    <span class='normal'>area</span>,
+    <span class='normal'>rooms</span>,
+    <span class='normal'>rental</span>,
+    <span class='normal'>lat</span>,
+    <span class='normal'>lng</span>
+  )
+</div>
+</div>
+</body>
+</html>

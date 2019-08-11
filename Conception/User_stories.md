@@ -69,14 +69,6 @@
   <tr>
    <td>Membre
    </td>
-   <td>Afficher la liste de tous les appartements
-   </td>
-   <td>Consulter tous les appartements
-   </td>
-  </tr>
-  <tr>
-   <td>Membre
-   </td>
    <td>Afficher un appartement en particulier
    </td>
    <td>Consulter ses informations
