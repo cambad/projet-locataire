@@ -1,6 +1,11 @@
 .cards {
   display: flex;
-  justify-content: center; 
+  flex-direction: column;
+}
+
+.card {
+    min-width: 345px;
+    margin-bottom: 2em;
 }
 
 .card-johann {
@@ -19,3 +24,15 @@
   background-image: url(../../img/alex.jpg)
 }
 
+@media (min-width: 992px) {
+    .cards {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .card {
+        margin-right: 3em;
+    }
+      
+}
