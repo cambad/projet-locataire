@@ -2,11 +2,11 @@
 const path = require('path');
 
 // Plugins de traitement pour dist/
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 // Config pour le devServer
 const host = 'localhost';
@@ -33,6 +33,7 @@ module.exports = {
       './src/index.js',
     ],
   },
+  plugins: [new CompressionPlugin()],
   // Sortie
   output: {
     // Nom du bundle
