@@ -12,8 +12,11 @@ import './whoarewe.scss';
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
+    minWidth: 345,
     marginRight: '3em',
+  },
+  alexCard: {
+    minWidth: 345,
   },
 });
 
@@ -25,11 +28,8 @@ export default function ImgMediaCard() {
       <Card className={classes.card}>
         <CardMedia
           component="img"
-          alt="Johann"
           height="350"
-          //image="src/img/johann.jpg"
-          title="Johann"
-          className="card"
+          className="card-johann"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -48,10 +48,8 @@ export default function ImgMediaCard() {
       <Card className={classes.card}>
         <CardMedia
           component="img"
-          alt="Maxime"
           height="350"
-          image="src/img/maxime.png"
-          title="Maxime"
+          className="card-maxime"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -70,10 +68,8 @@ export default function ImgMediaCard() {
       <Card className={classes.card}>
         <CardMedia
           component="img"
-          alt="Camille"
           height="350"
-          image="src/img/camille.png"
-          title="Camille"
+          className="card-camille"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -92,10 +88,8 @@ export default function ImgMediaCard() {
       <Card className={classes.card}>
         <CardMedia
           component="img"
-          alt="Alexandre"
           height="350"
-          image="src/img/alex.jpg"
-          title="Alexandre"
+          className="card-alex"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
