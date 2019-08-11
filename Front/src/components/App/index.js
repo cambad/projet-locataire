@@ -53,6 +53,7 @@ const App = ({ changeIsConnected, isConnected }) => {
             <Route path="/appartement/:id" component={ApartmentComponent} />
             <Route path="/qui-sommes-nous" component={WhoAreWe} />
             <Route path="/mentions-legales" component={LegalMention} />
+            <Route component={NotFound} />
           </React.Fragment>
         )}
         {isConnected && (
@@ -66,9 +67,9 @@ const App = ({ changeIsConnected, isConnected }) => {
             <Route path="/appartement/:id" component={ApartmentComponent} />
             <Route path="/qui-sommes-nous" component={WhoAreWe} />
             <Route path="/mentions-legales" component={LegalMention} />
+            <Route component={NotFound} />
           </React.Fragment>
         )}
-        <Route component={NotFound} />
       </Switch>
       <Footer />
     </React.Fragment>
