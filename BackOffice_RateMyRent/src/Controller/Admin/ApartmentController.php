@@ -45,8 +45,14 @@ class ApartmentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($apartment);
             $entityManager->flush();
+
+            $this->addFlash(
+                'danger',
+                'Appartement supprimé ainsi que ses avis et ses notes'
+            );
+
+            return $this->redirectToRoute('admin_apartment_index');
         }
 
-        return $this->redirectToRoute('admin_apartment_index');
     }
 }
