@@ -47,8 +47,6 @@ class ApartmentRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('a')
                       ->join('a.reviews','r')
                       ->addSelect('r')
-                      ->join('r.user','u')
-                      ->addSelect('u')
                       ->join('r.marks', 'm')
                       ->addSelect('m')
                       ->orderBy('a.id', 'DESC')
