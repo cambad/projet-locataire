@@ -34,7 +34,7 @@ class UserRepository extends ServiceEntityRepository
                       ->join('u.reviews', 'r')
                       ->join('r.apartment', 'a')
                       ->join('r.marks', 'm')
-                      ->select('r.id, r.title, r.positive, r.negative, r.still_in, r.tenant', 'a.address', 'm.recommendation, m.exterior, m.interior, m.contact, m.accessibility, m.apartmentEnvironment, m.traffic, m.exteriorBuilding, m.buildingEnvironment, m.insulation, m.cleanliness, m.brightness, m.firstContact, m.contactQuality')
+                      ->select('r.id, r.title', 'a.address, a.rental', 'm.recommendation, m.exterior, m.interior, m.contact')
                       ->where('u.id ='. $id)
         ;
         return $query->getQuery()->getArrayResult();
