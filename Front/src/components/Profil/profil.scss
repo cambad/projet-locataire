@@ -1,14 +1,19 @@
 @import 'src/styles/_vars.scss';
 
+.noReview {
+    text-align: center;
+}
+
+.profil {
+    padding-top: 2em;
+}
+
 .profil-card {
-  width: 70%;
   margin: 0 auto;
   text-align: center;
   padding: 2em;
   color: $header-background-color;
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4); 
-  box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4);
   display: flex;
   flex-direction: column;
 
@@ -43,6 +48,10 @@
 
     &-item {
       margin-bottom: 1em;
+
+      &:hover {
+          color: $header-background-color;
+      }
     }
   }
 }
@@ -50,7 +59,10 @@
 @media (min-width: 576px) {
 
   .profil-card {
+    width: 70%;
     padding: 3em;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4); 
+    box-shadow: 0px 0px 4px 0px rgba(34,56,67,0.4);
 
     &-picture {
       margin: 0 auto 3em auto;
