@@ -42,7 +42,15 @@
                 </nav>
             {% endblock %}
         </div>
-        {% block body %}{% endblock %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% block body %}
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
     </html>

@@ -8,7 +8,6 @@ use App\Repository\ReviewRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Review;
 use Symfony\Component\HttpFoundation\Request;
-use App\Repository\MarksRepository;
 
 /**
  * @Route("/admin/review", name="admin_review_")
@@ -46,8 +45,15 @@ class ReviewController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($review);
             $entityManager->flush();
+
+            $this->addFlash(
+                'danger',
+                'Avis supprimé ainsi que son appartement et ses notes'
+            );
+
+
+            return $this->redirectToRoute('admin_review_index');
         }
 
-        return $this->redirectToRoute('admin_review_index');
     }
 }
